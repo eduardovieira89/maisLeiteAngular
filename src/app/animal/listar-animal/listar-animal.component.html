@@ -1,0 +1,42 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" *ngIf="propriedadeSelecionada">
+        <h2>Animais</h2>
+
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Brinco</td>
+                        <td>Nascimento</td>
+                        <td>Num Registro</td>
+                        <td>Sexo</td>
+                        <td>Raça</td>
+                        <td><button (click)="criarAnimal()" class="btn btn-success">Criar Animal</button></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let animal of animais">
+                        <td>{{animal.nome}}</td>
+                        <td>{{animal.brinco}}</td>
+                        <td>{{animal.dataNasc | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{animal.registro}}</td>
+                        <td>{{animal.sexo | uppercase}}</td>
+                        <td>{{animal.raca.descricao}}</td>
+                        <td>
+                            <button (click)="deletarPropriedade(propriedade.id_propriedade)"
+                                class="btn btn-danger">Deletar</button>
+                            <button (click)="alterarPropriedade(propriedade.id_propriedade)" class="btn btn-info"
+                                style="margin-left: 10px"> Alterar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="panel-body" *ngIf="!propriedadeSelecionada">
+        <h1>Selecione de qual propriedade deseja listar os animais:</h1>
+        <app-propriedade></app-propriedade>
+    </div>
+</div>

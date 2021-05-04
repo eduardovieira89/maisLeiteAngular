@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2>Propriedades</h2>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Localidade</td>
+                    <td>Municipio</td>
+                    <td><button (click)="criarPropriedade()" class="btn btn-success">Nova</button></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let propriedade of propriedades">
+                    <td>{{propriedade.nome}}</td>
+                    <td>{{propriedade.localidade}}</td>
+                    <td>{{propriedade.municipio}}</td>
+                    <td>
+                        <button (click)="deletarPropriedade(propriedade.id_propriedade)" class="btn btn-danger">Deletar</button>
+                        <button (click)="alterarPropriedade(propriedade.id_propriedade)" class="btn btn-info" style="margin-left: 10px"> Alterar</button>
+                        <button (click)="selecionarPropriedade(propriedade)"class="btn btn-info"style="margin-left: 10px">Selecionar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+
+

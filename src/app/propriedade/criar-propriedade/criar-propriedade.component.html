@@ -1,0 +1,28 @@
+<h3>Criar Propriedade</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome da propriedade</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="propriedade.nome" name="nome">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Localidade</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="propriedade.localidade" name="localidade">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Municipio</label>
+      <input type="text" class="form-control" id="emailId" required [(ngModel)]="propriedade.municipio" name="municipio">
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <div class="float-right"><button (click)="voltar()" class="btn btn-info">Cancelar</button></div>
+    
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Propriedade criada com sucesso!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
