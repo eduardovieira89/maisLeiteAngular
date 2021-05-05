@@ -9,6 +9,7 @@ import { AlterarPropriedadeComponent } from './propriedade/alterar-propriedade/a
 import { CriarPropriedadeComponent } from './propriedade/criar-propriedade/criar-propriedade.component';
 import { ListarAnimalComponent } from './animal/listar-animal/listar-animal.component';
 import { CriarAnimalComponent } from './animal/criar-animal/criar-animal.component';
+import { DetalhesAnimalComponent } from './animal/detalhes-animal/detalhes-animal.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'propriedade/:id', component: AlterarPropriedadeComponent},
   {path: 'novapropriedade', component: CriarPropriedadeComponent},
   {path: 'animal', component: ListarAnimalComponent},
-  {path: 'novoanimal', component: CriarAnimalComponent}
+  {path: 'novoanimal', component: CriarAnimalComponent},
+  {path: 'animal/:id', component: DetalhesAnimalComponent}
 ];
 
 

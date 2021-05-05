@@ -24,10 +24,9 @@
                         <td>{{animal.sexo | uppercase}}</td>
                         <td>{{animal.raca.descricao}}</td>
                         <td>
-                            <button (click)="deletarPropriedade(propriedade.id_propriedade)"
-                                class="btn btn-danger">Deletar</button>
-                            <button (click)="alterarPropriedade(propriedade.id_propriedade)" class="btn btn-info"
-                                style="margin-left: 10px"> Alterar</button>
+                            <button (click)="deletarAnimal(animal.id_animal)"class="btn btn-danger">Deletar</button>
+                            <button (click)="alterarAnimal(animal.id_animal)" class="btn btn-info" style="margin-left: 10px"> Alterar</button>
+                            <button (click)="detalhesAnimal(animal.id_animal)" class="btn btn-info" style="margin-left: 10px"> Detalhes</button>
                         </td>
                     </tr>
                 </tbody>

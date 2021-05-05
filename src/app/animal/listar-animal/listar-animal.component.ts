@@ -66,5 +66,9 @@ export class ListarAnimalComponent implements OnInit {
     this.router.navigate(['novoanimal']);
   }
 
+  detalhesAnimal(id: number){
+    this.router.navigate(['animal', id]);
+  }
+
 
 }
