@@ -16,6 +16,10 @@ export class AnimalService {
     return this.http.get(ANIMAL_PATH, { params });
   }
 
+  public listarPorGenero(params:HttpParams): Observable<any>{
+    return this.http.get(ANIMAL_PATH + "genero", { params });
+  }
+
   public buscarAnimal(id: number): Observable<any> {
     return this.http.get(ANIMAL_PATH + id);
   }

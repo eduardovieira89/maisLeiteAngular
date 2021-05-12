@@ -16,6 +16,8 @@ import { CriarPropriedadeComponent } from './propriedade/criar-propriedade/criar
 import { ListarAnimalComponent } from './animal/listar-animal/listar-animal.component';
 import { CriarAnimalComponent } from './animal/criar-animal/criar-animal.component';
 import { DetalhesAnimalComponent } from './animal/detalhes-animal/detalhes-animal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { DetalhesAnimalComponent } from './animal/detalhes-animal/detalhes-anima
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NgbModule
 
   ],
   providers: [authInterceptorProviders],

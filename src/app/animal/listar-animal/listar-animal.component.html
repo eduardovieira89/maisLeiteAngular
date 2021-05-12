@@ -21,7 +21,10 @@
                         <td>{{animal.brinco}}</td>
                         <td>{{animal.dataNasc | date: 'dd/MM/yyyy' }}</td>
                         <td>{{animal.registro}}</td>
-                        <td>{{animal.sexo | uppercase}}</td>
+                        <td>
+                            <label *ngIf="animal.sexo == 'f'">Fêmea </label>
+                            <label *ngIf="animal.sexo == 'm'">Macho </label>
+                        </td>
                         <td>{{animal.raca.descricao}}</td>
                         <td>
                             <button (click)="deletarAnimal(animal.id_animal)"class="btn btn-danger">Deletar</button>
