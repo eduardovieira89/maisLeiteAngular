@@ -1,6 +1,6 @@
-<div class="panel panel-primary">
+<div class="container">
     <div class="panel-heading" *ngIf="propriedadeSelecionada">
-        <h2>Animais</h2>
+        <h2>Animais da propriedade {{propriedade.nome}}</h2>
 
         <div class="panel-body">
             <table class="table table-striped">
@@ -12,7 +12,7 @@
                         <td>Num Registro</td>
                         <td>Sexo</td>
                         <td>Raça</td>
-                        <td><button (click)="criarAnimal()" class="btn btn-success">Criar Animal</button></td>
+                        <td><a routerLink="novo" class="btn btn-success">Criar Animal</a></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,9 +27,9 @@
                         </td>
                         <td>{{animal.raca.descricao}}</td>
                         <td>
-                            <button (click)="deletarAnimal(animal.id_animal)"class="btn btn-danger">Deletar</button>
-                            <button (click)="alterarAnimal(animal.id_animal)" class="btn btn-info" style="margin-left: 10px"> Alterar</button>
-                            <button (click)="detalhesAnimal(animal.id_animal)" class="btn btn-info" style="margin-left: 10px"> Detalhes</button>
+                            <a [routerLink]="[animal.id]" class="btn btn-info" style="margin-left: 10px"> Detalhes</a>
+                            <a [routerLink]="['alterar',animal.id]" class="btn btn-info" style="margin-left: 10px"> Alterar</a>
+                            <button (click)="deletarAnimal(animal.id)"class="btn btn-danger" style="margin-left: 10px">Deletar</button>
                         </td>
                     </tr>
                 </tbody>

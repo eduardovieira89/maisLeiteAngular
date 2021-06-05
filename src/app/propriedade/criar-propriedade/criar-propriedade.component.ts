@@ -16,9 +16,12 @@ export class CriarPropriedadeComponent implements OnInit {
 
   constructor(private propriedadeService: PropriedadeService,
               private router: Router,
-              private location: Location) { }
+              private location: Location
+              ) { }
 
   ngOnInit(): void {
+
+    
   }
 
   novaPropriedade(): void {
@@ -34,7 +37,6 @@ export class CriarPropriedadeComponent implements OnInit {
   salvar() {
     this.propriedadeService.criarPropriedade(this.propriedade)
       .subscribe(data=> {
-        console.log(data)
         this.propriedade = new Propriedade();
         this.gotoPropriedades();
       },

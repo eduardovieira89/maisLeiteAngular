@@ -18,6 +18,8 @@ import { CriarAnimalComponent } from './animal/criar-animal/criar-animal.compone
 import { DetalhesAnimalComponent } from './animal/detalhes-animal/detalhes-animal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AtualizarAnimalComponent } from './animal/atualizar-animal/atualizar-animal.component';
+import { DetalhesPropriedadeComponent } from './propriedade/detalhes-propriedade/detalhes-propriedade.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CriarPropriedadeComponent,
     ListarAnimalComponent,
     CriarAnimalComponent,
-    DetalhesAnimalComponent
+    DetalhesAnimalComponent,
+    AtualizarAnimalComponent,
+    DetalhesPropriedadeComponent
   ],
   imports: [
     BrowserModule,

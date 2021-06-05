@@ -44,7 +44,7 @@ export class ListarAnimalComponent implements OnInit {
   listarAnimais(): void {
     this.propriedade = this.propriedadeService.getPropriedadeselecionada();
     let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedade.id_propriedade.toString() )
+    params = params.set('idpropriedade', this.propriedade.id.toString() )
     
     this.animalService.listarAnimais(params).subscribe(
       animais => this.animais = animais)
@@ -68,6 +68,18 @@ export class ListarAnimalComponent implements OnInit {
 
   detalhesAnimal(id: number){
     this.router.navigate(['animal', id]);
+  }
+  deletarAnimal(id: number){
+    this.animalService.deletarAnimal(id).subscribe(
+      data => {
+        this.listarAnimais();
+      },
+      error => console.log(error)
+    );
+  }
+
+  alterarAnimal(id: number){
+      this.router.navigate(['atualizaranimal', id]);
   }
 
 

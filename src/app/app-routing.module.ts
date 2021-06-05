@@ -10,6 +10,8 @@ import { CriarPropriedadeComponent } from './propriedade/criar-propriedade/criar
 import { ListarAnimalComponent } from './animal/listar-animal/listar-animal.component';
 import { CriarAnimalComponent } from './animal/criar-animal/criar-animal.component';
 import { DetalhesAnimalComponent } from './animal/detalhes-animal/detalhes-animal.component';
+import { AtualizarAnimalComponent } from './animal/atualizar-animal/atualizar-animal.component';
+import { DetalhesPropriedadeComponent } from './propriedade/detalhes-propriedade/detalhes-propriedade.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -17,12 +19,23 @@ const routes: Routes = [
   {path: 'painel', component: PainelUsuarioComponent},
   {path: 'raca', component: RacaComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'propriedade', component: ListarPropriedadeComponent},
-  {path: 'propriedade/:id', component: AlterarPropriedadeComponent},
-  {path: 'novapropriedade', component: CriarPropriedadeComponent},
-  {path: 'animal', component: ListarAnimalComponent},
-  {path: 'novoanimal', component: CriarAnimalComponent},
-  {path: 'animal/:id', component: DetalhesAnimalComponent}
+  {path: 'propriedade', children:[
+     {path: 'alterar/:id', component: AlterarPropriedadeComponent},
+     {path: 'nova', component: CriarPropriedadeComponent},
+     {path: ':id', component: DetalhesPropriedadeComponent},
+     {path: '', component: ListarPropriedadeComponent},
+    ]
+  },
+  {path: 'animal', children:[
+    {path: 'alterar/:id', component: AtualizarAnimalComponent},
+    {path: 'novo', component: CriarAnimalComponent},
+    {path: ':id', component: DetalhesAnimalComponent},
+    {path: '', component: ListarAnimalComponent}
+  ] 
+  },
+  
+  
+  
 ];
 
 

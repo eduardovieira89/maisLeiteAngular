@@ -25,6 +25,9 @@ export class CriarAnimalComponent implements OnInit {
   submitted = false;
   pais: Animal[];
   maes: Animal[];
+  isSuccessful = false;
+  isCreatedFailed = false;
+  errorMessage = '';
 
 
 
@@ -37,7 +40,7 @@ export class CriarAnimalComponent implements OnInit {
       data => this.racas = data
     );
     let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id_propriedade.toString());
+    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
     params = params.set('genero', 'm');
     this.animalService.listarPorGenero(params).subscribe(
       pais => this.pais = pais);
@@ -51,12 +54,21 @@ export class CriarAnimalComponent implements OnInit {
 
   save() {
     this.animal.propriedade = this.propriedadeService.getPropriedadeselecionada();
-    this.animalService.criarAnimal(this.animal).subscribe(data => {
-      console.log(data)
-      this.animal = new Animal();
-      this.irParaListagem();
-    },
-      error => console.log(error));
+    this.animalService.criarAnimal(this.animal).subscribe(
+      data => {
+        console.log(data)
+        this.animal = new Animal();
+        this.isSuccessful = true;
+        this.isCreatedFailed = false;
+        this.irParaListagem();
+      },
+      err => {
+        console.log(err);
+        this.errorMessage = err.error.message;
+        this.isCreatedFailed = true;
+        this.isSuccessful = false;
+      }
+    );
   }
 
   irParaListagem() {

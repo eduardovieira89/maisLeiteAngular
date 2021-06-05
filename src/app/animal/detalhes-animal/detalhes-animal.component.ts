@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
+import { Raca } from 'src/app/model/raca';
 import { AnimalService } from 'src/app/service/animal.service';
 
 @Component({
@@ -11,8 +12,10 @@ import { AnimalService } from 'src/app/service/animal.service';
 })
 export class DetalhesAnimalComponent implements OnInit {
 
-  animal: Animal;
+  animal: Animal = new Animal();
   id: number;
+  racas: Raca[];
+  mensagemErro: any;
   constructor(private route: ActivatedRoute, 
               private location: Location,
               private animalService: AnimalService) { }
@@ -24,9 +27,8 @@ export class DetalhesAnimalComponent implements OnInit {
 
     this.animalService.buscarAnimal(this.id)
       .subscribe(data => {
-                  console.log(data);
                   this.animal = data;
-      }, error => console.log(error));
+      }, error => this.mensagemErro = error.error.message);
   }
 
   voltar(){

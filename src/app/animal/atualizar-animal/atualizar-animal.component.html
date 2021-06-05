@@ -1,11 +1,6 @@
-<h2>Criar Animal</h2>
 <div  class="container">
-    <form 
-    name="form" 
-    (ngSubmit)="f.form.valid && onSubmit()"     
-    #f="ngForm"
-    
-    >
+    <h2>Alterar Animal</h2>
+    <form (ngSubmit)="atualizarAnimal()" *ngIf="animal.nome">
         <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" id="nome" [(ngModel)]="animal.nome" name="nome">
@@ -34,7 +29,7 @@
         <div class="form-group">
             <label for="dtnasc">Data de nascimento</label>
             <div class="input-group">
-                <input type="date" class="form-control" name="dtnasc" required [(ngModel)]="animal.dataNasc" #nasc="ngModel">
+                <input type="date" class="form-control" name="dtnasc" required [ngModel]="animal.dataNasc | date:'yyyy-MM-dd'" (ngModelChange)="animal.dataNasc=$event"#nasc="ngModel">
             </div>
             <div class="alert-danger" *ngIf="nasc.errors && (nasc.invalid && nasc.touched)">
                 <small class="text-danger" *ngIf="nasc.errors.required">Data de nascimento é um campo obrigatório</small>
@@ -43,8 +38,8 @@
 
         <div class="form-group">
             <label for="raca">Raça:</label>
-            <select class="form-control" id="raca" required [(ngModel)]="animal.raca" name="raca">
-                <option *ngFor="let raca of racas" [ngValue]="raca">{{raca.descricao}}</option>
+            <select class="form-control" id="raca" required [(ngModel)]="animal.raca" name="raca" [compareWith]="compareRaca">
+                <option *ngFor="let raca of racas" [ngValue]="raca"  selected="raca === {{animal.raca}}">{{raca.descricao}}</option>
             </select>
         </div>
 
@@ -80,8 +75,7 @@
 
         <div class="form-group" *ngIf="!paiList.checked">
             <label for="raca">Selecione o pai dentre os seus animais</label>
-            <select class="form-control" id="pais" [(ngModel)]="animal.id_pai" name="pai">
-                <option [ngValue]="pai"></option>
+            <select class="form-control" id="pais" [(ngModel)]="animal.id_pai" name="pai" [compareWith]="comparePai">
                 <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}}    ---    Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
             </select>
         </div>
@@ -103,27 +97,21 @@
 
         <div class="form-group" *ngIf="!maeList.checked">
             <label for="maes">Selecione a mãe dentre os seus animais</label>
-            <select class="form-control" id="maes" [(ngModel)]="animal.id_mae" name="mae">
-                <option [ngValue]="mae"></option>
+            <select class="form-control" id="maes" [(ngModel)]="animal.id_mae" name="mae" [compareWith]="compareMae">
                 <option *ngFor="let mae of maes" [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
             </select>
         </div>
 
         </div>
-
-         <button [disabled]="f.form.invalid" type="submit" class="btn btn-success">Salvar</button>
-
         
+        <button type="submit" class="btn btn-success float-right" style="margin-left: 10px">Alterar</button>
     </form>
-</div>
-
-<div class="alert alert-success" *ngIf="isSuccessful">
-    <h4>Animal criado com sucesso!</h4>
-</div>
-
-<div *ngIf="f.submitted && isCreatedFailed">
-    <div class="alert alert-warning">
-        Falha ao criar animal!<br />{{ errorMessage }}
+    
+    <div *ngIf="mensagemErro" class="alert alert-danger">
+        {{mensagemErro}}
     </div>
-    <button  (click)="irParaListagem()" class="btn btn-success">Voltar</button>
+    
+    <button (click)="irParaListagem()" class="btn btn-info" style="margin-left: 10px">Cancelar</button>
+    
+    
 </div>

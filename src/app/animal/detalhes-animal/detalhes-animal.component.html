@@ -1,39 +1,42 @@
-<h2>Detalhes do Animal</h2> 
-
-<hr/>
-<div *ngIf="animal">
-  <div>
-    <label><b>Nome: </b></label> {{animal.nome}}
-  </div>
-  <div>
-    <label><b>Número do brinco: </b></label> {{animal.brinco}}
-  </div>
-  <div>
-    <label><b>Data de nascimento: </b></label> {{animal.dataNasc | date: 'dd/MM/yyyy'}}
-  </div>
-  <div>
-    <label><b>Número do registro: </b></label> {{animal.registro}}
-  </div> 
-  <div>
-    <label><b>Sexo: </b></label> {{animal.sexo}}
-  </div> 
-  <div>
-    <label><b>Raça: </b></label> {{animal.raca.descricao}}
-  </div>
-  <div *ngIf="animal.pai">
-    <label><b>Pai: </b></label> {{animal.pai}}
-  </div> 
-  <div *ngIf="animal.mae">
-    <label><b>Mãe: </b></label> {{animal.mae}}
-  </div> 
-  <div *ngIf="animal.id_pai">
-    <label><b>Pai ID: </b></label> {{ animal.id_pai.nome }}
-  </div> 
-  <div *ngIf="animal.id_mae">
-    <label><b>Mãe ID: </b></label> {{ animal.id_mae.nome }}
-  </div>    
+<div class="container">
+    <h2>Detalhes do Animal</h2> 
+    <div *ngIf="animal.nome" >
+      
+      <div>
+        <label><b>Nome: </b></label> {{animal.nome}}
+      </div>
+      <div>
+        <label><b>Número do brinco: </b></label> {{animal.brinco}}
+      </div>
+      <div>
+        <label><b>Data de nascimento: </b></label> {{animal.dataNasc | date: 'dd/MM/yyyy'}}
+      </div>
+      <div>
+        <label><b>Número do registro: </b></label> {{animal.registro}}
+      </div> 
+      <div>
+        <label><b>Sexo: </b></label> {{animal.sexo}}
+      </div> 
+      <div *ngIf="animal.raca">
+        <label><b>Raça: </b></label> {{animal.raca.descricao}}
+      </div>
+      <div *ngIf="animal.pai">
+        <label><b>Pai: </b></label> {{animal.pai}}
+      </div> 
+      <div *ngIf="animal.mae">
+        <label><b>Mãe: </b></label> {{animal.mae}}
+      </div> 
+      <div *ngIf="animal.id_pai">
+        <label><b>Pai ID: </b></label> {{ animal.id_pai.nome }}
+      </div> 
+      <div *ngIf="animal.id_mae">
+        <label><b>Mãe ID: </b></label> {{ animal.id_mae.nome }}
+      </div>    
+    </div>
+    <div *ngIf="mensagemErro" class="alert alert-danger">
+      {{mensagemErro}}
+    </div>
+    <br>
+    <br>
+    <button (click)="voltar()" class="btn btn-primary">Voltar</button><br>
 </div>
-
-<br>
-<br>
-<button (click)="voltar()" class="btn btn-primary">Voltar</button><br>

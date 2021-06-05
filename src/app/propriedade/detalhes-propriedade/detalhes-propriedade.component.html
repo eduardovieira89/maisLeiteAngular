@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Detalhes da propriedade</h2> 
+    <div *ngIf="propriedade.nome">
+        <div>
+          <label><b>Nome: </b></label> {{propriedade.nome}}
+        </div>
+        <div>
+          <label><b>Localidade: </b></label> {{propriedade.localidade}}
+        </div>
+        <div>
+          <label><b>Municipio: </b></label> {{propriedade.municipio}}
+        </div>
+        <div *ngIf="propriedade.proprietario">
+          <label><b>Proprietário: </b></label> {{propriedade.proprietario.nome}}
+        </div> 
+    </div>
+
+    <div *ngIf="mensagemErro" class="alert alert-danger">
+      {{mensagemErro}}
+    </div>
+    <br>
+    <br>
+    <button (click)="voltar()" class="btn btn-primary">Voltar</button><br>
+</div>

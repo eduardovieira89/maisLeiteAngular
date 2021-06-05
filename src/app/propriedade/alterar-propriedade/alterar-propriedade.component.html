@@ -1,1 +1,26 @@
-<p>alterar works!</p>
+<div class="container">
+  <h2>Alterar Propriedade</h2>
+  <form (ngSubmit)="atualizarPropriedade()" *ngIf="propriedade.nome">
+    <div class="form-group">
+      <label for="name">Nome da propriedade</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="propriedade.nome" name="nome">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Localidade</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="propriedade.localidade" name="localidade">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Municipio</label>
+      <input type="text" class="form-control" id="emailId" required [(ngModel)]="propriedade.municipio" name="municipio">
+    </div>
+
+    
+    <button type="submit" class="btn btn-success float-right">Alterar</button>
+  </form>
+  <div *ngIf="mensagemErro" class="alert alert-danger">
+    {{mensagemErro}}
+</div>
+<button (click)="voltar()" class="btn btn-info">Cancelar</button>
+</div>

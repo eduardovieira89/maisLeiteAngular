@@ -2,7 +2,7 @@ import { Propriedade } from "./propriedade";
 import { Raca } from "./raca";
 
 export class Animal {
-    id_animal: number;
+    id: number;
     nome: string;
     brinco: number;
     dataNasc: Date;

@@ -17,7 +17,7 @@ export class PropriedadeService {
     return this.htpp.get(PROPRIEDADE_PATH);
   }
 
-  public minhaPropriedade(id: number): Observable<any> {
+  public buscar(id: number): Observable<any> {
     return this.htpp.get(PROPRIEDADE_PATH + id);
   }
 

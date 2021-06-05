@@ -6,21 +6,24 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <td>#</td>
                     <td>Nome</td>
                     <td>Localidade</td>
                     <td>Municipio</td>
-                    <td><button (click)="criarPropriedade()" class="btn btn-success">Nova</button></td>
+                    <td><a routerLink="nova" class="btn btn-success">Cadastrar propriedade</a></td>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let propriedade of propriedades">
+                    <td>{{propriedade.id}}</td>
                     <td>{{propriedade.nome}}</td>
                     <td>{{propriedade.localidade}}</td>
                     <td>{{propriedade.municipio}}</td>
                     <td>
-                        <button (click)="deletarPropriedade(propriedade.id_propriedade)" class="btn btn-danger">Deletar</button>
-                        <button (click)="alterarPropriedade(propriedade.id_propriedade)" class="btn btn-info" style="margin-left: 10px"> Alterar</button>
-                        <button (click)="selecionarPropriedade(propriedade)"class="btn btn-info"style="margin-left: 10px">Selecionar</button>
+                        <a [routerLink]="[propriedade.id]" class="btn btn-info" style="margin-left: 10px">Detalhes</a>
+                        <a [routerLink]="['alterar',propriedade.id]" class="btn btn-info" style="margin-left: 10px"> Alterar</a>
+                        <button (click)="deletarPropriedade(propriedade.id)" class="btn btn-danger" style="margin-left: 10px">Deletar</button>
+                        <button (click)="selecionarPropriedade(propriedade)"class="btn btn-primary"style="margin-left: 10px">Selecionar</button>
                     </td>
                 </tr>
             </tbody>
@@ -28,6 +31,4 @@
         
     </div>
 </div>
-
-
 

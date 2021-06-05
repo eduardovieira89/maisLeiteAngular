@@ -1,5 +1,5 @@
 export class Propriedade {
-    id_propriedade: number;
+    id: number;
     localidade: string;
     municipio: string;
     nome: string;
