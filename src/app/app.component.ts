@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PropriedadeService } from './service/propriedade.service';
 import { TokenstorageService } from './service/tokenstorage.service';
 
@@ -12,33 +13,30 @@ export class AppComponent implements OnInit {
 
   private roles: string[];
   isLoggedIn = false;
-  isPropriedadeSelecionada = false;
   showPropriedadeBoard = false;
-  showProdutorBoard = false;
   username: string;
   nome_propriedade: string;
+  mostarMenu: boolean = false;
 
   constructor(private tokenStorageService: TokenstorageService,
-    private propriedadeService: PropriedadeService) { }
+              private propriedadeService: PropriedadeService,
+              private router: Router
+              ) { }
 
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.tokenStorageService.mostrarMenuEmitter.subscribe(
+      mostrar => this.mostarMenu = mostrar
+    );
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-
       this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
-      this.showProdutorBoard = this.roles.includes('ROLE_PRODUTOR');
-      
-        this.username = user.username;
-      
+      this.username = user.username;
 
-      const propriedade = this.propriedadeService.getPropriedadeselecionada();
-      if(propriedade != null){
-        this.nome_propriedade = propriedade.nome;
-      }
+      this.nome_propriedade = this.propriedadeService.getPropriedadeselecionada()?.nome;
     }
 
 
@@ -47,8 +45,10 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    this.router.navigate(['login']);
+    this.nome_propriedade = '';
+    this.username = '';
+    this.isLoggedIn = false;
   }
-
 
 }

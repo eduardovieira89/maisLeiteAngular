@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
 import { AnimalService } from 'src/app/service/animal.service';
 import { Raca } from 'src/app/model/raca';
-import { RacaComponent } from 'src/app/raca/raca.component';
 import { RacaService } from 'src/app/service/raca.service';
 import { PropriedadeService } from 'src/app/service/propriedade.service';
 import { HttpParams } from '@angular/common/http';

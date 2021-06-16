@@ -64,7 +64,10 @@
       </div>
     </form>
 
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Cadastro realizado com sucesso!
+    <div *ngIf="isSuccessful">
+      <p class="alert alert-success">Cadastro realizado com sucesso!</p>
+      <br>
+      <a routerLink="./login" class="btn btn-success">Ir para Login</a>
+
     </div>
 </div>

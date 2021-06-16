@@ -1,34 +1,31 @@
-<div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Leite Mais</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item" *ngIf="showPropriedadeBoard">
-        <a href="/propriedade" class="nav-link" routerLink="propriedade">Minhas propriedades</a>
+  <nav class="navbar navbar-expand navbar-dark bg-dark" >
+    <a routerLink="" class="navbar-brand">Leite Mais</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active"> <!--*ngIf="isLoggedIn"-->
+      <li class="nav-item" routerLinkActive="active" ><!-- *ngIf="showPropriedadeBoard"-->
+        <a routerLink="/propriedade" class="nav-link">Minhas propriedades</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a href="/animal" class="nav-link" routerLink="animal">Animais</a>
+      <li class="nav-item" routerLinkActive="active" >
+        <a routerLink="/animal" class="nav-link">Animais</a>
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+    <!--ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a routerLink="/login" class="nav-link">Login</a>
       </li>
       <li class="nav-item">
-        <a href="/registro" class="nav-link" routerLink="registro">Registrar Usuario</a>
+        <a routerLink="/registro" class="nav-link">Registrar Usuario</a>
       </li>      
-    </ul>
-
-
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+    </ul -->
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link">{{nome_propriedade}}</a>
+        <span class="navbar-brand mb-0 h1">{{nome_propriedade}}</span>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/painel" class="nav-link" >{{ username }}</a>
       </li>
       <li class="nav-item">
-        <a href="/painel" class="nav-link" routerLink="painel">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">Desconectar</a>
+        <a class="nav-link" (click)="logout()">Desconectar</a>
       </li>
     </ul>
   </nav>
@@ -36,4 +33,3 @@
   <div class="container">
     <router-outlet></router-outlet>
   </div>
-</div>

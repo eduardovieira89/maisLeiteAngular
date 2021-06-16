@@ -1,0 +1,43 @@
+<div class="container" *ngIf="currentProdutor; else loggedOut">
+  <header class="jumbotron">
+    <h3>
+      Painel de: <strong>{{ currentProdutor.username }}</strong>
+    </h3>
+  </header>
+  <p>
+    <strong>Token:</strong>
+    {{ currentProdutor.accessToken.substring(0, 20) }} ...
+    {{ currentProdutor.accessToken.substr(currentProdutor.accessToken.length - 20) }}
+  </p>
+  <p>
+    <strong>Email:</strong>
+    {{ currentProdutor.email }}
+  </p>
+  <strong>Permissões:</strong>
+    <ul>
+      <li *ngFor="let role of currentProdutor.roles">
+        {{ role }}
+      </li>
+    </ul>
+  <br>
+  <strong>Funcionários:</strong>
+    <ul>
+      <li *ngFor="let funcionario of funcionarios">
+        {{ funcionario }}
+      </li>
+    </ul>
+    <button (click)="goBack()" class="btn btn-info" style="margin-left: 10px"> Voltar</button>
+    <button (click)="registraFuncionario()" class="btn btn-info" style="margin-left: 10px">Registrar Funcionário</button>
+    <br>
+    <div class="container">
+      <app-registro-funcionario *ngIf="isRegistraFuncionario"></app-registro-funcionario>
+    </div>
+</div>
+
+<ng-template #loggedOut>
+  Por favor, faça login.
+</ng-template>
+
+
+
+

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RacaService } from '../service/raca.service';
-import { Raca } from '../model/raca';
+import { RacaService } from 'src/app/service/raca.service';
+import { Raca } from 'src/app/model/raca';
 
 @Component({
   selector: 'app-raca',

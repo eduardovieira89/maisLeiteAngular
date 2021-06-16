@@ -5,11 +5,11 @@ import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/service/propriedade.service';
 
 @Component({
-  selector: 'app-alterarPropriedade',
-  templateUrl: './alterar-propriedade.component.html',
-  styleUrls: ['./alterar-propriedade.component.css']
+  selector: 'app-atualizarPropriedade',
+  templateUrl: './atualizar-propriedade.component.html',
+  styleUrls: ['./atualizar-propriedade.component.css']
 })
-export class AlterarPropriedadeComponent implements OnInit {
+export class AtualizarPropriedadeComponent implements OnInit {
 
   propriedade: Propriedade = new Propriedade();
   mensagemErro: any;

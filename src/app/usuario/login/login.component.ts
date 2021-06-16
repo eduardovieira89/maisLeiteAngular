@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../service/authentication.service';
-import { TokenstorageService} from '../service/tokenstorage.service';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { AuthenticationService } from '../../service/authentication.service';
+import { TokenstorageService} from '../../service/tokenstorage.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,25 +18,27 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               private router: Router,
-              private tokenStorage: TokenstorageService) { }
+              private tokenService: TokenstorageService) { }
+
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
+    if (this.tokenService.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+      this.roles = this.tokenService.getUser().roles;
     }
   }
 
   logarUsuario(): void {
     this.authService.login(this.form).subscribe(
       data => {
-                this.tokenStorage.saveToken(data.accessToken);
-                this.tokenStorage.saveUser(data);
+                this.tokenService.saveToken(data.accessToken);
+                this.tokenService.saveUser(data);
 
                 this.isLoginFailed = false;
                 this.isLoggedIn = true;
-                this.roles = this.tokenStorage.getUser().roles;
-                this.reloadPage();
+                this.roles = this.tokenService.getUser().roles;
+                //this.reloadPage();
+                this.router.navigate(['home']);
               },
       err => {
                  this.msg = err.error.message;
@@ -51,6 +53,12 @@ export class LoginComponent implements OnInit {
 
   reloadPage() {
     window.location.reload();
+    
+  }
+
+  deslogar() {
+    this.tokenService.signOut();
+    this.reloadPage();
   }
 
 }

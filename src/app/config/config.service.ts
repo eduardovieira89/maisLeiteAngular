@@ -8,7 +8,6 @@ export class ConfigService {
 
   constructor(private http: HttpClient) { }
 
-  // tslint:disable-next-line: typedef
   getConfig(){
     return this.http.get(this.configUrl);
   }

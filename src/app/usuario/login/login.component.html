@@ -42,6 +42,12 @@
     <br>
     <small class="float-right" [routerLink]="['/registro']">Novo usuario? Registre aqui</small>
   </form>
+
+  <div *ngIf="isLoggedIn">
+    <p>Você está logado</p>
+    <button (click)="deslogar()" class="btn btn-info">Desconectar</button>
+  </div>
+  
   
 </div>
 

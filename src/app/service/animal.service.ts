@@ -2,7 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Animal } from '../model/animal';
-import { Propriedade } from '../model/propriedade';
 
 const ANIMAL_PATH = 'http://localhost:8080/animal/';
 @Injectable({

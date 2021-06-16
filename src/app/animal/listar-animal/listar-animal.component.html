@@ -28,8 +28,8 @@
                         <td>{{animal.raca.descricao}}</td>
                         <td>
                             <a [routerLink]="[animal.id]" class="btn btn-info" style="margin-left: 10px"> Detalhes</a>
-                            <a [routerLink]="['alterar',animal.id]" class="btn btn-info" style="margin-left: 10px"> Alterar</a>
-                            <button (click)="deletarAnimal(animal.id)"class="btn btn-danger" style="margin-left: 10px">Deletar</button>
+                            <a [routerLink]="[animal.id, 'alterar']" class="btn btn-info" style="margin-left: 10px"> Alterar</a>
+                            <button (click)="deletarAnimal(animal.id)"class="btn btn-danger bi-trash" style="margin-left: 10px"></button>
                         </td>
                     </tr>
                 </tbody>
