@@ -8,7 +8,7 @@ import { PainelUsuarioComponent } from './usuario/painel-usuario/painel-usuario.
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home', canActivate:[AuthGuard]},
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroUsuarioComponent},
@@ -20,7 +20,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes) ],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
