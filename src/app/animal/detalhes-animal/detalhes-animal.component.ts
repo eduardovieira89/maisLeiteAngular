@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
 import { Raca } from 'src/app/model/raca';
-import { AnimalService } from 'src/app/service/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
   selector: 'app-detalhes-animal',
@@ -25,7 +25,7 @@ export class DetalhesAnimalComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
 
-    this.animalService.buscarAnimal(this.id)
+    this.animalService.loadByID(this.id)
       .subscribe(data => {
                   this.animal = data;
       }, error => this.mensagemErro = error.error.message);

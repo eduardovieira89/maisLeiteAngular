@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { PropriedadeRoutingModule } from './propriedade-routing.module';
-import { PropriedadeService } from '../service/propriedade.service';
 import { authInterceptorProviders } from '../_helpers/auth.interceptor';
 
 import { ListarPropriedadeComponent } from './listar-propriedade/listar-propriedade.component';
@@ -29,7 +28,6 @@ import { DetalhesPropriedadeComponent } from './detalhes-propriedade/detalhes-pr
     PropriedadeRoutingModule
   ],
   providers: [
-    PropriedadeService,
     authInterceptorProviders
   ],
   exports: [

@@ -1,31 +1,31 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark" >
     <a routerLink="" class="navbar-brand">Leite Mais</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active"> <!--*ngIf="isLoggedIn"-->
-      <li class="nav-item" routerLinkActive="active" ><!-- *ngIf="showPropriedadeBoard"-->
+    <ul class="navbar-nav mr-auto" routerLinkActive="active" *ngIf="isLoged">
+      <li class="nav-item" routerLinkActive="active"><!-- *ngIf="showPropriedadeBoard"-->
         <a routerLink="/propriedade" class="nav-link">Minhas propriedades</a>
       </li>
-      <li class="nav-item" routerLinkActive="active" >
+      <li class="nav-item" routerLinkActive="active">
         <a routerLink="/animal" class="nav-link">Animais</a>
       </li>
     </ul>
 
-    <!--ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a routerLink="/login" class="nav-link">Login</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/registro" class="nav-link">Registrar Usuario</a>
-      </li>      
-    </ul -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" *ngIf="isLoged">
       <li class="nav-item">
         <span class="navbar-brand mb-0 h1">{{nome_propriedade}}</span>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/painel" class="nav-link" >{{ username }}</a>
+        <a routerLink="/painel" class="nav-link" >Produtor:{{ username }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="logout()">Desconectar</a>
+        <a class="nav-link" routerLink="" (click)="logout()">Desconectar</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoged">
+      <li class="nav-item">
+        <a routerLink="" class="nav-link" (click)="logout()">Login</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="" class="nav-link" [routerLink]="['/registro']">Registrar-se</a>
       </li>
     </ul>
   </nav>

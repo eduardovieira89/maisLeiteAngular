@@ -13,7 +13,7 @@
              [class.is-invalid]="email.invalid && email.touched"
       >
      <div *ngIf="email.errors && (email.invalid && email.touched)">
-       <small class="text-danger" *ngIf="email.errors.required">Email é um campo nescess�rio</small>
+       <small class="text-danger" *ngIf="email.errors.required">Email é um campo nescessário</small>
        <small class="text-danger" *ngIf="email.errors.pattern">Entre com um email válido</small>
      </div>
     </div>
@@ -40,7 +40,7 @@
     </div>
         
     <br>
-    <small class="float-right" [routerLink]="['/registro']">Novo usuario? Registre aqui</small>
+    <small><a class="float-right" [routerLink]="['/registro']">Novo usuario? Registre aqui</a></small>
   </form>
 
   <div *ngIf="isLoggedIn">

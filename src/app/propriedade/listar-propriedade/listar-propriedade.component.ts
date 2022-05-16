@@ -1,36 +1,37 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
-import { PropriedadeService } from '../../service/propriedade.service';
+import { PropriedadeService } from '../propriedade.service';
 
 @Component({
   selector: 'app-propriedade',
   templateUrl: './listar-propriedade.component.html',
-  styleUrls: ['./listar-propriedade.component.css']
+  styleUrls: ['./listar-propriedade.component.css'],
+  preserveWhitespaces: true
 })
 export class ListarPropriedadeComponent implements OnInit {
 
-  propriedades: Propriedade[];
+  propriedades$: Observable<Propriedade[]>;
 
   constructor(private propriedadeService: PropriedadeService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.minhasPropriedades();
+    this.listarPropriedades();
   }
 
-  minhasPropriedades(): void {
-    this.propriedadeService.minhasPropriedades()
-          .subscribe(propriedades =>this.propriedades = propriedades);
+  listarPropriedades(): void {
+    this.propriedades$ = this.propriedadeService.list();
           
   }
 
   deletarPropriedade(id: number) {
-    this.propriedadeService.deletarPropriedade(id)
+    this.propriedadeService.remove(id)
       .subscribe(
         data => {
           console.log(data);
-          this.minhasPropriedades();
+          this.listarPropriedades();
         },
         error => console.log(error)
       );
@@ -44,8 +45,8 @@ export class ListarPropriedadeComponent implements OnInit {
     this.router.navigate(['novapropriedade']);
   }
 
-  selecionarPropriedade(id: string){
-    this.propriedadeService.setPropriedadeSelecionada(id);
+  selecionarPropriedade(propriedade: Propriedade){
+    this.propriedadeService.setPropriedadeSelecionada(propriedade);
     window.location.reload();
   }
 

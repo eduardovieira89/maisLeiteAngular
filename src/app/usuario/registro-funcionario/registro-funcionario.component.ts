@@ -13,6 +13,7 @@ export class RegistroFuncionarioComponent implements OnInit {
   isSuccessful = false;
   form: any = {};
   errorMessage = '';
+  isSignUpFailed = false;
 
   ngOnInit(): void {
   }

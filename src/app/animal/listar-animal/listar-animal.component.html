@@ -1,9 +1,9 @@
 <div class="container">
-    <div class="panel-heading" *ngIf="propriedadeSelecionada">
+    <div class="panel-heading" *ngIf="propriedade">
         <h2>Animais da propriedade {{propriedade.nome}}</h2>
 
         <div class="panel-body">
-            <table class="table table-striped">
+            <table class="table table-striped" *ngIf="(animais$ | async) as animais; else loading">
                 <thead>
                     <tr>
                         <td>Nome</td>
@@ -27,17 +27,19 @@
                         </td>
                         <td>{{animal.raca.descricao}}</td>
                         <td>
-                            <a [routerLink]="[animal.id]" class="btn btn-info" style="margin-left: 10px"> Detalhes</a>
-                            <a [routerLink]="[animal.id, 'alterar']" class="btn btn-info" style="margin-left: 10px"> Alterar</a>
-                            <button (click)="deletarAnimal(animal.id)"class="btn btn-danger bi-trash" style="margin-left: 10px"></button>
+                            <a [routerLink]="[animal.id]" class="btn btn-info" > Detalhes</a>
+                            <a [routerLink]="[animal.id, 'alterar']" class="btn btn-info" > Alterar</a>
+                            <button (click)="deletarAnimal(animal.id)"class="btn btn-danger bi-trash" ></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
+            <ng-template #loading>
+                <span>Carregando tabela de animais...</span>
+            </ng-template>
         </div>
     </div>
-    <div class="panel-body" *ngIf="!propriedadeSelecionada">
+    <div class="panel-body" *ngIf="!propriedade">
         <h1>Selecione de qual propriedade deseja listar os animais:</h1>
         <app-propriedade></app-propriedade>
     </div>

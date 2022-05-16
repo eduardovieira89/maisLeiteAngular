@@ -3,28 +3,29 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
 import { Raca } from 'src/app/model/raca';
-import { AnimalService } from 'src/app/service/animal.service';
-import { PropriedadeService } from 'src/app/service/propriedade.service';
+import { AnimalService } from 'src/app/animal/animal.service';
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { RacaService } from 'src/app/service/raca.service';
 
 @Component({
   selector: 'app-atualizar-animal',
   templateUrl: './atualizar-animal.component.html',
-  styleUrls: ['./atualizar-animal.component.css']
+  styleUrls: ['./atualizar-animal.component.css'],
+  preserveWhitespaces: true
 })
 export class AtualizarAnimalComponent implements OnInit {
 
-  id: number;
-  animal: Animal;
-  racas: Raca[];
-  pais: Animal[];
-  maes: Animal[];
+  id!: number;
+  animal!: Animal;
+  racas!: Raca[];
+  pais!: Animal[];
+  maes!: Animal[];
   mensagemErro: any;
   constructor(private route: ActivatedRoute,
               private router: Router,
               private animalService: AnimalService,
               private racaService: RacaService,
-              private propriedadeService: PropriedadeService
+              //private propriedadeService: PropriedadeService
               ) { }
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class AtualizarAnimalComponent implements OnInit {
     this.animal = new Animal();
     this.id = this.route.snapshot.params['id'];
 
-    this.animalService.buscarAnimal(this.id).subscribe(
+    this.animalService.loadByID(this.id).subscribe(
         data=>{
           this.animal = data;
         }, error => this.mensagemErro = error.error.message);
@@ -44,7 +45,7 @@ export class AtualizarAnimalComponent implements OnInit {
       data => this.racas = data
     );
     let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
+    //params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
     params = params.set('genero', 'm');
     this.animalService.listarPorGenero(params).subscribe(
       pais => this.pais = pais);
@@ -57,7 +58,7 @@ export class AtualizarAnimalComponent implements OnInit {
   }
 
   atualizarAnimal(){
-      this.animalService.atualizarAnimal(this.id, this.animal).subscribe(
+      this.animalService.save(this.animal).subscribe(
         data=>{
           this.animal = new Animal();
           this.irParaListagem();

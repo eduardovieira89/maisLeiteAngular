@@ -3,7 +3,7 @@
         <h2>Propriedades</h2>
     </div>
     <div class="panel-body">
-        <table class="table table-striped">
+        <table class="table table-striped" *ngIf="(propriedades$ | async) as propriedades; else loading">
             <thead>
                 <tr>
                     <td>#</td>
@@ -20,15 +20,16 @@
                     <td>{{propriedade.localidade}}</td>
                     <td>{{propriedade.municipio}}</td>
                     <td>
-                        <a [routerLink]="[propriedade.id]" class="btn btn-info" style="margin-left: 10px">Detalhes</a>
-                        <a [routerLink]="['alterar',propriedade.id]" class="btn btn-info" style="margin-left: 10px"> Alterar</a>
-                        <button (click)="deletarPropriedade(propriedade.id)" class="btn btn-danger" style="margin-left: 10px">Deletar</button>
-                        <button (click)="selecionarPropriedade(propriedade)"class="btn btn-primary"style="margin-left: 10px">Selecionar</button>
+                        <a [routerLink]="[propriedade.id]" class="btn btn-info">Detalhes</a>
+                        <a [routerLink]="[propriedade.id,'alterar']" class="btn btn-info"> Alterar</a>
+                        <button (click)="deletarPropriedade(propriedade.id)" class="btn btn-danger">Deletar</button>
+                        <button (click)="selecionarPropriedade(propriedade)" class="btn btn-primary">Selecionar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        
+        <ng-template #loading>
+            <span>Carregando tabela de propriedades...</span>
+        </ng-template>
     </div>
 </div>
-

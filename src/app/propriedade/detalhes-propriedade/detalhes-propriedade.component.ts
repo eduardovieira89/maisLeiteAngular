@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
-import { PropriedadeService } from 'src/app/service/propriedade.service';
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
   selector: 'app-detalhes-propriedade',
@@ -21,7 +21,7 @@ export class DetalhesPropriedadeComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.params['id'];
-    this.propriedadeService.buscar(id).subscribe(
+    this.propriedadeService.loadByID(id).subscribe(
       data => {this.propriedade = data;
               },
       error => this.mensagemErro = error.error.message

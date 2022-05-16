@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
-import { AnimalService } from 'src/app/service/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 import { Raca } from 'src/app/model/raca';
 import { RacaService } from 'src/app/service/raca.service';
-import { PropriedadeService } from 'src/app/service/propriedade.service';
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-criar-animal',
   templateUrl: './criar-animal.component.html',
-  styleUrls: ['./criar-animal.component.css']
+  styleUrls: ['./criar-animal.component.css'],
+  preserveWhitespaces: true
 })
 export class CriarAnimalComponent implements OnInit {
 
@@ -53,7 +54,7 @@ export class CriarAnimalComponent implements OnInit {
 
   save() {
     this.animal.propriedade = this.propriedadeService.getPropriedadeselecionada();
-    this.animalService.criarAnimal(this.animal).subscribe(
+    this.animalService.save(this.animal).subscribe(
       data => {
         console.log(data)
         this.animal = new Animal();

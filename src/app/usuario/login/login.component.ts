@@ -15,17 +15,19 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   msg = '';
   roles: string[] = [];
+  
 
   constructor(private authService: AuthenticationService,
               private router: Router,
-              private tokenService: TokenstorageService) { }
+              private tokenService: TokenstorageService
+              ) { }
 
 
   ngOnInit(): void {
-    if (this.tokenService.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenService.getUser().roles;
-    }
+   // if (this.tokenService.getToken()) {
+    //  this.isLoggedIn = true;
+    //  this.roles = this.tokenService.getUser().roles;
+   // }
   }
 
   logarUsuario(): void {
@@ -33,18 +35,17 @@ export class LoginComponent implements OnInit {
       data => {
                 this.tokenService.saveToken(data.accessToken);
                 this.tokenService.saveUser(data);
-
                 this.isLoginFailed = false;
                 this.isLoggedIn = true;
                 this.roles = this.tokenService.getUser().roles;
-                //this.reloadPage();
-                this.router.navigate(['home']);
+                this.router.navigate(['/']);
               },
       err => {
                  this.msg = err.error.message;
                  this.isLoginFailed = true;
                }
     );
+
   }
 
   gotoregistration(): void{
@@ -57,7 +58,8 @@ export class LoginComponent implements OnInit {
   }
 
   deslogar() {
-    this.tokenService.signOut();
+    this.authService.logout();
+    this.isLoggedIn = false;
     this.reloadPage();
   }
 

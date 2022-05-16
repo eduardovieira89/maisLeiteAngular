@@ -1,3 +1,4 @@
+import { VacinaComponent } from './vacina/vacina.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -9,12 +10,12 @@ import { AtualizarAnimalComponent } from './atualizar-animal/atualizar-animal.co
 
 const animalRoutes: Routes = [
     {path: 'raca', component: RacaComponent},
+    {path: 'vacina', component: VacinaComponent},
     {path: '', children:[
         {path: 'novo', component: CriarAnimalComponent},
-        {path: ':id', component: DetalhesAnimalComponent, children:[
-            {path: 'alterar', component: AtualizarAnimalComponent}
-        ]},
-        {path:'', component: ListarAnimalComponent,}
+        {path: ':id', component: DetalhesAnimalComponent},
+        {path: ':id/alterar', component: AtualizarAnimalComponent},
+        {path: '', component:ListarAnimalComponent}
     ]},
     
 ];

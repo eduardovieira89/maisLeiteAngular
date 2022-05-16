@@ -1,6 +1,7 @@
+import { AuthenticationService } from 'src/app/service/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PropriedadeService } from './service/propriedade.service';
+import { PropriedadeService } from './propriedade/propriedade.service';
 import { TokenstorageService } from './service/tokenstorage.service';
 
 @Component({
@@ -12,43 +13,60 @@ export class AppComponent implements OnInit {
   title = 'Mais leite';
 
   private roles: string[];
-  isLoggedIn = false;
   showPropriedadeBoard = false;
   username: string;
   nome_propriedade: string;
-  mostarMenu: boolean = false;
+  isLoged: boolean;
 
-  constructor(private tokenStorageService: TokenstorageService,
+  constructor(private authService: AuthenticationService,
               private propriedadeService: PropriedadeService,
-              private router: Router
-              ) { }
+              private router: Router,
+              private tokenStorageService: TokenstorageService
+              ) {
+                this.authService.mostrarMenuEmitter.subscribe(
+                  mostrar => {
+                    this.isLoged = mostrar;
+                  }
+                );
+                
+               }
 
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    this.tokenStorageService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostarMenu = mostrar
+    this.carregaDadosToken();
+    this.tokenStorageService.nomeUsuarioEmitter.subscribe(
+      nomeUser => {
+        //this.username = nomeUser.username;
+        console.log("AppComponent nomeUser: " + nomeUser);
+      }
     );
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-      this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
-      this.username = user.username;
-
-      this.nome_propriedade = this.propriedadeService.getPropriedadeselecionada()?.nome;
-    }
-
-
   }
 
 
   logout(): void {
-    this.tokenStorageService.signOut();
+    this.authService.logout();
     this.router.navigate(['login']);
     this.nome_propriedade = '';
     this.username = '';
-    this.isLoggedIn = false;
+    //this.isLoggedIn = false;
+    //console.log('Is Loged in '+ this.isLoggedIn);
+  }
+
+  carregaDadosToken(): void {
+    
+    
+    const user = this.tokenStorageService.getUser();
+    console.log('AppComponent CarregaDadosToken user: '+ this.tokenStorageService.getUser());
+    if(user){
+      this.isLoged = true;
+      this.roles = user.roles;
+      this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
+      //this.username = user.username;
+      this.nome_propriedade = this.tokenStorageService.getPropriedade()?.nome;
+      console.log('appComponent CarregaDadosToken isLoged: '+ this.isLoged);
+      console.log('appComponent CarregaDadosToken Produtor: '+ this.username);
+    }
+    
   }
 
 }

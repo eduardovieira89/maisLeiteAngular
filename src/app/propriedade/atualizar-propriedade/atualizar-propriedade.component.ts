@@ -1,8 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
-import { PropriedadeService } from 'src/app/service/propriedade.service';
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
   selector: 'app-atualizarPropriedade',
@@ -22,7 +21,7 @@ export class AtualizarPropriedadeComponent implements OnInit {
   ngOnInit(): void {
     this.propriedade = new Propriedade();
     let id = this.route.snapshot.params['id'];
-    this.propriedadeService.buscar(id).subscribe(
+    this.propriedadeService.loadByID(id).subscribe(
       data=>{
         this.propriedade = data;
       }, error => this.mensagemErro = error.error.message);
@@ -30,7 +29,7 @@ export class AtualizarPropriedadeComponent implements OnInit {
 
   atualizarPropriedade(){
     let id = this.route.snapshot.params['id'];
-    this.propriedadeService.atualizarPropriedade(id, this.propriedade).subscribe(
+    this.propriedadeService.save(this.propriedade).subscribe(
       data=>{
         this.propriedade = new Propriedade();
         this.voltar();
