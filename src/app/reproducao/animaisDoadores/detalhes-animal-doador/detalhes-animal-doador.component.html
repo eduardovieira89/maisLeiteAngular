@@ -1,0 +1,53 @@
+<div class="container">
+    <h2>Detalhes do Animal</h2> 
+    <div *ngIf="doador.animal.nome" >
+      
+      <div>
+        <label><b>Nome: </b></label> {{doador.animal.nome}}
+      </div>
+      <div>
+        <label><b>Número do brinco: </b></label> {{doador.animal.brinco}}
+      </div>
+      <div>
+        <label><b>Data de nascimento: </b></label> {{doador.animal.dataNasc | date: 'dd/MM/yyyy'}}
+      </div>
+      <div>
+        <label><b>Número do registro: </b></label> {{doador.animal.registro}}
+      </div> 
+      <div>
+        <div *ngIf="doador.animal.sexo == 'f'">
+          <label><b>Sexo: </b></label> Fêmea
+        </div>
+        <div *ngIf="doador.animal.sexo == 'm'">
+          <label><b>Sexo: </b></label> Macho
+        </div>
+      </div> 
+      <div>
+        <label><b>Raça: </b></label> {{ doador.animal.raca?.descricao }}
+      </div>
+      <div>
+        <label><b>Pai: </b></label> {{doador.animal.pai!}}
+      </div> 
+      <div>
+        <label><b>Mãe: </b></label> {{doador.animal.mae!}}
+      </div> 
+      <div>
+        <label><b>Teste Progenie </b></label> {{ doador.testeProgenie }}
+      </div> 
+      <div>
+        <label><b>Núcleo Moet </b></label> {{ doador.nucleoMoet }}
+      </div> 
+      <div>
+        <label><b>Dono: </b></label> {{ doador.dono }}
+      </div>    
+      <div>
+        <label><b>País de Origem: </b></label> {{ doador.paisOrigem }}
+      </div>    
+    </div>
+    <div *ngIf="mensagemErro" class="alert alert-danger">
+      {{mensagemErro}}
+    </div>
+    <br>
+    <br>
+    <button (click)="voltar()" class="btn btn-primary">Voltar</button><br>
+</div>

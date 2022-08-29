@@ -1,0 +1,48 @@
+<div class="container">
+        <h2>Lista de animais doadores</h2>
+        <div class="panel-body">
+            <table class="table table-striped" *ngIf="(animaisDoadores$ | async) as doadores; else loading">
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Nascimento</td>
+                        <td>Num Registro</td>
+                        <td>Sexo</td>
+                        <td>Raça</td>
+                        <td>Teste Progenie</td>
+                        <td>Núcleo Moet</td>
+                        <td>Dono</td>
+                        <td>País de Origem</td>
+                        <td><a routerLink="novo" class="btn btn-success">Criar Animal</a></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let doador of doadores">
+                        <td>{{doador.animal.nome}}</td>
+                        <td>{{doador.animal.dataNasc | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{doador.animal.registro}}</td>
+                        <td>
+                            <label *ngIf="doador.animal.sexo == 'f'">Fêmea </label>
+                            <label *ngIf="doador.animal.sexo == 'm'">Macho </label>
+                        </td>
+                        <td><label>{{doador.animal.raca.descricao}}</label></td>
+                        <td><label>{{doador.testeProgenie}}</label></td>
+                        <td><label>{{doador.nucleoMoet}}</label></td>
+                        <td><label>{{doador.dono}}</label></td>
+                        <td><label>{{doador.paisOrigem}}</label></td>
+                        <td>
+                            <a [routerLink]="[doador.idDoador]" class="btn btn-info" > Detalhes</a>
+                            <a [routerLink]="[doador.idDoador, 'alterar']" class="btn btn-info" > Alterar</a>
+                            <button (click)="deletarAnimal(doador.idDoador)"class="btn btn-danger bi-trash" ></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #loading>
+                <span>Carregando tabela de animais...</span>
+            </ng-template>
+            <div *ngIf="isDeleteError" class="alert alert-warning">
+                    Falha ao deletar animal!<br />{{ errorMessage }}
+            </div>
+        </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Raca } from '../model/raca';
+import { Racas } from '../model/racas';
 import { Observable, of } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { environment } from './../../environments/environment';
@@ -14,8 +14,8 @@ export class RacaService {
 
   constructor(private http: HttpClient) { }
 
-  getRacas(): Observable<Raca[]>{
+  getRacas(): Observable<Racas[]>{
 
-    return this.http.get<Raca[]>(this.racaUrl);
+    return this.http.get<Racas[]>(this.racaUrl);
   }
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
@@ -7,12 +7,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AuthGuard } from './guards/auth.guard';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(ptBr);
+
 import { UsuarioModule } from './usuario/usuario.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
+    AppComponent    
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,9 @@ import { UsuarioModule } from './usuario/usuario.module';
 
   ],
   providers: [authInterceptorProviders,
-              AuthGuard            
+              AuthGuard,
+              { provide: LOCALE_ID, useValue: 'pt' },
+              { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],
   bootstrap: [AppComponent]
 })

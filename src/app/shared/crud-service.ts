@@ -14,12 +14,10 @@ export class CrudService<T> {
   }
 
   private create(record: T) {
-    console.log('fez o create');
     return this.http.post(this.API_URL, record);
   }
 
   private update(record: any) {
-    console.log('Fez update id:'+record['id']);
     return this.http.put(`${this.API_URL}/${record['id']}`, record);
   }
 

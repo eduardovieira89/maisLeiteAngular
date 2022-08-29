@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Animal } from 'src/app/model/animal';
+import { Animais } from 'src/app/model/animais';
 import { AnimalService } from 'src/app/animal/animal.service';
-import { Raca } from 'src/app/model/raca';
+import { Racas } from 'src/app/model/racas';
 import { RacaService } from 'src/app/service/raca.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { HttpParams } from '@angular/common/http';
@@ -20,11 +20,11 @@ export class CriarAnimalComponent implements OnInit {
               private racaService: RacaService,
               private propriedadeService: PropriedadeService) { }
 
-  animal: Animal = new Animal();
-  racas: Raca[];
+  animal: Animais = new Animais();
+  racas: Racas[];
   submitted = false;
-  pais: Animal[];
-  maes: Animal[];
+  pais: Animais[];
+  maes: Animais[];
   isSuccessful = false;
   isCreatedFailed = false;
   errorMessage = '';
@@ -49,15 +49,18 @@ export class CriarAnimalComponent implements OnInit {
     this.animalService.listarPorGenero(params).subscribe(
       maes => this.maes = maes
     )
+
+    console.log(params);
     
   }
 
   save() {
-    this.animal.propriedade = this.propriedadeService.getPropriedadeselecionada();
+    this.animal.propriedades = this.propriedadeService.getPropriedadeselecionada();
+    console.log(this.animal);
     this.animalService.save(this.animal).subscribe(
       data => {
-        console.log(data)
-        this.animal = new Animal();
+        console.log("data: "+ data);
+        this.animal = new Animais();
         this.isSuccessful = true;
         this.isCreatedFailed = false;
         this.irParaListagem();

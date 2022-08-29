@@ -1,3 +1,4 @@
+import { ReproducaoModule } from './reproducao/reproducao.module';
 import { HomeComponent } from './usuario/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,6 +16,11 @@ const routes: Routes = [
   { path: 'painel', component: PainelUsuarioComponent, canActivate:[AuthGuard]},
   { path: 'animal', loadChildren: () => import('./animal/animal.module').then(m => m.AnimalModule), canActivate:[AuthGuard]},
   { path: 'propriedade', loadChildren: () => import('./propriedade/propriedade.module').then(m => m.PropriedadeModule), canActivate:[AuthGuard] },
+  { path: 'animaisdoadores', loadChildren: () => import('./reproducao/animaisDoadores/Animais-doadores.module').then(m => m.AnimaisDoadoresModule), canActivate:[AuthGuard]},
+  { path: 'semens', loadChildren: () => import('./reproducao/semens/semens.module').then(m => m.SemensModule), canActivate:[AuthGuard]},
+  { path: 'coberturas', loadChildren: () => import('./reproducao/coberturas/coberturas.module').then(m => m.CoberturasModule), canActivate:[AuthGuard]},
+
+
   
 ];
 

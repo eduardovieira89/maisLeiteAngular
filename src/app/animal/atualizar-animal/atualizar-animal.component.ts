@@ -1,10 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Animal } from 'src/app/model/animal';
-import { Raca } from 'src/app/model/raca';
+import { Animais } from 'src/app/model/animais';
+import { Racas } from 'src/app/model/racas';
 import { AnimalService } from 'src/app/animal/animal.service';
-import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { RacaService } from 'src/app/service/raca.service';
 
 @Component({
@@ -16,10 +15,10 @@ import { RacaService } from 'src/app/service/raca.service';
 export class AtualizarAnimalComponent implements OnInit {
 
   id!: number;
-  animal!: Animal;
-  racas!: Raca[];
-  pais!: Animal[];
-  maes!: Animal[];
+  animal!: Animais;
+  racas!: Racas[];
+  pais!: Animais[];
+  maes!: Animais[];
   mensagemErro: any;
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -30,7 +29,7 @@ export class AtualizarAnimalComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.animal = new Animal();
+    this.animal = new Animais();
     this.id = this.route.snapshot.params['id'];
 
     this.animalService.loadByID(this.id).subscribe(
@@ -60,7 +59,7 @@ export class AtualizarAnimalComponent implements OnInit {
   atualizarAnimal(){
       this.animalService.save(this.animal).subscribe(
         data=>{
-          this.animal = new Animal();
+          this.animal = new Animais();
           this.irParaListagem();
         }, error => console.log(error));
   }

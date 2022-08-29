@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Animal } from 'src/app/model/animal';
-import { Propriedade } from 'src/app/model/propriedade';
+import { Animais } from 'src/app/model/animais';
+import { Propriedades } from 'src/app/model/propriedades';
 import { AnimalService } from '../animal.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
@@ -15,8 +15,8 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 })
 export class ListarAnimalComponent implements OnInit {
 
-  animais$:Observable<Animal[]>;
-  propriedade: Propriedade;
+  animais$:Observable<Animais[]>;
+  propriedade: Propriedades;
 
   constructor(private animalService: AnimalService,
               private propriedadeService: PropriedadeService,

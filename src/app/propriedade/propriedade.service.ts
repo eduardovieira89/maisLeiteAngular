@@ -3,7 +3,7 @@ import { CrudService } from './../shared/crud-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Propriedade } from '../model/propriedade';
+import { Propriedades } from '../model/propriedades';
 import { environment } from '../../environments/environment';
 
 
@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PropriedadeService extends CrudService<Propriedade> {
+export class PropriedadeService extends CrudService<Propriedades> {
 
   constructor(public http: HttpClient,
               private tokenService: TokenstorageService) {

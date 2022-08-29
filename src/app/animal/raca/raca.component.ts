@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RacaService } from 'src/app/service/raca.service';
-import { Raca } from 'src/app/model/raca';
+import { Racas } from 'src/app/model/racas';
 
 @Component({
   selector: 'app-raca',
@@ -9,7 +9,7 @@ import { Raca } from 'src/app/model/raca';
 })
 export class RacaComponent implements OnInit {
 
-  racas: Raca[];
+  racas: Racas[];
 
   constructor(private racaService: RacaService) { }
 

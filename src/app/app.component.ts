@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   showPropriedadeBoard = false;
   username: string;
   nome_propriedade: string;
-  isLoged: boolean;
+  isLoged: boolean = false;
 
   constructor(private authService: AuthenticationService,
               private propriedadeService: PropriedadeService,
@@ -34,12 +34,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregaDadosToken();
-    this.tokenStorageService.nomeUsuarioEmitter.subscribe(
-      nomeUser => {
-        //this.username = nomeUser.username;
-        console.log("AppComponent nomeUser: " + nomeUser);
-      }
-    );
+    
   }
 
 
@@ -61,10 +56,9 @@ export class AppComponent implements OnInit {
       this.isLoged = true;
       this.roles = user.roles;
       this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
-      //this.username = user.username;
+      this.username = user.username;
       this.nome_propriedade = this.tokenStorageService.getPropriedade()?.nome;
-      console.log('appComponent CarregaDadosToken isLoged: '+ this.isLoged);
-      console.log('appComponent CarregaDadosToken Produtor: '+ this.username);
+      
     }
     
   }

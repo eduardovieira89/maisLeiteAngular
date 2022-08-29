@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Propriedade } from 'src/app/model/propriedade';
+import { Propriedades } from 'src/app/model/propriedades';
 import {Location} from '@angular/common';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
@@ -11,7 +11,7 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 })
 export class CriarPropriedadeComponent implements OnInit {
 
-  propriedade: Propriedade = new Propriedade();
+  propriedade: Propriedades = new Propriedades();
   submitted = false;
 
   constructor(private propriedadeService: PropriedadeService,
@@ -26,7 +26,7 @@ export class CriarPropriedadeComponent implements OnInit {
 
   novaPropriedade(): void {
     this.submitted = false;
-    this.propriedade = new Propriedade();
+    this.propriedade = new Propriedades();
   }
 
   onSubmit(){
@@ -37,7 +37,7 @@ export class CriarPropriedadeComponent implements OnInit {
   salvar() {
     this.propriedadeService.save(this.propriedade)
       .subscribe(data=> {
-        this.propriedade = new Propriedade();
+        this.propriedade = new Propriedades();
         this.gotoPropriedades();
       },
       error => console.log(error));
