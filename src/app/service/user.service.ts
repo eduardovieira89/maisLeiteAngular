@@ -1,3 +1,5 @@
+import { Usuarios } from './../model/usuarios';
+import { CrudService } from './../shared/crud-service';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,9 +10,11 @@ const API_URL = `${environment.API}usuario/`;
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends CrudService<Usuarios> {
 
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) {
+    super(http, API_URL)
+   }
 
   getPublicContent(): Observable<any> {
     return this.http.get(API_URL + 'all', { responseType: 'text'});

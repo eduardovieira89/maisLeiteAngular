@@ -19,6 +19,8 @@ const routes: Routes = [
   { path: 'animaisdoadores', loadChildren: () => import('./reproducao/animaisDoadores/Animais-doadores.module').then(m => m.AnimaisDoadoresModule), canActivate:[AuthGuard]},
   { path: 'semens', loadChildren: () => import('./reproducao/semens/semens.module').then(m => m.SemensModule), canActivate:[AuthGuard]},
   { path: 'coberturas', loadChildren: () => import('./reproducao/coberturas/coberturas.module').then(m => m.CoberturasModule), canActivate:[AuthGuard]},
+  { path: 'diagnosticoprenhez', loadChildren: () => import('./reproducao/diagnosticos-prenhez/diagnosticos-prenhez.module').then(m => m.DiagnosticosPrenhezModule), canActivate:[AuthGuard]},
+  { path: 'parto', loadChildren: () => import('./reproducao/partos/partos.module').then(m => m.PartosModule), canActivate:[AuthGuard]}
 
 
   

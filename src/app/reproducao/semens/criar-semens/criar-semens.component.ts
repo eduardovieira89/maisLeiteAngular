@@ -1,5 +1,4 @@
 import { AnimaisDoadores } from 'src/app/model/animaisDoadores';
-import { Animais } from './../../../model/animais';
 import { Semens } from './../../../model/semens';
 import { SemensService } from './../semens.service';
 import { Router } from '@angular/router';
@@ -13,8 +12,8 @@ import { Component, OnInit } from '@angular/core';
 export class CriarSemensComponent implements OnInit {
 
   constructor(private router: Router,
-    private semenService: SemensService
-    ) { }
+              private semenService: SemensService
+             ) { }
 
 semen: Semens = new Semens();
 animaisDoadores: AnimaisDoadores[];

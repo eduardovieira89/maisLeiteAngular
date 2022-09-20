@@ -3,9 +3,7 @@
     <form 
     name="form" 
     (ngSubmit)="f.form.valid && onSubmit()"     
-    #f="ngForm"
-    
-    >
+    #f="ngForm">
         <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" id="nome" [(ngModel)]="animal.nome" name="nome">
@@ -61,7 +59,6 @@
         <div class="form-group">
             <label class="form-check-label">Teste Progenie</label><br>
             <div class="form-check form-check-inline">
-
                 <input type="radio" class="form-check-input" [(ngModel)]="animalDoador.testeProgenie" value="true" required name="progenie" id="sim">
                 <label class="form-check-label" for="sim"> Sim</label>
             </div>

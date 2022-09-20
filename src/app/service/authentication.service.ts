@@ -1,3 +1,4 @@
+import { Usuarios } from './../model/usuarios';
 import { TokenstorageService } from 'src/app/service/tokenstorage.service';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -57,7 +58,7 @@ export class AuthenticationService {
         httpOptions)
   }
 
-  public listarFuncionarios(): Observable<any> {
-    return this.http.get(AUTHENTICATION_PATH + 'funcionarios', httpOptions)
+  public listarFuncionarios(): Observable<Usuarios[]> {
+    return this.http.get<Usuarios[]>(AUTHENTICATION_PATH + 'funcionarios', httpOptions)
   }
 }

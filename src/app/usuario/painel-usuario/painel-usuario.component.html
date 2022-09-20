@@ -23,7 +23,7 @@
   <strong>Funcionários:</strong>
     <ul>
       <li *ngFor="let funcionario of funcionarios">
-        {{ funcionario }}
+        {{ funcionario.nome }}
       </li>
     </ul>
     <button (click)="goBack()" class="btn btn-info" style="margin-left: 10px"> Voltar</button>

@@ -3,9 +3,7 @@
     <form 
     name="form" 
     (ngSubmit)="f.form.valid && onSubmit()"     
-    #f="ngForm"
-    
-    >
+    #f="ngForm">
         <div class="form-group">
             <label for="touroDoador">Touro Doador:</label>
             <select class="form-control" id="touroDoador" required [(ngModel)]="semen.animaisDoadores" name="touroDoador">

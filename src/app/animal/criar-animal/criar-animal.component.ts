@@ -22,12 +22,12 @@ export class CriarAnimalComponent implements OnInit {
 
   animal: Animais = new Animais();
   racas: Racas[];
-  submitted = false;
   pais: Animais[];
   maes: Animais[];
   isSuccessful = false;
   isCreatedFailed = false;
   errorMessage = '';
+  submitted = false;
 
 
 
