@@ -13,7 +13,7 @@
              [class.is-invalid]="email.invalid && email.touched"
       >
      <div *ngIf="email.errors && (email.invalid && email.touched)">
-       <small class="text-danger" *ngIf="email.errors.required">Email é um campo nescessário</small>
+       <small class="text-danger" *ngIf="email.errors.required">Informe oEmail</small>
        <small class="text-danger" *ngIf="email.errors.pattern">Entre com um email válido</small>
      </div>
     </div>
@@ -27,12 +27,11 @@
       >
       <small class="text-danger" [class.d-none]="password.valid || password.untouched">Insira a senha!</small>
     </div>
-    <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
-    <div 
-      class="alert alert-danger"
-      role="alert"
-      *ngIf="loginform.submitted && isLoginFailed"     
-    >
+    <div class="form-group">
+      <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
+    </div>
+    
+    <div class="alert alert-danger" role="alert" *ngIf="loginform.submitted && isLoginFailed" >
       Login falhou: {{ msg }}
     </div>
     <div class="alert alert-success" *ngIf="isLoggedIn">
@@ -40,7 +39,7 @@
     </div>
         
     <br>
-    <small><a class="float-right" [routerLink]="['/registro']">Novo usuario? Registre aqui</a></small>
+    <small><a class="float-right" [routerLink]="['/registro']">Novo usuario? Registre-se aqui</a></small>
   </form>
 
   <div *ngIf="isLoggedIn">
