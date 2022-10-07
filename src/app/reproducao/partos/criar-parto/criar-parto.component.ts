@@ -1,3 +1,4 @@
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { HttpParams } from '@angular/common/http';
 import { PartosService } from './../partos.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,13 +16,13 @@ import { AnimalService } from 'src/app/animal/animal.service';
   templateUrl: './criar-parto.component.html',
   styleUrls: ['./criar-parto.component.css']
 })
-export class CriarPartoComponent implements OnInit {
+export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
   constructor(private partoService: PartosService,
               private diagnosticosPrenhezService: DiagnosticosPrenhezService,
               private animalService: AnimalService,
               private propriedadeService: PropriedadeService     
-    ) { }
+    ) { super() }
 
   parto: Partos = new Partos();
   tiposParto!: TiposParto[];
@@ -30,26 +31,35 @@ export class CriarPartoComponent implements OnInit {
   diagnosticoPrenhez!: DiagnosticosPrenhez;
 
   isSuccessful = false;
-  isCreatedFailed = false;
   errorMessage = '';
-  submitted = false;
 
   ngOnInit(): void {
-    this.carregarCampos();
-  }
-
-  carregarCampos() {
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
     params = params.set('genero', 'f');
     
-    this.animalService.listarPorGenero(params).subscribe(
-      v => this.vacas = v
-    );
+    this.animalService.listarPorGenero(params).subscribe(v => this.vacas = v);
+    this.partoService.listTiposParto().subscribe(tipos => this.tiposParto = tipos);
+  }
 
-    this.partoService.listTiposParto().subscribe(
-      tipos => this.tiposParto = tipos
-    );
+  submit(formulario){
+    if(this.cobertura != null){
+      this.parto.coberturas = this.cobertura;
+    }
+    if(this.diagnosticoPrenhez != null){
+      this.parto.diagnosticosPrenhez = this.diagnosticoPrenhez;
+    }
+    
+    this.partoService.save(this.parto).subscribe(
+      data => {
+        this.isSuccessful = true;
+        this.resetar(formulario);
+      },
+      err => {
+        this.errorMessage = err.error.message();
+        this.isSuccessful = false;
+      }
+    )
   }
 
   buscaCoberturaAndDiagnostico(){
@@ -72,32 +82,4 @@ export class CriarPartoComponent implements OnInit {
     }
     
   }
-
-  save(){
-    if(this.cobertura != null){
-      this.parto.coberturas = this.cobertura;
-    }
-    if(this.diagnosticoPrenhez != null){
-      this.parto.diagnosticosPrenhez = this.diagnosticoPrenhez;
-    }
-    this.partoService.save(this.parto).subscribe(
-      data => {
-        this.parto = new Partos();
-        this.isSuccessful = true;
-        this.isCreatedFailed = false;
-      },
-      err => {
-        this.errorMessage = err.error.message();
-        this.isCreatedFailed = true;
-        this.isSuccessful = false;
-      }
-    )
-  }
-  onSubmit(){
-    this.submitted = true;
-    this.save();
-  }
-
-
-
 }

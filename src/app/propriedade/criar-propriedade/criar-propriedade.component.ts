@@ -1,3 +1,4 @@
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Propriedades } from 'src/app/model/propriedades';
@@ -9,7 +10,7 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
   templateUrl: './criar-propriedade.component.html',
   styleUrls: ['./criar-propriedade.component.css']
 })
-export class CriarPropriedadeComponent implements OnInit {
+export class CriarPropriedadeComponent extends BaseFormComponent implements OnInit {
 
   propriedade: Propriedades = new Propriedades();
   submitted = false;
@@ -17,34 +18,25 @@ export class CriarPropriedadeComponent implements OnInit {
   constructor(private propriedadeService: PropriedadeService,
               private router: Router,
               private location: Location
-              ) { }
+              ) { super()}
 
   ngOnInit(): void {
 
     
   }
 
-  novaPropriedade(): void {
-    this.submitted = false;
-    this.propriedade = new Propriedades();
-  }
-
-  onSubmit(){
-    this.submitted = true;
-    this.salvar();
-  }
-
-  salvar() {
+  submit(formulario) {
     this.propriedadeService.save(this.propriedade)
       .subscribe(data=> {
         this.propriedade = new Propriedades();
-        this.gotoPropriedades();
+        this.resetar(formulario);
+        this.irParaPropriedades();
       },
-      error => console.log(error));
-    
+      error => console.log(error)
+      );
   }
 
-  gotoPropriedades() {
+  irParaPropriedades() {
     this.router.navigate(['/propriedade']);
   }
 

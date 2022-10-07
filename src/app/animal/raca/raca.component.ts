@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RacaService } from 'src/app/service/raca.service';
+import { RacaService } from 'src/app/shared/raca.service';
 import { Racas } from 'src/app/model/racas';
 
 @Component({

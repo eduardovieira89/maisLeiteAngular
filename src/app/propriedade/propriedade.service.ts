@@ -1,4 +1,4 @@
-import { TokenstorageService } from 'src/app/service/tokenstorage.service';
+import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
 import { CrudService } from './../shared/crud-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';

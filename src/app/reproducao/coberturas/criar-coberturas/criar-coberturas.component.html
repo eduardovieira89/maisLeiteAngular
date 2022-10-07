@@ -1,98 +1,102 @@
 <h2>Registrar cobertura</h2>
 <div  class="container">
-    <form 
-    name="form" 
-    (ngSubmit)="f.form.valid && onSubmit()"     
-    #f="ngForm">
-
-        <div class="form-group">
-            <label for="raca">Tipo de cobertura:</label>
-            <select class="form-control" id="tipoCobertura" required [(ngModel)]="cobertura.tipoCobertura" name="tipoCobertura">
-                <option *ngFor="let tipo of TiposCobertura" [ngValue]="tipo">{{tipo.descricao}}</option>
-        </select>
-        </div>
-
-        <div class="form-group">
-            <label for="raca">Vaca:</label>
-            <select class="form-control" id="vaca" required [(ngModel)]="cobertura.vaca" name="vaca">
-                <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
-        </select>
-        </div>
-
-        <div class="form-group">
-            <label for="raca">Touro Monta:</label>
-            <select class="form-control" id="touroMonta" [(ngModel)]="cobertura.touroMonta" name="touroMonta">
-                <option *ngFor="let touroMonta of tourosMonta" [ngValue]="touroMonta">{{touroMonta.nome}} Brinco: {{touroMonta.brinco}}</option>
-        </select>
-        </div>
-
-        <div class="form-group">
-            <label for="raca">Inseminador:</label>
-            <select class="form-control" id="inseminador" [(ngModel)]="cobertura.inseminador" name="inseminador">
-                <option *ngFor="let inseminador of inseminadores" [ngValue]="inseminador">{{inseminador.nome}}</option>
-        </select>
-        </div>
-
-        <div class="form-group">
-            <label for="raca">Semên, códogo da palheta:</label>
-            <select class="form-control" id="semen" [(ngModel)]="cobertura.semens" name="semen">
-                <option *ngFor="let semen of semens" [ngValue]="semen">{{semen.codPalheta}} - Touro: {{ semen.animaisDoadores.animal.nome }}</option>
-        </select>
-        </div>
-
-        <div class="form-group">
-            <label for="qtdeDoses">Quantidade de doses</label>
-            <input type="number" class="form-control" id="qtdeDoses" [(ngModel)]="cobertura.qtdeDoseSemen" name="qtdeDoses" #brinco="ngModel">
-        </div>
-
-        <div class="form-group">
-            <label for="datac">Data da cobertura: </label>
-            <div class="input-group">
-                <input type="date" class="form-control" name="datac" required [(ngModel)]="cobertura.data" #datac="ngModel">
+    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+        
+        <div class="form-group row"> 
+            <div class="col-sm-2">
+                <label for="datac">Data da cobertura: *</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="datac" name="datac" required [(ngModel)]="cobertura.data">
+                    <div class="invalid-feedback">
+                        Data de cobertura é um campo obrigatório.
+                    </div>  
+                </div>
             </div>
-            <div class="alert-danger" *ngIf="datac.errors && (datac.invalid && datac.touched)">
-                <small class="text-danger" *ngIf="datac.errors.required">Data de cobertura é um campo obrigatório</small>
-              </div>
+            <div class="col-sm-3">
+                <label for="tipoCobertura">Tipo de cobertura: *</label>
+                <select class="form-control" id="tipoCobertura" name="tipoCobertura" required [(ngModel)]="cobertura.tipoCobertura" >
+                    <option *ngFor="let tipo of TiposCobertura" [ngValue]="tipo">{{tipo.descricao}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Tipo de cobertura é um campo obrigatório.
+                </div>
+            </div>
+
+            <div class="col-sm-7">
+                <label for="vaca">Vaca: *</label>
+                <select class="form-control" id="vaca" name="vaca" required [(ngModel)]="cobertura.vaca" >
+                    <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Você deve informar qual vaca será realizado o registro de cobertura.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label class="form-check-label">Monta controlada:</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="sim" name="montac" value="true" [(ngModel)]="cobertura.montaControlada">
+                    <label class="form-check-label" for="sim"> Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="nao" name="montac" value="false" [(ngModel)]="cobertura.montaControlada">
+                    <label class="form-check-label" for="nao">Não</label>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <label for="touroMonta">Touro Monta:</label>
+                <select class="form-control" id="touroMonta" name="touroMonta" [(ngModel)]="cobertura.touroMonta" >
+                    <option *ngFor="let touroMonta of tourosMonta" [ngValue]="touroMonta">{{touroMonta.nome}} Brinco: {{touroMonta.brinco}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label for="inseminador">Inseminador:</label>
+                <select class="form-control" id="inseminador" name="inseminador" [(ngModel)]="cobertura.inseminador">
+                    <option *ngFor="let inseminador of inseminadores" [ngValue]="inseminador">{{inseminador.nome}}</option>
+                </select>
+            </div>
+
+            <div class="col-sm-1">
+                <label for="qtdeDoses">Doses:</label>
+                <input type="number" class="form-control" id="qtdeDoses" name="qtdeDoses" [(ngModel)]="cobertura.qtdeDoseSemen">
+            </div>
+
+            <div class="col-sm-7">
+                <label for="semen">Semên, códogo da palheta:</label>
+                <select class="form-control" id="semen" name="semen" [(ngModel)]="cobertura.semens">
+                    <option *ngFor="let semen of semens" [ngValue]="semen">{{semen.codPalheta}} - Touro: {{ semen.animaisDoadores.animal.nome }}</option>
+                </select>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
-            <input type="range" class="form-range" min="1" max="5" step="0.5" id="escoreCorporal" name="escoreCorporal" required [(ngModel)]="cobertura.escoreCorporal">
+            <input type="range" class="form-range" id="escoreCorporal" name="escoreCorporal" min="1" max="5" step="0.5"  [(ngModel)]="cobertura.escoreCorporal">
             <label class="form-label" >  {{cobertura.escoreCorporal}}</label>
+            <label class="form-label" *ngIf="cobertura.escoreCorporal == null" > (Informe o EC)</label>
         </div>
 
-        <div class="form-group">
-            <label class="form-check-label">Monta controlada</label><br>
-            <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" [(ngModel)]="cobertura.montaControlada" value="true" name="montac" id="sim">
-                <label class="form-check-label" for="sim"> Sim</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" [(ngModel)]="cobertura.montaControlada" value="false" name="montac" id="nao">
-                <label class="form-check-label" for="nao">Não</label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="obs">Observações</label>
-            <textarea class="form-control" rows="5" id="obs" name="obs" [(ngModel)]="cobertura.observacao"></textarea>
-        </div>
-
-        <button [disabled]="f.form.invalid" type="submit" class="btn btn-success">Salvar</button>
         
+
+        <div class="form-group">
+            <label for="obs">Observações:</label>
+            <textarea class="form-control" id="obs" name="obs" rows="5" [(ngModel)]="cobertura.observacao"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <br>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            <h4>Cobertura cadastrada com sucesso!</h4>
+        </div>
+        <div class="alert alert-warning" *ngIf="errorMessage!=''">
+               <h4>Falha ao cadastrar cobertura!</h4> <br/>{{ errorMessage }}
+        </div>
     </form>
 </div>
 
-<div class="alert alert-success" *ngIf="isSuccessful">
-    <h4>Animal criado com sucesso!</h4>
-</div>
+<app-form-debug [form]="f"></app-form-debug>
 
-<div *ngIf="f.submitted && isCreatedFailed">
-    <div class="alert alert-warning">
-        Falha ao criar animal!<br />{{ errorMessage }}
-    </div>
-</div>
-
-<div style="margin-top: 20px">
-    <pre>Cobertura: <br>{{ cobertura | json }}</pre>
-</div>

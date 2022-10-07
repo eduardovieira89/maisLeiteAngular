@@ -1,4 +1,4 @@
-import { TokenstorageService } from './../service/tokenstorage.service';
+import { TokenstorageService } from '../../usuario/tokenstorage.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';

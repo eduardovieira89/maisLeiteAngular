@@ -11,16 +11,17 @@ export abstract class BaseFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  abstract submit();
+  abstract submit(formulario);
 
-  onSubmit() {
-    if (this.formulario.valid) {
-      this.submit();
-    } else {
+   onSubmit(formulario) {
+    if(formulario.form.valid){
+      this.submit(formulario);
+    } 
+    /*else {
       console.log('formulario invalido');
       this.verificaValidacoesForm(this.formulario);
-    }
-  }
+    }*/
+  } 
 
   verificaValidacoesForm(formGroup: FormGroup | FormArray) {
     Object.keys(formGroup.controls).forEach(campo => {
@@ -34,15 +35,13 @@ export abstract class BaseFormComponent implements OnInit {
     });
   }
 
-  resetar() {
-    this.formulario.reset();
+  resetar(formulario) {
+    formulario.form.reset();
+    formulario.submitted = false;
   }
 
-  verificaValidTouched(campo: string) {
-    return (
-      !this.formulario.get(campo).valid &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
-    );
+  verificaValidTouched(campo) {
+    return !campo.valid && campo.touched;
   }
 
   verificaRequired(campo: string) {
@@ -60,10 +59,16 @@ export abstract class BaseFormComponent implements OnInit {
     return null;
   }
 
-  aplicaCssErro(campo: string) {
+  aplicaCssErro(campo) {
     return {
-      'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo)
+      'is-invalid': this.verificaValidTouched(campo),
+      'invalid-feedback': this.verificaValidTouched(campo)
+    };
+  }
+
+  aplicaErroForm(campo){
+    return {
+      'was-validated': campo.submitted
     };
   }
 

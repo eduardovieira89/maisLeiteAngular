@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Animais } from 'src/app/model/animais';
 import { Racas } from 'src/app/model/racas';
 import { AnimalService } from 'src/app/animal/animal.service';
-import { RacaService } from 'src/app/service/raca.service';
+import { RacaService } from 'src/app/shared/raca.service';
 
 @Component({
   selector: 'app-atualizar-animal',

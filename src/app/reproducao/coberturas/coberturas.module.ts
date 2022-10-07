@@ -5,7 +5,8 @@ import { CriarCoberturasComponent } from './criar-coberturas/criar-coberturas.co
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoberturasRoutingModule } from './coberturas-routing.module';
-import { authInterceptorProviders } from 'src/app/_helpers/auth.interceptor';
+import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -19,7 +20,8 @@ import { authInterceptorProviders } from 'src/app/_helpers/auth.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CoberturasRoutingModule
+    CoberturasRoutingModule,
+    SharedModule
   ],
   providers: [
     authInterceptorProviders

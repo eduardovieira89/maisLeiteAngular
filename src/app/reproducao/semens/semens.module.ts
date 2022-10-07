@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CriarSemensComponent } from './criar-semens/criar-semens.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { authInterceptorProviders } from 'src/app/_helpers/auth.interceptor';
+import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
 import { ListarSemensComponent } from './listar-semens/listar-semens.component';
 
 

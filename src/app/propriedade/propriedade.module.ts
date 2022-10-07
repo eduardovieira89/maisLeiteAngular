@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { PropriedadeRoutingModule } from './propriedade-routing.module';
-import { authInterceptorProviders } from '../_helpers/auth.interceptor';
+import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
 
 import { ListarPropriedadeComponent } from './listar-propriedade/listar-propriedade.component';
 import { AtualizarPropriedadeComponent } from './atualizar-propriedade/atualizar-propriedade.component';

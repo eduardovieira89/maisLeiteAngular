@@ -2,9 +2,9 @@ import { Usuarios } from './../../model/usuarios';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import { TokenstorageService } from '../../service/tokenstorage.service';
+import { TokenstorageService } from '../tokenstorage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from 'src/app/service/authentication.service';
+import { AuthenticationService } from 'src/app/usuario/authentication.service';
 
 @Component({
   selector: 'app-painel-usuario',

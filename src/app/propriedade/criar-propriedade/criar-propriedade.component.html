@@ -1,29 +1,31 @@
 
-<div [hidden]="submitted" class="container">
-  <h3>Criar Propriedade</h3>
-  <form (ngSubmit)="onSubmit()">
+<h2>Cadastrar Propriedade</h2>
+<div class="container">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+    
     <div class="form-group">
-      <label for="name">Nome da propriedade</label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="propriedade.nome" name="nome">
+      <label for="nome">Nome da propriedade: *</label>
+      <input type="text" class="form-control" id="nome" name="nome" required [(ngModel)]="propriedade.nome" >
+      <div class="invalid-feedback">
+        Nome da propriedade é um campo obrigatório.
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="name">Localidade</label>
-      <input type="text" class="form-control" id="lastName" required [(ngModel)]="propriedade.localidade" name="localidade">
+      <label for="localidade">Localidade:</label>
+      <input type="text" class="form-control" id="localidade" name="localidade" [(ngModel)]="propriedade.localidade">
     </div>
 
     <div class="form-group">
-      <label for="name">Municipio</label>
-      <input type="text" class="form-control" id="emailId" required [(ngModel)]="propriedade.municipio" name="municipio">
+      <label for="municipio">Municipio: *</label>
+      <input type="text" class="form-control" id="municipio" name="municipio" required [(ngModel)]="propriedade.municipio" >
+      <div class="invalid-feedback">
+        Município é um campo obrigatório.
+      </div>
     </div>
 
     <button type="submit" class="btn btn-success">Salvar</button>
     <div class="float-right"><button (click)="voltar()" class="btn btn-info">Cancelar</button></div>
     
   </form>
-</div>
-
-<div [hidden]="!submitted">
-  <h4>Propriedade criada com sucesso!</h4>
-  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
 </div>

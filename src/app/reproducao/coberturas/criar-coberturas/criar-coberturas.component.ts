@@ -1,4 +1,5 @@
-import { UserService } from 'src/app/service/user.service';
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
+import { UserService } from 'src/app/usuario/user.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { CoberturasService } from '../coberturas.service';
 import { AnimalService } from 'src/app/animal/animal.service';
@@ -19,7 +20,7 @@ import { HttpParams } from '@angular/common/http';
   templateUrl: './criar-coberturas.component.html',
   styleUrls: ['./criar-coberturas.component.css']
 })
-export class CriarCoberturasComponent implements OnInit {
+export class CriarCoberturasComponent extends BaseFormComponent implements OnInit {
 
   constructor(private  router: Router,
               private coberturaService: CoberturasService,
@@ -27,7 +28,7 @@ export class CriarCoberturasComponent implements OnInit {
               private propriedadeService: PropriedadeService,
               private usuariosService: UserService,
               private semensService: SemensService
-             ) { }
+             ) { super() }
 
   cobertura: Coberturas = new Coberturas();
   vacas: Animais[];
@@ -35,62 +36,43 @@ export class CriarCoberturasComponent implements OnInit {
   inseminadores: Usuarios[];
   semens: Semens[];
   TiposCobertura: TiposCobertura[];
-
-  isSuccessful = false;
-  isCreatedFailed = false;
   errorMessage = '';
-  submitted = false;
+  isSuccessful = false;
 
   ngOnInit(): void {
-    this.carregarCampos();
-  }
-
-  carregarCampos() {
+    this.isSuccessful = false;
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
+    
     params = params.set('genero', 'm');
-    
-    this.animalService.listarPorGenero(params).subscribe(
-      t => this.tourosMonta = t);
+    this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
+
     params.delete('genero');
-    params = params.set('genero', 'f');
-    
-    this.animalService.listarPorGenero(params).subscribe(
-      v => this.vacas = v
-    );
+    params = params.set('genero', 'f');  
+    this.animalService.listarPorGenero(params).subscribe(v => this.vacas = v );
 
-    this.coberturaService.listTiposCobertura().subscribe(
-      tipos => this.TiposCobertura = tipos
-    )
-
-    this.usuariosService.list().subscribe(
-      users => this.inseminadores = users
-    )
-
-    this.semensService.list().subscribe(
-      sem => this.semens = sem
-    )
-
+    this.coberturaService.listTiposCobertura().subscribe(tipos => this.TiposCobertura = tipos);
+    this.usuariosService.list().subscribe(users => this.inseminadores = users );
+    this.semensService.list().subscribe(sem => this.semens = sem );
+      
   }
 
-  save(){
+  submit(formulario){
+    
     this.coberturaService.save(this.cobertura).subscribe(
       data => {
-        this.cobertura = new Coberturas();
+        //this.cobertura = new Coberturas();
         this.isSuccessful = true;
-        this.isCreatedFailed = false;
-      },
+        this.resetar(formulario);
+        console.log(this.cobertura);
+        console.log(data);
+
+      }, 
       err => {
-        this.errorMessage = err.error.message();
-        this.isCreatedFailed = true;
+        this.errorMessage = err.error.message() ;
         this.isSuccessful = false;
       }
-    )
-  }
-
-  onSubmit(){
-    this.submitted = true;
-    this.save();
+      );
   }
 
 }

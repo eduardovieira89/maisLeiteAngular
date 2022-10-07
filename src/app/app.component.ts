@@ -1,8 +1,8 @@
-import { AuthenticationService } from 'src/app/service/authentication.service';
+import { AuthenticationService } from 'src/app/usuario/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PropriedadeService } from './propriedade/propriedade.service';
-import { TokenstorageService } from './service/tokenstorage.service';
+import { TokenstorageService } from './usuario/tokenstorage.service';
 
 @Component({
   selector: 'app-root',

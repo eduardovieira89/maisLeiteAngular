@@ -1,47 +1,58 @@
-<div class="container">
-    <h2>Detalhes do Animal</h2> 
-    <div *ngIf="animal.nome" >
-      
-      <div>
-        <label><b>Nome: </b></label> {{animal.nome}}
-      </div>
-      <div>
-        <label><b>Número do brinco: </b></label> {{animal.brinco}}
-      </div>
-      <div>
-        <label><b>Data de nascimento: </b></label> {{animal.dataNasc | date: 'dd/MM/yyyy'}}
-      </div>
-      <div>
-        <label><b>Número do registro: </b></label> {{animal.registro}}
-      </div> 
-      <div>
-        <div *ngIf="animal.sexo == 'f'">
-          <label><b>Sexo: </b></label> Fêmea
-        </div>
-        <div *ngIf="animal.sexo == 'm'">
-          <label><b>Sexo: </b></label> Macho
-        </div>
-      </div> 
-      <div>
-        <label><b>Raça: </b></label> {{ animal.raca?.descricao }}
-      </div>
-      <div>
-        <label><b>Pai: </b></label> {{animal.pai!}}
-      </div> 
-      <div>
-        <label><b>Mãe: </b></label> {{animal.mae!}}
-      </div> 
-      <div>
-        <label><b>Pai ID: </b></label> {{ animal.id_pai?.nome }}
-      </div> 
-      <div>
-        <label><b>Mãe ID: </b></label> {{ animal.id_mae?.nome }}
-      </div>    
+<h2>Detalhes do Animal</h2> 
+<div class="container" *ngIf="animal">
+  <div>
+    <div *ngIf="animal.sexo == 'f'">
+      <label><b>Sexo: </b>Fêmea</label> 
     </div>
-    <div *ngIf="mensagemErro" class="alert alert-danger">
-      {{mensagemErro}}
+    <div *ngIf="animal.sexo == 'm'">
+      <label><b>Sexo: </b>Macho</label> 
     </div>
-    <br>
-    <br>
-    <button (click)="voltar()" class="btn btn-primary">Voltar</button><br>
+  </div> 
+
+  <div class="form-group row" >
+    <div class="col-sm-6">
+      <label><b>Nome: </b>{{animal.nome}}</label> 
+    </div>
+    <div class="col-sm-6">
+      <label><b>Raça: </b>{{ animal.raca?.descricao }}</label> 
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-3">
+      <label><b>Número do brinco: </b>{{animal.brinco}}</label> 
+    </div>
+    <div class="col-sm-3">
+      <label><b>Número do registro: </b>{{animal.registro}}</label> 
+    </div> 
+    <div class="col-sm-3">
+      <label><b>Data de nascimento: </b>{{animal.dataNasc | date: 'dd/MM/yyyy'}}</label> 
+    </div>
+  </div>
+  
+  
+
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <label><b>Pai: </b>{{animal.pai!}}</label> 
+    </div> 
+    <div class="col-sm-6">
+      <label><b>Mãe: </b>{{animal.mae!}}</label> 
+    </div> 
+  </div>
+  
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <label><b>Pai ID: </b>{{ animal.id_pai?.nome }}</label> 
+    </div> 
+    <div class="col-sm-6">
+      <label><b>Mãe ID: </b>{{ animal.id_mae?.nome }}</label> 
+    </div>    
+  </div>
 </div>
+
+<div *ngIf="mensagemErro" class="alert alert-danger">
+  {{mensagemErro}}
+</div>
+<br>
+<br>
+<button (click)="voltar()" class="btn btn-primary">Voltar</button><br>

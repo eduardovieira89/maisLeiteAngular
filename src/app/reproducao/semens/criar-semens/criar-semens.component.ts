@@ -1,3 +1,4 @@
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { AnimaisDoadores } from 'src/app/model/animaisDoadores';
 import { Semens } from './../../../model/semens';
 import { SemensService } from './../semens.service';
@@ -9,18 +10,16 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './criar-semens.component.html',
   styleUrls: ['./criar-semens.component.css']
 })
-export class CriarSemensComponent implements OnInit {
+export class CriarSemensComponent extends BaseFormComponent implements OnInit {
 
   constructor(private router: Router,
               private semenService: SemensService
-             ) { }
+             ) {super()}
 
 semen: Semens = new Semens();
 animaisDoadores: AnimaisDoadores[];
 isSuccessful = false;
-isCreatedFailed = false;
 errorMessage = '';
-submitted = false;
 
   ngOnInit(): void {
     this.semenService.listAnimaisDoadores().subscribe(
@@ -28,32 +27,24 @@ submitted = false;
     )
   }
 
-  save() {
+  submit(formulario) {
     this.semenService.save(this.semen).subscribe(
       data => {
-        this.semen = new Semens();
+        this.resetar(formulario);
         this.isSuccessful = true;
-        this.isCreatedFailed = false;
       },
       err => {
         console.log(err);
         this.errorMessage = err.error.message;
-        this.isCreatedFailed = true;
         this.isSuccessful = false;
         ;
         
       }
     )
-   
   }
 
   irParaListagem() {
     this.router.navigate(['/semens']);
-  }
-
-  onSubmit() {
-    this.submitted = true;
-    this.save();
   }
 
 }

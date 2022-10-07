@@ -1,22 +1,36 @@
 <h2>Registrar Diagnóstico de prenhez</h2>
 <div  class="container">
-    <form 
-    name="form" 
-    (ngSubmit)="f.form.valid && onSubmit()"     
-    #f="ngForm">
+    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
 
-        <div class="form-group">
-            <label for="raca">Método de diagnostico:</label>
-            <select class="form-control" id="metodoDiagnostico" required [(ngModel)]="diagnosticoPrenhez.metodoDiagnostico" name="metodoDiagnostico">
-                <option *ngFor="let metodo of metodosPrenhez" [ngValue]="metodo">{{metodo.descricao}}</option>
-        </select>
-        </div>
-
-        <div class="form-group">
-            <label for="vaca">Vaca:</label>
-            <select class="form-control" id="vaca" required [(ngModel)]="diagnosticoPrenhez.vaca" name="vaca" (change)="buscaCobertura()">
-                <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
-        </select>
+        <div class="form-group row"> 
+            <div class="col-sm-2">
+                <label for="datad">Data do diagnóstico:*</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="datad" name="datad" required [(ngModel)]="diagnosticoPrenhez.data">
+                    <div class="invalid-feedback">
+                        Data do diagnóstico é um campo obrigatório
+                    </div> 
+                </div>
+                
+            </div>
+            <div class="col-sm-3">
+                <label for="raca">Método de diagnostico: *</label>
+                <select class="form-control" id="metodoDiagnostico" name="metodoDiagnostico" required [(ngModel)]="diagnosticoPrenhez.metodoDiagnostico" >
+                    <option *ngFor="let metodo of metodosPrenhez" [ngValue]="metodo">{{metodo.descricao}}</option>
+            </select>
+            <div class="invalid-feedback">
+                Método de diagnostico é um campo obrigatório.
+            </div>
+            </div>
+            <div class="col-sm-7">
+                <label for="vaca">Vaca: *</label>
+                <select class="form-control" id="vaca" name="vaca" required [(ngModel)]="diagnosticoPrenhez.vaca"  (change)="buscaCobertura()">
+                    <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
+            </select>
+            <div class="invalid-feedback">
+                Você deve informar qual vaca será realizado o registro de diagnóstico.
+            </div>
+            </div>
         </div>
         
         <div class="form-group" *ngIf="cobertura">
@@ -25,49 +39,31 @@
         </div>
 
         <div class="form-group">
-            <label for="datad">Data do diagnóstico: </label>
-            <div class="input-group">
-                <input type="date" class="form-control" name="datad" required [(ngModel)]="diagnosticoPrenhez.data" #datad="ngModel">
-            </div>
-            <div class="alert-danger" *ngIf="datad.errors && (datad.invalid && datad.touched)">
-                <small class="text-danger" *ngIf="datad.errors.required">A data do diagnóstico é um campo obrigatório</small>
-              </div>
-        </div>
-
-        <div class="form-group">
-            <label class="form-check-label">Resultado do diagnóstico</label><br>
+            <label class="form-check-label">Resultado do diagnóstico: </label><br>
             <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" [(ngModel)]="diagnosticoPrenhez.diagnostico" value="true" name="resultado" id="positivo">
+                <input type="radio" class="form-check-input" id="positivo" name="resultado" value="true" required [(ngModel)]="diagnosticoPrenhez.diagnostico">
                 <label class="form-check-label" for="positivo"> Positivo</label>
             </div>
             <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" [(ngModel)]="diagnosticoPrenhez.diagnostico" value="false" name="resultado" id="negativo">
+                <input type="radio" class="form-check-input" id="negativo" name="resultado" value="false" required [(ngModel)]="diagnosticoPrenhez.diagnostico">
                 <label class="form-check-label" for="negativo"> Negativo</label>
             </div>
         </div>
 
         <div class="form-group">
             <label for="obs">Observações</label>
-            <textarea class="form-control" rows="5" id="obs" name="obs" [(ngModel)]="diagnosticoPrenhez.observacao"></textarea>
+            <textarea class="form-control" name="obs" rows="5" id="obs"  [(ngModel)]="diagnosticoPrenhez.observacao"></textarea>
         </div>
 
+        <button type="submit" class="btn btn-success">Salvar</button>
 
-        <button [disabled]="f.form.invalid" type="submit" class="btn btn-success">Salvar</button>
+        <br>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            <h4>Diagnóstico cadastrado com sucesso!</h4>
+        </div>
+        <div class="alert alert-warning" *ngIf="errorMessage!=''">
+                Falha ao cadastrar diagnóstico!<br />{{ errorMessage }}
+        </div>
         
     </form>
-</div>
-
-<div class="alert alert-success" *ngIf="isSuccessful">
-    <h4>Animal criado com sucesso!</h4>
-</div>
-
-<div *ngIf="f.submitted && isCreatedFailed">
-    <div class="alert alert-warning">
-        Falha ao criar animal!<br />{{ errorMessage }}
-    </div>
-</div>
-
-<div style="margin-top: 20px">
-    <pre>Vaca: <br>{{ diagnosticoPrenhez | json }}</pre>
-    
 </div>

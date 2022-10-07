@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/service/authentication.service';
+import { AuthenticationService } from 'src/app/usuario/authentication.service';
 
 @Component({
   selector: 'app-registro-funcionario',

@@ -11,8 +11,9 @@ import { ListarAnimalComponent } from './listar-animal/listar-animal.component';
 import { CriarAnimalComponent } from './criar-animal/criar-animal.component';
 import { AtualizarAnimalComponent } from './atualizar-animal/atualizar-animal.component';
 import { DetalhesAnimalComponent } from './detalhes-animal/detalhes-animal.component';
-import { authInterceptorProviders } from '../_helpers/auth.interceptor';
+import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
 import { VacinaComponent } from './vacina/vacina.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -32,7 +33,8 @@ import { VacinaComponent } from './vacina/vacina.component';
     ReactiveFormsModule,
     HttpClientModule,
     AnimalRoutingModule,
-    PropriedadeModule
+    PropriedadeModule,
+    SharedModule
   ],
   providers: [
     authInterceptorProviders

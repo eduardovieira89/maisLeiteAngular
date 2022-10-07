@@ -1,9 +1,9 @@
-import { Usuarios } from './../model/usuarios';
-import { TokenstorageService } from 'src/app/service/tokenstorage.service';
+import { Usuarios } from '../model/usuarios';
+import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 
 const AUTHENTICATION_PATH = `${environment.API}usuario/`;
 const httpOptions = {

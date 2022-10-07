@@ -1,57 +1,64 @@
 <h2>Registrar Parto</h2>
 <div  class="container">
-    <form 
-    name="form" 
-    (ngSubmit)="f.form.valid && onSubmit()"     
-    #f="ngForm">
+    <form name="form"  (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
 
-        <div class="form-group">
-            <label for="vaca">Vaca:</label>
-            <select class="form-control" id="vaca" required [(ngModel)]="parto.vaca" name="vaca" (change)="buscaCoberturaAndDiagnostico()">
-                <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
-        </select>
-        </div>
-        
-        <div class="form-group" *ngIf="cobertura">
-            <label for="cobertura">Cobertura: {{cobertura.data | date: 'dd/MM/yyyy'}} </label><br>
-            <label for="TipoCobertura">Tipo: {{cobertura.tipoCobertura.descricao}} </label>
-        </div>
-
-        <div class="form-group" *ngIf="diagnosticoPrenhez">
-            <label for="diagnosticoPrenhez">diagnostico de Prenhez: {{diagnosticoPrenhez.data | date: 'dd/MM/yyyy'}} </label><br>
-            <label for="TipoCobertura">Método: {{diagnosticoPrenhez.metodoDiagnostico.descricao}} </label>
-        </div>
-
-        <div class="form-group">
-            <label for="datap">Data do parto: </label>
-            <div class="input-group">
-                <input type="date" class="form-control" name="datap" required [(ngModel)]="parto.data" #datap="ngModel">
+        <div class="form-group row"> 
+            <div class="col-sm-2">
+                <label for="datap">Data do parto: *</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="datap" name="datap" required [(ngModel)]="parto.data">
+                    <div class="invalid-feedback">
+                        Data do parto é um campo obrigatório.
+                    </div> 
+                </div>
+                
             </div>
-            <div class="alert-danger" *ngIf="datap.errors && (datap.invalid && datap.touched)">
-                <small class="text-danger" *ngIf="datap.errors.required">A data do parto é um campo obrigatório</small>
+            <div class="col-sm-3">
+                <label for="tipoParto">Tipo do parto: *</label>
+                <select class="form-control" id="tipoParto" name="tipoParto" required [(ngModel)]="parto.tiposParto">
+                    <option *ngFor="let tipo of tiposParto" [ngValue]="tipo">{{tipo.descricao}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Tipo de parto é um campo obrigatório.
+                </div> 
             </div>
-        </div>
-
-        <div class="form-group">
-            <label for="raca">Tipo do parto:</label>
-            <select class="form-control" id="tipoParto" required [(ngModel)]="parto.tiposParto" name="tipoParto">
-                <option *ngFor="let tipo of tiposParto" [ngValue]="tipo">{{tipo.descricao}}</option>
-        </select>
-        </div>
-
-        <div class="form-group">
-            <label for="qtdeCrias">Quantidade de crias:</label>
-            <input type="number" class="form-control" id="qtdeCrias" required [(ngModel)]="parto.qtdeCrias" name="qtdeCrias" #qtdeCrias="ngModel">
-            
-            <div class="alert-danger" *ngIf="qtdeCrias.errors && (qtdeCrias.invalid && qtdeCrias.touched)">
-                <small class="text-danger" *ngIf="datap.errors.required">Quantidade de crias é um campo obrigatório</small>
+            <div class="col-sm-7">
+                <label for="vaca">Vaca: *</label>
+                <select class="form-control" id="vaca"  name="vaca" (change)="buscaCoberturaAndDiagnostico()" required [(ngModel)]="parto.vaca">
+                    <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Você deve informar qual vaca será realizado o parto.
+                </div>
             </div>
         </div>
         
-        <div class="form-group">
-            <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
-            <input type="range" class="form-range" min="1" max="5" step="0.5" id="escoreCorporal" name="escoreCorporal" required [(ngModel)]="parto.escoreCorporal">
-            <label class="form-label" >  {{parto.escoreCorporal}}</label>
+        <div class="form-group row"> 
+            <div class="col-sm-3" *ngIf="cobertura">
+                <label for="cobertura">Cobertura: {{cobertura.data | date: 'dd/MM/yyyy'}} </label><br>
+                <label for="TipoCobertura">Tipo: {{cobertura.tipoCobertura.descricao}} </label>
+            </div>
+    
+            <div class="col-sm-3" *ngIf="diagnosticoPrenhez">
+                <label for="diagnosticoPrenhez">diagnostico de Prenhez: {{diagnosticoPrenhez.data | date: 'dd/MM/yyyy'}} </label><br>
+                <label for="TipoCobertura">Método: {{diagnosticoPrenhez.metodoDiagnostico.descricao}} </label>
+            </div>
+        </div>
+
+        <div class="form-group row"> 
+            <div class="col-sm-2">
+                <label for="qtdeCrias">Crias:*</label>
+                <input type="number" class="form-control" id="qtdeCrias" name="qtdeCrias" required [(ngModel)]="parto.qtdeCrias" >
+                <div class="invalid-feedback">
+                    Quantidade de crias é um campo obrigatório.
+                </div>
+                
+            </div>
+            <div class="col-sm-3">
+                <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
+                <input type="range" class="form-range" min="1" max="5" step="0.5" id="escoreCorporal" name="escoreCorporal" required [(ngModel)]="parto.escoreCorporal">
+                <label class="form-label" >  {{parto.escoreCorporal}}</label>
+            </div>
         </div>
 
         <div class="form-group">
@@ -59,23 +66,16 @@
             <textarea class="form-control" rows="5" id="obs" name="obs" [(ngModel)]="parto.observacao"></textarea>
         </div>
 
-
-        <button [disabled]="f.form.invalid" type="submit" class="btn btn-success">Salvar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <br>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            <h4>Parto registrado com sucesso!</h4>
+        </div>
+        <div *ngIf="errorMessage!=''">
+            <div class="alert alert-warning">
+                Falha ao cadastrar parto!<br />{{ errorMessage }}
+            </div>
+        </div>
         
     </form>
-</div>
-
-<div class="alert alert-success" *ngIf="isSuccessful">
-    <h4>Animal criado com sucesso!</h4>
-</div>
-
-<div *ngIf="f.submitted && isCreatedFailed">
-    <div class="alert alert-warning">
-        Falha ao criar animal!<br />{{ errorMessage }}
-    </div>
-</div>
-
-<div style="margin-top: 20px">
-    <pre>Vaca: <br>{{ diagnosticoPrenhez | json }}</pre>
-    
 </div>

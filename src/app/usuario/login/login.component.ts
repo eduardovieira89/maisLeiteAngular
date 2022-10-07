@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { AuthenticationService } from '../../service/authentication.service';
-import { TokenstorageService} from '../../service/tokenstorage.service';
+import { AuthenticationService } from '../authentication.service';
+import { TokenstorageService} from '../tokenstorage.service';
 import { Router } from '@angular/router';
 
 @Component({

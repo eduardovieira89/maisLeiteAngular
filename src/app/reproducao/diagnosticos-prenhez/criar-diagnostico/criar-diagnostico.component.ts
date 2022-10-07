@@ -1,3 +1,4 @@
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,13 +14,13 @@ import { Coberturas } from 'src/app/model/coberturas';
   templateUrl: './criar-diagnostico.component.html',
   styleUrls: ['./criar-diagnostico.component.css']
 })
-export class CriarDiagnosticoComponent implements OnInit {
+export class CriarDiagnosticoComponent extends BaseFormComponent implements OnInit {
 
   constructor(private diagnosticosPrenhezService: DiagnosticosPrenhezService,
               private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
 
-              ) { }
+              ) { super() }
 
   diagnosticoPrenhez: DiagnosticosPrenhez = new DiagnosticosPrenhez();
   vacas!: Animais[];
@@ -27,27 +28,33 @@ export class CriarDiagnosticoComponent implements OnInit {
   cobertura!: Coberturas;
 
   isSuccessful = false;
-  isCreatedFailed = false;
   errorMessage = '';
-  submitted = false;
   
 
   ngOnInit(): void {
-    this.carregarCampos();
-  }
-
-  carregarCampos() {
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
     params = params.set('genero', 'f');
     
-    this.animalService.listarPorGenero(params).subscribe(
-      v => this.vacas = v
-    );
+    this.animalService.listarPorGenero(params).subscribe( v => this.vacas = v );
+    this.diagnosticosPrenhezService.listMetodosPrenhez().subscribe( metodos => this.metodosPrenhez = metodos);
+  }
 
-    this.diagnosticosPrenhezService.listMetodosPrenhez().subscribe(
-      metodos => this.metodosPrenhez = metodos
-    );
+  submit(formulario){
+    if(this.cobertura != null){
+        this.diagnosticoPrenhez.cobertura = this.cobertura;
+    }
+
+    this.diagnosticosPrenhezService.save(this.diagnosticoPrenhez).subscribe(
+      data => {
+        this.resetar(formulario);
+        this.isSuccessful = true;
+      },
+      err => {
+        this.errorMessage = err.error.message();
+        this.isSuccessful = false;
+      }
+    )
   }
 
   buscaCobertura(){
@@ -58,29 +65,4 @@ export class CriarDiagnosticoComponent implements OnInit {
     )
 
   }
-
-  save(){
-    if(this.cobertura != null){
-      this.diagnosticoPrenhez.cobertura = this.cobertura;
-    }
-    this.diagnosticosPrenhezService.save(this.diagnosticoPrenhez).subscribe(
-      data => {
-        this.diagnosticoPrenhez = new DiagnosticosPrenhez();
-        this.isSuccessful = true;
-        this.isCreatedFailed = false;
-      },
-      err => {
-        this.errorMessage = err.error.message();
-        this.isCreatedFailed = true;
-        this.isSuccessful = false;
-      }
-    )
-  }
-
-  onSubmit(){
-    this.submitted = true;
-    this.save();
-  }
-
-
 }
