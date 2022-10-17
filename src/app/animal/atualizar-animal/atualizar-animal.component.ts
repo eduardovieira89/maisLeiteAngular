@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Animais } from 'src/app/model/animais';
 import { Racas } from 'src/app/model/racas';
-import { AnimalService } from 'src/app/animal/animal.service';
-import { RacaService } from 'src/app/shared/raca.service';
+import { AnimalService } from 'src/app/shared/animal.service';
 
 @Component({
   selector: 'app-atualizar-animal',
@@ -23,7 +22,6 @@ export class AtualizarAnimalComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private animalService: AnimalService,
-              private racaService: RacaService,
               //private propriedadeService: PropriedadeService
               ) { }
 
@@ -35,12 +33,14 @@ export class AtualizarAnimalComponent implements OnInit {
     this.animalService.loadByID(this.id).subscribe(
         data=>{
           this.animal = data;
+          console.log(data);
         }, error => this.mensagemErro = error.error.message);
     this.carregarCampos();
+    console.log(this.animal);
   }
 
   carregarCampos() {
-    this.racaService.getRacas().subscribe(
+    this.animalService.getRacas().subscribe(
       data => this.racas = data
     );
     let params = new HttpParams();

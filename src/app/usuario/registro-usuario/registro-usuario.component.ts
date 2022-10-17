@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { AuthenticationService } from 'src/app/usuario/authentication.service';
 
 
@@ -8,7 +9,7 @@ import { AuthenticationService } from 'src/app/usuario/authentication.service';
   templateUrl: './registro-usuario.component.html',
   styleUrls: ['./registro-usuario.component.css']
 })
-export class RegistroUsuarioComponent implements OnInit {
+export class RegistroUsuarioComponent extends BaseFormComponent implements OnInit {
 
   form: any = {};
   isSuccessful = false;
@@ -16,17 +17,19 @@ export class RegistroUsuarioComponent implements OnInit {
   errorMessage = '';
 
   constructor(private authService: AuthenticationService,
-              private router: Router) { }
+              private router: Router) { super() }
 
   ngOnInit(): void {
   }
 
-  registrarUsuario(): void {
+
+  submit(formulario){
     this.authService.registrar(this.form).subscribe(
       data => {
+        this.resetar(formulario);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        this.router.navigate(['/login']);
+        //this.router.navigate(['/login']);
       },
       err => {
         this.errorMessage = err.error.message;

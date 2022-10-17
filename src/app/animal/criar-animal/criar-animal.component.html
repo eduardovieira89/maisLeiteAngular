@@ -44,7 +44,7 @@
                 </div>
                 
             </div>
-            <div class="col-sm-4 d-flex align-items-center">
+            <div class="col-sm-3 d-flex align-items-center">
                 <label for="genero">Sexo: *</label>
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input" id="macho" name="genero" required [(ngModel)]="animal.sexo" value="m">
@@ -56,6 +56,15 @@
                     <label class="custom-control-label" for="femea">Fêmea</label>
                 </div>
                 
+            </div>
+            <div class="col-sm-3">
+                <label for="origem">Origem do animal: *</label>
+                <select class="form-control" id="origem" name="origem" required [(ngModel)]="animal.origemAnimal" >
+                    <option *ngFor="let origem of origemAnimal" [ngValue]="origem">{{origem.descricao}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Origem do animal é um campo obrigatório.
+                </div>
             </div>
         </div>
 

@@ -1,7 +1,6 @@
 <div class="container">
   <form name="form" *ngIf="!isLoggedIn" #loginform="ngForm" (ngSubmit)="logarUsuario()">
     <h2>Login Leite Mais</h2>
-  <small class="text-danger">{{msg}}</small>
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" 
@@ -13,7 +12,7 @@
              [class.is-invalid]="email.invalid && email.touched"
       >
      <div *ngIf="email.errors && (email.invalid && email.touched)">
-       <small class="text-danger" *ngIf="email.errors.required">Informe oEmail</small>
+       <small class="text-danger" *ngIf="email.errors.required">Informe o Email</small>
        <small class="text-danger" *ngIf="email.errors.pattern">Entre com um email válido</small>
      </div>
     </div>

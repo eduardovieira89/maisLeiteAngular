@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Animais } from 'src/app/model/animais';
 import { AnimaisDoadores } from 'src/app/model/animaisDoadores';
 import { Racas } from 'src/app/model/racas';
-import { RacaService } from 'src/app/shared/raca.service';
 import { Location } from '@angular/common';
+import { AnimalService } from 'src/app/shared/animal.service';
 
 @Component({
   selector: 'app-criar-animal-doador',
@@ -18,7 +18,7 @@ export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnI
   constructor(private router: Router,
               private doadorService: AnimaisDoadoresService,
               private location: Location,
-              private racaSevice: RacaService
+              private animalSevice: AnimalService
               ) { super() }
 
   animalDoador: AnimaisDoadores = new AnimaisDoadores();
@@ -28,7 +28,7 @@ export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnI
 
   ngOnInit(): void {
     this.errorMessage = '';
-    this.racaSevice.getRacas().subscribe(data => this.racas = data);
+    this.animalSevice.getRacas().subscribe(data => this.racas = data);
   }
 
   irParaListagem() {

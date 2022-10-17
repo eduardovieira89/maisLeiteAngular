@@ -9,6 +9,7 @@ import { authInterceptorProviders } from './shared/_helpers/auth.interceptor';
 import { AuthGuard } from './shared/guards/auth.guard';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { ModalModule } from 'ngx-bootstrap/modal';
 registerLocaleData(ptBr);
 
 import { UsuarioModule } from './usuario/usuario.module';
@@ -25,9 +26,7 @@ import { UsuarioModule } from './usuario/usuario.module';
     BrowserAnimationsModule,
     UsuarioModule,
     AppRoutingModule,
-    
-
-
+    ModalModule.forRoot()
   ],
   providers: [authInterceptorProviders,
               AuthGuard,

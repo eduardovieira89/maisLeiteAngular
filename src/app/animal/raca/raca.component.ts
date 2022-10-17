@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RacaService } from 'src/app/shared/raca.service';
 import { Racas } from 'src/app/model/racas';
+import { AnimalService } from 'src/app/shared/animal.service';
 
 @Component({
   selector: 'app-raca',
@@ -11,14 +11,14 @@ export class RacaComponent implements OnInit {
 
   racas: Racas[];
 
-  constructor(private racaService: RacaService) { }
+  constructor(private animalService: AnimalService) { }
 
   ngOnInit(): void {
     this.getRacas();
   }
 
   getRacas(): void {
-    this.racaService.getRacas()
+    this.animalService.getRacas()
         .subscribe(racas => {this.racas = racas;
                              console.log(racas[0].id_raca);});
     
