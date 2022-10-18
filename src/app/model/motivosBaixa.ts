@@ -1,4 +1,4 @@
 export class MotivosBaixa {
-    id: number;
+    id_motivos_baixa: number;
     descricao: string;
 }

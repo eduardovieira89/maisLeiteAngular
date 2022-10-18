@@ -29,7 +29,7 @@
                         <td>
                             <a [routerLink]="[animal.id]" class="btn btn-info" > Detalhes</a>
                             <a [routerLink]="[animal.id, 'alterar']" class="btn btn-info" > Alterar</a>
-                            <button (click)="deletarAnimal(animal)"class="btn btn-danger bi-trash" >Baixa</button>
+                            <button (click)="baixaAnimal(animal)"class="btn btn-danger bi-trash" >Baixa</button>
                         </td>
                     </tr>
                 </tbody>
@@ -48,11 +48,11 @@
 <ng-template #baixaModal>
     <div class="modal-body text-center">
         <label for="motBaixas">Informe o motivo da baixa:</label>
-        <select class="form-control" id="motBaixas" name="motBaixas" required [(ngModel)]="motivosBaixa" >
-            <option *ngFor="let motivo of motivosBaixa" [ngValue]="motivo">{{motivo.descricao}}</option>
+        <select class="form-control" id="motBaixas" name="motBaixas" required [(ngModel)]="motivoSelected" >
+            <option *ngFor="let motivo of motivosBaixa" [ngValue]="motivo" >{{motivo.descricao}}</option>
         </select> 
         <p>Confirma a baixa do animal?</p>
-        <button type="button" class="btn btn-default"  >Sim</button>
-        <button type="button" class="btn btn-primary"  >Não</button>
+        <button type="button" class="btn btn-default" (click)="onConfirmBaixa()" >Sim</button>
+        <button type="button" class="btn btn-primary" (click)="onDeclineBaixa()" >Não</button>
     </div>
 </ng-template>

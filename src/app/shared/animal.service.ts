@@ -18,6 +18,7 @@ export class AnimalService extends CrudService<Animais>{
   private readonly RACA_PATH = `${environment.API}raca/`;
   private readonly MOTIVOS_BAIXA_PATH = `${environment.API}motivosbaixa/`;
   private readonly ORIGEM_ANIMAL_PATH = `${environment.API}origemanimal/`;
+  private readonly BAIXA_ANIMAL_PATH = `${this.ANIMAL_PATH}baixa/`;
 
   constructor(protected http: HttpClient) {
     super(http, `${environment.API}animal`);
@@ -41,5 +42,9 @@ export class AnimalService extends CrudService<Animais>{
 
   getOrigemAnimal(): Observable<OrigemAnimal[]>{
     return this.http.get<OrigemAnimal[]>(this.ORIGEM_ANIMAL_PATH);
+  }
+
+  baixaAnimal(id: number, motivo: MotivosBaixa){
+    return this.http.put(`${this.BAIXA_ANIMAL_PATH}${id}`, motivo);
   }
 }

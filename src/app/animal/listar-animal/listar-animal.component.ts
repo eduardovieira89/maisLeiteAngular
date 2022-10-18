@@ -22,6 +22,8 @@ export class ListarAnimalComponent implements OnInit {
   propriedade: Propriedades;
   baixaModalRef: BsModalRef;
   @ViewChild('baixaModal') baixaModal;
+  animalSelecionado: Animais;
+  motivoSelected: MotivosBaixa;
 
   constructor(private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
@@ -36,7 +38,9 @@ export class ListarAnimalComponent implements OnInit {
       params = params.set('idpropriedade', this.propriedade.id.toString() )
       this.animais$ = this.animalService.listByPropriedade(params);
       this.animalService.getMotivosBaixa().subscribe(
-        data => this.motivosBaixa = data
+        data => {
+          this.motivosBaixa = data;
+        }
       );
     }
   }
@@ -49,14 +53,28 @@ export class ListarAnimalComponent implements OnInit {
     this.router.navigate(['animal', id]);
   }
 
-  deletarAnimal(animal: Animais){
-   this.baixaModalRef = this.modalService.show(this.baixaModal, {class: 'modal-sm'}) ;
+  baixaAnimal(animal: Animais){
+    this.animalSelecionado = animal;
+    this.baixaModalRef = this.modalService.show(this.baixaModal, {class: 'modal-sm'}) ;
    /**  this.animalService.remove(animal.id).subscribe(
       data => {
         this.listarAnimais();
       },
       error => console.log(error)
     ); */
+  }
+
+  onConfirmBaixa(){
+    let params = new HttpParams();
+      params = params.set('idmotivo', this.motivoSelected.id_motivos_baixa.toString() )
+    this.animalService.baixaAnimal(this.animalSelecionado.id, this.motivoSelected).subscribe(
+      success => {
+        this.baixaModalRef.hide();
+      }
+    )
+  }
+  onDeclineBaixa(){
+    this.baixaModalRef.hide();
   }
 
   alterarAnimal(id: number){
