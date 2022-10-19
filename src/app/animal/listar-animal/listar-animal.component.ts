@@ -8,6 +8,7 @@ import { AnimalService } from 'src/app/shared/animal.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MotivosBaixa } from 'src/app/model/motivosBaixa';
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 
 @Component({
   selector: 'app-listar-animal',
@@ -15,7 +16,7 @@ import { MotivosBaixa } from 'src/app/model/motivosBaixa';
   styleUrls: ['./listar-animal.component.css'],
   preserveWhitespaces: true
 })
-export class ListarAnimalComponent implements OnInit {
+export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
 
   animais$:Observable<Animais[]>;
   motivosBaixa: MotivosBaixa[];
@@ -29,9 +30,14 @@ export class ListarAnimalComponent implements OnInit {
               private propriedadeService: PropriedadeService,
               private router: Router,
               private modalService: BsModalService
-              ) { }
+              ) { super()}
 
   ngOnInit(): void {
+    this.onRefresh();
+    
+  }
+
+  onRefresh() {
     this.propriedade = this.propriedadeService.getPropriedadeselecionada();
     if(this.propriedade){
       let params = new HttpParams();
@@ -64,12 +70,14 @@ export class ListarAnimalComponent implements OnInit {
     ); */
   }
 
-  onConfirmBaixa(){
+  submit(formulario){
     let params = new HttpParams();
       params = params.set('idmotivo', this.motivoSelected.id_motivos_baixa.toString() )
     this.animalService.baixaAnimal(this.animalSelecionado.id, this.motivoSelected).subscribe(
       success => {
         this.baixaModalRef.hide();
+        this.resetar(formulario);
+        this.onRefresh();
       }
     )
   }
