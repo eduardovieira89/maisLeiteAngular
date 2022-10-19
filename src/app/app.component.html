@@ -1,33 +1,39 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark" >
-    <a routerLink="" class="navbar-brand">Leite Mais</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active" *ngIf="isLoged">
-      <li class="nav-item" routerLinkActive="active"><!-- *ngIf="showPropriedadeBoard"-->
-        <a routerLink="/propriedade" class="nav-link">Minhas propriedades</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/animal" class="nav-link">Animais</a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto" *ngIf="isLoged">
-      <li class="nav-item">
-        <span class="navbar-brand mb-0 h1">{{nome_propriedade}}</span>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/painel" class="nav-link" >{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="" (click)="logout()">Desconectar</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoged">
-      <li class="nav-item">
-        <a routerLink="" class="nav-link" (click)="logout()">Login</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="" class="nav-link" [routerLink]="['/registro']">Registrar-se</a>
-      </li>
-    </ul>
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">Leite Mais</a>
+      <div class="collapse navbar-collapse" id="navbarLeiteMais">
+        <ul class="navbar-nav mr-auto" routerLinkActive="active" *ngIf="isLoged">
+          <li class="nav-item" routerLinkActive="active"><!-- *ngIf="showPropriedadeBoard"-->
+            <a routerLink="/propriedade" class="nav-link">Minhas propriedades</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a routerLink="/animal" class="nav-link">Animais</a>
+          </li>
+        </ul>
+      </div>
+        <div class="d-flex">
+          <ul class="navbar-nav ml-auto" *ngIf="isLoged">
+            <li class="nav-item">
+              <span class="navbar-brand mb-0 h1 d-flex align-items-center">{{nome_propriedade}}</span>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a routerLink="/painel" class="nav-link" >{{ username }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" (click)="logout()">Desconectar</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto" *ngIf="!isLoged">
+            <li class="nav-item">
+              <a routerLink="" class="nav-link" (click)="logout()">Login</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="" class="nav-link" [routerLink]="['/registro']">Registrar-se</a>
+            </li>
+          </ul>
+        </div>
+      
+    </div>
   </nav>
 
   <div class="container">
