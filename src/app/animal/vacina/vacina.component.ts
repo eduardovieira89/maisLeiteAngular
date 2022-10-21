@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { Vacina } from './../../model/vacina/vacina';
@@ -16,7 +16,7 @@ export class VacinaComponent extends BaseFormComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private vacinaService: VacinaService
     ) {
     super();

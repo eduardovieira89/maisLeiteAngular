@@ -1,10 +1,10 @@
 import { Component, OnInit, Directive } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
 
 @Directive()
 export abstract class BaseFormComponent implements OnInit {
 
-  formulario: FormGroup;
+  formulario: UntypedFormGroup;
 
   constructor() { }
 
@@ -23,13 +23,13 @@ export abstract class BaseFormComponent implements OnInit {
     }*/
   } 
 
-  verificaValidacoesForm(formGroup: FormGroup | FormArray) {
+  verificaValidacoesForm(formGroup: UntypedFormGroup | UntypedFormArray) {
     Object.keys(formGroup.controls).forEach(campo => {
       console.log(campo);
       const controle = formGroup.get(campo);
       controle.markAsDirty();
       controle.markAsTouched();
-      if (controle instanceof FormGroup || controle instanceof FormArray) {
+      if (controle instanceof UntypedFormGroup || controle instanceof UntypedFormArray) {
         this.verificaValidacoesForm(controle);
       }
     });
