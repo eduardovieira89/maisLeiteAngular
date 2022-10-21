@@ -13,6 +13,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 registerLocaleData(ptBr);
 
 import { UsuarioModule } from './usuario/usuario.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UsuarioModule } from './usuario/usuario.module';
     BrowserAnimationsModule,
     UsuarioModule,
     AppRoutingModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgbModule
   ],
   providers: [authInterceptorProviders,
               AuthGuard,
