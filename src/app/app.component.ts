@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PropriedadeService } from './propriedade/propriedade.service';
 import { TokenstorageService } from './usuario/tokenstorage.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,11 +16,13 @@ export class AppComponent implements OnInit {
   username: string;
   nome_propriedade: string;
   isLoged: boolean = false;
+  closeResult = '';
 
   constructor(private authService: AuthenticationService,
               private propriedadeService: PropriedadeService,
               private router: Router,
-              private tokenStorageService: TokenstorageService
+              private tokenStorageService: TokenstorageService,
+              private offcanvasService: NgbOffcanvas
               ) {
                 this.authService.mostrarMenuEmitter.subscribe(
                   mostrar => {
@@ -48,8 +49,6 @@ export class AppComponent implements OnInit {
   }
 
   carregaDadosToken(): void {
-    
-    
     const user = this.tokenStorageService.getUser();
     console.log('AppComponent CarregaDadosToken user: '+ this.tokenStorageService.getUser());
     if(user){
@@ -58,9 +57,28 @@ export class AppComponent implements OnInit {
       this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
       this.username = user.username;
       this.nome_propriedade = this.tokenStorageService.getPropriedade()?.nome;
-      
     }
-    
   }
+
+  open(content) {
+		this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
+			(result) => {
+				this.closeResult = `Closed with: ${result}`;
+			},
+			(reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			},
+		);
+	}
+
+	private getDismissReason(reason: any): string {
+		if (reason === OffcanvasDismissReasons.ESC) {
+			return 'by pressing ESC';
+		} else if (reason === OffcanvasDismissReasons.BACKDROP_CLICK) {
+			return 'by clicking on the backdrop';
+		} else {
+			return `with: ${reason}`;
+		}
+	}
 
 }
