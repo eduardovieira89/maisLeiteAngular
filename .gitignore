@@ -52,6 +52,7 @@ dist/
 tmp/
 app/**/*.js
 app/**/*.js.map
+.angular
 
 # dependencies
 node_modules/

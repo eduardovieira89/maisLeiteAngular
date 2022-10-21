@@ -1,3 +1,4 @@
+import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/usuario/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
