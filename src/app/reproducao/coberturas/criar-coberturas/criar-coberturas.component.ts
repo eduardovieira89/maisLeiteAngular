@@ -2,7 +2,7 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { UserService } from 'src/app/usuario/user.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { CoberturasService } from '../coberturas.service';
-import { AnimalService } from 'src/app/shared/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 import { SemensService } from '../../semens/semens.service';
 import { TiposCobertura } from 'src/app/model/tiposCobertura';
 import { Semens } from 'src/app/model/semens';

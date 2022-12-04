@@ -2,7 +2,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="vacina" class="control-label">Vacina</label>
-            <select class="form-control" id="vacina" formControlName="vacina">
+            <select class="form-select" id="vacina" formControlName="vacina">
                 <option *ngFor="let vacina of vacinas" [value]="vacina.id">{{ vacina.nome }}</option>
             </select>
         </div>

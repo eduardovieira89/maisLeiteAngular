@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Racas } from 'src/app/model/racas';
-import { AnimalService } from 'src/app/shared/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
   selector: 'app-raca',

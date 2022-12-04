@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Animais } from 'src/app/model/animais';
 import { Propriedades } from 'src/app/model/propriedades';
-import { AnimalService } from 'src/app/shared/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MotivosBaixa } from 'src/app/model/motivosBaixa';

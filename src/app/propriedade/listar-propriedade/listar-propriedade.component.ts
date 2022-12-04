@@ -15,7 +15,8 @@ export class ListarPropriedadeComponent implements OnInit {
   propriedades$: Observable<Propriedades[]>;
 
   constructor(private propriedadeService: PropriedadeService,
-              private router: Router) { }
+              private router: Router,
+              ) { }
 
   ngOnInit(): void {
     this.listarPropriedades();
@@ -47,7 +48,9 @@ export class ListarPropriedadeComponent implements OnInit {
 
   selecionarPropriedade(propriedade: Propriedades){
     this.propriedadeService.setPropriedadeSelecionada(propriedade);
-    window.location.reload();
+    //window.location.reload();
+    //Se colocar com o método de baixo, não atualiza o nome da propriedade na navbar
+    this.router.navigate(['home']);
   }
 
 }

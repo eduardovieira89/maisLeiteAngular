@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-3">
                 <label for="raca">Método de diagnostico: *</label>
-                <select class="form-control" id="metodoDiagnostico" name="metodoDiagnostico" required [(ngModel)]="diagnosticoPrenhez.metodoDiagnostico" >
+                <select class="form-select" id="metodoDiagnostico" name="metodoDiagnostico" required [(ngModel)]="diagnosticoPrenhez.metodoDiagnostico" >
                     <option *ngFor="let metodo of metodosPrenhez" [ngValue]="metodo">{{metodo.descricao}}</option>
             </select>
             <div class="invalid-feedback">
@@ -24,7 +24,7 @@
             </div>
             <div class="col-sm-7">
                 <label for="vaca">Vaca: *</label>
-                <select class="form-control" id="vaca" name="vaca" required [(ngModel)]="diagnosticoPrenhez.vaca"  (change)="buscaCobertura()">
+                <select class="form-select" id="vaca" name="vaca" required [(ngModel)]="diagnosticoPrenhez.vaca"  (change)="buscaCobertura()">
                     <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
             </select>
             <div class="invalid-feedback">

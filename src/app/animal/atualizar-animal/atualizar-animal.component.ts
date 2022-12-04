@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Animais } from 'src/app/model/animais';
 import { Racas } from 'src/app/model/racas';
-import { AnimalService } from 'src/app/shared/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
   selector: 'app-atualizar-animal',

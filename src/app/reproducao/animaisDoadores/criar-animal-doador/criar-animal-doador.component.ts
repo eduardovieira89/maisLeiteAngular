@@ -6,7 +6,7 @@ import { Animais } from 'src/app/model/animais';
 import { AnimaisDoadores } from 'src/app/model/animaisDoadores';
 import { Racas } from 'src/app/model/racas';
 import { Location } from '@angular/common';
-import { AnimalService } from 'src/app/shared/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
   selector: 'app-criar-animal-doador',

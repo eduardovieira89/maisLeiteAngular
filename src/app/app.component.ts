@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
   title = 'Mais leite';
 
   private roles: string[];
-  showPropriedadeBoard = false;
+  //showPropriedadeBoard = false;
   username: string;
   nome_propriedade: string;
-  isLoged: boolean = false;
+  isLogged: boolean = false;
   closeResult = '';
 
   constructor(private authService: AuthenticationService,
@@ -24,19 +24,14 @@ export class AppComponent implements OnInit {
               private router: Router,
               private tokenStorageService: TokenstorageService,
               private offcanvasService: NgbOffcanvas
-              ) {
-                this.authService.mostrarMenuEmitter.subscribe(
-                  mostrar => {
-                    this.isLoged = mostrar;
-                  }
-                );
-                
-               }
+              ) { }
 
 
   ngOnInit(): void {
     this.carregaDadosToken();
-    
+    PropriedadeService.selecionouPropriedade.subscribe(
+      carregou => this.carregaDadosToken()
+    )
   }
 
 
@@ -45,19 +40,18 @@ export class AppComponent implements OnInit {
     this.router.navigate(['login']);
     this.nome_propriedade = '';
     this.username = '';
-    //this.isLoggedIn = false;
+    this.isLogged = false;
     //console.log('Is Loged in '+ this.isLoggedIn);
   }
 
   carregaDadosToken(): void {
     const user = this.tokenStorageService.getUser();
-    console.log('AppComponent CarregaDadosToken user: '+ this.tokenStorageService.getUser());
     if(user){
-      this.isLoged = true;
+      this.isLogged = true;
       this.roles = user.roles;
-      this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
+      //this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
       this.username = user.username;
-      this.nome_propriedade = this.tokenStorageService.getPropriedade()?.nome;
+      this.nome_propriedade = this.propriedadeService.getPropriedadeselecionada()?.nome;
     }
   }
 

@@ -32,6 +32,7 @@ errorMessage = '';
       data => {
         this.resetar(formulario);
         this.isSuccessful = true;
+        this.irParaListagem();
       },
       err => {
         console.log(err);

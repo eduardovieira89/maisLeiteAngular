@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="panel-heading" *ngIf="propriedade">
+    <div class="panel-heading">
         <h2>Animais da propriedade {{propriedade.nome}}</h2>
 
         <div class="panel-body">
@@ -13,6 +13,11 @@
                         <td>Sexo</td>
                         <td>Raça</td>
                         <td><a routerLink="novo" class="btn btn-success">Criar Animal</a></td>
+                    </tr>
+                    <tr *ngIf="animais.length == 0">
+                        <td colspan="6">
+                            <span>Não há animais cadastrados na propriedade <b>{{ propriedade.nome}}</b></span>
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,25 +44,20 @@
             </ng-template>
         </div>
     </div>
-    <div class="panel-body" *ngIf="!propriedade">
-        <h1>Selecione de qual propriedade deseja listar os animais:</h1>
-        <app-propriedade></app-propriedade>
-    </div>
+    <ng-template #baixaModal>
+        <div class="modal-body text-center">
+            <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+                <label for="motBaixas">Informe o motivo da baixa:</label>
+                <select class="form-select" id="motBaixas" name="motBaixas" required [(ngModel)]="motivoSelected" >
+                    <option *ngFor="let motivo of motivosBaixa" [ngValue]="motivo" >{{motivo.descricao}}</option>
+                </select> 
+                <div class="invalid-feedback">
+                    Você deve informar o motivo da baixa!
+                </div>
+                <p>Confirma a baixa do animal?</p>
+                <button type="submit" class="btn btn-default" >Sim</button>
+                <button type="button" class="btn btn-primary" (click)="onDeclineBaixa()" >Não</button>
+            </form>
+        </div>
+    </ng-template>
 </div>
-
-<ng-template #baixaModal>
-    <div class="modal-body text-center">
-        <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-            <label for="motBaixas">Informe o motivo da baixa:</label>
-            <select class="form-control" id="motBaixas" name="motBaixas" required [(ngModel)]="motivoSelected" >
-                <option *ngFor="let motivo of motivosBaixa" [ngValue]="motivo" >{{motivo.descricao}}</option>
-            </select> 
-            <div class="invalid-feedback">
-                Você deve informar o motivo da baixa!
-            </div>
-            <p>Confirma a baixa do animal?</p>
-            <button type="submit" class="btn btn-default" >Sim</button>
-            <button type="button" class="btn btn-primary" (click)="onDeclineBaixa()" >Não</button>
-        </form>
-    </div>
-</ng-template>

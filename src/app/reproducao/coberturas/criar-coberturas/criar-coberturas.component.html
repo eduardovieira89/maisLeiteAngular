@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-3">
                 <label for="tipoCobertura">Tipo de cobertura: *</label>
-                <select class="form-control" id="tipoCobertura" name="tipoCobertura" required [(ngModel)]="cobertura.tipoCobertura" >
+                <select class="form-select" id="tipoCobertura" name="tipoCobertura" required [(ngModel)]="cobertura.tipoCobertura" >
                     <option *ngFor="let tipo of TiposCobertura" [ngValue]="tipo">{{tipo.descricao}}</option>
                 </select>
                 <div class="invalid-feedback">
@@ -24,7 +24,7 @@
 
             <div class="col-sm-7">
                 <label for="vaca">Vaca: *</label>
-                <select class="form-control" id="vaca" name="vaca" required [(ngModel)]="cobertura.vaca" >
+                <select class="form-select" id="vaca" name="vaca" required [(ngModel)]="cobertura.vaca" >
                     <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
                 </select>
                 <div class="invalid-feedback">
@@ -46,7 +46,7 @@
             </div>
             <div class="col-sm-10">
                 <label for="touroMonta">Touro Monta:</label>
-                <select class="form-control" id="touroMonta" name="touroMonta" [(ngModel)]="cobertura.touroMonta" >
+                <select class="form-select" id="touroMonta" name="touroMonta" [(ngModel)]="cobertura.touroMonta" >
                     <option *ngFor="let touroMonta of tourosMonta" [ngValue]="touroMonta">{{touroMonta.nome}} Brinco: {{touroMonta.brinco}}</option>
                 </select>
             </div>
@@ -55,7 +55,7 @@
         <div class="form-group row">
             <div class="col-sm-12">
                 <label for="inseminador">Inseminador:</label>
-                <select class="form-control" id="inseminador" name="inseminador" [(ngModel)]="cobertura.inseminador">
+                <select class="form-select" id="inseminador" name="inseminador" [(ngModel)]="cobertura.inseminador">
                     <option *ngFor="let inseminador of inseminadores" [ngValue]="inseminador">{{inseminador.nome}}</option>
                 </select>
             </div>
@@ -67,7 +67,7 @@
 
             <div class="col-sm-7">
                 <label for="semen">Semên, códogo da palheta:</label>
-                <select class="form-control" id="semen" name="semen" [(ngModel)]="cobertura.semens">
+                <select class="form-select" id="semen" name="semen" [(ngModel)]="cobertura.semens">
                     <option *ngFor="let semen of semens" [ngValue]="semen">{{semen.codPalheta}} - Touro: {{ semen.animaisDoadores.animal.nome }}</option>
                 </select>
             </div>

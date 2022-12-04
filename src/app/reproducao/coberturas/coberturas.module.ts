@@ -7,13 +7,16 @@ import { CommonModule } from '@angular/common';
 import { CoberturasRoutingModule } from './coberturas-routing.module';
 import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ListarCoberturasComponent } from './listar-coberturas/listar-coberturas.component';
+import { PropriedadeModule } from 'src/app/propriedade/propriedade.module';
 
 
 
 @NgModule({
   declarations: [
     CriarCoberturasComponent,
-    DetalhesCoberturasComponent
+    DetalhesCoberturasComponent,
+    ListarCoberturasComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     CoberturasRoutingModule,
-    SharedModule
+    SharedModule,
+    PropriedadeModule
   ],
   providers: [
     authInterceptorProviders

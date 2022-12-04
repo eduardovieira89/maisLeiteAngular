@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="panel-body">
+        <h2>Lista de Diagnósticos</h2>
+        <table class="table table-striped" *ngIf="(diagnosticos$ | async) as diagnosticos; else loading">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Vaca</th>
+                    <th>Resultado</th>
+                    <th>Método de diagnóstico</th>
+                    <th>Observações</th>
+                    <th><a routerLink="novo" class="btn btn-success">Registrar diagnóstico</a></th>
+                </tr>
+                <tr *ngIf="diagnosticos.length == 0">
+                    <td colspan="6">
+                            <span>Não há diagnósticos em andamento na propriedade <b>{{ propriedade.nome}}</b></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let diagnostico of diagnosticos">
+                    <td>{{diagnostico.data | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{diagnostico.vaca.nome}}</td>
+                    <td>{{diagnostico.diagnostico}}</td>
+                    <td>{{diagnostico.metodoDiagnostico.descricao}}</td>
+                    <td colspan="2">{{diagnostico.observacao}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #loading>
+            <span>Carregando tabela de diagnósticos...</span>
+        </ng-template>
+    </div>
+</div>

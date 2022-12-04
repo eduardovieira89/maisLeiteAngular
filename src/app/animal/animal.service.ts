@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Animais } from '../model/animais';
 import { environment } from '../../environments/environment';
-import { CrudService } from './crud-service';
+import { CrudService } from '../shared/crud-service';
 import { Racas } from '../model/racas';
 import { MotivosBaixa } from '../model/motivosBaixa';
 import { OrigemAnimal } from '../model/origemAnimal';

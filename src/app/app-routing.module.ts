@@ -1,3 +1,4 @@
+import { PropriedadeGuard } from './shared/guards/propriedade.guard';
 import { ReproducaoModule } from './reproducao/reproducao.module';
 import { HomeComponent } from './usuario/home/home.component';
 import { NgModule } from '@angular/core';
@@ -14,13 +15,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroUsuarioComponent},
   { path: 'painel', component: PainelUsuarioComponent, canActivate:[AuthGuard]},
-  { path: 'animal', loadChildren: () => import('./animal/animal.module').then(m => m.AnimalModule), canActivate:[AuthGuard]},
+  { path: 'animal', loadChildren: () => import('./animal/animal.module').then(m => m.AnimalModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
   { path: 'propriedade', loadChildren: () => import('./propriedade/propriedade.module').then(m => m.PropriedadeModule), canActivate:[AuthGuard] },
   { path: 'animaisdoadores', loadChildren: () => import('./reproducao/animaisDoadores/Animais-doadores.module').then(m => m.AnimaisDoadoresModule), canActivate:[AuthGuard]},
   { path: 'semens', loadChildren: () => import('./reproducao/semens/semens.module').then(m => m.SemensModule), canActivate:[AuthGuard]},
-  { path: 'cobertura', loadChildren: () => import('./reproducao/coberturas/coberturas.module').then(m => m.CoberturasModule), canActivate:[AuthGuard]},
-  { path: 'diagnosticoprenhez', loadChildren: () => import('./reproducao/diagnosticos-prenhez/diagnosticos-prenhez.module').then(m => m.DiagnosticosPrenhezModule), canActivate:[AuthGuard]},
-  { path: 'parto', loadChildren: () => import('./reproducao/partos/partos.module').then(m => m.PartosModule), canActivate:[AuthGuard]}
+  { path: 'cobertura', loadChildren: () => import('./reproducao/coberturas/coberturas.module').then(m => m.CoberturasModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
+  { path: 'diagnosticoprenhez', loadChildren: () => import('./reproducao/diagnosticos-prenhez/diagnosticos-prenhez.module').then(m => m.DiagnosticosPrenhezModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
+  { path: 'parto', loadChildren: () => import('./reproducao/partos/partos.module').then(m => m.PartosModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]}
 
 
   

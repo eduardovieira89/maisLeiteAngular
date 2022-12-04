@@ -26,5 +26,9 @@ export class DiagnosticosPrenhezService extends CrudService<DiagnosticosPrenhez>
     return this.http.get<MetodosPrenhez[]>(`${this.DIAGNOSTICO_PATH}metodos`);
   }
 
+  listByPropriedade(params: HttpParams){
+    return this.http.get<DiagnosticosPrenhez[]>(this.DIAGNOSTICO_PATH, {params});
+  }
+
   
 }

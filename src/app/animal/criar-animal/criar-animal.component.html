@@ -10,7 +10,7 @@
 
             <div class="col-sm-6">
                 <label for="raca">Raça: *</label>
-                <select class="form-control" id="raca" name="raca" required [(ngModel)]="animal.raca" >
+                <select class="form-select" id="raca" name="raca" required [(ngModel)]="animal.raca" >
                     <option *ngFor="let raca of racas" [ngValue]="raca">{{raca.descricao}}</option>
                 </select>
                 <div class="invalid-feedback">
@@ -59,7 +59,7 @@
             </div>
             <div class="col-sm-3">
                 <label for="origem">Origem do animal: *</label>
-                <select class="form-control" id="origem" name="origem" required [(ngModel)]="animal.origemAnimal" >
+                <select class="form-select" id="origem" name="origem" required [(ngModel)]="animal.origemAnimal" >
                     <option *ngFor="let origem of origemAnimal" [ngValue]="origem">{{origem.descricao}}</option>
                 </select>
                 <div class="invalid-feedback">
@@ -73,7 +73,7 @@
                 <h3>Pai:</h3>
                 <div class="form-group" *ngIf="!paiList.checked">
                     <label for="raca">Selecione o pai do seu rebanho:</label>
-                    <select class="form-control" id="pais" name="pai" [(ngModel)]="animal.id_pai">
+                    <select class="form-select" id="pais" name="pai" [(ngModel)]="animal.id_pai">
                         <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}}    ---    Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
                     </select>
                 </div>
@@ -92,7 +92,7 @@
                 <h3>Mãe:</h3>
                 <div class="form-group" *ngIf="!maeList.checked">
                     <label for="maes">Selecione a mãe do seu rebanho:</label>
-                    <select class="form-control" id="maes" name="mae" [(ngModel)]="animal.id_mae">
+                    <select class="form-select" id="maes" name="mae" [(ngModel)]="animal.id_mae">
                         <option *ngFor="let mae of maes" [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
                     </select>
                 </div>
@@ -107,8 +107,8 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success ">Salvar</button>
-        <button (click)="irParaListagem()" class="btn btn-info float-right">Cancelar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <button (click)="irParaListagem()" class="btn btn-info">Cancelar</button>
         
     </form>
 </div>

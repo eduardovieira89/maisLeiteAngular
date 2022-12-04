@@ -9,7 +9,7 @@ import { Partos } from 'src/app/model/Partos';
 import { TiposParto } from 'src/app/model/TiposParto';
 import { DiagnosticosPrenhezService } from 'src/app/reproducao/diagnosticos-prenhez/diagnosticos-prenhez.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
-import { AnimalService } from 'src/app/shared/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
   selector: 'app-criar-parto',

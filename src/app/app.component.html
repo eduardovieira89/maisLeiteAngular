@@ -1,18 +1,14 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark" >
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="">Leite Mais</a>
       <div class="collapse navbar-collapse" id="navbarLeiteMais">
-        <ul class="navbar-nav mr-auto" routerLinkActive="active" *ngIf="isLoged">
-          <li class="nav-item" routerLinkActive="active"><!-- *ngIf="showPropriedadeBoard"-->
-            <a routerLink="/propriedade" class="nav-link">Minhas propriedades</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a routerLink="/animal" class="nav-link">Animais</a>
+        <ul class="navbar-nav mr-auto" *ngIf="isLogged">
+          <li class="nav-item">
+            <button class="btn btn-dark nav-link" *ngIf="isLogged" (click)="open(content)">Leite Mais</button>
           </li>
         </ul>
       </div>
         <div class="d-flex">
-          <ul class="navbar-nav ml-auto" *ngIf="isLoged">
+          <ul class="navbar-nav ml-auto" *ngIf="isLogged">
             <li class="nav-item">
               <span class="navbar-brand mb-0 h1 d-flex align-items-center">{{nome_propriedade}}</span>
             </li>
@@ -20,10 +16,10 @@
               <a routerLink="/painel" class="nav-link" >{{ username }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="" (click)="logout()">Desconectar</a>
+              <button class="btn btn-dark nav-link" (click)="logout()">Desconectar</button>
             </li>
           </ul>
-          <ul class="navbar-nav ml-auto" *ngIf="!isLoged">
+          <ul class="navbar-nav ml-auto" *ngIf="!isLogged">
             <li class="nav-item">
               <a routerLink="" class="nav-link" (click)="logout()">Login</a>
             </li>
@@ -38,33 +34,43 @@
 
   <ng-template #content let-offcanvas>
     <div class="offcanvas-header">
-      <h4 class="offcanvas-title" id="offcanvas-basic-title">Profile update</h4>
+      <h4 class="offcanvas-title" id="offcanvas-basic-title">Leite Mais</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
     </div>
     <div class="offcanvas-body">
-      <form>
-        <div class="mb-3">
-          <label for="dateOfBirth">Date of birth</label>
-          <div class="input-group">
-            <input
-              id="dateOfBirth"
-              class="form-control"
-              placeholder="yyyy-mm-dd"
-              name="dp"
-              ngbDatepicker
-              
-            />
-            <button class="btn btn-outline-secondary calendar" type="button"></button>
-          </div>
-        </div>
-      </form>
-      <div class="text-end">
-        <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Save click')">Save</button>
-      </div>
+      <ngb-accordion [closeOthers]="true">
+        <ngb-panel id="static-1" title="Início">
+          <ng-template ngbPanelContent>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><a routerLink="/propriedade" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Propriedades</a></li>
+              <li class="list-group-item"><a routerLink="/animal" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Animais</a></li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-2">
+          <ng-template ngbPanelTitle>
+            Reprodução
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><a routerLink="/animaisdoadores" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Animais doadores</a></li>
+              <li class="list-group-item"><a routerLink="/semens" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Semens</a></li>
+              <li class="list-group-item"><a routerLink="/cobertura" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Coberturas</a></li>
+              <li class="list-group-item"><a routerLink="/diagnosticoprenhez" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Diagnóstico de prenhez</a></li>
+              <li class="list-group-item"><a routerLink="/parto" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Partos</a></li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-3" title="Painel">
+          <ng-template ngbPanelContent>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><a routerLink="/painel" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Menu</a></li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
     </div>
   </ng-template>
-
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo offcanvas</button>
 
   <div class="container">
     <router-outlet></router-outlet>

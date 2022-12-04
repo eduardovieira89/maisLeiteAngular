@@ -1,6 +1,6 @@
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
-import { AnimalService } from 'src/app/shared/animal.service';
+import { AnimalService } from 'src/app/animal/animal.service';
 import { Component, OnInit } from '@angular/core';
 import { Animais } from 'src/app/model/animais';
 import { HttpParams } from '@angular/common/http';

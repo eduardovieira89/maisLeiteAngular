@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-3">
                 <label for="tipoParto">Tipo do parto: *</label>
-                <select class="form-control" id="tipoParto" name="tipoParto" required [(ngModel)]="parto.tiposParto">
+                <select class="form-select" id="tipoParto" name="tipoParto" required [(ngModel)]="parto.tiposParto">
                     <option *ngFor="let tipo of tiposParto" [ngValue]="tipo">{{tipo.descricao}}</option>
                 </select>
                 <div class="invalid-feedback">
@@ -24,7 +24,7 @@
             </div>
             <div class="col-sm-7">
                 <label for="vaca">Vaca: *</label>
-                <select class="form-control" id="vaca"  name="vaca" (change)="buscaCoberturaAndDiagnostico()" required [(ngModel)]="parto.vaca">
+                <select class="form-select" id="vaca"  name="vaca" (change)="buscaCoberturaAndDiagnostico()" required [(ngModel)]="parto.vaca">
                     <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
                 </select>
                 <div class="invalid-feedback">

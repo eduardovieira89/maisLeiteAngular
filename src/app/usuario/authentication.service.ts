@@ -1,3 +1,4 @@
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { Usuarios } from '../model/usuarios';
 import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
 import { Injectable, EventEmitter, Output } from '@angular/core';
@@ -16,7 +17,7 @@ const httpOptions = {
 export class AuthenticationService {
 
  
-  mostrarMenuEmitter = new EventEmitter<boolean>();
+  //mostrarMenuEmitter = new EventEmitter<boolean>();
   
 
   //public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -25,19 +26,19 @@ export class AuthenticationService {
               private tokenService: TokenstorageService) { }
 
   public login(credenciais: any): Observable<any>{
-      this.mostrarMenuEmitter.emit(true);
-      //this.isUserLoggedIn.next(true);
+      //this.mostrarMenuEmitter.emit(true);
       return this.http.post(AUTHENTICATION_PATH, {
         email: credenciais.email,
         password: credenciais.password
       }, httpOptions);
+      
       
   }
 
   public logout(){
     this.tokenService.signOut();
    // this.isUserLoggedIn.next(false);
-    this.mostrarMenuEmitter.emit(false);
+    //this.mostrarMenuEmitter.emit(false);
   }
 
   public registrar(user: any): Observable<any> {

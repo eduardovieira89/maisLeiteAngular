@@ -10,7 +10,7 @@
 
             <div class="col-sm-6">
                 <label for="raca">Raça: *</label>
-                <select class="form-control" id="raca" name="raca" required [(ngModel)]="animal.raca" >
+                <select class="form-select" id="raca" name="raca" required [(ngModel)]="animal.raca" >
                     <option *ngFor="let raca of racas" [ngValue]="raca">{{raca.descricao}}</option>
                 </select>
                 <div class="invalid-feedback">

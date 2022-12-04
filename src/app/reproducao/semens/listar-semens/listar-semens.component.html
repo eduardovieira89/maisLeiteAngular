@@ -11,6 +11,11 @@
                     <td>Código da palheta</td>
                     <td><a routerLink="novo" class="btn btn-success">Adicionar Semen</a></td>
                 </tr>
+                <tr *ngIf="semens.length == 0">
+                    <td colspan="6">
+                        <span>Não há nenhum sêmen em estoque. </span>
+                    </td>
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let semen of semens">
@@ -19,7 +24,6 @@
                     <td>{{semen.precoUnitario | currency }}</td>
                     <td>{{semen.quantidade}}</td>
                     <td>{{semen.codPalheta}}</td>
-                    
                 </tr>
             </tbody>
         </table>

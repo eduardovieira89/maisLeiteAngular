@@ -5,12 +5,17 @@
     <div class="panel-body">
         <table class="table table-striped" *ngIf="(propriedades$ | async) as propriedades; else loading">
             <thead>
-                <tr>
+                <tr *ngIf="propriedades.length > 0">
                     <td>#</td>
                     <td>Nome</td>
                     <td>Localidade</td>
                     <td>Municipio</td>
-                    <td><a routerLink="nova" class="btn btn-success">Cadastrar propriedade</a></td>
+                    <td><a routerLink="/propriedade/nova" class="btn btn-success">Cadastrar propriedade</a></td>
+                </tr>
+                <tr *ngIf="propriedades.length == 0">
+                    <td colspan="6">
+                        <span>Você ainda não possui nenhuma propriedade cadastrada. <a routerLink="/propriedade/nova" class="btn btn-success">Cadastre uma agora</a> </span>
+                    </td>
                 </tr>
             </thead>
             <tbody>

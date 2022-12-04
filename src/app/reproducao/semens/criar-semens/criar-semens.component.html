@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-10">
                 <label for="touroDoador">Touro Doador: *</label>
-                <select class="form-control" id="touroDoador" name="touroDoador" required [(ngModel)]="semen.animaisDoadores">
+                <select class="form-select" id="touroDoador" name="touroDoador" required [(ngModel)]="semen.animaisDoadores">
                     <option *ngFor="let doador of animaisDoadores" [ngValue]="doador">{{doador.animal.nome}}</option>
                 </select>
                 <div class="invalid-feedback">

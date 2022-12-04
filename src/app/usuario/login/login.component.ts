@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { TokenstorageService} from '../tokenstorage.service';
 import { Router } from '@angular/router';
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
                 this.roles = this.tokenService.getUser().roles;
                 this.logouEmitter.emit(true);
                 this.router.navigate(['/']);
+                PropriedadeService.selecionouPropriedade.emit();
               },
       err => {
                  this.msg = err.error.message;

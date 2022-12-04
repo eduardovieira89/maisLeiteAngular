@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PropriedadeModule } from '../propriedade/propriedade.module';
 
 
 
@@ -17,7 +18,8 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     AnimaisDoadoresRoutingModule,
-    SemensRoutingModule
+    SemensRoutingModule,
+    PropriedadeModule
   ]
 })
 export class ReproducaoModule { }
