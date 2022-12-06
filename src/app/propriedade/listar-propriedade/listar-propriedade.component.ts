@@ -48,8 +48,6 @@ export class ListarPropriedadeComponent implements OnInit {
 
   selecionarPropriedade(propriedade: Propriedades){
     this.propriedadeService.setPropriedadeSelecionada(propriedade);
-    //window.location.reload();
-    //Se colocar com o método de baixo, não atualiza o nome da propriedade na navbar
     this.router.navigate(['home']);
   }
 
