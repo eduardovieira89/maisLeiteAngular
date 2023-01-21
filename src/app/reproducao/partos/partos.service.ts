@@ -13,6 +13,7 @@ import { DiagnosticosPrenhez } from 'src/app/model/diagnosticosPrenhez';
   providedIn: 'root'
 })
 export class PartosService extends CrudService<Partos> {
+  
 
   private readonly PARTO_PATH = `${environment.API}parto/`;
 
@@ -24,7 +25,7 @@ export class PartosService extends CrudService<Partos> {
     return this.http.get<TiposParto[]>(`${this.PARTO_PATH}tipos`);
    }
 
-   listByVaca(params:HttpParams): Observable<Partos[]>{
+   listByPropriedade(params:HttpParams): Observable<Partos[]>{
     return this.http.get<Partos[]>(`${this.PARTO_PATH}`, {params});
    }
 

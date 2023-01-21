@@ -1,3 +1,4 @@
+import { Crias } from './../../../model/crias';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { HttpParams } from '@angular/common/http';
 import { PartosService } from './../partos.service';
@@ -37,6 +38,9 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
     params = params.set('genero', 'f');
+    this.parto.qtdeCrias = 0;
+    this.parto.crias = new Array<Crias>();
+    console.log(this.parto);
     
     this.animalService.listarPorGenero(params).subscribe(v => this.vacas = v);
     this.partoService.listTiposParto().subscribe(tipos => this.tiposParto = tipos);
@@ -49,7 +53,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     if(this.diagnosticoPrenhez != null){
       this.parto.diagnosticosPrenhez = this.diagnosticoPrenhez;
     }
-    
+    console.log(this.parto);
     this.partoService.save(this.parto).subscribe(
       data => {
         this.isSuccessful = true;
@@ -63,6 +67,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
   }
 
   buscaCoberturaAndDiagnostico(){
+    this.cobertura = null;
     let params = new HttpParams();
     params = params.set('idvaca', this.parto.vaca.id.toString());
 
@@ -75,11 +80,33 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
       }
     );
 
-    if(this.cobertura == null){
+    if(this.diagnosticoPrenhez == null){
       this.diagnosticosPrenhezService.getUltimaCobertura(params).subscribe(
         cob => this.cobertura = cob
       );
     }
     
+  }
+
+  diminuiCrias(){
+    if(this.parto.crias.length > 1){
+      this.parto.crias.pop();
+      this.parto.qtdeCrias --;
+      console.log(this.parto.crias);  
+    }
+    
+  }
+
+  aumentaCrias(){
+    if(this.parto.crias.length < 3){
+      this.parto.crias.push(new Crias());
+      this.parto.qtdeCrias ++;
+      console.log(this.parto.crias);
+    }
+    
+  }
+
+  log(value) {
+    return ' [' + value + ', ' + typeof value + ']';
   }
 }

@@ -17,28 +17,18 @@ const httpOptions = {
 export class AuthenticationService {
 
  
-  //mostrarMenuEmitter = new EventEmitter<boolean>();
-  
-
-  //public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-
   constructor(private http: HttpClient,
               private tokenService: TokenstorageService) { }
 
   public login(credenciais: any): Observable<any>{
-      //this.mostrarMenuEmitter.emit(true);
-      return this.http.post(AUTHENTICATION_PATH, {
+      return this.http.post(AUTHENTICATION_PATH + 'login', {
         email: credenciais.email,
         password: credenciais.password
       }, httpOptions);
-      
-      
   }
 
   public logout(){
     this.tokenService.signOut();
-   // this.isUserLoggedIn.next(false);
-    //this.mostrarMenuEmitter.emit(false);
   }
 
   public registrar(user: any): Observable<any> {

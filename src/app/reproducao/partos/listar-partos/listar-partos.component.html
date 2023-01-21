@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="panel-body">
+        <h2>Lista de Partos</h2>
+        <table class="table table-striped" *ngIf="(partos$ | async) as partos; else loading">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Vaca</th>
+                    <th>Tipo de parto</th>
+                    <th>Quantidade de crias</th>
+                    <th>Cobertura</th>
+                    <th>Diagnóstico de prenhez</th>
+                    <th><a routerLink="novo" class="btn btn-success">Registrar parto</a></th>
+                </tr>
+                <tr *ngIf="partos.length == 0">
+                    <td colspan="6">
+                        <span>Não há partos na propriedade <b>{{ propriedade.nome}}</b></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let parto of partos">
+                    <td>{{parto.data | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{parto.vaca.nome}}</td>
+                    <td><label>{{parto.tiposParto.descricao}}</label></td>
+                    <td>{{parto.qtdeCrias}}</td>
+                    <td><label *ngIf="parto.coberturas">{{parto.coberturas.data | date: 'dd/MM/yyyy'}}</label></td>
+                    <td><label *ngIf="parto.diagnosticosPrenhez">{{parto.diagnosticosPrenhez.data | date: 'dd/MM/yyyy'}}</label></td>
+                    <td>
+                        <a [routerLink]="[parto.idParto]" class="btn btn-info" > Detalhes</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #loading>
+            <span>Carregando tabela de partos...</span>
+        </ng-template>
+    </div>
+</div>

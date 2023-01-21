@@ -1,4 +1,4 @@
 export class MetodosPrenhez{
-    id!: number;
-    descricao!: string;
+    id: number;
+    descricao: string;
 }

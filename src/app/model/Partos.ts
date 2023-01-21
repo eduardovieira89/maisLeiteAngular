@@ -1,3 +1,4 @@
+import { Crias } from './crias';
 import { DiagnosticosPrenhez } from './diagnosticosPrenhez';
 import { Coberturas } from './coberturas';
 import { Animais } from './animais';
@@ -13,4 +14,5 @@ export class Partos{
     vaca: Animais;
     coberturas: Coberturas;
     diagnosticosPrenhez: DiagnosticosPrenhez;
+    crias: Crias[];
 }

@@ -64,9 +64,7 @@ export class CriarCoberturasComponent extends BaseFormComponent implements OnIni
         //this.cobertura = new Coberturas();
         this.isSuccessful = true;
         this.resetar(formulario);
-        console.log(this.cobertura);
-        console.log(data);
-
+        this.irParaListagem();
       }, 
       err => {
         this.errorMessage = err.error.message() ;
@@ -75,4 +73,7 @@ export class CriarCoberturasComponent extends BaseFormComponent implements OnIni
       );
   }
 
+  irParaListagem() {
+    this.router.navigate(['/cobertura']);
+  }
 }
