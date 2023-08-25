@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-3">
                 <label for="tipoCobertura">Tipo de cobertura: *</label>
-                <select class="form-select" id="tipoCobertura" name="tipoCobertura" required [(ngModel)]="cobertura.tipoCobertura" >
+                <select class="form-select" id="tipoCobertura" name="tipoCobertura" required [(ngModel)]="cobertura.tipoCobertura" (change)="alterarTipo()" >
                     <option *ngFor="let tipo of TiposCobertura" [ngValue]="tipo">{{tipo.descricao}}</option>
                 </select>
                 <div class="invalid-feedback">
@@ -32,52 +32,75 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-2">
-                <label class="form-check-label">Monta controlada:</label><br>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" id="sim" name="montac" value="true" [(ngModel)]="cobertura.montaControlada">
-                    <label class="form-check-label" for="sim"> Sim</label>
+        <div class="card col my-2" style="min-height: 90px;" >
+            <div class="card-body" *ngIf="!cobertura.tipoCobertura"> 
+                <h5 class="card-title">Informe um tipo de cobertura</h5> 
+            </div>
+            <div class="card-body" *ngIf="cobertura.tipoCobertura?.descricao == 'Monta'">
+                <div class="form-group row" >
+                    <div class="col-sm-2">
+                        <label class="form-check-label">Monta controlada:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="sim" name="montac" required value="true" [(ngModel)]="cobertura.montaControlada">
+                            <label class="form-check-label" for="sim"> Sim</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="nao" name="montac" required value="false" [(ngModel)]="cobertura.montaControlada">
+                            <label class="form-check-label" for="nao">Não</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <label for="touroMonta">Touro Monta:</label>
+                        <select class="form-select" id="touroMonta" name="touroMonta" required [(ngModel)]="cobertura.touroMonta" >
+                            <option *ngFor="let touroMonta of tourosMonta" [ngValue]="touroMonta">{{touroMonta.nome}} Brinco: {{touroMonta.brinco}}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Touro Monta é um campo obrigatório.
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" id="nao" name="montac" value="false" [(ngModel)]="cobertura.montaControlada">
-                    <label class="form-check-label" for="nao">Não</label>
+            </div>
+
+            <div class="card-body" *ngIf="cobertura.tipoCobertura?.descricao == 'Inseminação'">
+                <div class="form-group row" >
+                    <div class="col-sm-12">
+                        <label for="inseminador">Inseminador:</label>
+                        <select class="form-select" id="inseminador" name="inseminador" required [(ngModel)]="cobertura.inseminador">
+                            <option *ngFor="let inseminador of inseminadores" [ngValue]="inseminador">{{inseminador.nome}}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Inseminador é um campo obrigatório.
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1">
+                        <label for="qtdeDoses">Doses:</label>
+                        <input type="number" class="form-control" id="qtdeDoses" name="qtdeDoses" required [(ngModel)]="cobertura.qtdeDoseSemen">
+                    </div>
+                    <div class="invalid-feedback">
+                        Número de doses é um campo obrigatório.
+                    </div>
+
+                    <div class="col-sm-7">
+                        <label for="semen">Semên, códogo da palheta:</label>
+                        <select class="form-select" id="semen" name="semen" required [(ngModel)]="cobertura.semens">
+                            <option *ngFor="let semen of semens" [ngValue]="semen">{{semen.codPalheta}} - Touro: {{ semen.animaisDoadores.animal.nome }}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Sêmen é um campo obrigatório.
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-10">
-                <label for="touroMonta">Touro Monta:</label>
-                <select class="form-select" id="touroMonta" name="touroMonta" [(ngModel)]="cobertura.touroMonta" >
-                    <option *ngFor="let touroMonta of tourosMonta" [ngValue]="touroMonta">{{touroMonta.nome}} Brinco: {{touroMonta.brinco}}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-12">
-                <label for="inseminador">Inseminador:</label>
-                <select class="form-select" id="inseminador" name="inseminador" [(ngModel)]="cobertura.inseminador">
-                    <option *ngFor="let inseminador of inseminadores" [ngValue]="inseminador">{{inseminador.nome}}</option>
-                </select>
-            </div>
-
-            <div class="col-sm-1">
-                <label for="qtdeDoses">Doses:</label>
-                <input type="number" class="form-control" id="qtdeDoses" name="qtdeDoses" [(ngModel)]="cobertura.qtdeDoseSemen">
-            </div>
-
-            <div class="col-sm-7">
-                <label for="semen">Semên, códogo da palheta:</label>
-                <select class="form-select" id="semen" name="semen" [(ngModel)]="cobertura.semens">
-                    <option *ngFor="let semen of semens" [ngValue]="semen">{{semen.codPalheta}} - Touro: {{ semen.animaisDoadores.animal.nome }}</option>
-                </select>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
-            <input type="range" class="form-range" id="escoreCorporal" name="escoreCorporal" min="1" max="5" step="0.5"  [(ngModel)]="cobertura.escoreCorporal">
-            <label class="form-label" >  {{cobertura.escoreCorporal}}</label>
-            <label class="form-label" *ngIf="cobertura.escoreCorporal == null" > (Informe o EC)</label>
+            <div class="col-sm-3">
+                <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
+                <input type="range" class="form-range" id="escoreCorporal" name="escoreCorporal" min="1" max="5" step="0.5"  [(ngModel)]="cobertura.escoreCorporal">
+                <label class="form-label" >  {{cobertura.escoreCorporal}}</label>
+                <label class="form-label" *ngIf="cobertura.escoreCorporal == null" > (Informe o EC)</label>
+            </div>
         </div>
 
         

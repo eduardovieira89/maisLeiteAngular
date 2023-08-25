@@ -48,6 +48,14 @@
       <label><b>Mãe ID: </b>{{ animal.id_mae?.nome }}</label> 
     </div>    
   </div>
+  <div class="form-group row" >
+    <div class="col-sm-6">
+      <label><b>ID: </b>{{animal.id}}</label> 
+    </div>
+  </div>
+  <div>
+    <app-listar-lactacoes [idVaca]="animal.id"></app-listar-lactacoes>
+  </div>
 </div>
 
 <div *ngIf="mensagemErro" class="alert alert-danger">

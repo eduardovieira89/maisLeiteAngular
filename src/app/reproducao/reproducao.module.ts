@@ -9,9 +9,7 @@ import { PropriedadeModule } from '../propriedade/propriedade.module';
 
 
 @NgModule({
-  declarations: [
-    
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,

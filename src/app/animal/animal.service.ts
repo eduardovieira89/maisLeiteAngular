@@ -14,11 +14,11 @@ import { OrigemAnimal } from '../model/origemAnimal';
 })
 export class AnimalService extends CrudService<Animais>{
 
-  private readonly ANIMAL_PATH = `${environment.API}animal/`;
-  private readonly RACA_PATH = `${environment.API}raca/`;
-  private readonly MOTIVOS_BAIXA_PATH = `${environment.API}motivosbaixa/`;
-  private readonly ORIGEM_ANIMAL_PATH = `${environment.API}origemanimal/`;
-  private readonly BAIXA_ANIMAL_PATH = `${this.ANIMAL_PATH}baixa/`;
+  private readonly ANIMAL_PATH = `${environment.API}animal`;
+  private readonly RACA_PATH = `${environment.API}raca`;
+  private readonly MOTIVOS_BAIXA_PATH = `${environment.API}motivosbaixa`;
+  private readonly ORIGEM_ANIMAL_PATH = `${environment.API}origemanimal`;
+  private readonly BAIXA_ANIMAL_PATH = `${this.ANIMAL_PATH}/baixa`;
 
   constructor(protected http: HttpClient) {
     super(http, `${environment.API}animal`);
@@ -29,7 +29,11 @@ export class AnimalService extends CrudService<Animais>{
   }
 
   public listarPorGenero(params:HttpParams): Observable<Animais[]>{
-    return this.http.get<Animais[]>(this.ANIMAL_PATH + "genero", { params });
+    return this.http.get<Animais[]>(this.ANIMAL_PATH + "/genero", { params });
+  }
+
+  public listarEmLactacoes(params: HttpParams){
+    return this.http.get<Animais[]>(`${this.ANIMAL_PATH}/emlactacao`, {params})
   }
 
   getRacas(): Observable<Racas[]>{
@@ -45,6 +49,6 @@ export class AnimalService extends CrudService<Animais>{
   }
 
   baixaAnimal(id: number, motivo: MotivosBaixa){
-    return this.http.put(`${this.BAIXA_ANIMAL_PATH}${id}`, motivo);
+    return this.http.put(`${this.BAIXA_ANIMAL_PATH}/${id}`, motivo);
   }
 }

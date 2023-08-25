@@ -1,12 +1,15 @@
 import { Component, OnInit, Directive } from '@angular/core';
 import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Directive()
 export abstract class BaseFormComponent implements OnInit {
 
   formulario: UntypedFormGroup;
 
-  constructor() { }
+  constructor(
+    protected router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -70,6 +73,10 @@ export abstract class BaseFormComponent implements OnInit {
     return {
       'was-validated': campo.submitted
     };
+  }
+
+  irParaListagem(caminho: string) {
+    this.router.navigate([`/${caminho}`] );
   }
 
 

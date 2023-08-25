@@ -15,14 +15,14 @@ import { DiagnosticosPrenhez } from 'src/app/model/diagnosticosPrenhez';
 export class PartosService extends CrudService<Partos> {
   
 
-  private readonly PARTO_PATH = `${environment.API}parto/`;
+  private readonly PARTO_PATH = `${environment.API}parto`;
 
   constructor(protected http: HttpClient) {
     super(http, `${environment.API}parto`);
    }
 
    listTiposParto(): Observable<TiposParto[]>{
-    return this.http.get<TiposParto[]>(`${this.PARTO_PATH}tipos`);
+    return this.http.get<TiposParto[]>(`${this.PARTO_PATH}/tipos`);
    }
 
    listByPropriedade(params:HttpParams): Observable<Partos[]>{
@@ -30,6 +30,6 @@ export class PartosService extends CrudService<Partos> {
    }
 
    getUltimoDiagnosticoPrenhez(params: HttpParams){
-    return this.http.get<DiagnosticosPrenhez>(`${this.PARTO_PATH}diagnostico`, {params});
+    return this.http.get<DiagnosticosPrenhez>(`${this.PARTO_PATH}/diagnostico`, {params});
    }
 }

@@ -12,17 +12,15 @@ import { AnimalService } from 'src/app/animal/animal.service';
 })
 export class DetalhesAnimalComponent implements OnInit {
 
-  animal: Animais = new Animais();
+  animal: Animais;
   id: number;
-  racas: Racas[];
   mensagemErro: any;
+
   constructor(private route: ActivatedRoute, 
               private location: Location,
               private animalService: AnimalService) { }
 
   ngOnInit(): void {
-    this.animal = new Animais();
-
     this.id = this.route.snapshot.params['id'];
 
     this.animalService.loadByID(this.id)

@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { BaseFormComponent } from './base-form/base-form.component';
+import { CardCoberturaComponent } from './card-cobertura/card-cobertura.component';
+import { CardDiagnosticosPrenhezComponent } from './card-diagnosticos-prenhez/card-diagnosticos-prenhez.component';
 
 @NgModule({
   imports: [
@@ -20,12 +22,16 @@ import { BaseFormComponent } from './base-form/base-form.component';
     CampoControlErroComponent,
     ErrorMsgComponent,
     InputFieldComponent,
+    CardCoberturaComponent,
+    CardDiagnosticosPrenhezComponent,
   ],
   exports: [
     FormDebugComponent,
     CampoControlErroComponent,
     ErrorMsgComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    CardCoberturaComponent,
+    CardDiagnosticosPrenhezComponent
   ],
   providers: []
 })

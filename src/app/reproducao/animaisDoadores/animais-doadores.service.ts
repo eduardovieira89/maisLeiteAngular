@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class AnimaisDoadoresService extends CrudService<AnimaisDoadores> {
 
-  private readonly RACA_PATH = `${environment.API}raca/`;
+  private readonly RACA_PATH = `${environment.API}raca`;
 
   constructor(protected http: HttpClient) {
     super(http, `${environment.API}animaldoador`);

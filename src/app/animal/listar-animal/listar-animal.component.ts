@@ -28,9 +28,9 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
 
   constructor(private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
-              private router: Router,
+              protected router: Router,
               private modalService: BsModalService
-              ) { super()}
+              ) { super(router)}
 
   ngOnInit(): void {
     this.onRefresh();

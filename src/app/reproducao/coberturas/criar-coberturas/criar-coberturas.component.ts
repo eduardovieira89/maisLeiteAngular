@@ -13,8 +13,6 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 
-
-
 @Component({
   selector: 'app-criar-coberturas',
   templateUrl: './criar-coberturas.component.html',
@@ -22,13 +20,13 @@ import { HttpParams } from '@angular/common/http';
 })
 export class CriarCoberturasComponent extends BaseFormComponent implements OnInit {
 
-  constructor(private  router: Router,
+  constructor(protected  router: Router,
               private coberturaService: CoberturasService,
               private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
               private usuariosService: UserService,
               private semensService: SemensService
-             ) { super() }
+             ) { super(router) }
 
   cobertura: Coberturas = new Coberturas();
   vacas: Animais[];
@@ -43,7 +41,6 @@ export class CriarCoberturasComponent extends BaseFormComponent implements OnIni
     this.isSuccessful = false;
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
-    
     params = params.set('genero', 'm');
     this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
 
@@ -64,7 +61,7 @@ export class CriarCoberturasComponent extends BaseFormComponent implements OnIni
         //this.cobertura = new Coberturas();
         this.isSuccessful = true;
         this.resetar(formulario);
-        this.irParaListagem();
+        this.irParaListagem('cobertura');
       }, 
       err => {
         this.errorMessage = err.error.message() ;
@@ -73,7 +70,12 @@ export class CriarCoberturasComponent extends BaseFormComponent implements OnIni
       );
   }
 
-  irParaListagem() {
-    this.router.navigate(['/cobertura']);
+  alterarTipo(){
+    this.cobertura.montaControlada = null ;
+    this.cobertura.touroMonta = null ;
+
+    this.cobertura.inseminador = null;
+    this.cobertura.qtdeDoseSemen = null;
+    this.cobertura.semens = null;
   }
 }

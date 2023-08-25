@@ -12,7 +12,7 @@ import { Semens } from 'src/app/model/semens';
 })
 export class SemensService extends CrudService<Semens> {
 
-  private readonly ANIMAL_DOADOR_PATH = `${environment.API}animaldoador/`;
+  private readonly ANIMAL_DOADOR_PATH = `${environment.API}animaldoador`;
 
   constructor(protected http: HttpClient) { 
     super(http, `${environment.API}semen`);

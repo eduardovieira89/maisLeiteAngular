@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="panel-body">
+        <h3>Lactações</h3>
+        <table class="table table-striped" *ngIf="(lactacoes$ | async) as lactacoes; else loading">
+            <thead>
+                <tr>
+                    <th>Data de Início</th>
+                    <th>Data de Encerramento</th>
+                    <th>Finalizado?</th>
+                    <th>Causa do Encerramento</th>
+                    <th>Observações</th>
+                    <th></th>
+                </tr>
+                <tr *ngIf="lactacoes.length == 0">
+                    <td colspan="6">
+                        <span>Não há lactações para esta vaca </span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lactacao of lactacoes">
+                    <td>{{lactacao.dataInicio | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{lactacao.dataEncerramento}}</td>
+                    <td>{{lactacao.finalizado}}</td>
+                    <td>{{lactacao.causaEncerramento?.descricao}}</td>
+                    <td>{{lactacao.observacao}}</td>
+                    <td><a [routerLink]="['']">Registrar controle leiteiro</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #loading>
+            <span>Carregando Lactações...</span>
+        </ng-template>
+    </div>
+</div>

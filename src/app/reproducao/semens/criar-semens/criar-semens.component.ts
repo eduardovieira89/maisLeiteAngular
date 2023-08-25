@@ -12,9 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarSemensComponent extends BaseFormComponent implements OnInit {
 
-  constructor(private router: Router,
+  constructor(protected router: Router,
               private semenService: SemensService
-             ) {super()}
+             ) {super(router)}
 
 semen: Semens = new Semens();
 animaisDoadores: AnimaisDoadores[];
@@ -32,7 +32,7 @@ errorMessage = '';
       data => {
         this.resetar(formulario);
         this.isSuccessful = true;
-        this.irParaListagem();
+        this.irParaListagem('semens');
       },
       err => {
         console.log(err);
@@ -43,9 +43,4 @@ errorMessage = '';
       }
     )
   }
-
-  irParaListagem() {
-    this.router.navigate(['/semens']);
-  }
-
 }

@@ -14,31 +14,33 @@ import { DetalhesAnimalComponent } from './detalhes-animal/detalhes-animal.compo
 import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
 import { VacinaComponent } from './vacina/vacina.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProducaoModule } from '../producao/producao.module';
+import { LactacoesModule } from "../producao/lactacoes/lactacoes.module";
 
 
 
 
 @NgModule({
-  declarations: [
-    AtualizarAnimalComponent,
-    CriarAnimalComponent,
-    DetalhesAnimalComponent,
-    ListarAnimalComponent,
-    RacaComponent,
-    VacinaComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AnimalRoutingModule,
-    PropriedadeModule,
-    SharedModule
-    
-  ],
-  providers: [
-    authInterceptorProviders
-  ]
+    declarations: [
+        AtualizarAnimalComponent,
+        CriarAnimalComponent,
+        DetalhesAnimalComponent,
+        ListarAnimalComponent,
+        RacaComponent,
+        VacinaComponent,
+    ],
+    providers: [
+        authInterceptorProviders
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AnimalRoutingModule,
+        PropriedadeModule,
+        SharedModule,
+        LactacoesModule
+    ]
 })
 export class AnimalModule { }

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="panel-heading">
-        <h2>Lista de touros doadores</h2>
+        <h2>Lista de Touros Doadores</h2>
         <div class="panel-body">
             <table class="table table-striped" *ngIf="(animaisDoadores$ | async) as doadores; else loading">
                 <thead>
@@ -8,7 +8,6 @@
                         <td>Nome</td>
                         <td>Nascimento</td>
                         <td>Num Registro</td>
-                        <td>Sexo</td>
                         <td>Raça</td>
                         <td>Teste Progenie</td>
                         <td>Núcleo Moet</td>
@@ -22,10 +21,6 @@
                         <td>{{doador.animal.nome}}</td>
                         <td>{{doador.animal.dataNasc | date: 'dd/MM/yyyy' }}</td>
                         <td>{{doador.animal.registro}}</td>
-                        <td>
-                            <label *ngIf="doador.animal.sexo == 'f'">Fêmea </label>
-                            <label *ngIf="doador.animal.sexo == 'm'">Macho </label>
-                        </td>
                         <td><label>{{doador.animal.raca.descricao}}</label></td>
                         <td><label>{{doador.testeProgenie}}</label></td>
                         <td><label>{{doador.nucleoMoet}}</label></td>

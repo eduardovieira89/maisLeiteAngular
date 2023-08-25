@@ -1,0 +1,61 @@
+<h2>Registro de produção de leite</h2>
+<div  class="container">
+    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+
+        <div class="form-group row" >
+            <div class="col-sm-2">
+                <label for="dtcont">Data:*</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="dtcont" name="dtcont" required [(ngModel)]="controleLeiteiro.dataControle">
+                    <div class="invalid-feedback">
+                        Data do controle é um campo obrigatório
+                    </div>  
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label for="temperatura">Temperatura:</label>
+                <input type="number" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="controleLeiteiro.temperatura">
+            </div>
+            <div class="col-sm-2">
+                <label for="umidadear">Umidade do ar:</label>
+                <input type="number" class="form-control" id="umidadear" name="umidadear" [(ngModel)]="controleLeiteiro.umidadeAr">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="ordenhadores">Ordenhador(es): *</label>
+                <select class="form-select" multiple id="ordenhadores" name="ordenhadores" required [(ngModel)]="controleLeiteiro.ordenhadores">
+                    <option *ngFor="let ordenhador of ordenhadores" [ngValue]="ordenhador">{{ordenhador.nome}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    É necessário informar pelo menos um ordenhador
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label for="ordenha1">Ordenha 1:</label>
+                <input type="number" class="form-control" id="ordenha1" name="ordenha1" [(ngModel)]="producaoLeite.ordenha1">
+            </div>
+            <div class="col-sm-2">
+                <label for="ordenha2">Ordenha 2:</label>
+                <input type="number" class="form-control" id="ordenha2" name="ordenha2" [(ngModel)]="producaoLeite.ordenha2">
+            </div>
+            <div class="col-sm-2">
+                <label for="ordenha3">Ordenha 3:</label>
+                <input type="number" class="form-control" id="ordenha3" name="ordenha3" [(ngModel)]="producaoLeite.ordenha3">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success my-3">Salvar</button>
+        <button (click)="irParaListagem('animal')" class="btn btn-info">Cancelar</button>
+        
+    </form>
+</div>
+
+<div *ngIf="errorMessage!=''">
+    <div class="alert alert-warning">
+        Falha ao registrar produção! <br />{{ errorMessage }}
+    </div>
+</div>

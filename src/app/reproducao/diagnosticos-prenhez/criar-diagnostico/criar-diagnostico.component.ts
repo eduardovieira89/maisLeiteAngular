@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
@@ -19,8 +20,9 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
   constructor(private diagnosticosPrenhezService: DiagnosticosPrenhezService,
               private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
+              protected router: Router
 
-              ) { super() }
+              ) { super(router) }
 
   diagnosticoPrenhez: DiagnosticosPrenhez = new DiagnosticosPrenhez();
   vacas!: Animais[];

@@ -16,9 +16,9 @@ export class CriarPropriedadeComponent extends BaseFormComponent implements OnIn
   submitted = false;
 
   constructor(private propriedadeService: PropriedadeService,
-              private router: Router,
+              protected router: Router,
               private location: Location
-              ) { super()}
+              ) { super(router)}
 
   ngOnInit(): void {
 
@@ -30,14 +30,10 @@ export class CriarPropriedadeComponent extends BaseFormComponent implements OnIn
       .subscribe(data=> {
         this.propriedade = new Propriedades();
         this.resetar(formulario);
-        this.irParaPropriedades();
+        this.irParaListagem('propriedade');
       },
       error => console.log(error)
       );
-  }
-
-  irParaPropriedades() {
-    this.router.navigate(['/propriedade']);
   }
 
   voltar(): void {

@@ -1,0 +1,12 @@
+<div class="card col my-2">
+    <div class="card-body">
+        <h5 class="card-title">Diagnóstico de prenhez</h5>
+        <div *ngIf="!diagnosticoPrenhez">
+            <h6 class="card-subtitle mb-2 text-muted">Não há registro de diagnóstico de prenhez</h6>
+        </div>
+        <div *ngIf="diagnosticoPrenhez">
+            <label for="diagnosticoPrenhez">Diagnostico de Prenhez: {{diagnosticoPrenhez.data | date: 'dd/MM/yyyy'}} </label><br>
+            <label for="TipoCobertura">Método: {{diagnosticoPrenhez.metodoDiagnostico.descricao}} </label>
+        </div>
+    </div>
+</div>

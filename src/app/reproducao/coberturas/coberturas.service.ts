@@ -12,14 +12,14 @@ import { Injectable } from '@angular/core';
 })
 export class CoberturasService extends CrudService<Coberturas> {
 
-  private readonly COBERTURA_PATH = `${environment.API}cobertura/`;
+  private readonly COBERTURA_PATH = `${environment.API}cobertura`;
   
   constructor(protected http: HttpClient) { 
-    super(http, `${environment.API}cobertura/`);
+    super(http, `${environment.API}cobertura`);
   }
 
   listTiposCobertura(): Observable<TiposCobertura[]>{
-    return this.http.get<TiposCobertura[]>(`${this.COBERTURA_PATH}tipos`);
+    return this.http.get<TiposCobertura[]>(`${this.COBERTURA_PATH}/tipos`);
   }
 
    listByPropriedade(params: HttpParams){

@@ -17,7 +17,8 @@ export class RegistroUsuarioComponent extends BaseFormComponent implements OnIni
   errorMessage = '';
 
   constructor(private authService: AuthenticationService,
-              private router: Router) { super() }
+              protected router: Router) 
+              { super(router) }
 
   ngOnInit(): void {
   }

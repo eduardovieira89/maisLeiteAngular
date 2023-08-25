@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Crias } from './../../../model/crias';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { HttpParams } from '@angular/common/http';
@@ -22,8 +23,9 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
   constructor(private partoService: PartosService,
               private diagnosticosPrenhezService: DiagnosticosPrenhezService,
               private animalService: AnimalService,
-              private propriedadeService: PropriedadeService     
-    ) { super() }
+              private propriedadeService: PropriedadeService,
+              protected router: Router  
+    ) { super(router) }
 
   parto: Partos = new Partos();
   tiposParto!: TiposParto[];
@@ -38,12 +40,13 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
     params = params.set('genero', 'f');
-    this.parto.qtdeCrias = 0;
-    this.parto.crias = new Array<Crias>();
-    console.log(this.parto);
     
     this.animalService.listarPorGenero(params).subscribe(v => this.vacas = v);
     this.partoService.listTiposParto().subscribe(tipos => this.tiposParto = tipos);
+
+    this.parto.crias = new Array<Crias>();
+    this.parto.crias.push(new Crias());
+    this.parto.qtdeCrias = 1;
   }
 
   submit(formulario){
@@ -53,7 +56,6 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     if(this.diagnosticoPrenhez != null){
       this.parto.diagnosticosPrenhez = this.diagnosticoPrenhez;
     }
-    console.log(this.parto);
     this.partoService.save(this.parto).subscribe(
       data => {
         this.isSuccessful = true;
@@ -68,15 +70,19 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
   buscaCoberturaAndDiagnostico(){
     this.cobertura = null;
+    this.diagnosticoPrenhez = null;
     let params = new HttpParams();
     params = params.set('idvaca', this.parto.vaca.id.toString());
 
     this.partoService.getUltimoDiagnosticoPrenhez(params).subscribe(
       diag => {
-        this.diagnosticoPrenhez = diag;
-        if(diag.cobertura != null){
-          this.cobertura = diag.cobertura;
+        if(diag != null){
+          this.diagnosticoPrenhez = diag;
+          if(diag.cobertura != null){
+            this.cobertura = diag.cobertura;
+          }
         }
+        
       }
     );
 
@@ -92,7 +98,6 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     if(this.parto.crias.length > 1){
       this.parto.crias.pop();
       this.parto.qtdeCrias --;
-      console.log(this.parto.crias);  
     }
     
   }
@@ -101,7 +106,6 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     if(this.parto.crias.length < 3){
       this.parto.crias.push(new Crias());
       this.parto.qtdeCrias ++;
-      console.log(this.parto.crias);
     }
     
   }

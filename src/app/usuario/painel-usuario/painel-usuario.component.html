@@ -1,13 +1,13 @@
 <div class="container" *ngIf="currentProdutor; else loggedOut">
   <header class="jumbotron">
     <h3>
-      Painel de: <strong>{{ currentProdutor.username }}</strong>
+      Painel de <strong>{{ currentProdutor.username }}</strong>
     </h3>
   </header>
   <p>
     <strong>Token:</strong>
-    {{ currentProdutor.accessToken.substring(0, 20) }} ...
-    {{ currentProdutor.accessToken.substr(currentProdutor.accessToken.length - 20) }}
+    {{ currentProdutor.token.substring(0, 20) }} ...
+    {{ currentProdutor.token.substr(currentProdutor.token.length - 20) }}
   </p>
   <p>
     <strong>Email:</strong>

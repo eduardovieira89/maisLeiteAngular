@@ -1,3 +1,4 @@
+import { SharedModule } from 'src/app/shared/shared.module';
 import { PropriedadeModule } from './../../propriedade/propriedade.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +21,8 @@ import { ListarDiagnosticosComponent } from './listar-diagnosticos/listar-diagno
     ReactiveFormsModule,
     HttpClientModule,
     DiagnosticosPrenhezRoutingModule,
-    PropriedadeModule
+    PropriedadeModule,
+    SharedModule
 
   ]
 })

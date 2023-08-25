@@ -15,11 +15,11 @@ import { AnimalService } from 'src/app/animal/animal.service';
 })
 export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnInit {
 
-  constructor(private router: Router,
+  constructor(protected router: Router,
               private doadorService: AnimaisDoadoresService,
               private location: Location,
               private animalSevice: AnimalService
-              ) { super() }
+              ) { super(router) }
 
   animalDoador: AnimaisDoadores = new AnimaisDoadores();
   animal: Animais = new Animais();
@@ -31,19 +31,15 @@ export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnI
     this.animalSevice.getRacas().subscribe(data => this.racas = data);
   }
 
-  irParaListagem() {
-    this.router.navigate(['/animaisdoadores']);
-  }
-
-
   submit(formulario) {
+    this.animal.ativo = true;
     this.animalDoador.animal = this.animal;
     this.doadorService.save(this.animalDoador).subscribe(
       data => {
         this.animal = new Animais();
         this.animalDoador = new AnimaisDoadores();
         this.resetar(formulario);
-        this.irParaListagem();
+        this.irParaListagem('animaisdoadores');
       },
       err => this.errorMessage = err.error.message
     )

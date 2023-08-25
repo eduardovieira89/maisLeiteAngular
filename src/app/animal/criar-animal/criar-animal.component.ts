@@ -18,9 +18,9 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
 
   constructor(
     private animalService: AnimalService,
-    private router: Router,
+    protected router: Router,
     private propriedadeService: PropriedadeService
-    ) { super() }
+    ) { super(router) }
 
   animal: Animais = new Animais();
   racas: Racas[];
@@ -32,7 +32,6 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.propriedadeService.getPropriedadeselecionada());
     this.errorMessage = '';
     this.animalService.getRacas().subscribe(data => this.racas = data);
     this.animalService.getOrigemAnimal().subscribe(data => this.origemAnimal = data);
@@ -56,13 +55,9 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
       this.animalService.save(this.animal).subscribe(
         data => {
           this.resetar(formulario);
-          this.irParaListagem();
+          this.irParaListagem('animal');
         },
         err => this.errorMessage = err.error.message
       );
-  }
-
-  irParaListagem() {
-    this.router.navigate(['/animal']);
   }
 }

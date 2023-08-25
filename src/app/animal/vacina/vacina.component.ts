@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -17,9 +18,10 @@ export class VacinaComponent extends BaseFormComponent implements OnInit {
 
   constructor(
     private formBuilder: UntypedFormBuilder,
-    private vacinaService: VacinaService
+    private vacinaService: VacinaService,
+    protected router: Router
     ) {
-    super();
+    super(router);
   }
 
   ngOnInit(): void {

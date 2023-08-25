@@ -21,7 +21,9 @@ const routes: Routes = [
   { path: 'semens', loadChildren: () => import('./reproducao/semens/semens.module').then(m => m.SemensModule), canActivate:[AuthGuard]},
   { path: 'cobertura', loadChildren: () => import('./reproducao/coberturas/coberturas.module').then(m => m.CoberturasModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
   { path: 'diagnosticoprenhez', loadChildren: () => import('./reproducao/diagnosticos-prenhez/diagnosticos-prenhez.module').then(m => m.DiagnosticosPrenhezModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
-  { path: 'parto', loadChildren: () => import('./reproducao/partos/partos.module').then(m => m.PartosModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]}
+  { path: 'parto', loadChildren: () => import('./reproducao/partos/partos.module').then(m => m.PartosModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
+  { path: 'lactacao', loadChildren: () => import('./producao/lactacoes/lactacoes.module').then(m => m.LactacoesModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
+  { path: 'producao', loadChildren: () => import('./producao/producao-leite/producao-leite.module').then(m => m.ProducaoLeiteModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]}
 
 
   

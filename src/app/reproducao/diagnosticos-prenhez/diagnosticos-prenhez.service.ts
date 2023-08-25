@@ -12,18 +12,18 @@ import { MetodosPrenhez } from 'src/app/model/metodosPrenhez';
 })
 export class DiagnosticosPrenhezService extends CrudService<DiagnosticosPrenhez> {
 
-  private readonly DIAGNOSTICO_PATH = `${environment.API}diagnosticoprenhez/`;
+  private readonly DIAGNOSTICO_PATH = `${environment.API}diagnosticoprenhez`;
 
   constructor(protected http: HttpClient) { 
-    super(http, `${environment.API}diagnosticoprenhez/` );
+    super(http, `${environment.API}diagnosticoprenhez` );
   }
 
   getUltimaCobertura(params: HttpParams){
-    return this.http.get<Coberturas>(`${this.DIAGNOSTICO_PATH}cobertura`, {params});
+    return this.http.get<Coberturas>(`${this.DIAGNOSTICO_PATH}/cobertura`, {params});
   }
 
   listMetodosPrenhez(): Observable<MetodosPrenhez[]>{
-    return this.http.get<MetodosPrenhez[]>(`${this.DIAGNOSTICO_PATH}metodos`);
+    return this.http.get<MetodosPrenhez[]>(`${this.DIAGNOSTICO_PATH}/metodos`);
   }
 
   listByPropriedade(params: HttpParams){
