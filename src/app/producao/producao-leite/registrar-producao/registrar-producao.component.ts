@@ -11,6 +11,8 @@ import { ControleLeiteiro } from 'src/app/model/controleLeiteiro';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { Animais } from 'src/app/model/animais';
 import { HttpParams } from '@angular/common/http';
+import { Partos } from 'src/app/model/Partos';
+import { ControleLeiteiroService } from '../controle-leiteiro.service';
 
 @Component({
   selector: 'app-registrar-producao',
@@ -19,12 +21,9 @@ import { HttpParams } from '@angular/common/http';
 })
 export class RegistrarProducaoComponent extends BaseFormComponent  {
 
-
-  vacas: Animais[];
   controleLeiteiro: ControleLeiteiro = new ControleLeiteiro();
-  producaoLeite: ProducaoLeite = new ProducaoLeite(); //Aqui vai ir um array para adicionar a produção de leite de vários animais
+  listagemProducaoLeite: ProducaoLeite[] = [];
   ordenhadores: Usuarios[];
-  lactacao: Lactacoes;
   errorMessage = '';
 
   constructor(
@@ -32,25 +31,52 @@ export class RegistrarProducaoComponent extends BaseFormComponent  {
     private animalService: AnimalService,
     private propriedadeService: PropriedadeService,
     private usuarioService: UserService,
-    private route: ActivatedRoute,
+    private controleLeiteiroService: ControleLeiteiroService,
     protected router: Router
     ){super(router)}
 
     ngOnInit(): void {
-      this.producaoLeite.controleLeiteiro = new ControleLeiteiro();
       this.usuarioService.list().subscribe(users => this.ordenhadores = users);
-      this.lactacao = this.route.snapshot.params['lactacao'];
       let params = new HttpParams();
       params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
-      this.animalService.listarEmLactacoes(params).subscribe(animais => this.vacas = animais);
-      console.log(this.vacas);
+      this.animalService.listarEmLactacoes(params).subscribe( animais => {
+        animais.forEach(element => {
+          this.producaoService.findLactacao(element.id.toString()).subscribe(lact =>{
+            let producaoLeite: ProducaoLeite = new ProducaoLeite();
+            let parto: Partos = new Partos();
+            parto.vaca = element;
+            producaoLeite.lactacao = lact;
+            producaoLeite.lactacao.parto = parto;
+            //producaoLeite.controleLeiteiro = this.controleLeiteiro;
+            this.listagemProducaoLeite.push(producaoLeite);
+          });
+        });
+      }
+        
+      );
       
     }
 
-    submit(formulario: any) {
-      console.log(this.producaoLeite);
+    /** 
+    adicionarVaca(){
+      this.producaoService.findLactacao(this.vaca.id.toString()).subscribe(lact => {
+        let producaoLeite: ProducaoLeite = new ProducaoLeite();
+        let parto: Partos = new Partos();
+        parto.vaca = this.vaca;
+        producaoLeite.lactacao = lact;
+        producaoLeite.lactacao.parto = parto;
+        producaoLeite.controleLeiteiro = this.controleLeiteiro;
+        this.listagemProducaoLeite.push(producaoLeite);
+        });
     }
-
-
-
+    */
+    submit(formulario) {
+      this.controleLeiteiro.producoesLeite = this.listagemProducaoLeite;
+      console.log(`Produção de leite: ${JSON.stringify(this.controleLeiteiro)}`);
+      this.controleLeiteiroService.save(this.controleLeiteiro).subscribe(
+        data => {
+          this.resetar(formulario);
+        }
+      );
+    }
 }

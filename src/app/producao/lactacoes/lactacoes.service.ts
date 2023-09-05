@@ -14,4 +14,13 @@ export class LactacoesService {
   listLactacoes(params: HttpParams){
     return this.http.get<Lactacoes[]>(this.LACTACOES_PATH, {params});
   }
+
+  buscaLactacaoEmAberto(idAnimal: string){
+    idAnimal = idAnimal.trim();
+    // Add safe, URL encoded search parameter if there is a search term
+    const options = idAnimal ?
+    { params: new HttpParams().set('idanimal', idAnimal) } : {};
+
+    return this.http.get<Lactacoes>(`${this.LACTACOES_PATH}/emaberto`, options);
+  }
 }

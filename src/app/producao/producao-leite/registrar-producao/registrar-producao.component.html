@@ -33,23 +33,40 @@
                 </div>
             </div>
         </div>
+        <div class="form-group row ">
+            <div class="col-sm-4">
+                <label>Vacas em lactação: </label>
+            </div>
+        </div>
         <div class="form-group row">
-            <div class="col-sm-2">
-                <label for="ordenha1">Ordenha 1:</label>
-                <input type="number" class="form-control" id="ordenha1" name="ordenha1" [(ngModel)]="producaoLeite.ordenha1">
-            </div>
-            <div class="col-sm-2">
-                <label for="ordenha2">Ordenha 2:</label>
-                <input type="number" class="form-control" id="ordenha2" name="ordenha2" [(ngModel)]="producaoLeite.ordenha2">
-            </div>
-            <div class="col-sm-2">
-                <label for="ordenha3">Ordenha 3:</label>
-                <input type="number" class="form-control" id="ordenha3" name="ordenha3" [(ngModel)]="producaoLeite.ordenha3">
+            <div class="col-sm-7">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td width="40%"></td>
+                            <td style="min-width:100px" width="20%">Lactação</td>
+                            <td style="min-width:100px">Ordenha 1:</td>
+                            <td style="min-width:100px">Ordenha 2:</td>
+                            <td style="min-width:100px">Ordenha 3:</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producao of listagemProducaoLeite">
+                            <td>{{producao.lactacao.parto.vaca.nome}}</td>
+                            <td>{{producao.lactacao.dataInicio}}</td>
+                            <td><input type="number" class="form-control" name="ordenha1"  [(ngModel)]="producao.ordenha1"></td>
+                            <td><input type="number" class="form-control" name="ordenha2"  [(ngModel)]="producao.ordenha2"></td>
+                            <td><input type="number" class="form-control" name="ordenha3"  [(ngModel)]="producao.ordenha3"></td>
+                            <td>Litros</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <button type="submit" class="btn btn-success my-3">Salvar</button>
-        <button (click)="irParaListagem('animal')" class="btn btn-info">Cancelar</button>
+        <button (click)="irParaListagem('home')" class="btn btn-info">Cancelar</button>
         
     </form>
 </div>
@@ -59,3 +76,5 @@
         Falha ao registrar produção! <br />{{ errorMessage }}
     </div>
 </div>
+
+<app-form-debug [form]="f"></app-form-debug>

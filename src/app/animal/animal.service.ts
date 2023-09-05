@@ -33,7 +33,7 @@ export class AnimalService extends CrudService<Animais>{
   }
 
   public listarEmLactacoes(params: HttpParams){
-    return this.http.get<Animais[]>(`${this.ANIMAL_PATH}/emlactacao`, {params})
+    return this.http.get<Animais[]>(`${this.ANIMAL_PATH}/emlactacao`, {params});
   }
 
   getRacas(): Observable<Racas[]>{
