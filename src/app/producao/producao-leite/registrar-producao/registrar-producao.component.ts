@@ -36,6 +36,7 @@ export class RegistrarProducaoComponent extends BaseFormComponent  {
     ){super(router)}
 
     ngOnInit(): void {
+      this.controleLeiteiro.propriedade = this.propriedadeService.getPropriedadeselecionada();
       this.usuarioService.list().subscribe(users => this.ordenhadores = users);
       let params = new HttpParams();
       params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
@@ -47,14 +48,12 @@ export class RegistrarProducaoComponent extends BaseFormComponent  {
             parto.vaca = element;
             producaoLeite.lactacao = lact;
             producaoLeite.lactacao.parto = parto;
-            //producaoLeite.controleLeiteiro = this.controleLeiteiro;
             this.listagemProducaoLeite.push(producaoLeite);
           });
         });
       }
-        
       );
-      
+      console.log(JSON.stringify(this.controleLeiteiro));
     }
 
     /** 
