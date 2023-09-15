@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="panel-body">
+        <h3>Produções</h3>
+        <table class="table table-striped" *ngIf="(controles$ | async) as controles; else loading">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Temperatura</th>
+                    <th>Umidade do ar</th>
+                </tr>
+                <tr *ngIf="controles.length == 0">
+                    <td colspan="6">
+                        <span>Não há Controle leiteiro registrado nesta propriedade </span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let controle of controles">
+                    <td>{{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{controle.temperatura}}</td>
+                    <td>{{controle.umidadeAr}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #loading>
+            <span>Carregando Controle leiteiro...</span>
+        </ng-template>
+    </div>
+</div>

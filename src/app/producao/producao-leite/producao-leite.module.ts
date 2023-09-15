@@ -6,11 +6,13 @@ import { RegistrarProducaoComponent } from './registrar-producao/registrar-produ
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ListarProducaoComponent } from './listar-producao/listar-producao.component';
 
 
 @NgModule({
   declarations: [
-    RegistrarProducaoComponent
+    RegistrarProducaoComponent,
+    ListarProducaoComponent
   ],
   imports: [
     CommonModule,
