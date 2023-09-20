@@ -1,7 +1,7 @@
 <div class="container">
     <div class="panel-body">
         <h3>Produções</h3>
-        <table class="table table-striped" *ngIf="(controles$ | async) as controles; else loading">
+        <table class="table table-hover table-striped" *ngIf="(controles$ | async) as controles; else loading">
             <thead>
                 <tr>
                     <th>Data</th>
@@ -14,12 +14,34 @@
                     </td>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let controle of controles">
-                    <td>{{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
-                    <td>{{controle.temperatura}}</td>
-                    <td>{{controle.umidadeAr}}</td>
-                </tr>
+            <tbody *ngFor="let controle of controles">
+                    <tr >
+                        <td>{{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{controle.temperatura}} °C</td>
+                        <td>{{controle.umidadeAr}} %</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div class="container">
+                            <table class="table table-borderless table-light">
+                                <thead>
+                                    <tr>
+                                        <th>Vaca</th>
+                                        <th>Ordenha 1</th>
+                                        <th>Ordenha 2</th>
+                                        <th>Ordenha 3</th>
+                                    </tr>
+                                </thead>
+                                <tr *ngFor="let producao of controle.producoesLeite">
+                                    <td>{{producao.lactacao.parto.vaca.nome}}</td>
+                                    <td>{{producao.ordenha1}} L</td>
+                                    <td>{{producao.ordenha2}} L</td>
+                                    <td>{{producao.ordenha3}} L</td>
+                                </tr>
+                            </table>
+                            </div>
+                        </td> 
+                    </tr>
             </tbody>
         </table>
         <ng-template #loading>
