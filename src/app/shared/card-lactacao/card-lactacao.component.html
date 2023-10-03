@@ -1,0 +1,15 @@
+<div class="card col my-2">
+    <div class="card-body">
+        <div class="alert alert-primary" *ngIf="!lactacao.id">
+            <h6>Não há lactação selecionada</h6>
+        </div>
+        <div *ngIf="lactacao.id">
+            <h5 class="card-title">Lactação de {{lactacao.parto?.vaca?.nome}}</h5>
+            <label for="inicio">Inicio: {{lactacao.dataInicio | date: 'dd/MM/yyyy'}} </label><br>
+            <label for="encerramento">Encerramento: {{lactacao.dataEncerramento | date: 'dd/MM/yyyy'}} </label><br>
+            <label for="finalizada">Finalizada: {{lactacao.finalizado}} </label><br>
+            <label for="observacao">Observação: {{lactacao.observacao}} </label><br>
+            <label for="causaEncerramento">Causa de encerramento: {{lactacao.causaEncerramento?.descricao}} </label><br>
+        </div>
+    </div>
+</div>

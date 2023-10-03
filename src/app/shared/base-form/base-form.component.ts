@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 export abstract class BaseFormComponent implements OnInit {
 
   formulario: UntypedFormGroup;
+  isSuccessful = false;
+  errorMessage = '';
 
   constructor(
     protected router: Router
