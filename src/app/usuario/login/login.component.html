@@ -1,6 +1,6 @@
 <div class="container">
   <form name="form" *ngIf="!isLoggedIn" #loginform="ngForm" (ngSubmit)="logarUsuario()">
-    <h2>Login Leite Mais</h2>
+    <h2 class="text-center">Login Leite Mais</h2>
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" 
@@ -26,8 +26,13 @@
       >
       <small class="text-danger" [class.d-none]="password.valid || password.untouched">Insira a senha!</small>
     </div>
-    <div class="form-group my-2">
-      <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
+    <div class=" row form-group my-2">
+      <div class="col">
+        <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
+      </div>
+      <div class="col d-flex flex-row-reverse align-items-center">
+        <small><a [routerLink]="['/registro']">Novo usuario? Registre-se aqui</a></small>
+      </div>
     </div>
     
     <div class="alert alert-danger" role="alert" *ngIf="loginform.submitted && isLoginFailed" >
@@ -38,7 +43,7 @@
     </div>
         
     <br>
-    <small><a class="float-right" [routerLink]="['/registro']">Novo usuario? Registre-se aqui</a></small>
+    
   </form>
 
   <div *ngIf="isLoggedIn">

@@ -16,6 +16,7 @@ import { VacinaComponent } from './vacina/vacina.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProducaoModule } from '../producao/producao.module';
 import { LactacoesModule } from "../producao/lactacoes/lactacoes.module";
+import { CriarLotesComponent } from './lotes/criar-lotes/criar-lotes.component';
 
 
 
@@ -28,6 +29,7 @@ import { LactacoesModule } from "../producao/lactacoes/lactacoes.module";
         ListarAnimalComponent,
         RacaComponent,
         VacinaComponent,
+        CriarLotesComponent,
     ],
     providers: [
         authInterceptorProviders

@@ -1,6 +1,6 @@
 <div class="container">
     <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-    <h2>Registro Leite Mais</h2>
+    <h2 class="text-center">Registro Leite Mais</h2>
       <div class="form-group">
         <label for="nome">Nome:</label>
         <input type="text" class="form-control" id="nome" name="nome"
@@ -47,8 +47,15 @@
           <small *ngIf="password.errors.required">Senha é um campo necessário</small>
           <small *ngIf="password.errors.minlength">A senha deve ter pelo menos 6 caracteres</small>
         </div> -->
-      </div>      
-      <button type="submit" class="btn btn-info my-2">Registrar</button>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-info my-2">Registrar</button>
+        </div>
+        <div class="col d-flex flex-row-reverse align-items-center">
+          <small><a [routerLink]="['/login']">Já tem registro? Faça login aqui</a></small>
+        </div>
+      </div>
       <br><br>
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
         {{ errorMessage }}
