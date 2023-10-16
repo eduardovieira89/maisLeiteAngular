@@ -1,7 +1,7 @@
 
 <h2>Cadastrar Propriedade</h2>
 <div class="container">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+  <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
     
     <div class="form-group col-sm-6">
       <label for="nome">Nome da propriedade: *</label>
@@ -24,8 +24,15 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <button (click)="voltar()" class="btn btn-info">Cancelar</button>
+    <div class="form-group row my-3">
+      <div class="form-group col-sm-6 ">
+        <button type="submit" class="btn btn-success border">Salvar</button>
+        <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
+      </div>
+    </div>
+    
+
+    
     
   </form>
 </div>

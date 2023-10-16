@@ -94,8 +94,14 @@
                 <input type="text" class="form-control" id="pais" name="pais" [(ngModel)]="animalDoador.paisOrigem">
             </div>
         </div>
-        <button type="submit" class="btn btn-success">Salvar</button>
-        <button (click)="voltar()" class="btn btn-info float-right">Cancelar</button>
+
+        <div class="row my-3">
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-success border">Salvar</button>
+                <button (click)="voltar()" class="btn btn-info float-right border">Cancelar</button>
+            </div>
+        </div>
+        
         
     </form>
 </div>
@@ -104,10 +110,4 @@
     <div class="alert alert-warning">
         Falha ao criar animal doador!<br />{{ errorMessage }}
     </div>
-</div>
-
-<div style="margin-top: 20px">
-    <pre>Animal: <br>{{ animal | json }}</pre>
-
-    <pre>Animal Doador: {{ animalDoador | json }}</pre>
 </div>

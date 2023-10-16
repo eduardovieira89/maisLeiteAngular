@@ -1,5 +1,5 @@
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Lactacoes } from 'src/app/model/lactacoes';
 import { ProducaoLeiteService } from '../producao-leite.service';
 import { ProducaoLeite } from 'src/app/model/producaoLeite';
@@ -19,7 +19,7 @@ import { ControleLeiteiroService } from '../controle-leiteiro.service';
   templateUrl: './registrar-producao.component.html',
   styleUrls: ['./registrar-producao.component.css']
 })
-export class RegistrarProducaoComponent extends BaseFormComponent  {
+export class RegistrarProducaoComponent extends BaseFormComponent implements OnInit  {
 
   controleLeiteiro: ControleLeiteiro = new ControleLeiteiro();
   listagemProducaoLeite: ProducaoLeite[] = [];
