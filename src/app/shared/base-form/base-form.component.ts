@@ -14,6 +14,7 @@ export abstract class BaseFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.errorMessage = '';
   }
 
   abstract submit(formulario);

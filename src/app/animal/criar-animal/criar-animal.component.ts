@@ -27,12 +27,10 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   origemAnimal: OrigemAnimal[];
   pais: Animais[];
   maes: Animais[];
-  errorMessage = '';
 
 
 
   ngOnInit(): void {
-    this.errorMessage = '';
     this.animalService.getRacas().subscribe(data => this.racas = data);
     this.animalService.getOrigemAnimal().subscribe(data => this.origemAnimal = data);
     let params = new HttpParams();
