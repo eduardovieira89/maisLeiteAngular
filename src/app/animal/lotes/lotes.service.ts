@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Lotes } from 'src/app/model/Lotes';
 import { CrudService } from 'src/app/shared/crud-service';
@@ -14,4 +14,13 @@ export class LotesService extends CrudService<Lotes> {
   constructor(
     protected http: HttpClient,
   ) {super(http, `${environment.API}lote`) }
+
+  listLotes(idPropriedade: string){
+    idPropriedade = idPropriedade.trim();
+    const options = idPropriedade ?
+    { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};
+
+    return this.http.get<Lotes[]>(`${this.LOTE_PATH}`, options);
+
+  }
 }

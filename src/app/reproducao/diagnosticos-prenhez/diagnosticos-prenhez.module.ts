@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { CriarDiagnosticoComponent } from './criar-diagnostico/criar-diagnostico.component';
 import { DiagnosticosPrenhezRoutingModule } from './diagnosticos-prenhez-routing.module';
 import { ListarDiagnosticosComponent } from './listar-diagnosticos/listar-diagnosticos.component';
+import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
 
 
 
@@ -14,7 +15,9 @@ import { ListarDiagnosticosComponent } from './listar-diagnosticos/listar-diagno
   declarations: [
     CriarDiagnosticoComponent,
     ListarDiagnosticosComponent
-  ],
+  ],providers: [
+    authInterceptorProviders
+],
   imports: [
     CommonModule,
     FormsModule,

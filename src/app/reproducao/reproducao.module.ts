@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PropriedadeModule } from '../propriedade/propriedade.module';
+import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
 
 
 
@@ -18,6 +19,8 @@ import { PropriedadeModule } from '../propriedade/propriedade.module';
     AnimaisDoadoresRoutingModule,
     SemensRoutingModule,
     PropriedadeModule
-  ]
+  ],providers: [
+    authInterceptorProviders
+],
 })
 export class ReproducaoModule { }

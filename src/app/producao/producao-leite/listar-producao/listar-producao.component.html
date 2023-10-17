@@ -1,5 +1,4 @@
 <div class="container">
-    <div class="panel-body">
         <h3>Produções</h3>
         <table class="table table-hover table-striped" *ngIf="(controles$ | async) as controles; else loading">
             <thead>
@@ -47,5 +46,4 @@
         <ng-template #loading>
             <span>Carregando Controle leiteiro...</span>
         </ng-template>
-    </div>
 </div>

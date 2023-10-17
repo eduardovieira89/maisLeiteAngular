@@ -10,6 +10,7 @@ import { PainelUsuarioComponent } from './painel-usuario/painel-usuario.componen
 import { LoginComponent } from './login/login.component';
 import { RegistroFuncionarioComponent } from './registro-funcionario/registro-funcionario.component';
 import { HomeComponent } from './home/home.component';
+import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
 
 
 
@@ -28,7 +29,9 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-  ],
+  ],providers: [
+    authInterceptorProviders
+],
   
 })
 export class UsuarioModule { }

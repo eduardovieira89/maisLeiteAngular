@@ -1,1 +1,24 @@
-<p>listar-lotes works!</p>
+<h3>Lotes</h3>
+<table class="table table-hover table-striped" *ngIf="(lotes$ | async) as lotes; else loading">
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th></th>
+            <td><a routerLink="novo" class="btn btn-success">Cadastrar Lote</a></td>
+        </tr>
+        <tr *ngIf="lotes.length == 0">
+            <td colspan="6">
+                <span>Não há lotes registrado nesta propriedade </span>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lote of lotes">
+            <td>{{lote.descricao}}</td>
+            <td><a class="btn btn-info"> Alterar</a></td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #loading>
+    <span>Carregando Lotes...</span>
+</ng-template>

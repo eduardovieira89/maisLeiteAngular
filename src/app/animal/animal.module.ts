@@ -17,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProducaoModule } from '../producao/producao.module';
 import { LactacoesModule } from "../producao/lactacoes/lactacoes.module";
 import { CriarLotesComponent } from './lotes/criar-lotes/criar-lotes.component';
+import { LotesModule } from './lotes/lotes.module';
 
 
 
@@ -29,7 +30,6 @@ import { CriarLotesComponent } from './lotes/criar-lotes/criar-lotes.component';
         ListarAnimalComponent,
         RacaComponent,
         VacinaComponent,
-        CriarLotesComponent,
     ],
     providers: [
         authInterceptorProviders
@@ -42,7 +42,8 @@ import { CriarLotesComponent } from './lotes/criar-lotes/criar-lotes.component';
         AnimalRoutingModule,
         PropriedadeModule,
         SharedModule,
-        LactacoesModule
+        LactacoesModule,
+        LotesModule
     ]
 })
 export class AnimalModule { }

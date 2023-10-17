@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CriarPartoComponent } from './criar-parto/criar-parto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListarPartosComponent } from './listar-partos/listar-partos.component';
+import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
 
 
 
@@ -13,7 +14,9 @@ import { ListarPartosComponent } from './listar-partos/listar-partos.component';
   declarations: [
     CriarPartoComponent,
     ListarPartosComponent
-  ],
+  ],providers: [
+    authInterceptorProviders
+],
   imports: [
     CommonModule,
     FormsModule,
