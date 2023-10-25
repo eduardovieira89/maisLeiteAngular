@@ -1,13 +1,12 @@
 <h3>Lotes</h3>
-<table class="table table-hover table-striped" *ngIf="(lotes$ | async) as lotes; else loading">
+<table class="table table-hover table-striped table-sm" *ngIf="(lotes$ | async) as lotes; else loading">
     <thead>
         <tr>
             <th>Descrição</th>
-            <th></th>
-            <td><a routerLink="novo" class="btn btn-success">Cadastrar Lote</a></td>
+            <th><a routerLink="novo" class="btn btn-success">Cadastrar Lote</a></th>
         </tr>
         <tr *ngIf="lotes.length == 0">
-            <td colspan="6">
+            <td colspan="2">
                 <span>Não há lotes registrado nesta propriedade </span>
             </td>
         </tr>
@@ -15,7 +14,7 @@
     <tbody>
         <tr *ngFor="let lote of lotes">
             <td>{{lote.descricao}}</td>
-            <td><a class="btn btn-info"> Alterar</a></td>
+            <td width="150px"><a class="btn btn-info"> Alterar</a></td>
         </tr>
     </tbody>
 </table>

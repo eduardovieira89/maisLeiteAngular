@@ -7,6 +7,8 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { HttpParams } from '@angular/common/http';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { OrigemAnimal } from 'src/app/model/origemAnimal';
+import { Lotes } from 'src/app/model/Lotes';
+import { LotesService } from '../lotes/lotes.service';
 
 @Component({
   selector: 'app-criar-animal',
@@ -19,7 +21,8 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   constructor(
     private animalService: AnimalService,
     protected router: Router,
-    private propriedadeService: PropriedadeService
+    private propriedadeService: PropriedadeService,
+    private loteService: LotesService
     ) { super(router) }
 
   animal: Animais = new Animais();
@@ -27,24 +30,23 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   origemAnimal: OrigemAnimal[];
   pais: Animais[];
   maes: Animais[];
+  lotes: Lotes[];
 
 
 
   ngOnInit(): void {
+    let idpropriedade = this.propriedadeService.getPropriedadeselecionada().id.toString()
+    let params = new HttpParams();
+    params = params.set('idpropriedade', idpropriedade);
+    params = params.set('genero', 'm');
+    
     this.animalService.getRacas().subscribe(data => this.racas = data);
     this.animalService.getOrigemAnimal().subscribe(data => this.origemAnimal = data);
-    let params = new HttpParams();
-    params = params.set(
-                        'idpropriedade', 
-                        this.propriedadeService.getPropriedadeselecionada().id.toString()
-                       );
-    params = params.set('genero', 'm');
+    this.loteService.listLotes(idpropriedade).subscribe(data => this.lotes = data);
     this.animalService.listarPorGenero(params).subscribe(pais => this.pais = pais);
-
     params.delete('genero');
     params = params.set('genero', 'f');
     this.animalService.listarPorGenero(params).subscribe(maes => this.maes = maes);
-
   }
 
   submit(formulario) {

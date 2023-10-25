@@ -12,6 +12,7 @@
                         <td>Num Registro</td>
                         <td>Sexo</td>
                         <td>Raça</td>
+                        <td>Lote</td>
                         <td><a routerLink="novo" class="btn btn-success">Criar Animal</a></td>
                     </tr>
                     <tr *ngIf="animais.length == 0">
@@ -31,6 +32,7 @@
                             <label *ngIf="animal.sexo == 'm'">Macho </label>
                         </td>
                         <td>{{animal.raca.descricao}}</td>
+                        <td>{{animal.lote.descricao}}</td>
                         <td>
                             <a [routerLink]="[animal.id]" class="btn btn-info" > Detalhes</a>
                             <a [routerLink]="[animal.id, 'alterar']" class="btn btn-info" > Alterar</a>

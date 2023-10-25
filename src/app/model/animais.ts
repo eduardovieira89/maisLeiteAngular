@@ -2,6 +2,7 @@ import { OrigemAnimal } from './origemAnimal';
 import { MotivosBaixa } from './motivosBaixa';
 import { Propriedades } from "./propriedades";
 import { Racas } from "./racas";
+import { Lotes } from './Lotes';
 
 export class Animais {
     id: number;
@@ -19,4 +20,5 @@ export class Animais {
     ativo: boolean;
     motivosBaixa: MotivosBaixa;
     origemAnimal: OrigemAnimal;
+    lote: Lotes;
 }

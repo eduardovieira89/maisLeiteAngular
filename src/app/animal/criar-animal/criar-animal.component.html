@@ -2,12 +2,12 @@
 <div  class="container">
     <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
         <div class="form-group row" >
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="animal.nome">
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label for="raca">Raça: *</label>
                 <select class="form-select" id="raca" name="raca" required [(ngModel)]="animal.raca" >
                     <option *ngFor="let raca of racas" [ngValue]="raca">{{raca.descricao}}</option>
@@ -15,6 +15,12 @@
                 <div class="invalid-feedback">
                     Raça é um campo obrigatório.
                 </div>
+            </div>
+            <div class="col-sm-4">
+                <label for="lote">Lote:</label>
+                <select class="form-select" id="lote" name="lote" required [(ngModel)]="animal.lote" >
+                    <option *ngFor="let lote of lotes" [ngValue]="lote">{{lote.descricao}}</option>
+                </select>
             </div>
         </div>
 
