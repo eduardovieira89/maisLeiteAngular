@@ -1,4 +1,3 @@
-import { VacinaComponent } from './vacina/vacina.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -12,7 +11,6 @@ import { ListarLotesComponent } from './lotes/listar-lotes/listar-lotes.componen
 
 const animalRoutes: Routes = [
     {path: 'raca', component: RacaComponent},
-    {path: 'vacina', component: VacinaComponent},
     {path:'lotes', children:[
       {path:'novo', component: CriarLotesComponent},
       {path:'', component: ListarLotesComponent}

@@ -12,7 +12,6 @@ import { CriarAnimalComponent } from './criar-animal/criar-animal.component';
 import { AtualizarAnimalComponent } from './atualizar-animal/atualizar-animal.component';
 import { DetalhesAnimalComponent } from './detalhes-animal/detalhes-animal.component';
 import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
-import { VacinaComponent } from './vacina/vacina.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProducaoModule } from '../producao/producao.module';
 import { LactacoesModule } from "../producao/lactacoes/lactacoes.module";
@@ -29,7 +28,6 @@ import { LotesModule } from './lotes/lotes.module';
         DetalhesAnimalComponent,
         ListarAnimalComponent,
         RacaComponent,
-        VacinaComponent,
     ],
     providers: [
         authInterceptorProviders
