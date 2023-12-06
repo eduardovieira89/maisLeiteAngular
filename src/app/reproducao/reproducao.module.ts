@@ -1,5 +1,5 @@
-import { SemensRoutingModule } from './semens/semens-routing.module';
-import { AnimaisDoadoresRoutingModule } from './animaisDoadores/animais-doadores-routing.module';
+import { SemenRoutingModule } from './semen/semen-routing.module';
+import { AnimalDoadorRoutingModule } from './animalDoador/animal-doador-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -16,8 +16,8 @@ import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AnimaisDoadoresRoutingModule,
-    SemensRoutingModule,
+    AnimalDoadorRoutingModule,
+    SemenRoutingModule,
     PropriedadeModule
   ],providers: [
     authInterceptorProviders

@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Propriedades } from 'src/app/model/propriedades';
+import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 })
 export class DetalhesPropriedadeComponent implements OnInit {
 
-  propriedade: Propriedades = new Propriedades();
+  propriedade: Propriedade = new Propriedade();
   mensagemErro: any;
   
   constructor(private propriedadeService: PropriedadeService,

@@ -1,9 +1,9 @@
 import { ControleLeiteiro } from "./controleLeiteiro";
-import { Lactacoes } from "./lactacoes";
+import { Lactacao } from "./lactacao";
 
 export class ProducaoLeite{
     id: number;
-    lactacao: Lactacoes;
+    lactacao: Lactacao;
     controleLeiteiro: ControleLeiteiro;
     ordenha1: number;
     ordenha2: number;

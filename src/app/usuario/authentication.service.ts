@@ -1,5 +1,5 @@
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
-import { Usuarios } from '../model/usuarios';
+import { Usuario } from '../model/usuario';
 import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -49,7 +49,7 @@ export class AuthenticationService {
         httpOptions)
   }
 
-  public listarFuncionarios(): Observable<Usuarios[]> {
-    return this.http.get<Usuarios[]>(AUTHENTICATION_PATH + 'funcionarios', httpOptions)
+  public listarFuncionarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(AUTHENTICATION_PATH + 'funcionarios', httpOptions)
   }
 }

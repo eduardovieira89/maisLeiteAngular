@@ -13,7 +13,7 @@ export class PropriedadeGuard  {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(!!this.propriedadeService.getPropriedadeselecionada()){
+    if(!!this.propriedadeService.getPropriedadeelecionada()){
       return true;
     }
 

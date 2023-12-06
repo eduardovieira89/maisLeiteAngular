@@ -1,4 +1,4 @@
-import { Usuarios } from '../model/usuarios';
+import { Usuario } from '../model/usuario';
 import { CrudService } from '../shared/crud-service';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
@@ -10,7 +10,7 @@ const API_URL = `${environment.API}usuario`;
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends CrudService<Usuarios> {
+export class UserService extends CrudService<Usuario> {
 
   constructor(protected http: HttpClient) {
     super(http, API_URL)

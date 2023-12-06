@@ -1,7 +1,7 @@
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Propriedades } from 'src/app/model/propriedades';
+import { Propriedade } from 'src/app/model/propriedade';
 import {Location} from '@angular/common';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
@@ -12,7 +12,7 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 })
 export class CriarPropriedadeComponent extends BaseFormComponent implements OnInit {
 
-  propriedade: Propriedades = new Propriedades();
+  propriedade: Propriedade = new Propriedade();
   submitted = false;
 
   constructor(private propriedadeService: PropriedadeService,
@@ -28,7 +28,7 @@ export class CriarPropriedadeComponent extends BaseFormComponent implements OnIn
   submit(formulario) {
     this.propriedadeService.save(this.propriedade)
       .subscribe(data=> {
-        this.propriedade = new Propriedades();
+        this.propriedade = new Propriedade();
         this.resetar(formulario);
         this.irParaListagem('propriedade');
       },

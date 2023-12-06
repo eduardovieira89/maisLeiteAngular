@@ -1,17 +1,17 @@
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { Component, OnInit } from '@angular/core';
-import { Lactacoes } from 'src/app/model/lactacoes';
+import { Lactacao } from 'src/app/model/lactacao';
 import { ProducaoLeiteService } from '../producao-leite.service';
 import { ProducaoLeite } from 'src/app/model/producaoLeite';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Usuarios } from 'src/app/model/usuarios';
+import { Usuario } from 'src/app/model/usuario';
 import { UserService } from 'src/app/usuario/user.service';
 import { ControleLeiteiro } from 'src/app/model/controleLeiteiro';
 import { AnimalService } from 'src/app/animal/animal.service';
-import { Animais } from 'src/app/model/animais';
+import { Animal } from 'src/app/model/animal';
 import { HttpParams } from '@angular/common/http';
-import { Partos } from 'src/app/model/Partos';
+import { Parto } from 'src/app/model/Parto';
 import { ControleLeiteiroService } from '../controle-leiteiro.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
 
   controleLeiteiro: ControleLeiteiro = new ControleLeiteiro();
   listagemProducaoLeite: ProducaoLeite[] = [];
-  ordenhadores: Usuarios[];
+  ordenhadores: Usuario[];
   errorMessage = '';
 
   constructor(
@@ -36,15 +36,15 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
     ){super(router)}
 
     ngOnInit(): void {
-      this.controleLeiteiro.propriedade = this.propriedadeService.getPropriedadeselecionada();
+      this.controleLeiteiro.propriedade = this.propriedadeService.getPropriedadeelecionada();
       this.usuarioService.list().subscribe(users => this.ordenhadores = users);
       let params = new HttpParams();
-      params = params.set('idpropriedade', this.propriedadeService.getPropriedadeselecionada().id.toString());
-      this.animalService.listarEmLactacoes(params).subscribe( animais => {
+      params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
+      this.animalService.listarEmLactacao(params).subscribe( animais => {
         animais.forEach(element => {
           this.producaoService.findLactacao(element.id.toString()).subscribe(lact =>{
             let producaoLeite: ProducaoLeite = new ProducaoLeite();
-            let parto: Partos = new Partos();
+            let parto: Parto = new Parto();
             parto.vaca = element;
             producaoLeite.lactacao = lact;
             producaoLeite.lactacao.parto = parto;
@@ -60,7 +60,7 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
     adicionarVaca(){
       this.producaoService.findLactacao(this.vaca.id.toString()).subscribe(lact => {
         let producaoLeite: ProducaoLeite = new ProducaoLeite();
-        let parto: Partos = new Partos();
+        let parto: Parto = new Parto();
         parto.vaca = this.vaca;
         producaoLeite.lactacao = lact;
         producaoLeite.lactacao.parto = parto;

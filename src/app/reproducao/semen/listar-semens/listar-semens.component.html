@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>Lista de Sêmens disponíveis</h2>
+    <div class="panel-body">
+        <table class="table table-striped" *ngIf="(semens$ | async) as semens; else loading">
+            <thead>
+                <tr>
+                    <td>Touro Doador</td>
+                    <td>Data de entrada</td>
+                    <td>Preço</td>
+                    <td>Quantidade</td>
+                    <td>Código da palheta</td>
+                    <td><a routerLink="novo" class="btn btn-success">Adicionar Semen</a></td>
+                </tr>
+                <tr *ngIf="semens.length == 0">
+                    <td colspan="6">
+                        <span>Não há nenhum sêmen em estoque. </span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let semen of semens">
+                    <td>{{semen.animalDoador.animal.nome}}</td>
+                    <td>{{semen.dataEntrada| date: 'dd/MM/yyyy' }}</td>
+                    <td>{{semen.precoUnitario | currency }}</td>
+                    <td>{{semen.quantidade}}</td>
+                    <td>{{semen.codPalheta}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #loading>
+            <span>Carregando tabela de sêmens...</span>
+        </ng-template>
+    </div>
+</div>

@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Animais } from 'src/app/model/animais';
-import { Racas } from 'src/app/model/racas';
+import { Animal } from 'src/app/model/animal';
+import { Raca } from 'src/app/model/raca';
 import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { AnimalService } from 'src/app/animal/animal.service';
 })
 export class DetalhesAnimalComponent implements OnInit {
 
-  animal: Animais;
+  animal: Animal;
   id: number;
   mensagemErro: any;
 

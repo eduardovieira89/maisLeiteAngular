@@ -7,16 +7,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PropriedadeModule } from './../propriedade/propriedade.module';
 import { AnimalRoutingModule } from './animal-routing-module';
 import { RacaComponent } from './raca/raca.component';
-import { ListarAnimalComponent } from './listar-animal/listar-animal.component';
+import { ListarAnimalComponent } from './listar-animais/listar-animal.component';
 import { CriarAnimalComponent } from './criar-animal/criar-animal.component';
 import { AtualizarAnimalComponent } from './atualizar-animal/atualizar-animal.component';
 import { DetalhesAnimalComponent } from './detalhes-animal/detalhes-animal.component';
 import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
 import { SharedModule } from '../shared/shared.module';
 import { ProducaoModule } from '../producao/producao.module';
-import { LactacoesModule } from "../producao/lactacoes/lactacoes.module";
-import { CriarLotesComponent } from './lotes/criar-lotes/criar-lotes.component';
-import { LotesModule } from './lotes/lotes.module';
+import { LactacaoModule } from "../producao/lactacao/lactacao.module";
+import { CriarLoteComponent } from './lote/criar-lote/criar-lote.component';
+import { LoteModule } from './lote/lote.module';
 
 
 
@@ -40,8 +40,8 @@ import { LotesModule } from './lotes/lotes.module';
         AnimalRoutingModule,
         PropriedadeModule,
         SharedModule,
-        LactacoesModule,
-        LotesModule
+        LactacaoModule,
+        LoteModule
     ]
 })
 export class AnimalModule { }

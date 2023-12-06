@@ -1,4 +1,4 @@
-import { Coberturas } from 'src/app/model/coberturas';
+import { Cobertura } from 'src/app/model/cobertura';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CardCoberturaComponent {
 
-  @Input() cobertura:Coberturas;
+  @Input() cobertura:Cobertura;
   constructor(){  }
 
 }

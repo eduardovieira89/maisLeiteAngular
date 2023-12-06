@@ -1,0 +1,193 @@
+<h2>Registrar Parto</h2>
+<div  class="container">
+    <form name="form"  (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" class="needs-validation d-grid gap-1" [ngClass]="aplicaErroForm(f)" novalidate>
+        <div class="form-group row"> 
+            <div class="col-sm-2" style="min-width: 150px;">
+                <label for="datap">Data do parto: *</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="datap" name="datap" required [(ngModel)]="parto.data">
+                    <div class="invalid-feedback">
+                        Data do parto é um campo obrigatório.
+                    </div> 
+                </div>
+            </div>
+            <div class="col-sm-3" style="min-width: 140px;">
+                <label for="tipoParto">Tipo do parto: *</label>
+                <select class="form-select" id="tipoParto" name="tipoParto" required [(ngModel)]="parto.tiposParto">
+                    <option *ngFor="let tipo of tiposParto" [ngValue]="tipo">{{tipo.descricao}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Tipo de parto é um campo obrigatório.
+                </div> 
+            </div>
+            <div class="col-sm-7">
+                <label for="vaca">Vaca: *</label>
+                <select class="form-select" id="vaca"  name="vaca" (change)="buscaCoberturaAndDiagnostico()" required [(ngModel)]="parto.vaca">
+                    <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Você deve informar qual vaca será realizado o parto.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <app-card-cobertura [cobertura]="cobertura"></app-card-cobertura>
+            </div>
+            <div class="col-sm-6">
+                <app-card-diagnostico-prenhez [diagnosticoPrenhez]="diagnosticoPrenhez"></app-card-diagnostico-prenhez>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-start"> 
+            <div class="col-sm-3">
+                <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
+                <input type="range" class="form-range" min="1" max="5" step="0.5" id="escoreCorporal" name="escoreCorporal" [(ngModel)]="parto.escoreCorporal">
+            </div>
+            <div class="col-sm-2 d-flex align-items-end">
+                <label class="form-label" >  {{parto.escoreCorporal}}</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label for="obs">Observações:</label>
+                <textarea class="form-control" rows="5" id="obs" name="obs" [(ngModel)]="parto.observacao"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row pb-3">
+            <div class="col-sm-12">
+                <label for="qtdeCria">Quantidade de Cria: *</label>
+                <div class="input-group mb-6">
+                    <i class="input-group-text" (click)="diminuiCria()"class="btn bi-dash-circle" style="font-size: 2rem;"></i>
+                    <div class="position-relative p-3">
+                        <h3 class="position-absolute top-50 start-50 translate-middle">{{parto.qtdeCrias}}</h3>
+                    </div>
+                    <i class="input-group-text" (click)="aumentaCria()"class="btn bi-plus-circle" style="font-size: 2rem;"></i>
+                </div>
+                <div class="text-danger" *ngIf="(parto.qtdeCrias < 1 || parto.qtdeCrias > 3) && f.submitted == true">
+                    Quantidade de crias deve estar entre 01 e 03.
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row justify-content-start">
+            <div class="col-sm-4" *ngIf="parto.qtdeCrias >= 1">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">Cria 1</h5>
+                    <label for="genero3">Sexo *: </label>
+                    <div class="form-check form-check-inline ms-2">
+                        <input type="radio" class="form-check-input" id="macho1" name="genero1" required [(ngModel)]="parto.crias[0].sexo" value="m">
+                        <label class="form-check-label" for="macho1">Macho</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="femea1" name="genero1" required [(ngModel)]="parto.crias[0].sexo" value="f">
+                        <label class="form-check-label" for="femea1">Fêmea</label>
+                        <!--<div class="invalid-feedback">Sexo é um campo obrigatótio</div>-->
+                    </div>
+                    
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="peso1">Peso:</span>
+                        <input type="number" class="form-control" name="peso1" aria-label="Peso" aria-describedby="peso1" [(ngModel)]="parto.crias[0].peso">
+                        <span class="input-group-text">KG</span>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="abortada1" id="checkbabortado1" [(ngModel)]="parto.crias[0].abortada"> 
+                        <label class="form-check-label" for="checkbabortado1">
+                            Abortada
+                        </label>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4" *ngIf="parto.qtdeCrias >= 2">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">Cria 2</h5>
+                    <label for="genero3">Sexo *: </label>
+                    <div class="form-check form-check-inline ms-2">
+                        <input type="radio" class="form-check-input" id="macho2" name="genero2" required [(ngModel)]="parto.crias[1].sexo" value="m">
+                        <label class="form-check-label" for="macho2">Macho</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="femea2" name="genero2" required [(ngModel)]="parto.crias[1].sexo" value="f">
+                        <label class="form-check-label" for="femea2">Fêmea</label>
+                        <!--<div class="invalid-feedback">Sexo é um campo obrigatótio</div>-->
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="peso2">Peso:</span>
+                        <input type="number" class="form-control" name="peso2" aria-label="Peso" aria-describedby="peso2" [(ngModel)]="parto.crias[1].peso">
+                        <span class="input-group-text">KG</span>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="abortada2" id="checkbabortado2" [(ngModel)]="parto.crias[1].abortada"> 
+                        <label class="form-check-label" for="checkbabortado2">
+                            Abortada
+                        </label>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4" *ngIf="parto.qtdeCrias >= 3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">Cria 3</h5>
+                    <label for="genero3">Sexo *: </label>
+                    <div class="form-check form-check-inline ms-2">
+                        <input type="radio" class="form-check-input" id="macho3" name="genero3" required [(ngModel)]="parto.crias[2].sexo" value="m">
+                        <label class="form-check-label" for="macho3">Macho</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="femea3" name="genero3" required [(ngModel)]="parto.crias[2].sexo" value="f">
+                        <label class="form-check-label" for="femea3">Fêmea</label>
+                        <!--<div class="invalid-feedback">Sexo é um campo obrigatótio</div>-->
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="peso3">Peso:</span>
+                        <input type="number" class="form-control" name="peso3" aria-label="Peso" aria-describedby="peso3" [(ngModel)]="parto.crias[2].peso">
+                        <span class="input-group-text">KG</span>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="abortada3" id="checkbabortado3" [(ngModel)]="parto.crias[2].abortada"> 
+                        <label class="form-check-label" for="checkbabortado3">
+                            Abortada
+                        </label>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row pt-4 ">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col-sm-12">
+                <div class="alert alert-success" *ngIf="isSuccessful">
+                    <h4>Parto registrado com sucesso!</h4>
+                </div>
+                <div *ngIf="errorMessage!=''">
+                    <div class="alert alert-warning">
+                        Falha ao cadastrar parto!<br />{{ errorMessage }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+ <app-form-debug [form]="f"></app-form-debug>

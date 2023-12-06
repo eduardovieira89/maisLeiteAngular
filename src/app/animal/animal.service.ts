@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Animais } from '../model/animais';
+import { Animal } from '../model/animal';
 import { environment } from '../../environments/environment';
 import { CrudService } from '../shared/crud-service';
-import { Racas } from '../model/racas';
-import { MotivosBaixa } from '../model/motivosBaixa';
+import { Raca } from '../model/raca';
+import { MotivoBaixa } from '../model/motivoBaixa';
 import { OrigemAnimal } from '../model/origemAnimal';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AnimalService extends CrudService<Animais>{
+export class AnimalService extends CrudService<Animal>{
 
   private readonly ANIMAL_PATH = `${environment.API}animal`;
   private readonly RACA_PATH = `${environment.API}raca`;
@@ -25,30 +25,30 @@ export class AnimalService extends CrudService<Animais>{
   }
 
   listByPropriedade(params: HttpParams){
-    return this.http.get<Animais[]>(this.ANIMAL_PATH, { params });
+    return this.http.get<Animal[]>(this.ANIMAL_PATH, { params });
   }
 
-  public listarPorGenero(params:HttpParams): Observable<Animais[]>{
-    return this.http.get<Animais[]>(this.ANIMAL_PATH + "/genero", { params });
+  public listarPorGenero(params:HttpParams): Observable<Animal[]>{
+    return this.http.get<Animal[]>(this.ANIMAL_PATH + "/genero", { params });
   }
 
-  public listarEmLactacoes(params: HttpParams){
-    return this.http.get<Animais[]>(`${this.ANIMAL_PATH}/emlactacao`, {params});
+  public listarEmLactacao(params: HttpParams){
+    return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/emlactacao`, {params});
   }
 
-  getRacas(): Observable<Racas[]>{
-    return this.http.get<Racas[]>(this.RACA_PATH);
+  getRaca(): Observable<Raca[]>{
+    return this.http.get<Raca[]>(this.RACA_PATH);
   }
 
-  getMotivosBaixa(): Observable<MotivosBaixa[]>{
-    return this.http.get<MotivosBaixa[]>(this.MOTIVOS_BAIXA_PATH);
+  getMotivoBaixa(): Observable<MotivoBaixa[]>{
+    return this.http.get<MotivoBaixa[]>(this.MOTIVOS_BAIXA_PATH);
   }
 
   getOrigemAnimal(): Observable<OrigemAnimal[]>{
     return this.http.get<OrigemAnimal[]>(this.ORIGEM_ANIMAL_PATH);
   }
 
-  baixaAnimal(id: number, motivo: MotivosBaixa){
+  baixaAnimal(id: number, motivo: MotivoBaixa){
     return this.http.put(`${this.BAIXA_ANIMAL_PATH}/${id}`, motivo);
   }
 }

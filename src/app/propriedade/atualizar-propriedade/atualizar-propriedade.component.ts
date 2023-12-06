@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Propriedades } from 'src/app/model/propriedades';
+import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 })
 export class AtualizarPropriedadeComponent implements OnInit {
 
-  propriedade: Propriedades = new Propriedades();
+  propriedade: Propriedade = new Propriedade();
   mensagemErro: any;
 
   constructor(private propriedadeService: PropriedadeService,
@@ -19,7 +19,7 @@ export class AtualizarPropriedadeComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
-    this.propriedade = new Propriedades();
+    this.propriedade = new Propriedade();
     let id = this.route.snapshot.params['id'];
     this.propriedadeService.loadByID(id).subscribe(
       data=>{
@@ -31,7 +31,7 @@ export class AtualizarPropriedadeComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.propriedadeService.save(this.propriedade).subscribe(
       data=>{
-        this.propriedade = new Propriedades();
+        this.propriedade = new Propriedade();
         this.voltar();
       },error => this.mensagemErro = error.error.message
     );

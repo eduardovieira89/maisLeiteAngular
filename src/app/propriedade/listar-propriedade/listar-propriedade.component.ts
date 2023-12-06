@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Propriedades } from 'src/app/model/propriedades';
+import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from '../propriedade.service';
 
 @Component({
@@ -12,17 +12,17 @@ import { PropriedadeService } from '../propriedade.service';
 })
 export class ListarPropriedadeComponent implements OnInit {
 
-  propriedades$: Observable<Propriedades[]>;
+  propriedades$: Observable<Propriedade[]>;
 
   constructor(private propriedadeService: PropriedadeService,
               private router: Router,
               ) { }
 
   ngOnInit(): void {
-    this.listarPropriedades();
+    this.listarPropriedade();
   }
 
-  listarPropriedades(): void {
+  listarPropriedade(): void {
     this.propriedades$ = this.propriedadeService.list();
           
   }
@@ -32,7 +32,7 @@ export class ListarPropriedadeComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.listarPropriedades();
+          this.listarPropriedade();
         },
         error => console.log(error)
       );
@@ -46,7 +46,7 @@ export class ListarPropriedadeComponent implements OnInit {
     this.router.navigate(['novapropriedade']);
   }
 
-  selecionarPropriedade(propriedade: Propriedades){
+  selecionarPropriedade(propriedade: Propriedade){
     this.propriedadeService.setPropriedadeSelecionada(propriedade);
     this.router.navigate(['home']);
   }

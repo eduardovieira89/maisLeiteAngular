@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="panel-body">
+        <h2>Lista de Cobertura</h2>
+        <table class="table table-striped" *ngIf="(coberturas$ | async) as coberturas; else loading">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Vaca</th>
+                    <th>Tipo de cobertura</th>
+                    <th>Observações</th>
+                    <th><a routerLink="nova" class="btn btn-success">Registrar cobertura</a></th>
+                </tr>
+                <tr *ngIf="coberturas.length == 0">
+                    <td colspan="6">
+                        <span>Não há coberturas em andamento na propriedade <b>{{ propriedade.nome}}</b></span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cobertura of coberturas">
+                    <td>{{cobertura.data | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{cobertura.vaca.nome}}</td>
+                    <td><label>{{cobertura.tipoCobertura.descricao}}</label></td>
+                    <td>{{cobertura.observacao}}</td>
+                    <td>
+                        <a [routerLink]="[cobertura.id]" class="btn btn-info" > Detalhes</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #loading>
+            <span>Carregando tabela de coberturas...</span>
+        </ng-template>
+    </div>
+</div>

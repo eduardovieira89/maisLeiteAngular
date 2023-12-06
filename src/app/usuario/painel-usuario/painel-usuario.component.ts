@@ -1,4 +1,4 @@
-import { Usuarios } from './../../model/usuarios';
+import { Usuario } from '../../model/usuario';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
@@ -15,7 +15,7 @@ export class PainelUsuarioComponent implements OnInit {
 
   currentProdutor: any;
   isRegistraFuncionario: boolean = false;
-  funcionarios: Usuarios[];
+  funcionarios: Usuario[];
 
   constructor(
     private token: TokenstorageService,

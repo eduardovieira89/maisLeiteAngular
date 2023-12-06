@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
-import { LactacoesModule } from './lactacoes/lactacoes.module';
+import { LactacaoModule } from './lactacao/lactacao.module';
 import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
 
 
@@ -20,7 +20,7 @@ import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
     authInterceptorProviders
 ],
   exports: [
-    LactacoesModule
+    LactacaoModule
   ]
 })
 export class ProducaoModule { }

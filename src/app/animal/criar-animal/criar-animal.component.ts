@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Animais } from 'src/app/model/animais';
+import { Animal } from 'src/app/model/animal';
 import { AnimalService } from 'src/app/animal/animal.service';
-import { Racas } from 'src/app/model/racas';
+import { Raca } from 'src/app/model/raca';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { HttpParams } from '@angular/common/http';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { OrigemAnimal } from 'src/app/model/origemAnimal';
-import { Lotes } from 'src/app/model/Lotes';
-import { LotesService } from '../lotes/lotes.service';
+import { Lote } from 'src/app/model/lote';
+import { LoteService } from '../lote/lote.service';
 
 @Component({
   selector: 'app-criar-animal',
@@ -22,27 +22,27 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
     private animalService: AnimalService,
     protected router: Router,
     private propriedadeService: PropriedadeService,
-    private loteService: LotesService
+    private loteService: LoteService
     ) { super(router) }
 
-  animal: Animais = new Animais();
-  racas: Racas[];
+  animal: Animal = new Animal();
+  racas: Raca[];
   origemAnimal: OrigemAnimal[];
-  pais: Animais[];
-  maes: Animais[];
-  lotes: Lotes[];
+  pais: Animal[];
+  maes: Animal[];
+  lotes: Lote[];
 
 
 
   ngOnInit(): void {
-    let idpropriedade = this.propriedadeService.getPropriedadeselecionada().id.toString()
+    let idpropriedade = this.propriedadeService.getPropriedadeelecionada().id.toString()
     let params = new HttpParams();
     params = params.set('idpropriedade', idpropriedade);
     params = params.set('genero', 'm');
     
-    this.animalService.getRacas().subscribe(data => this.racas = data);
+    this.animalService.getRaca().subscribe(data => this.racas = data);
     this.animalService.getOrigemAnimal().subscribe(data => this.origemAnimal = data);
-    this.loteService.listLotes(idpropriedade).subscribe(data => this.lotes = data);
+    this.loteService.listLote(idpropriedade).subscribe(data => this.lotes = data);
     this.animalService.listarPorGenero(params).subscribe(pais => this.pais = pais);
     params.delete('genero');
     params = params.set('genero', 'f');
@@ -50,7 +50,7 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   }
 
   submit(formulario) {
-      this.animal.propriedade = this.propriedadeService.getPropriedadeselecionada();
+      this.animal.propriedade = this.propriedadeService.getPropriedadeelecionada();
       this.animal.ativo = true;
       this.animalService.save(this.animal).subscribe(
         data => {

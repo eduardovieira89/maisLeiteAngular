@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { VacinaRoutingModule } from './vacina-routing.module';
 import { ListarVacinasComponent } from './listar-vacinas/listar-vacinas.component';
-import { CriarVacinasComponent } from './criar-vacinas/criar-vacinas.component';
+import { CriarVacinasComponent } from './criar-vacina/criar-vacina.component';
 
 
 @NgModule({

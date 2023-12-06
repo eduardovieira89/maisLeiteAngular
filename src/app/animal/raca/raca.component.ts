@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Racas } from 'src/app/model/racas';
+import { Raca } from 'src/app/model/raca';
 import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
@@ -9,16 +9,16 @@ import { AnimalService } from 'src/app/animal/animal.service';
 })
 export class RacaComponent implements OnInit {
 
-  racas: Racas[];
+  racas: Raca[];
 
   constructor(private animalService: AnimalService) { }
 
   ngOnInit(): void {
-    this.getRacas();
+    this.getRaca();
   }
 
-  getRacas(): void {
-    this.animalService.getRacas()
+  getRaca(): void {
+    this.animalService.getRaca()
         .subscribe(racas => {this.racas = racas;
                              console.log(racas[0].id_raca);});
     

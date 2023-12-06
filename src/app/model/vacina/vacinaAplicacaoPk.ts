@@ -1,7 +1,7 @@
 import { Vacina } from './vacina';
-import { Animais } from '../animais';
+import { Animal } from '../animal';
 export class VacinaAplicacaoPk{
-    animal: Animais;
+    animal: Animal;
     vacina: Vacina;
     dose: number;
 }

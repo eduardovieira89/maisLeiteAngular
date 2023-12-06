@@ -2,7 +2,7 @@ import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
 import { CrudService } from './../shared/crud-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Propriedades } from '../model/propriedades';
+import { Propriedade } from '../model/propriedade';
 import { environment } from '../../environments/environment';
 
 const PROPRIEDADE_KEY = 'propriedade';
@@ -10,7 +10,7 @@ const PROPRIEDADE_KEY = 'propriedade';
 @Injectable({
   providedIn: 'root'
 })
-export class PropriedadeService extends CrudService<Propriedades> {
+export class PropriedadeService extends CrudService<Propriedade> {
 
   static selecionouPropriedade = new EventEmitter();
 
@@ -25,7 +25,7 @@ export class PropriedadeService extends CrudService<Propriedades> {
     PropriedadeService.selecionouPropriedade.emit();
   }
 
-  public getPropriedadeselecionada() {
+  public getPropriedadeelecionada() {
     return JSON.parse(sessionStorage.getItem(PROPRIEDADE_KEY) as string);
   }
 

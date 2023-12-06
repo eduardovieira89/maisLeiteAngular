@@ -1,10 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Animais } from 'src/app/model/animais';
+import { Animal } from 'src/app/model/animal';
 import { ProducaoLeite } from 'src/app/model/producaoLeite';
 import { CrudService } from 'src/app/shared/crud-service';
 import { environment } from 'src/environments/environment';
-import { LactacoesService } from '../lactacoes/lactacoes.service';
+import { LactacaoService } from '../lactacao/lactacao.service';
 import { ControleLeiteiro } from 'src/app/model/controleLeiteiro';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ProducaoLeiteService extends CrudService<ProducaoLeite> {
 
   constructor(
     protected http: HttpClient,
-    private lactacaoService: LactacoesService
+    private lactacaoService: LactacaoService
     ) { 
     super(http, `${environment.API}producaoleite` )
   }

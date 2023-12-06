@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Lactacoes } from 'src/app/model/lactacoes';
+import { Lactacao } from 'src/app/model/lactacao';
 
 @Component({
   selector: 'app-card-lactacao',
@@ -8,6 +8,6 @@ import { Lactacoes } from 'src/app/model/lactacoes';
 })
 export class CardLactacaoComponent {
 
-  @Input() lactacao: Lactacoes;
+  @Input() lactacao: Lactacao;
 
 }
