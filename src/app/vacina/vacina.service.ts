@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CrudService } from '../shared/crud-service';
-import { Vacina } from '../model/vacina/vacina';
+import { Vacina } from '../model/vacina';
 import { environment } from 'src/environments/environment';
-import { VacinaAplicacao } from '../model/vacina/vacinaAplicacao';
+import { VacinaAplicacao } from '../model/vacinaAplicacao';
 
 
 

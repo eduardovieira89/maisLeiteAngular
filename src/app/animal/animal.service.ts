@@ -24,8 +24,11 @@ export class AnimalService extends CrudService<Animal>{
     super(http, `${environment.API}animal`);
   }
 
-  listByPropriedade(params: HttpParams){
-    return this.http.get<Animal[]>(this.ANIMAL_PATH, { params });
+  listByPropriedade(idPropriedade: string){
+    idPropriedade = idPropriedade.trim();
+    const options = idPropriedade ?
+    {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
+    return this.http.get<Animal[]>(this.ANIMAL_PATH, options);
   }
 
   public listarPorGenero(params:HttpParams): Observable<Animal[]>{

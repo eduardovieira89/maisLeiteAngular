@@ -53,7 +53,6 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
         });
       }
       );
-      console.log(JSON.stringify(this.controleLeiteiro));
     }
 
     /** 

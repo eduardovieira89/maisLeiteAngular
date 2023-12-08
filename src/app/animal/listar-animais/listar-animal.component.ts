@@ -40,9 +40,9 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
   onRefresh() {
     this.propriedade = this.propriedadeService.getPropriedadeelecionada();
     if(this.propriedade){
-      let params = new HttpParams();
-      params = params.set('idpropriedade', this.propriedade.id.toString() )
-      this.animais$ = this.animalService.listByPropriedade(params);
+      //let params = new HttpParams();
+      //params = params.set('idpropriedade', this.propriedade.id.toString() )
+      this.animais$ = this.animalService.listByPropriedade(this.propriedade.id.toString());
       this.animalService.getMotivoBaixa().subscribe(
         data => {
           this.motivosBaixa = data;

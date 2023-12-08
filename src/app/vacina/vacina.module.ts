@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VacinaRoutingModule } from './vacina-routing.module';
 import { ListarVacinasComponent } from './listar-vacinas/listar-vacinas.component';
 import { CriarVacinasComponent } from './criar-vacina/criar-vacina.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,8 +13,9 @@ import { CriarVacinasComponent } from './criar-vacina/criar-vacina.component';
     CriarVacinasComponent
   ],
   imports: [
+    VacinaRoutingModule,
     CommonModule,
-    VacinaRoutingModule
+    FormsModule
   ]
 })
 export class VacinaModule { }

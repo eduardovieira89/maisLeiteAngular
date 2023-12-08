@@ -1,1 +1,50 @@
-<p>criar-vacinas works!</p>
+<h2>Aplicação de Vacina</h2>
+<div class="container">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+        <div class="form-group row">
+            <div class="col-sm-7">
+                <label for="vacina">Vacina: *</label>
+                <select class="form-select" id="vacina"  name="vacina" required [(ngModel)]="aplicVacina.vacina">
+                    <option *ngFor="let vacina of vacinas" [ngValue]="vacina">{{vacina.nome}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Você deve informar uma vacina.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-7">
+                <label for="animal">Animal: *</label>
+                <select class="form-select" id="animal"  name="animal" required [(ngModel)]="aplicVacina.animal">
+                    <option *ngFor="let animal of animais" [ngValue]="animal">Brinco: {{animal.brinco}} - {{animal.nome}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Você deve informar o animal a ser vacinado.
+                </div>
+            </div>
+        </div>
+        <div class=" form-group row">
+            <div class="col-sm-6">
+                <label for="aplicador">Aplicador:</label>
+                <select class="form-select" id="aplicador"  name="aplicador" required [(ngModel)]="aplicVacina.aplicador">
+                    <option *ngFor="let aplicador of aplicadores" [ngValue]="aplicador">{{aplicador.nome}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    Você deve informar quem irá aplicar a vacina.
+                </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-success border">Salvar</button>
+                <button (click)="irParaListagem('animal/lote')" class="btn btn-info border">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="errorMessage!=''">
+    <div class="alert alert-warning">
+        Falha ao registrar vacina!<br />{{ errorMessage }}
+    </div>
+</div>
