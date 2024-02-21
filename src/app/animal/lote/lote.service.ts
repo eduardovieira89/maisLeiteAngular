@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Animal } from 'src/app/model/animal';
 import { Lote } from 'src/app/model/lote';
 import { CrudService } from 'src/app/shared/crud-service';
 import { environment } from 'src/environments/environment';
@@ -15,7 +16,7 @@ export class LoteService extends CrudService<Lote> {
     protected http: HttpClient,
   ) {super(http, `${environment.API}lote`) }
 
-  listLote(idPropriedade: string){
+  listarLote(idPropriedade: string){
     idPropriedade = idPropriedade.trim();
     const options = idPropriedade ?
     { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};

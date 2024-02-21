@@ -20,7 +20,7 @@ export class ListarLoteComponent implements OnInit{
 
   ngOnInit(): void {
     let idPropriedade = this.propriedadeService.getPropriedadeelecionada().id.toString();
-    this.lotes$ = this.loteService.listLote(idPropriedade);
+    this.lotes$ = this.loteService.listarLote(idPropriedade);
     
   }
 

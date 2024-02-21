@@ -49,7 +49,7 @@ export class AtualizarAnimalComponent implements OnInit {
     params = params.set('genero', 'm');
 
     this.animalService.getRaca().subscribe(data => this.racas = data);
-    this.loteService.listLote(this.propriedadeService.getPropriedadeelecionada().id.toString()).subscribe(
+    this.loteService.listarLote(this.propriedadeService.getPropriedadeelecionada().id.toString()).subscribe(
       data => this.lotes = data);
 
     this.animalService.listarPorGenero(params).subscribe(pais => this.pais = pais);

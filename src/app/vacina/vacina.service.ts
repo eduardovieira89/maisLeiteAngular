@@ -11,12 +11,16 @@ import { VacinaAplicacao } from '../model/vacinaAplicacao';
 @Injectable({
   providedIn: 'root'
 })
-export class VacinaService extends CrudService<Vacina> {
+export class VacinaService extends CrudService<VacinaAplicacao> {
 
-  private readonly VACINA_PATH = `${environment.API}vacina/aplicar/`;
+  private readonly VACINA_PATH = `${environment.API}vacina`;
 
   constructor(protected http: HttpClient) {
     super(http, `${environment.API}vacina` );
+  }
+
+  listVacinas(){
+    return this.http.get<Vacina[]>(`${this.VACINA_PATH}/produtos`);
   }
 
   listarPorAnimal(id: number){

@@ -39,6 +39,15 @@ export class AnimalService extends CrudService<Animal>{
     return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/emlactacao`, {params});
   }
 
+  public listarPorLote(idLote: string){
+    idLote = idLote.trim();
+    const options = idLote ?
+    {params: new HttpParams().set('idlote', idLote)} : {};
+
+    return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/lote`, options);
+
+  }
+
   getRaca(): Observable<Raca[]>{
     return this.http.get<Raca[]>(this.RACA_PATH);
   }

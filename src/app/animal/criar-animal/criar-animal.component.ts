@@ -42,7 +42,7 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
     
     this.animalService.getRaca().subscribe(data => this.racas = data);
     this.animalService.getOrigemAnimal().subscribe(data => this.origemAnimal = data);
-    this.loteService.listLote(idpropriedade).subscribe(data => this.lotes = data);
+    this.loteService.listarLote(idpropriedade).subscribe(data => this.lotes = data);
     this.animalService.listarPorGenero(params).subscribe(pais => this.pais = pais);
     params.delete('genero');
     params = params.set('genero', 'f');

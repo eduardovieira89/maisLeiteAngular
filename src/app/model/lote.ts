@@ -1,7 +1,7 @@
 import { Propriedade } from "./propriedade";
 
 export class Lote {
-    idLote: number;
+    id: number;
     descricao: string;
     propriedade: Propriedade;
 }

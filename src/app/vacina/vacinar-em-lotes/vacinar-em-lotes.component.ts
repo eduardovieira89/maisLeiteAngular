@@ -1,8 +1,9 @@
-import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimalService } from 'src/app/animal/animal.service';
+import { LoteService } from 'src/app/animal/lote/lote.service';
 import { Animal } from 'src/app/model/animal';
+import { Lote } from 'src/app/model/lote';
 import { Usuario } from 'src/app/model/usuario';
 import { Vacina } from 'src/app/model/vacina';
 import { VacinaAplicacao } from 'src/app/model/vacinaAplicacao';
@@ -12,18 +13,22 @@ import { UserService } from 'src/app/usuario/user.service';
 import { VacinaService } from '../vacina.service';
 
 @Component({
-  selector: 'app-criar-vacina',
-  templateUrl: './criar-vacina.component.html',
-  styleUrls: ['./criar-vacina.component.css']
+  selector: 'app-vacinar-em-lotes',
+  templateUrl: './vacinar-em-lotes.component.html',
+  styleUrls: ['./vacinar-em-lotes.component.css']
 })
-export class CriarVacinasComponent extends BaseFormComponent {
+export class VacinarEmLotesComponent extends BaseFormComponent {
 
+  aplicVacinas!: VacinaAplicacao[];
   aplicVacina: VacinaAplicacao = new VacinaAplicacao();
+  lotes:Lote[];
+  loteSelecionado!:Lote;
   vacinas!: Vacina[];
   animais!: Animal[];
   aplicadores!: Usuario[];
   constructor(
     protected router: Router,
+    private loteService: LoteService,
     private usuarioService: UserService,
     private propriedadeService: PropriedadeService,
     private animalService: AnimalService,
@@ -32,24 +37,25 @@ export class CriarVacinasComponent extends BaseFormComponent {
   ){super(router)  }
 
   ngOnInit(): void {
-    this.usuarioService.list().subscribe(users => this.aplicadores = users);
+    this.loteService.listarLote(this.propriedadeService.getPropriedadeelecionada().id.toString())
+      .subscribe(l => this.lotes = l);
+    this.usuarioService.list()
+      .subscribe(users => this.aplicadores = users);
     this.animalService.listByPropriedade(this.propriedadeService.getPropriedadeelecionada().id.toString())
       .subscribe(anim => this.animais = anim);
-    this.vacinaService.listVacinas().subscribe(v => this.vacinas = v);
+    this.vacinaService.listVacinas()
+      .subscribe(v => this.vacinas = v);
 
   }
 
   submit(formulario: any) {
-    this.vacinaService.save(this.aplicVacina).subscribe(
-      data => {
-        this.isSuccessful = true;
-        this.resetar(formulario);
-      },
-      err => {
-        this.errorMessage = err.error.message();
-        this.isSuccessful = false;
-      }
-    )
+    
   }
 
+  buscaAnimaisDoLoteSelecionado(){
+    this.animais = [];
+    this.animalService.listarPorLote(this.loteSelecionado.id.toString())
+      .subscribe(anim => this.animais = anim);
+
+  }
 }
