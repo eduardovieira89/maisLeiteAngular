@@ -1,6 +1,5 @@
 <div class="container">
     <h2>Lista de Sêmens disponíveis</h2>
-    <div class="panel-body">
         <table class="table table-striped" *ngIf="(semens$ | async) as semens; else loading">
             <thead>
                 <tr>
@@ -30,5 +29,4 @@
         <ng-template #loading>
             <span>Carregando tabela de sêmens...</span>
         </ng-template>
-    </div>
 </div>

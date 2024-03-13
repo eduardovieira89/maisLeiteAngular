@@ -1,7 +1,5 @@
 <div class="container">
-    <div class="panel-heading">
         <h2>Lista de Touros Doadores</h2>
-        <div class="panel-body">
             <table class="table table-striped" *ngIf="(animaisDoadores$ | async) as doadores; else loading">
                 <thead>
                     <tr>
@@ -40,6 +38,4 @@
             <div *ngIf="isDeleteError" class="alert alert-warning">
                     Falha ao deletar animal!<br />{{ errorMessage }}
             </div>
-        </div>
-    </div>
 </div>

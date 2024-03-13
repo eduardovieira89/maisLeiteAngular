@@ -6,11 +6,11 @@ import { Animal } from 'src/app/model/animal';
 import { Lote } from 'src/app/model/lote';
 import { Usuario } from 'src/app/model/usuario';
 import { Vacina } from 'src/app/model/vacina';
-import { VacinaAplicacao } from 'src/app/model/vacinaAplicacao';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { UserService } from 'src/app/usuario/user.service';
 import { VacinaService } from '../vacina.service';
+import { VacinaAplicacaoEmLotesDTO } from 'src/app/model/VacinaAplicacaoEmLotesDTO';
 
 @Component({
   selector: 'app-vacinar-em-lotes',
@@ -19,13 +19,13 @@ import { VacinaService } from '../vacina.service';
 })
 export class VacinarEmLotesComponent extends BaseFormComponent {
 
-  aplicVacinas!: VacinaAplicacao[];
-  aplicVacina: VacinaAplicacao = new VacinaAplicacao();
+  aplicVacina: VacinaAplicacaoEmLotesDTO = new VacinaAplicacaoEmLotesDTO();
   lotes:Lote[];
   loteSelecionado!:Lote;
   vacinas!: Vacina[];
   animais!: Animal[];
   aplicadores!: Usuario[];
+
   constructor(
     protected router: Router,
     private loteService: LoteService,
@@ -49,7 +49,11 @@ export class VacinarEmLotesComponent extends BaseFormComponent {
   }
 
   submit(formulario: any) {
-    
+    this.vacinaService.salvarAplicacaoDeVacinaEmLotes(this.aplicVacina)
+      .subscribe(data => {
+        this.resetar(formulario);
+        this.isSuccessful = true;
+      })
   }
 
   buscaAnimaisDoLoteSelecionado(){

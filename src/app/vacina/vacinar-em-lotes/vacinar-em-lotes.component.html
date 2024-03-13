@@ -43,11 +43,11 @@
         <div class="form-group row">
             <div class="col-sm-6">
                 <label for="animal">Animal: *</label>
-                <select class="form-select" multiple id="animal"  name="animal" required [(ngModel)]="aplicVacina.animal">
+                <select class="form-select" multiple id="animal"  name="animal" required [(ngModel)]="aplicVacina.loteAnimais">
                     <option *ngFor="let animal of animais" [ngValue]="animal">Brinco: {{animal.brinco}} - {{animal.nome}}</option>
                 </select>
                 <div class="invalid-feedback">
-                    Você deve informar o animal a ser vacinado.
+                    Você deve informar quais animais serão vacinados.
                 </div>
             </div>
             <div class="col-sm-6">
@@ -66,18 +66,18 @@
                 <button (click)="irParaListagem('animal/lote')" class="btn btn-info border">Cancelar</button>
             </div>
         </div>
+        <div class="row p-3">
+            <div class="col-sm-12">
+                <div class="alert alert-success" *ngIf="isSuccessful">
+                    <h4>Vacinas em lotes salvas!!</h4>
+                </div>
+                <div *ngIf="errorMessage!=''">
+                    <div class="alert alert-warning">
+                        Falha ao cadastrar Vacina!<br />{{ errorMessage }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 
-<div class="row p-3">
-    <div class="col-sm-12">
-        <div class="alert alert-success" *ngIf="isSuccessful">
-            <h4>Registro de aplicação de vacina cadastrado com sucesso!</h4>
-        </div>
-        <div *ngIf="errorMessage!=''">
-            <div class="alert alert-warning">
-                Falha ao cadastrar Vacina!<br />{{ errorMessage }}
-            </div>
-        </div>
-    </div>
-</div>

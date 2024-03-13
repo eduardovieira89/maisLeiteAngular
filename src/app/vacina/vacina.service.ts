@@ -4,6 +4,7 @@ import { CrudService } from '../shared/crud-service';
 import { Vacina } from '../model/vacina';
 import { environment } from 'src/environments/environment';
 import { VacinaAplicacao } from '../model/vacinaAplicacao';
+import { VacinaAplicacaoEmLotesDTO } from '../model/VacinaAplicacaoEmLotesDTO';
 
 
 
@@ -29,5 +30,9 @@ export class VacinaService extends CrudService<VacinaAplicacao> {
 
   salvarAplicacao(apVacina: VacinaAplicacao){
     return this.http.post(this.VACINA_PATH, apVacina);
+  }
+  
+  salvarAplicacaoDeVacinaEmLotes(apVacinaDTO: VacinaAplicacaoEmLotesDTO){
+    return this.http.post(`${this.VACINA_PATH}/lote`, apVacinaDTO);
   }
 }

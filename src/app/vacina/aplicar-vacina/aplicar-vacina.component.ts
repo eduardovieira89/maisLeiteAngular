@@ -12,11 +12,11 @@ import { UserService } from 'src/app/usuario/user.service';
 import { VacinaService } from '../vacina.service';
 
 @Component({
-  selector: 'app-criar-vacina',
-  templateUrl: './criar-vacina.component.html',
-  styleUrls: ['./criar-vacina.component.css']
+  selector: 'app-aplicar-vacina',
+  templateUrl: './aplicar-vacina.component.html',
+  styleUrls: ['./aplicar-vacina.component.css']
 })
-export class CriarVacinasComponent extends BaseFormComponent {
+export class AplicarVacinasComponent extends BaseFormComponent {
 
   aplicVacina: VacinaAplicacao = new VacinaAplicacao();
   vacinas!: Vacina[];

@@ -1,5 +1,4 @@
 <div class="container">
-    <div class="panel-body">
         <h2>Lista de Diagnósticos</h2>
         <table class="table table-striped" *ngIf="(diagnosticos$ | async) as diagnosticos; else loading">
             <thead>
@@ -31,5 +30,4 @@
         <ng-template #loading>
             <span>Carregando tabela de diagnósticos...</span>
         </ng-template>
-    </div>
 </div>

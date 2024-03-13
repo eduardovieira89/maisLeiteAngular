@@ -1,8 +1,6 @@
 <div class="container">
-    <div class="panel-heading">
         <h2>Animal da propriedade {{propriedade.nome}}</h2>
 
-        <div class="panel-body">
             <table class="table table-striped" *ngIf="(animais$ | async) as animais; else loading">
                 <thead>
                     <tr>
@@ -44,8 +42,6 @@
             <ng-template #loading>
                 <span>Carregando tabela de animais...</span>
             </ng-template>
-        </div>
-    </div>
     <ng-template #baixaModal>
         <div class="modal-body text-center">
             <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>

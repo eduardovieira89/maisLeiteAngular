@@ -1,1 +1,6 @@
-<p>listar-vacinas works!</p>
+<h2>Listar Vacinas</h2>
+<div class="container">
+    <select name="animais" id="animais" class="form-select" [(ngModel)]="animal">
+        <option *ngFor="let a of animais$ | async" [ngValue]="a">Brinco: {{a.brinco}} - {{a.nome}}</option>
+    </select>
+</div>

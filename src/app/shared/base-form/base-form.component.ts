@@ -8,6 +8,7 @@ export abstract class BaseFormComponent implements OnInit {
   formulario: UntypedFormGroup;
   isSuccessful = false;
   errorMessage = '';
+  successfulMessage = '';
 
   constructor(
     protected router: Router
