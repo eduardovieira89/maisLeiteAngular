@@ -7,13 +7,15 @@ import { AplicarVacinasComponent } from './aplicar-vacina/aplicar-vacina.compone
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { VacinarEmLotesComponent } from './vacinar-em-lotes/vacinar-em-lotes.component';
+import { CardListaVacinasAnimaisComponent } from './card-lista-vacinas-animais/card-lista-vacinas-animais.component';
 
 
 @NgModule({
   declarations: [
     ListarVacinasComponent,
     AplicarVacinasComponent,
-    VacinarEmLotesComponent
+    VacinarEmLotesComponent,
+    CardListaVacinasAnimaisComponent
   ],
   imports: [
     VacinaRoutingModule,

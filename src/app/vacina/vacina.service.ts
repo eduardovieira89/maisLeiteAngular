@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { CrudService } from '../shared/crud-service';
 import { Vacina } from '../model/vacina';
 import { environment } from 'src/environments/environment';
@@ -25,7 +25,9 @@ export class VacinaService extends CrudService<VacinaAplicacao> {
   }
 
   listarPorAnimal(id: number){
-    return this.http.get<VacinaAplicacao>(`${this.VACINA_PATH}${id}`);
+    const options = id ?
+    {params: new HttpParams().set('idanimal', id)} : {};
+    return this.http.get<VacinaAplicacao[]>(`${this.VACINA_PATH}`, options);
   }
 
   salvarAplicacao(apVacina: VacinaAplicacao){

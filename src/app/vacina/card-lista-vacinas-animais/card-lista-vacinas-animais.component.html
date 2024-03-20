@@ -1,0 +1,23 @@
+<table class="table table-striped" *ngIf="(vacinas$ | async) as vacinas">
+    <thead>
+        <tr>
+            <td>Vacina</td>
+            <td>Dose</td>
+            <td>Data</td>
+            <td>Aplicador</td>
+        </tr>
+        <tr *ngIf="vacinas.length == 0">
+            <td colspan="6">
+                <span>Não há registo de aplicação de vacinas para este animal</span>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let vacina of vacinas">
+            <td>{{vacina.vacina.nome}}</td>
+            <td>{{vacina.dose}}</td>
+            <td>{{vacina.data | date: 'dd/MM/yyyy'}}</td>
+            <td>{{vacina.aplicador.nome}}</td>
+        </tr>
+    </tbody>
+</table>
