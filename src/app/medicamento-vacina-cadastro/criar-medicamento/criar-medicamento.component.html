@@ -1,0 +1,36 @@
+<h2>Cadastro de Medicamento</h2>
+<div class="container">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+        <div class="form-group row">
+            <div class="col-sm-9">
+                <label for="descricao">Descrição: *</label>
+                <input type="text" class="form-control" id="descricao" name="descricao" required  [(ngModel)]="medicamento.descricao">
+                <div class="invalid-feedback">
+                   Descrição é um campo obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-1" style="min-width: 100px;">
+                <label for="dose">Doses: *</label>
+                <input type="number" class="form-control" id="dose" name="dose" required  [(ngModel)]="medicamento.qtdeDoses">
+                <div class="invalid-feedback">
+                   Dose é um campo obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-9">
+                <label for="modouso">Modo de uso:</label>
+                <textarea class="form-control" id="modouso" name="modouso" rows="5" [(ngModel)]="medicamento.modoDeUso"></textarea>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="hstack gap-2">
+                <button type="submit" class="btn btn-success border">Salvar</button>
+                <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,12 +1,14 @@
 import { Animal } from './animal';
 import { Usuario } from './usuario';
-import { Vacina } from './vacina';
+import { MedicacaoVacina } from './medicacaoVacina';
+import { DoencaEvento } from './doencaEvento';
 export class VacinaAplicacao{
     id: number;
     dose: number;
     data: Date;
-    vacina: Vacina;
+    medicacao: MedicacaoVacina;
     animal: Animal;
     aplicador: Usuario;
+    doencaEvento: DoencaEvento;
 
 }

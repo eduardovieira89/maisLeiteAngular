@@ -25,9 +25,9 @@
                         <td><label>{{doador.dono}}</label></td>
                         <td><label>{{doador.paisOrigem}}</label></td>
                         <td>
-                            <a [routerLink]="[doador.idDoador]" class="btn btn-info" > Detalhes</a>
-                            <a [routerLink]="[doador.idDoador, 'alterar']" class="btn btn-info" > Alterar</a>
-                            <button (click)="deletarAnimal(doador.idDoador)"class="btn btn-danger bi-trash" ></button>
+                            <a [routerLink]="[doador.id]" class="btn btn-info" > Detalhes</a>
+                            <a [routerLink]="[doador.id, 'alterar']" class="btn btn-info" > Alterar</a>
+                            <button (click)="deletarAnimal(doador.id)"class="btn btn-danger bi-trash" ></button>
                         </td>
                     </tr>
                 </tbody>

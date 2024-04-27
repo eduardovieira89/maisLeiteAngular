@@ -5,7 +5,7 @@ import { Animal } from './animal';
 import { TipoParto } from "./TipoParto";
 
 export class Parto{
-    idParto: number;
+    id: number;
     data: Date;
     escoreCorporal: number;
     qtdeCrias: number;

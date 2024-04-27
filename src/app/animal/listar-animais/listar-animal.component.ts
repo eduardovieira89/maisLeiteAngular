@@ -9,6 +9,7 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MotivoBaixa } from 'src/app/model/motivoBaixa';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-listar-animal',
@@ -26,15 +27,16 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
   animalSelecionado: Animal;
   motivoSelected: MotivoBaixa;
 
-  constructor(private animalService: AnimalService,
-              private propriedadeService: PropriedadeService,
-              protected router: Router,
-              private modalService: BsModalService
-              ) { super(router)}
+  constructor(
+    protected router: Router,
+    protected location: Location,
+    private animalService: AnimalService,
+    private propriedadeService: PropriedadeService,
+    private modalService: BsModalService
+    ) { super(router, location)}
 
   ngOnInit(): void {
     this.onRefresh();
-    
   }
 
   onRefresh() {
@@ -59,13 +61,7 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
 
   baixaAnimal(animal: Animal){
     this.animalSelecionado = animal;
-    this.baixaModalRef = this.modalService.show(this.baixaModal, {class: 'modal-sm'}) ;
-   /**  this.animalService.remove(animal.id).subscribe(
-      data => {
-        this.listarAnimal();
-      },
-      error => console.log(error)
-    ); */
+    this.baixaModalRef = this.modalService.show(this.baixaModal, {class: 'modal-sm'});
   }
 
   submit(formulario){

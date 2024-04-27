@@ -9,6 +9,7 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { LactacaoService } from '../lactacao.service';
 import { Lactacao } from 'src/app/model/lactacao';
 import { Parto } from 'src/app/model/Parto';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-encerrar-lactacoes',
@@ -24,10 +25,11 @@ export class EncerrarLactacaoComponent extends BaseFormComponent implements OnIn
 
   constructor(
     protected router: Router,
+    protected location: Location,
     private propriedadeService: PropriedadeService,
     private animalService: AnimalService,
     private lactacoesService: LactacaoService
-    ){super(router)}
+    ){super(router, location)}
 
 
   ngOnInit(): void {

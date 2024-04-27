@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'parto', loadChildren: () => import('./reproducao/parto/parto.module').then(m => m.PartoModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
   { path: 'lactacao', loadChildren: () => import('./producao/lactacao/lactacao.module').then(m => m.LactacaoModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
   { path: 'producao', loadChildren: () => import('./producao/producao-leite/producao-leite.module').then(m => m.ProducaoLeiteModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
-  { path: 'vacina', loadChildren: () => import('./vacina/vacina.module').then(m => m.VacinaModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]}
+  { path: 'aplicacaomedicamento', loadChildren: () => import('./medicacao-vacina-aplicacao/medicacao-vacina-aplicacao.module').then(m => m.MedicacaoVacinaAplicacaoModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]},
+  { path: 'cadastromedicamento', loadChildren: () => import('./medicamento-vacina-cadastro/medicamento-vacina-cadastro.module').then(m => m.MedicamentoVacinaCadastroModule), canActivate:[AuthGuard], canLoad:[PropriedadeGuard]}
 
 
   

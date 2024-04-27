@@ -13,6 +13,7 @@ import { Animal } from 'src/app/model/animal';
 import { HttpParams } from '@angular/common/http';
 import { Parto } from 'src/app/model/Parto';
 import { ControleLeiteiroService } from '../controle-leiteiro.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-registrar-producao',
@@ -32,8 +33,9 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
     private propriedadeService: PropriedadeService,
     private usuarioService: UserService,
     private controleLeiteiroService: ControleLeiteiroService,
-    protected router: Router
-    ){super(router)}
+    protected router: Router,
+    protected location: Location
+    ){super(router, location)}
 
     ngOnInit(): void {
       this.controleLeiteiro.propriedade = this.propriedadeService.getPropriedadeelecionada();

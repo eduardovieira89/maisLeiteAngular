@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { OnInit, Directive } from '@angular/core';
 import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +12,8 @@ export abstract class BaseFormComponent implements OnInit {
   successfulMessage = '';
 
   constructor(
-    protected router: Router
+    protected router: Router,
+    protected location: Location
   ) { }
 
   ngOnInit() {
@@ -81,6 +83,10 @@ export abstract class BaseFormComponent implements OnInit {
 
   irParaListagem(caminho: string) {
     this.router.navigate([`/${caminho}`] );
+  }
+
+  voltar(): void {
+    this.location.back();
   }
 
 

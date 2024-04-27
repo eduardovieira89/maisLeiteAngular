@@ -4,6 +4,7 @@ import { Lote } from 'src/app/model/lote';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { LoteService } from '../lote.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-criar-lote',
@@ -16,9 +17,10 @@ export class CriarLoteComponent extends BaseFormComponent implements OnInit {
 
   constructor(
     protected router: Router,
+    protected location: Location,
     private propriedadeService: PropriedadeService,
     private loteService: LoteService
-  ){super(router)  }
+  ){super(router, location)  }
 
   ngOnInit(): void {
     this.lote.propriedade = this.propriedadeService.getPropriedadeelecionada();

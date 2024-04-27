@@ -5,36 +5,40 @@ import { LoteService } from 'src/app/animal/lote/lote.service';
 import { Animal } from 'src/app/model/animal';
 import { Lote } from 'src/app/model/lote';
 import { Usuario } from 'src/app/model/usuario';
-import { Vacina } from 'src/app/model/vacina';
+import { MedicacaoVacina } from 'src/app/model/medicacaoVacina';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { UserService } from 'src/app/usuario/user.service';
-import { VacinaService } from '../vacina.service';
+import { MedicacaoVacinaAplicacaoService } from '../medicacao-vacina-aplicacao.service';
 import { VacinaAplicacaoEmLotesDTO } from 'src/app/model/VacinaAplicacaoEmLotesDTO';
+import { DoencaEvento } from 'src/app/model/doencaEvento';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-vacinar-em-lotes',
-  templateUrl: './vacinar-em-lotes.component.html',
-  styleUrls: ['./vacinar-em-lotes.component.css']
+  selector: 'app-aplicacao-em-lotes',
+  templateUrl: './aplicacao-em-lotes.component.html',
+  styleUrls: ['./aplicacao-em-lotes.component.css']
 })
-export class VacinarEmLotesComponent extends BaseFormComponent {
+export class AplicacaoEmLotesComponent extends BaseFormComponent {
 
   aplicVacina: VacinaAplicacaoEmLotesDTO = new VacinaAplicacaoEmLotesDTO();
   lotes:Lote[];
   loteSelecionado!:Lote;
-  vacinas!: Vacina[];
+  vacinas!: MedicacaoVacina[];
   animais!: Animal[];
   aplicadores!: Usuario[];
+  doencaEventos!: DoencaEvento[];
 
   constructor(
     protected router: Router,
+    protected location: Location,
     private loteService: LoteService,
     private usuarioService: UserService,
     private propriedadeService: PropriedadeService,
     private animalService: AnimalService,
-    private vacinaService: VacinaService
+    private vacinaService: MedicacaoVacinaAplicacaoService
     
-  ){super(router)  }
+  ){super(router, location)  }
 
   ngOnInit(): void {
     this.loteService.listarLote(this.propriedadeService.getPropriedadeelecionada().id.toString())
@@ -45,6 +49,8 @@ export class VacinarEmLotesComponent extends BaseFormComponent {
       .subscribe(anim => this.animais = anim);
     this.vacinaService.listVacinas()
       .subscribe(v => this.vacinas = v);
+    this.vacinaService.listarDoencaEvento()
+      .subscribe(evento => this.doencaEventos = evento);
 
   }
 

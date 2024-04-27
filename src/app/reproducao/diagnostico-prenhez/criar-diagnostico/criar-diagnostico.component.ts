@@ -9,6 +9,7 @@ import { MetodoPrenhez } from 'src/app/model/metodoPrenhez';
 import { DiagnosticoPrenhez } from 'src/app/model/diagnosticoPrenhez';
 import { DiagnosticoPrenhezService } from '../diagnostico-prenhez.service';
 import { Cobertura } from 'src/app/model/cobertura';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-criar-diagnostico',
@@ -20,9 +21,9 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
   constructor(private diagnosticosPrenhezService: DiagnosticoPrenhezService,
               private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
-              protected router: Router
-
-              ) { super(router) }
+              protected router: Router,
+              protected location: Location
+              ) { super(router, location) }
 
   diagnosticoPrenhez: DiagnosticoPrenhez = new DiagnosticoPrenhez();
   vacas!: Animal[];

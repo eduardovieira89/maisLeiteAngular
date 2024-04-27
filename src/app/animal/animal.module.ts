@@ -17,6 +17,7 @@ import { ProducaoModule } from '../producao/producao.module';
 import { LactacaoModule } from "../producao/lactacao/lactacao.module";
 import { CriarLoteComponent } from './lote/criar-lote/criar-lote.component';
 import { LoteModule } from './lote/lote.module';
+import { MedicacaoVacinaAplicacaoModule } from '../medicacao-vacina-aplicacao/medicacao-vacina-aplicacao.module';
 
 
 
@@ -41,7 +42,8 @@ import { LoteModule } from './lote/lote.module';
         PropriedadeModule,
         SharedModule,
         LactacaoModule,
-        LoteModule
+        LoteModule,
+        MedicacaoVacinaAplicacaoModule
     ]
 })
 export class AnimalModule { }

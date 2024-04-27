@@ -9,6 +9,7 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { OrigemAnimal } from 'src/app/model/origemAnimal';
 import { Lote } from 'src/app/model/lote';
 import { LoteService } from '../lote/lote.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-criar-animal',
@@ -19,11 +20,12 @@ import { LoteService } from '../lote/lote.service';
 export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
 
   constructor(
-    private animalService: AnimalService,
     protected router: Router,
+    protected location: Location,
+    private animalService: AnimalService,
     private propriedadeService: PropriedadeService,
     private loteService: LoteService
-    ) { super(router) }
+    ) { super(router, location) }
 
   animal: Animal = new Animal();
   racas: Raca[];
@@ -31,8 +33,6 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   pais: Animal[];
   maes: Animal[];
   lotes: Lote[];
-
-
 
   ngOnInit(): void {
     let idpropriedade = this.propriedadeService.getPropriedadeelecionada().id.toString()

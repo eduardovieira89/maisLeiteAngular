@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VacinarEmLotesComponent } from './vacinar-em-lotes.component';
+import { AplicacaoEmLotesComponent } from './aplicacao-em-lotes.component';
 
 describe('VacinarEmLotesComponent', () => {
-  let component: VacinarEmLotesComponent;
-  let fixture: ComponentFixture<VacinarEmLotesComponent>;
+  let component: AplicacaoEmLotesComponent;
+  let fixture: ComponentFixture<AplicacaoEmLotesComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [VacinarEmLotesComponent]
+      declarations: [AplicacaoEmLotesComponent]
     });
-    fixture = TestBed.createComponent(VacinarEmLotesComponent);
+    fixture = TestBed.createComponent(AplicacaoEmLotesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

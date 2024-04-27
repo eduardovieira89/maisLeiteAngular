@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Lista de Medicamentos</h2>
+    <table class="table table-striped" *ngIf="(medicamentos$ | async) as medicamentos; else loading">
+        
+        <thead>
+            <tr>
+                <td>Descricao</td>
+                <td>Núm de Doses</td>
+                <td>Modo de uso</td>
+            </tr>
+            <tr *ngIf="medicamentos.length == 0">
+                <td colspan="3">
+                    <span>Não há medicamento cadastrado</span>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let medicamento of medicamentos">
+                <td>{{medicamento.descricao}}</td>
+                <td>{{medicamento.qtdeDoses}}</td>
+                <td>{{medicamento.modoDeUso}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #loading>
+        <span>Carregando tabela de medicamentos...</span>
+    </ng-template>
+</div>

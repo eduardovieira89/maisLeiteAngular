@@ -17,13 +17,8 @@ export class CriarPropriedadeComponent extends BaseFormComponent implements OnIn
 
   constructor(private propriedadeService: PropriedadeService,
               protected router: Router,
-              private location: Location
-              ) { super(router)}
-
-  ngOnInit(): void {
-
-    
-  }
+              protected location: Location
+              ) { super(router, location)}
 
   submit(formulario) {
     this.propriedadeService.save(this.propriedade)
@@ -34,10 +29,6 @@ export class CriarPropriedadeComponent extends BaseFormComponent implements OnIn
       },
       error => console.log(error)
       );
-  }
-
-  voltar(): void {
-    this.location.back();
   }
 
 }

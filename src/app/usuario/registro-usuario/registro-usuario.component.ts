@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
@@ -17,8 +18,10 @@ export class RegistroUsuarioComponent extends BaseFormComponent implements OnIni
   errorMessage = '';
 
   constructor(private authService: AuthenticationService,
-              protected router: Router) 
-              { super(router) }
+              protected router: Router,
+              protected location: Location
+            ) 
+              { super(router,location) }
 
   ngOnInit(): void {
   }

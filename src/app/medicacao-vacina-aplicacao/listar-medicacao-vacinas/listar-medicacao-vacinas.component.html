@@ -3,5 +3,6 @@
     <select name="animais" id="animais" class="form-select" [(ngModel)]="animal" (change)="buscaVacinas(animal.id)">
         <option *ngFor="let a of animais$ | async" [ngValue]="a">Brinco: {{a.brinco}} - {{a.nome}}</option>
     </select>
-    <app-card-lista-vacinas-animais></app-card-lista-vacinas-animais>
+    <app-card-lista-medicacao-vacinas-animais></app-card-lista-medicacao-vacinas-animais>
+    <h1>Alterar para listar por ultimos medicamentos aplicados</h1>
 </div>

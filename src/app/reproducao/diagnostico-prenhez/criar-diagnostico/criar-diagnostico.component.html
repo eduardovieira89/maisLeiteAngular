@@ -56,9 +56,10 @@
             <textarea class="form-control" name="obs" rows="5" id="obs"  [(ngModel)]="diagnosticoPrenhez.observacao"></textarea>
         </div>
 
-        <div class="row my-3">
-            <div class="col-sm-6">
-                <button type="submit" class="btn btn-success my-2">Salvar</button>
+        <div class="form-group row my-3">
+            <div class="form-group col-sm-6 ">
+              <button type="submit" class="btn btn-success border">Salvar</button>
+              <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
             </div>
         </div>
         

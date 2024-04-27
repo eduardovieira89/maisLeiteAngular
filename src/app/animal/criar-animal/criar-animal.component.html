@@ -2,12 +2,12 @@
 <div  class="container">
     <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
         <div class="form-group row" >
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <label for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="animal.nome">
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <label for="raca">Raça: *</label>
                 <select class="form-select" id="raca" name="raca" required [(ngModel)]="animal.raca" >
                     <option *ngFor="let raca of racas" [ngValue]="raca">{{raca.descricao}}</option>
@@ -16,7 +16,7 @@
                     Raça é um campo obrigatório.
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <label for="lote">Lote:</label>
                 <select class="form-select" id="lote" name="lote" required [(ngModel)]="animal.lote" >
                     <option *ngFor="let lote of lotes" [ngValue]="lote">{{lote.descricao}}</option>
@@ -75,6 +75,14 @@
         <div class="form-group row">
             <div class="col-sm-6">
                 <h4 class="mb-0">Pai:</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioPai" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">É do Rebanho</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioPai" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">É de fora do Rebanho</label>
+                </div>
                 <div class="form-group" *ngIf="!paiList.checked">
                     <label for="raca">Selecione o pai do seu rebanho:</label>
                     <select class="form-select" id="pais" name="pai" [(ngModel)]="animal.id_pai">
@@ -94,6 +102,14 @@
 
             <div class="col-sm-6">
                 <h4 class="mb-0">Mãe:</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">É do Rebanho</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">É de fora do Rebanho</label>
+                </div>
                 <div class="form-group" *ngIf="!maeList.checked">
                     <label for="maes">Selecione a mãe do seu rebanho:</label>
                     <select class="form-select" id="maes" name="mae" [(ngModel)]="animal.id_mae">
@@ -111,8 +127,12 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success my-3 border">Salvar</button>
-        <button (click)="irParaListagem('animal')" class="btn btn-info border">Cancelar</button>
+        <div class="form-group row my-3">
+            <div class="form-group col-sm-6 ">
+              <button type="submit" class="btn btn-success border">Salvar</button>
+              <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
+            </div>
+        </div>
         
     </form>
 </div>

@@ -12,6 +12,7 @@ import { Animal } from 'src/app/model/animal';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-criar-cobertura',
@@ -20,13 +21,15 @@ import { HttpParams } from '@angular/common/http';
 })
 export class CriarCoberturaComponent extends BaseFormComponent implements OnInit {
 
-  constructor(protected  router: Router,
-              private coberturaService: CoberturaService,
-              private animalService: AnimalService,
-              private propriedadeService: PropriedadeService,
-              private usuariosService: UserService,
-              private semensService: SemenService
-             ) { super(router) }
+  constructor(
+    protected router: Router,
+    protected location: Location, 
+    private coberturaService: CoberturaService,
+    private animalService: AnimalService,
+    private propriedadeService: PropriedadeService,
+    private usuariosService: UserService,
+    private semensService: SemenService
+    ) { super(router, location) }
 
   cobertura: Cobertura = new Cobertura();
   vacas: Animal[];

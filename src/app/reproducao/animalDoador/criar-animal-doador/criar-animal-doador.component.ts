@@ -15,11 +15,12 @@ import { AnimalService } from 'src/app/animal/animal.service';
 })
 export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnInit {
 
-  constructor(protected router: Router,
-              private doadorService: AnimalDoadorService,
-              private location: Location,
-              private animalSevice: AnimalService
-              ) { super(router) }
+  constructor(
+    protected router: Router,
+    protected location: Location,
+    private doadorService: AnimalDoadorService,
+    private animalSevice: AnimalService
+    ) { super(router, location) }
 
   animalDoador: AnimalDoador = new AnimalDoador();
   animal: Animal = new Animal();
@@ -43,10 +44,6 @@ export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnI
       },
       err => this.errorMessage = err.error.message
     )
-  }
-
-  voltar(): void {
-    this.location.back();
   }
 
 }

@@ -12,6 +12,7 @@ import { TipoParto } from 'src/app/model/TipoParto';
 import { DiagnosticoPrenhezService } from 'src/app/reproducao/diagnostico-prenhez/diagnostico-prenhez.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-criar-parto',
@@ -24,8 +25,9 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
               private diagnosticosPrenhezService: DiagnosticoPrenhezService,
               private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
-              protected router: Router  
-    ) { super(router) }
+              protected router: Router,
+              protected location: Location
+    ) { super(router, location) }
 
   parto: Parto = new Parto();
   tiposParto!: TipoParto[];

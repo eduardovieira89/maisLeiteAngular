@@ -26,7 +26,7 @@
                     <td><label *ngIf="parto.coberturas">{{parto.coberturas.data | date: 'dd/MM/yyyy'}}</label></td>
                     <td><label *ngIf="parto.diagnosticosPrenhez">{{parto.diagnosticosPrenhez.data | date: 'dd/MM/yyyy'}}</label></td>
                     <td>
-                        <a [routerLink]="[parto.idParto]" class="btn btn-info" > Detalhes</a>
+                        <a [routerLink]="[parto.id]" class="btn btn-info" > Detalhes</a>
                     </td>
                 </tr>
             </tbody>

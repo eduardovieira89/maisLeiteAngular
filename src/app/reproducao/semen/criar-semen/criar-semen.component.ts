@@ -4,6 +4,7 @@ import { Semen } from '../../../model/semen';
 import { SemenService } from '../semen.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-criar-semen',
@@ -12,9 +13,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarSemenComponent extends BaseFormComponent implements OnInit {
 
-  constructor(protected router: Router,
-              private semenService: SemenService
-             ) {super(router)}
+  constructor(
+    protected router: Router,
+    protected location: Location,
+    private semenService: SemenService,
+    ) {super(router, location)}
 
 semen: Semen = new Semen();
 animaisDoadores: AnimalDoador[];
