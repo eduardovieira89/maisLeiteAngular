@@ -18,6 +18,8 @@ import { LactacaoModule } from "../producao/lactacao/lactacao.module";
 import { CriarLoteComponent } from './lote/criar-lote/criar-lote.component';
 import { LoteModule } from './lote/lote.module';
 import { MedicacaoVacinaAplicacaoModule } from '../medicacao-vacina-aplicacao/medicacao-vacina-aplicacao.module';
+import { CardTotalAnimaisComponent } from './card-total-animais/card-total-animais.component';
+import { CardTotalLactacaoComponent } from './card-total-lactacao/card-total-lactacao.component';
 
 
 
@@ -29,6 +31,8 @@ import { MedicacaoVacinaAplicacaoModule } from '../medicacao-vacina-aplicacao/me
         DetalhesAnimalComponent,
         ListarAnimalComponent,
         RacaComponent,
+        CardTotalAnimaisComponent,
+        CardTotalLactacaoComponent,
     ],
     providers: [
         authInterceptorProviders
@@ -44,6 +48,10 @@ import { MedicacaoVacinaAplicacaoModule } from '../medicacao-vacina-aplicacao/me
         LactacaoModule,
         LoteModule,
         MedicacaoVacinaAplicacaoModule
+    ],
+    exports:[
+        CardTotalAnimaisComponent,
+        CardTotalLactacaoComponent
     ]
 })
 export class AnimalModule { }

@@ -63,4 +63,20 @@ export class AnimalService extends CrudService<Animal>{
   baixaAnimal(id: number, motivo: MotivoBaixa){
     return this.http.put(`${this.BAIXA_ANIMAL_PATH}/${id}`, motivo);
   }
+
+  countAnimaisAtivos(idPropriedade: string){
+    idPropriedade = idPropriedade.trim();
+    const options = idPropriedade ?
+    {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
+
+    return this.http.get<number>(`${this.ANIMAL_PATH}/totalativos`, options);
+  }
+
+  countAnimaisEmLactacao(idPropriedade: string){
+    idPropriedade = idPropriedade.trim();
+    const options = idPropriedade ?
+    {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
+
+    return this.http.get<number>(`${this.ANIMAL_PATH}/totallactacoes`, options);
+  }
 }

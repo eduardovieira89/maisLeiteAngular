@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistroFuncionarioComponent } from './registro-funcionario/registro-funcionario.component';
 import { HomeComponent } from './home/home.component';
 import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
+import { AnimalModule } from '../animal/animal.module';
+import { PropriedadeModule } from '../propriedade/propriedade.module';
 
 
 
@@ -29,6 +31,8 @@ import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    AnimalModule,
+    PropriedadeModule
   ],providers: [
     authInterceptorProviders
 ],

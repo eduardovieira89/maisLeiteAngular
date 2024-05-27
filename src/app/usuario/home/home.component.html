@@ -1,1 +1,14 @@
 <h1 class='text-center'>Bem vindo ao Sistema Leite Mais</h1>
+<div class="form-group row" *ngIf="!propriedade; else elseBlock">
+    <a routerLink="/propriedade" class="nav-link">Selecione uma propriedade</a>
+</div>
+<ng-template #elseBlock>
+    <div class="form-group row">
+        <div class="col-sm-3" >
+            <app-card-total-animais [total]=animaisAtivos></app-card-total-animais>
+        </div>
+        <div class="col-sm-3">
+            <app-card-total-lactacao [lactacoes]="animaisEmLactacao"></app-card-total-lactacao>
+        </div>
+    </div>
+</ng-template>

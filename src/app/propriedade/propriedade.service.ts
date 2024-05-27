@@ -19,13 +19,13 @@ export class PropriedadeService extends CrudService<Propriedade> {
     super(http, `${environment.API}propriedade`);
   }
 
-  public setPropriedadeSelecionada(propriedade: any){
+  public setPropriedadeSelecionada(propriedade: Propriedade){
     window.sessionStorage.removeItem(PROPRIEDADE_KEY);
     window.sessionStorage.setItem(PROPRIEDADE_KEY, JSON.stringify(propriedade));
     PropriedadeService.selecionouPropriedade.emit();
   }
 
-  public getPropriedadeelecionada() {
+  public getPropriedadeelecionada(): Propriedade {
     return JSON.parse(sessionStorage.getItem(PROPRIEDADE_KEY) as string);
   }
 
