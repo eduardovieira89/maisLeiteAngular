@@ -76,26 +76,21 @@
             <div class="col-sm-6">
                 <h4 class="mb-0">Pai:</h4>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="radioPai" id="inlineRadio1" value="option1">
+                    <input class="form-check-input" type="radio" name="radioPai" id="inlineRadio1" value="option1" (change)="paiRebanho" #paiRebanho>
                     <label class="form-check-label" for="inlineRadio1">É do Rebanho</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="radioPai" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" name="radioPai" id="inlineRadio2" value="option2" (change)="paiFora" #paiFora>
                     <label class="form-check-label" for="inlineRadio2">É de fora do Rebanho</label>
                 </div>
-                <div class="form-group" *ngIf="!paiList.checked">
-                    <label for="raca">Selecione o pai do seu rebanho:</label>
-                    <select class="form-select" id="pais" name="pai" [(ngModel)]="animal.id_pai">
+                <div class="form-group" *ngIf="paiRebanho.checked">
+                    <label for="pai">Selecione o pai do seu rebanho:</label>
+                    <select class="form-select" id="pai" name="pai" [(ngModel)]="animal.id_pai">
                         <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}}    ---    Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
                     </select>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="checkbPaiList" (change)="paiList" #paiList >
-                    <label class="form-check-label" for="checkbPaiList">
-                        O pai desse animal não é do meu rebanho (escrever o nome).
-                    </label>
-                </div>
-                <div class="form-group" *ngIf="paiList.checked">
+                <div class="form-group" *ngIf="paiFora.checked">
+                    <label for="pai">Escreva o nome do pai do animal:</label>
                     <input type="text" class="form-control" id="pai" name="pai" [(ngModel)]="animal.pai">
                 </div>
             </div>
@@ -103,24 +98,21 @@
             <div class="col-sm-6">
                 <h4 class="mb-0">Mãe:</h4>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" (change)="maeRebanho" #maeRebanho>
                     <label class="form-check-label" for="inlineRadio1">É do Rebanho</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" (change)="maeFora" #maeFora>
                     <label class="form-check-label" for="inlineRadio2">É de fora do Rebanho</label>
                 </div>
-                <div class="form-group" *ngIf="!maeList.checked">
+                <div class="form-group" *ngIf="maeRebanho.checked">
                     <label for="maes">Selecione a mãe do seu rebanho:</label>
                     <select class="form-select" id="maes" name="mae" [(ngModel)]="animal.id_mae">
                         <option *ngFor="let mae of maes" [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
                     </select>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="checkbMaeString" (change)="maeList" #maeList  >
-                    <label class="form-check-label" for="checkbMaeString">A mãe desse animal não é do meu rebanho (escrever o nome).</label>
-                </div>
-                <div class="form-group" *ngIf="maeList.checked">
+                <div class="form-group" *ngIf="maeFora.checked">
+                    <label for="mae">Escreva o nome da mãe do animal:</label>
                     <input type="text" class="form-control" id="mae" name="mae" [(ngModel)]="animal.mae" >
                 </div>
 

@@ -2,11 +2,6 @@
         <h3>Produções</h3>
         <table class="table table-hover table-striped" *ngIf="(controles$ | async) as controles; else loading">
             <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Temperatura</th>
-                    <th>Umidade do ar</th>
-                </tr>
                 <tr *ngIf="controles.length == 0">
                     <td colspan="6">
                         <span>Não há Controle leiteiro registrado nesta propriedade </span>
@@ -15,12 +10,13 @@
             </thead>
             <tbody *ngFor="let controle of controles">
                     <tr >
-                        <td>{{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
-                        <td>{{controle.temperatura}} °C</td>
-                        <td>{{controle.umidadeAr}} %</td>
+                        <td><b>Data:</b> {{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
+                        <td><b>Temperatura:</b> {{controle.temperatura}} °C</td>
+                        <td><b>Umidade:</b> {{controle.umidadeAr}} %</td>
+                        <td><b>Total de Litros:</b> 000</td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <div class="container">
                             <table class="table table-borderless table-light">
                                 <thead>
@@ -29,6 +25,7 @@
                                         <th>Ordenha 1</th>
                                         <th>Ordenha 2</th>
                                         <th>Ordenha 3</th>
+                                        <th>Total dia</th>
                                     </tr>
                                 </thead>
                                 <tr *ngFor="let producao of controle.producoesLeite">
@@ -36,6 +33,7 @@
                                     <td>{{producao.ordenha1}} L</td>
                                     <td>{{producao.ordenha2}} L</td>
                                     <td>{{producao.ordenha3}} L</td>
+                                    <td>000 L</td>
                                 </tr>
                             </table>
                             </div>
