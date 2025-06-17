@@ -4,6 +4,7 @@ import { ControleLeiteiro } from 'src/app/model/controleLeiteiro';
 import { ProducaoLeiteService } from '../producao-leite.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { HttpParams } from '@angular/common/http';
+import { ControleLeiteiroDTO } from 'src/app/model/controleLeiteiroDTO';
 
 @Component({
   selector: 'app-listar-producao',
@@ -12,7 +13,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class ListarProducaoComponent implements OnInit {
 
-  controles$:Observable<ControleLeiteiro[]>;
+  controles$:Observable<ControleLeiteiroDTO[]>;
   errorMessage = '';
 
   constructor(

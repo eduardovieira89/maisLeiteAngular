@@ -13,7 +13,7 @@
                         <td><b>Data:</b> {{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
                         <td><b>Temperatura:</b> {{controle.temperatura}} °C</td>
                         <td><b>Umidade:</b> {{controle.umidadeAr}} %</td>
-                        <td><b>Total de Litros:</b> 000</td>
+                        <td><b>Total de Litros:</b> {{controle.totalLitros}}</td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -28,12 +28,12 @@
                                         <th>Total dia</th>
                                     </tr>
                                 </thead>
-                                <tr *ngFor="let producao of controle.producoesLeite">
-                                    <td>{{producao.lactacao.parto.vaca.nome}}</td>
+                                <tr *ngFor="let producao of controle.producoesLeiteDTO">
+                                    <td>{{producao.vaca}}</td>
                                     <td>{{producao.ordenha1}} L</td>
                                     <td>{{producao.ordenha2}} L</td>
                                     <td>{{producao.ordenha3}} L</td>
-                                    <td>000 L</td>
+                                    <td>{{producao.somaOrdenhas}} L</td>
                                 </tr>
                             </table>
                             </div>

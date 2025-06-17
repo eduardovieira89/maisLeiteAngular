@@ -4,7 +4,6 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { HttpParams } from '@angular/common/http';
 import { PartoService } from '../parto.service';
 import { Component, OnInit } from '@angular/core';
-import { Animal } from 'src/app/model/animal';
 import { Cobertura } from 'src/app/model/cobertura';
 import { DiagnosticoPrenhez } from 'src/app/model/diagnosticoPrenhez';
 import { Parto } from 'src/app/model/Parto';
@@ -13,6 +12,7 @@ import { DiagnosticoPrenhezService } from 'src/app/reproducao/diagnostico-prenhe
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { Location } from '@angular/common';
+import { VacaNomeLactacaoDTO } from 'src/app/model/vacaNomeLactacaoDTO';
 
 @Component({
   selector: 'app-criar-parto',
@@ -31,7 +31,8 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
   parto: Parto = new Parto();
   tiposParto!: TipoParto[];
-  vacas!: Animal[];
+  vacas!: VacaNomeLactacaoDTO[];
+  vacaSelecionada!: VacaNomeLactacaoDTO;
   cobertura!: Cobertura;
   diagnosticoPrenhez!: DiagnosticoPrenhez;
 
@@ -39,12 +40,14 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
   errorMessage = '';
 
   ngOnInit(): void {
-    let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
-    params = params.set('genero', 'f');
+    //let params = new HttpParams();
+    //params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
+    //params = params.set('genero', 'f');
     
-    this.animalService.listarPorGenero(params).subscribe(v => this.vacas = v);
-    this.partoService.listTipoParto().subscribe(tipos => this.tiposParto = tipos);
+    this.animalService.listarParaParto(this.propriedadeService.getPropriedadeelecionada().id.toString())
+      .subscribe(v => this.vacas = v);
+    this.partoService.listTipoParto()
+      .subscribe(tipos => this.tiposParto = tipos);
 
     this.parto.crias = new Array<Cria>();
     this.parto.crias.push(new Cria());
@@ -64,17 +67,21 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
         this.resetar(formulario);
       },
       err => {
-        this.errorMessage = err.error.message();
+        this.errorMessage = err.error;
         this.isSuccessful = false;
       }
     )
   }
 
-  buscaCoberturaAndDiagnostico(){
+
+  alteraVaca(){
     this.cobertura = null;
     this.diagnosticoPrenhez = null;
     let params = new HttpParams();
-    params = params.set('idvaca', this.parto.vaca.id.toString());
+    params = params.set('idvaca', this.vacaSelecionada.id.toString());
+
+    this.animalService.loadByID(this.vacaSelecionada.id.toString())
+    .subscribe(encontrada => {this.parto.vaca = encontrada;});
 
     this.partoService.getUltimoDiagnosticoPrenhez(params).subscribe(
       diag => {

@@ -7,6 +7,7 @@ import { CrudService } from '../shared/crud-service';
 import { Raca } from '../model/raca';
 import { MotivoBaixa } from '../model/motivoBaixa';
 import { OrigemAnimal } from '../model/origemAnimal';
+import { VacaNomeLactacaoDTO } from '../model/vacaNomeLactacaoDTO';
 
 
 @Injectable({
@@ -46,6 +47,13 @@ export class AnimalService extends CrudService<Animal>{
 
     return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/lote`, options);
 
+  }
+
+  public listarParaParto(idPropriedade: string){
+    idPropriedade = idPropriedade.trim();
+    const options = idPropriedade ?
+    {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
+    return this.http.get<VacaNomeLactacaoDTO[]>(`${this.ANIMAL_PATH}/parto`, options);
   }
 
   getRaca(): Observable<Raca[]>{

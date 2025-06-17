@@ -5,7 +5,7 @@ import { ProducaoLeite } from 'src/app/model/producaoLeite';
 import { CrudService } from 'src/app/shared/crud-service';
 import { environment } from 'src/environments/environment';
 import { LactacaoService } from '../lactacao/lactacao.service';
-import { ControleLeiteiro } from 'src/app/model/controleLeiteiro';
+import { ControleLeiteiroDTO } from 'src/app/model/controleLeiteiroDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,6 @@ export class ProducaoLeiteService extends CrudService<ProducaoLeite> {
   }
 
   listProducoes(params: HttpParams){
-    return this.http.get<ControleLeiteiro[]>(this.CONTROLE_PATH, {params});
+    return this.http.get<ControleLeiteiroDTO[]>(this.CONTROLE_PATH, {params});
   }
 }
