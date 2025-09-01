@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
   selector: 'app-criar-cobertura',
@@ -32,7 +33,8 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     ) { super(router, location) }
 
   cobertura: Cobertura = new Cobertura();
-  vacas: Animal[];
+  vacas!: VacaDTO[];
+  vacaSelecionada!: VacaDTO;
   tourosMonta: Animal[];
   inseminadores: Usuario[];
   semens: Semen[];
@@ -47,9 +49,8 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     params = params.set('genero', 'm');
     this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
 
-    params.delete('genero');
-    params = params.set('genero', 'f');  
-    this.animalService.listarPorGenero(params).subscribe(v => this.vacas = v );
+    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
+      .subscribe(v => this.vacas = v);
 
     this.coberturaService.listTipoCobertura().subscribe(tipos => this.TipoCobertura = tipos);
     this.usuariosService.list().subscribe(users => this.inseminadores = users );
@@ -58,19 +59,26 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
   }
 
   submit(formulario){
-    
-    this.coberturaService.save(this.cobertura).subscribe(
+    this.cobertura.vaca = new Animal();
+    //this.cobertura.vaca.id = this.vacaSelecionada.id;
+    this.animalService.loadByID(this.vacaSelecionada.id).subscribe( v => {
+      //console.log(v);
+      this.cobertura.vaca = v;
+      this.coberturaService.save(this.cobertura).subscribe(
       data => {
         //this.cobertura = new Cobertura();
         this.isSuccessful = true;
         this.resetar(formulario);
-        this.irParaListagem('cobertura');
+        //this.irParaListagem('cobertura');
       }, 
       err => {
         this.errorMessage = err.error.message() ;
         this.isSuccessful = false;
       }
       );
+    });
+    console.log(this.cobertura);
+    
   }
 
   alterarTipo(){
@@ -80,5 +88,9 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     this.cobertura.inseminador = null;
     this.cobertura.qtdeDoseSemen = null;
     this.cobertura.semens = null;
+  }
+
+  alterarVaca(){
+    this.vacaSelecionada = null;
   }
 }

@@ -7,13 +7,15 @@ import { CriarPartoComponent } from './criar-parto/criar-parto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListarPartoComponent } from './listar-partos/listar-partos.component';
 import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
+import { DetalhesPartoComponent } from './detalhes-parto/detalhes-parto.component';
 
 
 
 @NgModule({
   declarations: [
     CriarPartoComponent,
-    ListarPartoComponent
+    ListarPartoComponent,
+    DetalhesPartoComponent
   ],providers: [
     authInterceptorProviders
 ],

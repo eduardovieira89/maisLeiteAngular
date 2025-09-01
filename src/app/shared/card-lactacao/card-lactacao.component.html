@@ -5,6 +5,8 @@
         </div>
         <div *ngIf="lactacao.id">
             <h5 class="card-title">Lactação de {{lactacao.parto?.vaca?.nome}}</h5>
+            <label for="inicio">ID: {{lactacao.id}} </label><br>
+            <label for="inicio">Data do parto: {{lactacao.parto.data | date: 'dd/MM/yyyy'}} </label><br>
             <label for="inicio">Inicio: {{lactacao.dataInicio | date: 'dd/MM/yyyy'}} </label><br>
             <label for="encerramento">Encerramento: {{lactacao.dataEncerramento | date: 'dd/MM/yyyy'}} </label><br>
             <label for="finalizada">Finalizada: {{lactacao.finalizado}} </label><br>

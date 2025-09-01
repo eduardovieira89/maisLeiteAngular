@@ -1,16 +1,7 @@
 <h2>Encerrar Lactação</h2>
 <div class="container">
     <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="vacas?.length > 0" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-        <div class="form-group row">
-            <div class="col-sm-2">
-                <label for="dtEncerramento">Data de encerramento:</label>
-                <input type="date" class="form-control" name="dtEncerramento" id="dtEncerramento" required [(ngModel)]="lactacao.dataEncerramento">
-                <div class="invalid-feedback">
-                    Data de encerramento é um campo obrigatório.
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="!vacaSelecionada">
             <div class="col-sm-6">
                 <label for="vaca">Vaca:</label>
                 <select class="form-select" name="vaca" id="vaca" required [(ngModel)]="vacaSelecionada" (change)="buscaLactacao()" >
@@ -20,25 +11,44 @@
                     Selecione a vaca para fazer o encerramento da lactação.
                 </div>
             </div>
-            <div class="col-sm-6">
-                <label for="causas">Causa do encerramento da lactação:</label>
-                <select class="form-select" name="causas" id="causas" required [(ngModel)]="lactacao.causaEncerramento">
-                    <option *ngFor="let causa of causasEncerramentos" [ngValue]="causa">{{causa.descricao}}</option>
-                </select>
-                <div class="invalid-feedback">
-                    Causa do encerramento é um campo obrigatório
+        </div>
+        <div *ngIf="vacaSelecionada">
+            <div class="form-group row" >
+                <div class="col-sm-11">
+                    <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
+                </div>
+                <div class="col-sm-1">
+                    <button (click)="alterar()" class="btn btn-success border">Alterar Vaca</button>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="obs">Observações:</label>
-            <textarea class="form-control" name="obs" id="obs" cols="30" rows="5" [(ngModel)]="lactacao.observacao"></textarea>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <app-card-lactacao [lactacao]="lactacao"> </app-card-lactacao>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label for="dtEncerramento">Data de encerramento:</label>
+                    <input type="date" class="form-control" name="dtEncerramento" id="dtEncerramento" required [(ngModel)]="lactacao.dataEncerramento">
+                    <div class="invalid-feedback">
+                        Data de encerramento é um campo obrigatório.
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="causas">Causa do encerramento da lactação:</label>
+                    <select class="form-select" name="causas" id="causas" required [(ngModel)]="lactacao.causaEncerramento">
+                        <option *ngFor="let causa of causasEncerramentos" [ngValue]="causa">{{causa.descricao}}</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Causa do encerramento é um campo obrigatório
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="obs">Observações:</label>
+                <textarea class="form-control" name="obs" id="obs" cols="30" rows="5" [(ngModel)]="lactacao.observacao"></textarea>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <app-card-lactacao [lactacao]="lactacao"> </app-card-lactacao>
+                </div>
+            </div>
+        </div>            
         <div class="form-group row my-3">
             <div class="form-group col-sm-6 ">
               <button type="submit" class="btn btn-success border">Salvar</button>

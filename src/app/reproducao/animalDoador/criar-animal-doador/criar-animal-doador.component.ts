@@ -34,6 +34,7 @@ export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnI
 
   submit(formulario) {
     this.animal.ativo = true;
+    //this.animal.sexo = 'm'
     this.animalDoador.animal = this.animal;
     this.doadorService.save(this.animalDoador).subscribe(
       data => {

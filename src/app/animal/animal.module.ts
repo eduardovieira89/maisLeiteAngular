@@ -51,7 +51,7 @@ import { CardTotalLactacaoComponent } from './card-total-lactacao/card-total-lac
     ],
     exports:[
         CardTotalAnimaisComponent,
-        CardTotalLactacaoComponent
+        CardTotalLactacaoComponent,
     ]
 })
 export class AnimalModule { }

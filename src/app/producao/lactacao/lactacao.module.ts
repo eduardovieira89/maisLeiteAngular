@@ -9,6 +9,7 @@ import { LactacaoRoutingModule } from './lactacao-routing.module';
 import { EncerrarLactacaoComponent } from './encerrar-lactacao/encerrar-lactacao.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
+import { AnimalModule } from 'src/app/animal/animal.module';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.intercept
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],providers: [
     authInterceptorProviders
 ],

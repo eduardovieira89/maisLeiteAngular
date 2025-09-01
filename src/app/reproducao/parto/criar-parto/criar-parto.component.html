@@ -13,24 +13,40 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="!vacaSelecionada">
             <div class="col-sm-7">
                 <label for="vaca">Vaca: *</label>
-                <select class="form-select" id="vaca"  name="vaca" (change)="alteraVaca()" required [(ngModel)]="vacaSelecionada">
+                <select class="form-select" id="vaca"  name="vaca" (change)="buscaVaca()" required [(ngModel)]="vacaSelecionada">
                     <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
                 </select>
                 <div class="invalid-feedback">
                     Você deve informar qual vaca será realizado o parto.
                 </div>
             </div>
-        </div>
-        <div *ngIf="!vacaSelecionada">
             <h4>Selecione uma Vaca</h4>
         </div>
+        <div class="form-group row" *ngIf="vacaSelecionada">
+            <div class="col-sm-11" >
+                <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
+            </div>
+            <div class="col-sm-1">
+                <button (click)="alterar()" class="btn btn-success border">Alterar Vaca</button>
+            </div>
+        </div>
         <div *ngIf="vacaSelecionada && vacaSelecionada.lactacaoEmAberto == true"> 
-            <h4>Essa vaca possui lactação em aberto. Finalize a lactação primeiro para registar o parto!</h4>
+            <h4>Essa vaca possui lactação em aberto. Não é possível realizar o registro do parto. <br>
+                Deseja finalizar a lactação desta vaca agora?</h4>
+                <button (click)="navegateToFinalizaLactacao()" class="btn btn-success border">Encerrar lactação</button>
         </div>
         <div *ngIf="vacaSelecionada && vacaSelecionada.lactacaoEmAberto == false">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <app-card-cobertura [cobertura]="cobertura"></app-card-cobertura>
+                </div>
+                <div class="col-sm-6">
+                    <app-card-diagnostico-prenhez [diagnosticoPrenhez]="diagnosticoPrenhez"></app-card-diagnostico-prenhez>
+                </div>
+            </div>
             <div class="form-group row"> 
                 <div class="col-sm-2" style="min-width: 150px;">
                     <label for="datap">Data do parto: *</label>
@@ -50,25 +66,19 @@
                         Tipo de parto é um campo obrigatório.
                     </div> 
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <app-card-cobertura [cobertura]="cobertura"></app-card-cobertura>
+                <div class="col-sm-4"> 
+                    <div>
+                        <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
+                        <input type="range" class="form-range" min="1" max="5" step="0.5" id="escoreCorporal" name="escoreCorporal" [(ngModel)]="parto.escoreCorporal">
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <app-card-diagnostico-prenhez [diagnosticoPrenhez]="diagnosticoPrenhez"></app-card-diagnostico-prenhez>
-                </div>
-            </div>
-
-            <div class="form-group row justify-content-start"> 
-                <div class="col-sm-3">
-                    <label for="escoreCorporal" class="form-label">Escore Corporal:</label>
-                    <input type="range" class="form-range" min="1" max="5" step="0.5" id="escoreCorporal" name="escoreCorporal" [(ngModel)]="parto.escoreCorporal">
-                </div>
-                <div class="col-sm-2 d-flex align-items-end">
+                <div class="col-sm-2 d-flex align-items-center">
                     <label class="form-label" >  {{parto.escoreCorporal}}</label>
                 </div>
             </div>
+            
+
+            
 
             <div class="form-group row">
                 <div class="col-sm-12">
@@ -189,17 +199,13 @@
                 </div>
             </div>
         </div>
-
         <div class="row my-3">
             <div class="hstack gap-2">
                 <button type="submit" class="btn btn-success border">Salvar</button>
                 <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
             </div>
         </div>
-
-        
-        
     </form>
 </div>
 
- <app-form-debug [form]="f"></app-form-debug>
+ <!-- <app-form-debug [form]="f"></app-form-debug> -->

@@ -10,6 +10,7 @@ import { DiagnosticoPrenhez } from 'src/app/model/diagnosticoPrenhez';
 import { DiagnosticoPrenhezService } from '../diagnostico-prenhez.service';
 import { Cobertura } from 'src/app/model/cobertura';
 import { Location } from '@angular/common';
+import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
   selector: 'app-criar-diagnostico',
@@ -26,7 +27,8 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
               ) { super(router, location) }
 
   diagnosticoPrenhez: DiagnosticoPrenhez = new DiagnosticoPrenhez();
-  vacas!: Animal[];
+  vacas!: VacaDTO[];
+  vacaSelecionada!: VacaDTO;
   metodosPrenhez!: MetodoPrenhez[];
   cobertura!: Cobertura;
 
@@ -39,30 +41,37 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
     params = params.set('genero', 'f');
     
-    this.animalService.listarPorGenero(params).subscribe( v => this.vacas = v );
+    //this.animalService.listarPorGenero(params).subscribe( v => this.vacas = v );
     this.diagnosticosPrenhezService.listMetodoPrenhez().subscribe( metodos => this.metodosPrenhez = metodos);
+    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
+      .subscribe(v => this.vacas = v);
   }
 
   submit(formulario){
     if(this.cobertura != null){
         this.diagnosticoPrenhez.cobertura = this.cobertura;
     }
-
-    this.diagnosticosPrenhezService.save(this.diagnosticoPrenhez).subscribe(
-      data => {
-        this.resetar(formulario);
-        this.isSuccessful = true;
-      },
-      err => {
-        this.errorMessage = err.error.message();
-        this.isSuccessful = false;
-      }
-    )
+    this.animalService.loadByID(this.vacaSelecionada.id).subscribe(
+      va =>{
+        this.diagnosticoPrenhez.vaca = va;
+        this.diagnosticosPrenhezService.save(this.diagnosticoPrenhez).subscribe(
+          data => {
+          this.resetar(formulario);
+          this.isSuccessful = true;
+        },
+        err => {
+          this.errorMessage = err.error.message();
+          this.isSuccessful = false;
+        });
+      });
+    
   }
-
+  alterarVaca(){
+    this.vacaSelecionada = null;
+  }
   buscaCobertura(){
     let params = new HttpParams();
-    params = params.set('idvaca', this.diagnosticoPrenhez.vaca.id.toString());
+    params = params.set('idvaca', this.vacaSelecionada.id.toString());
     this.diagnosticosPrenhezService.getUltimaCobertura(params).subscribe(
       cob => this.cobertura = cob
     )

@@ -10,6 +10,7 @@ import { BaseFormComponent } from './base-form/base-form.component';
 import { CardCoberturaComponent } from './card-cobertura/card-cobertura.component';
 import { CardDiagnosticoPrenhezComponent } from './card-diagnostico-prenhez/card-diagnostico-prenhez.component';
 import { CardLactacaoComponent } from './card-lactacao/card-lactacao.component';
+import { CardDetalhesAnimalComponent } from './card-detalhes-animal/card-detalhes-animal.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { CardLactacaoComponent } from './card-lactacao/card-lactacao.component';
     CardCoberturaComponent,
     CardDiagnosticoPrenhezComponent,
     CardLactacaoComponent,
+    CardDetalhesAnimalComponent
   ],
   exports: [
     FormDebugComponent,
@@ -34,7 +36,8 @@ import { CardLactacaoComponent } from './card-lactacao/card-lactacao.component';
     InputFieldComponent,
     CardCoberturaComponent,
     CardDiagnosticoPrenhezComponent,
-    CardLactacaoComponent
+    CardLactacaoComponent,
+    CardDetalhesAnimalComponent
   ],
   providers: []
 })

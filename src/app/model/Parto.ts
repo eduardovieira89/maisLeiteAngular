@@ -3,7 +3,7 @@ import { DiagnosticoPrenhez } from './diagnosticoPrenhez';
 import { Cobertura } from './cobertura';
 import { Animal } from './animal';
 import { TipoParto } from "./TipoParto";
-import { VacaNomeLactacaoDTO } from './vacaNomeLactacaoDTO';
+import { VacaDTO } from './vacaDTO';
 
 export class Parto{
     id: number;

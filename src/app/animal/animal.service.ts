@@ -7,7 +7,7 @@ import { CrudService } from '../shared/crud-service';
 import { Raca } from '../model/raca';
 import { MotivoBaixa } from '../model/motivoBaixa';
 import { OrigemAnimal } from '../model/origemAnimal';
-import { VacaNomeLactacaoDTO } from '../model/vacaNomeLactacaoDTO';
+import { VacaDTO } from '../model/vacaDTO';
 
 
 @Injectable({
@@ -36,8 +36,18 @@ export class AnimalService extends CrudService<Animal>{
     return this.http.get<Animal[]>(this.ANIMAL_PATH + "/genero", { params });
   }
 
+  public listarPais(idPropriedade: string){
+    idPropriedade = idPropriedade.trim();
+    const options = idPropriedade ?
+    {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
+    return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/pais`, options);
+  }
+
   public listarEmLactacao(params: HttpParams){
     return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/emlactacao`, {params});
+  }
+  public listarEmLactacaoDTO(params: HttpParams){
+    return this.http.get<VacaDTO[]>(`${this.ANIMAL_PATH}/lactacaodto`, {params});
   }
 
   public listarPorLote(idLote: string){
@@ -49,11 +59,11 @@ export class AnimalService extends CrudService<Animal>{
 
   }
 
-  public listarParaParto(idPropriedade: string){
+  public listarVacasDTO(idPropriedade: string){
     idPropriedade = idPropriedade.trim();
     const options = idPropriedade ?
     {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
-    return this.http.get<VacaNomeLactacaoDTO[]>(`${this.ANIMAL_PATH}/parto`, options);
+    return this.http.get<VacaDTO[]>(`${this.ANIMAL_PATH}/vacasdto`, options);
   }
 
   getRaca(): Observable<Raca[]>{

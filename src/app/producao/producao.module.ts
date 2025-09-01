@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { LactacaoModule } from './lactacao/lactacao.module';
 import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
+import { AnimalModule } from '../animal/animal.module';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { authInterceptorProviders } from '../shared/_helpers/auth.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],providers: [
     authInterceptorProviders
 ],

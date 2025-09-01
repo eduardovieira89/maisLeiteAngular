@@ -12,7 +12,7 @@ import { DiagnosticoPrenhezService } from 'src/app/reproducao/diagnostico-prenhe
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { Location } from '@angular/common';
-import { VacaNomeLactacaoDTO } from 'src/app/model/vacaNomeLactacaoDTO';
+import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
   selector: 'app-criar-parto',
@@ -31,8 +31,8 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
   parto: Parto = new Parto();
   tiposParto!: TipoParto[];
-  vacas!: VacaNomeLactacaoDTO[];
-  vacaSelecionada!: VacaNomeLactacaoDTO;
+  vacas!: VacaDTO[];
+  vacaSelecionada!: VacaDTO;
   cobertura!: Cobertura;
   diagnosticoPrenhez!: DiagnosticoPrenhez;
 
@@ -44,7 +44,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     //params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
     //params = params.set('genero', 'f');
     
-    this.animalService.listarParaParto(this.propriedadeService.getPropriedadeelecionada().id.toString())
+    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
       .subscribe(v => this.vacas = v);
     this.partoService.listTipoParto()
       .subscribe(tipos => this.tiposParto = tipos);
@@ -55,6 +55,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
   }
 
   submit(formulario){
+    //console.log(formulario);
     if(this.cobertura != null){
       this.parto.coberturas = this.cobertura;
     }
@@ -63,8 +64,8 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     }
     this.partoService.save(this.parto).subscribe(
       data => {
-        this.isSuccessful = true;
         this.resetar(formulario);
+        this.isSuccessful = true;
       },
       err => {
         this.errorMessage = err.error;
@@ -73,10 +74,14 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     )
   }
 
+  setaVacanula(){
+    this.vacaSelecionada = null;
+  }
 
-  alteraVaca(){
+  buscaVaca(){
     this.cobertura = null;
     this.diagnosticoPrenhez = null;
+    this.errorMessage = '';
     let params = new HttpParams();
     params = params.set('idvaca', this.vacaSelecionada.id.toString());
 
@@ -103,6 +108,10 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     
   }
 
+  alterar() {
+    this.vacaSelecionada = null;
+  }
+
   diminuiCria(){
     if(this.parto.crias.length > 1){
       this.parto.crias.pop();
@@ -117,6 +126,13 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
       this.parto.qtdeCrias ++;
     }
     
+  }
+
+  navegateToFinalizaLactacao(){
+    this.router.navigate(
+      ['lactacao/encerrar'],
+      { queryParams: {idvaca: this.vacaSelecionada.id} } 
+    );
   }
 
   log(value) {

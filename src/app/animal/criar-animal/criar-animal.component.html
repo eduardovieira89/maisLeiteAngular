@@ -86,7 +86,7 @@
                 <div class="form-group" *ngIf="paiRebanho.checked">
                     <label for="pai">Selecione o pai do seu rebanho:</label>
                     <select class="form-select" id="pai" name="pai" [(ngModel)]="animal.id_pai">
-                        <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}}    ---    Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
+                        <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}} --- {{pai.origemAnimal.descricao}} --- Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
                     </select>
                 </div>
                 <div class="form-group" *ngIf="paiFora.checked">
