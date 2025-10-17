@@ -9,7 +9,7 @@ import { Semen } from 'src/app/model/semen';
 import { Usuario } from 'src/app/model/usuario';
 import { Cobertura } from 'src/app/model/cobertura';
 import { Animal } from 'src/app/model/animal';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Location } from '@angular/common';
@@ -24,12 +24,13 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
 
   constructor(
     protected router: Router,
-    protected location: Location, 
+    protected location: Location,
     private coberturaService: CoberturaService,
     private animalService: AnimalService,
     private propriedadeService: PropriedadeService,
     private usuariosService: UserService,
-    private semensService: SemenService
+    private semensService: SemenService,
+    private route: ActivatedRoute
     ) { super(router, location) }
 
   cobertura: Cobertura = new Cobertura();
@@ -50,12 +51,18 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
 
     this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
-      .subscribe(v => this.vacas = v);
+      .subscribe(v =>{
+        this.vacas = v;
+        //Para selecionar a vaca via parametro na url
+        this.route.queryParams.subscribe(params =>
+          this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']));
+
+      } );
 
     this.coberturaService.listTipoCobertura().subscribe(tipos => this.TipoCobertura = tipos);
     this.usuariosService.list().subscribe(users => this.inseminadores = users );
     this.semensService.list().subscribe(sem => this.semens = sem );
-      
+
   }
 
   submit(formulario){
@@ -70,7 +77,7 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
         this.isSuccessful = true;
         this.resetar(formulario);
         //this.irParaListagem('cobertura');
-      }, 
+      },
       err => {
         this.errorMessage = err.error.message() ;
         this.isSuccessful = false;
@@ -78,7 +85,7 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
       );
     });
     console.log(this.cobertura);
-    
+
   }
 
   alterarTipo(){

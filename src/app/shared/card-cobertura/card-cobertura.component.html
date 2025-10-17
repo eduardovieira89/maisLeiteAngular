@@ -3,6 +3,7 @@
         <h5 class="card-title">Cobertura</h5>
         <div *ngIf="!cobertura">
             <h6 class="card-subtitle mb-2 text-muted">Não há registro de cobertura </h6>
+            <a routerLink="/cobertura/nova" class="btn btn-success border">Cadastrar cobertura</a>
         </div>
         <div *ngIf="cobertura">
             <label for="cobertura">Cobertura: {{cobertura.data | date: 'dd/MM/yyyy'}} </label><br>

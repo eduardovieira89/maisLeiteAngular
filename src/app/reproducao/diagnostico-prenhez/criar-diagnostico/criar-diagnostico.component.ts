@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
@@ -22,6 +22,7 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
   constructor(private diagnosticosPrenhezService: DiagnosticoPrenhezService,
               private animalService: AnimalService,
               private propriedadeService: PropriedadeService,
+              private route: ActivatedRoute,
               protected router: Router,
               protected location: Location
               ) { super(router, location) }
@@ -34,17 +35,26 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
 
   isSuccessful = false;
   errorMessage = '';
-  
+
 
   ngOnInit(): void {
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
     params = params.set('genero', 'f');
-    
+
     //this.animalService.listarPorGenero(params).subscribe( v => this.vacas = v );
     this.diagnosticosPrenhezService.listMetodoPrenhez().subscribe( metodos => this.metodosPrenhez = metodos);
     this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
-      .subscribe(v => this.vacas = v);
+      .subscribe(v => {
+        this.vacas = v;
+        //Para selecionar a vaca via parametro na url
+        this.route.queryParams.subscribe(params => {
+          this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
+          if(this.vacaSelecionada){
+            this.buscaCobertura();
+          }
+        });
+      });
   }
 
   submit(formulario){
@@ -64,7 +74,7 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
           this.isSuccessful = false;
         });
       });
-    
+
   }
   alterarVaca(){
     this.vacaSelecionada = null;

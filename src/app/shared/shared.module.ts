@@ -11,13 +11,15 @@ import { CardCoberturaComponent } from './card-cobertura/card-cobertura.componen
 import { CardDiagnosticoPrenhezComponent } from './card-diagnostico-prenhez/card-diagnostico-prenhez.component';
 import { CardLactacaoComponent } from './card-lactacao/card-lactacao.component';
 import { CardDetalhesAnimalComponent } from './card-detalhes-animal/card-detalhes-animal.component';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   declarations: [
     FormDebugComponent,

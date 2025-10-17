@@ -7,6 +7,7 @@ import { PropriedadeGuard } from 'src/app/shared/guards/propriedade.guard';
 
 const routes: Routes = [
   {path:'', children:[
+    {path:'encerrar/:id', component: EncerrarLactacaoComponent},
     {path:'encerrar', component: EncerrarLactacaoComponent},
     {path:':id', component: DetalhesLactacaoComponent}
   ]}
