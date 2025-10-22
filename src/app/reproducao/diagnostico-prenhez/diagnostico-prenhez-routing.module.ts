@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const DiagnosticoPrenhez: Routes = [
   {path:'', children:[
     {path:'novo',  component: CriarDiagnosticoComponent},
+    {path:'novo/:id',  component: CriarDiagnosticoComponent},
     {path:'', component: ListarDiagnosticosComponent}
   ]}
 ];

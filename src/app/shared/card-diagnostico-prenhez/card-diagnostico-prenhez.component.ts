@@ -9,5 +9,6 @@ import { Component, Input } from '@angular/core';
 export class CardDiagnosticoPrenhezComponent {
 
   @Input() diagnosticoPrenhez:DiagnosticoPrenhez;
+  @Input() idVaca: number;
 
 }

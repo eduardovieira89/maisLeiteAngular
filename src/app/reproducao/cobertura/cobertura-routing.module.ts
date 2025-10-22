@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 const Cobertura: Routes = [
   {path:'', children:[
     {path:'nova', component: CriarCoberturaComponent},
+    {path:'nova/:id', component: CriarCoberturaComponent},
     {path:':id', component: DetalhesCoberturaComponent},
     {path:'', component: ListarCoberturaComponent}
   ]}

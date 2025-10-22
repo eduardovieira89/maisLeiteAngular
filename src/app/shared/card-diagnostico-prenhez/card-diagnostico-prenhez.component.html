@@ -3,6 +3,8 @@
         <h5 class="card-title">Diagnóstico de prenhez</h5>
         <div *ngIf="!diagnosticoPrenhez">
             <h6 class="card-subtitle mb-2 text-muted">Não há registro de diagnóstico de prenhez</h6>
+            <a *ngIf="idVaca" [routerLink]="['/diagnosticoprenhez/novo', idVaca]" class="btn btn-success border">Cadastrar cobertura</a>
+            <a *ngIf="!idVaca" [routerLink]="['/diagnosticoprenhez/novo']" class="btn btn-success border">Cadastrar cobertura</a>
         </div>
         <div *ngIf="diagnosticoPrenhez">
             <label for="diagnosticoPrenhez">Diagnostico de Prenhez: {{diagnosticoPrenhez.data | date: 'dd/MM/yyyy'}} </label><br>

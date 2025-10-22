@@ -48,12 +48,16 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
       .subscribe(v => {
         this.vacas = v;
         //Para selecionar a vaca via parametro na url
-        this.route.queryParams.subscribe(params => {
-          this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
-          if(this.vacaSelecionada){
-            this.buscaCobertura();
-          }
-        });
+        const id = this.route.snapshot.params['id'];
+        this.vacaSelecionada = this.vacas.find(v => v.id.toString() === id);
+        if(!this.vacaSelecionada){
+          this.route.queryParams.subscribe(params => {
+            this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
+          });
+        }
+        if(this.vacaSelecionada){
+          this.buscaCobertura();
+        }
       });
   }
 

@@ -54,10 +54,14 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
       .subscribe(v =>{
         this.vacas = v;
         //Para selecionar a vaca via parametro na url
+        const id = this.route.snapshot.params['id'];
+        this.vacaSelecionada = this.vacas.find(v => v.id.toString() === id);
+        if(!this.vacaSelecionada){
         this.route.queryParams.subscribe(params =>
           this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']));
+        }
 
-      } );
+      });
 
     this.coberturaService.listTipoCobertura().subscribe(tipos => this.TipoCobertura = tipos);
     this.usuariosService.list().subscribe(users => this.inseminadores = users );

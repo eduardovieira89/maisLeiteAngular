@@ -34,20 +34,22 @@ export class EncerrarLactacaoComponent extends BaseFormComponent implements OnIn
 
 
   ngOnInit(): void {
-    //this.lactacao.parto = new Parto();
-    const id = this.route.snapshot.params['id'];
-    console.log('ID da rota: ' + id);
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
     this.animalService.listarEmLactacaoDTO(params).subscribe(animais =>{
       this.vacas = animais;
       //Para selecionar a vaca via parametro na url
-      this.route.queryParams.subscribe(params => {
+      const id = this.route.snapshot.params['id'];
+      this.vacaSelecionada = this.vacas.find(v => v.id.toString() === id);
+      if(!this.vacaSelecionada){
+        this.route.queryParams.subscribe(params => {
         this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
-        if(this.vacaSelecionada){
-          this.buscaLactacao();
-        }
-      });
+        });
+      }
+      if(this.vacaSelecionada){
+        this.buscaLactacao();
+      }
+
     });
     this.lactacoesService.listCausaEncerramento().subscribe(causas => this.causasEncerramentos = causas);
 

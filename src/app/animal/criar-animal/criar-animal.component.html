@@ -25,27 +25,27 @@
         </div>
 
         <div class="form-group row my-3">
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="min-width: 170px;">
                 <label for="brinco">Número do brinco: *</label>
                 <input type="number" class="form-control" id="brinco" name="brinco" required  [(ngModel)]="animal.brinco">
                 <div class="invalid-feedback">
                    Número do brinco é um campo obrigatório.
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="min-width: 180px;">
                 <label for="registro">Número do registro: *</label>
                 <input type="number" class="form-control" id="registro" name="registro" required [(ngModel)]="animal.registro">
                 <div class="invalid-feedback">
                     Número do registro é um campo obrigatório
-                </div>    
+                </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="min-width: 180px;">
                 <label for="dtnasc">Data de nascimento:*</label>
                 <div class="input-group">
                     <input type="date" class="form-control" id="dtnasc" name="dtnasc" required [(ngModel)]="animal.dataNasc">
                     <div class="invalid-feedback">
                         Data de nascimento é um campo obrigatório
-                    </div>  
+                    </div>
                 </div>
             </div>
             <div class="col-sm-3 align-self-center">
@@ -59,9 +59,9 @@
                     <input type="radio" class="custom-control-input" id="femea" name="genero" required [(ngModel)]="animal.sexo" value="f">
                     <label class="custom-control-label" for="femea">Fêmea</label>
                 </div>
-                
+
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="min-width: 170px;">
                 <label for="origem">Origem do animal: *</label>
                 <select class="form-select" id="origem" name="origem" required [(ngModel)]="animal.origemAnimal" >
                     <option *ngFor="let origem of origemAnimal" [ngValue]="origem">{{origem.descricao}}</option>
@@ -125,7 +125,7 @@
               <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
             </div>
         </div>
-        
+
     </form>
 </div>
 

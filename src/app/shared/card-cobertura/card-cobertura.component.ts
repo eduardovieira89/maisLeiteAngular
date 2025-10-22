@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
 export class CardCoberturaComponent {
 
   @Input() cobertura:Cobertura;
+  @Input() idVaca:number;
   constructor(){  }
 
 }
