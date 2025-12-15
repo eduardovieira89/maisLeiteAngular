@@ -37,7 +37,7 @@ export class AplicacaoEmLotesComponent extends BaseFormComponent {
     private propriedadeService: PropriedadeService,
     private animalService: AnimalService,
     private vacinaService: MedicacaoVacinaAplicacaoService
-    
+
   ){super(router, location)  }
 
   ngOnInit(): void {
@@ -45,8 +45,8 @@ export class AplicacaoEmLotesComponent extends BaseFormComponent {
       .subscribe(l => this.lotes = l);
     this.usuarioService.list()
       .subscribe(users => this.aplicadores = users);
-    this.animalService.listByPropriedade(this.propriedadeService.getPropriedadeelecionada().id.toString())
-      .subscribe(anim => this.animais = anim);
+    //this.animalService.listByPropriedade(this.propriedadeService.getPropriedadeelecionada().id.toString())
+    //  .subscribe(anim => this.animais = anim);
     this.vacinaService.listVacinas()
       .subscribe(v => this.vacinas = v);
     this.vacinaService.listarDoencaEvento()
@@ -64,6 +64,7 @@ export class AplicacaoEmLotesComponent extends BaseFormComponent {
 
   buscaAnimaisDoLoteSelecionado(){
     this.animais = [];
+    this.aplicVacina.loteAnimais = [];
     this.animalService.listarPorLote(this.loteSelecionado.id.toString())
       .subscribe(anim => this.animais = anim);
 
