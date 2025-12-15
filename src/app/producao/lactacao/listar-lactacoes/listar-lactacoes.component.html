@@ -1,4 +1,4 @@
-<div class="container">
+
         <h3>Lactações</h3>
         <table class="table table-striped" *ngIf="(lactacoes$ | async) as lactacoes; else loading">
             <thead>
@@ -29,4 +29,3 @@
         <ng-template #loading>
             <span>Carregando Lactações...</span>
         </ng-template>
-</div>
