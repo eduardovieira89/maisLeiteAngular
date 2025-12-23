@@ -85,8 +85,8 @@
                 </div>
                 <div class="form-group" *ngIf="paiRebanho.checked">
                     <label for="pai">Selecione o pai do seu rebanho:</label>
-                    <select class="form-select" id="pai" name="pai" [(ngModel)]="animal.id_pai">
-                        <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}} --- {{pai.origemAnimal.descricao}} --- Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
+                    <select class="form-select" id="pai" name="pai" [(ngModel)]="animal.pai_id">
+                        <option *ngFor="let pai of paisMatriz" [ngValue]="pai">{{pai.nome}} --- {{pai.origem}} --- Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
                     </select>
                 </div>
                 <div class="form-group" *ngIf="paiFora.checked">
@@ -107,8 +107,8 @@
                 </div>
                 <div class="form-group" *ngIf="maeRebanho.checked">
                     <label for="maes">Selecione a mãe do seu rebanho:</label>
-                    <select class="form-select" id="maes" name="mae" [(ngModel)]="animal.id_mae">
-                        <option *ngFor="let mae of maes" [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
+                    <select class="form-select" id="maes" name="mae" [(ngModel)]="animal.mae_id">
+                        <option *ngFor="let mae of maesMatriz" [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
                     </select>
                 </div>
                 <div class="form-group" *ngIf="maeFora.checked">
@@ -134,3 +134,4 @@
         Falha ao criar animal!<br />{{ errorMessage }}
     </div>
 </div>
+<app-form-debug [form]="f"></app-form-debug>

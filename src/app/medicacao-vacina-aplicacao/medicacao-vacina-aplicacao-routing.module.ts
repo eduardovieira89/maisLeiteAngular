@@ -7,6 +7,7 @@ import { AplicacaoEmLotesComponent } from './aplicacao-em-lotes/aplicacao-em-lot
 const routes: Routes = [
   {path: 'listar', component: ListarMedicacaoVacinasComponent},
   {path: 'lotes', component: AplicacaoEmLotesComponent},
+  {path: ':id', component: AplicarMedicacaoVacinasComponent},
   {path:'', component: AplicarMedicacaoVacinasComponent}
 ];
 

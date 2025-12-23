@@ -13,6 +13,7 @@ import { MedicacaoVacinaAplicacaoService } from '../medicacao-vacina-aplicacao.s
 import { VacinaAplicacaoEmLotesDTO } from 'src/app/model/VacinaAplicacaoEmLotesDTO';
 import { DoencaEvento } from 'src/app/model/doencaEvento';
 import { Location } from '@angular/common';
+import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
   selector: 'app-aplicacao-em-lotes',
@@ -25,7 +26,7 @@ export class AplicacaoEmLotesComponent extends BaseFormComponent {
   lotes:Lote[];
   loteSelecionado!:Lote;
   vacinas!: MedicacaoVacina[];
-  animais!: Animal[];
+  animais!: VacaDTO[];
   aplicadores!: Usuario[];
   doencaEventos!: DoencaEvento[];
 
@@ -41,7 +42,7 @@ export class AplicacaoEmLotesComponent extends BaseFormComponent {
   ){super(router, location)  }
 
   ngOnInit(): void {
-    this.loteService.listarLote(this.propriedadeService.getPropriedadeelecionada().id.toString())
+    this.loteService.listarLote(this.propriedadeService.getPropriedadeSelecionada().id.toString())
       .subscribe(l => this.lotes = l);
     this.usuarioService.list()
       .subscribe(users => this.aplicadores = users);

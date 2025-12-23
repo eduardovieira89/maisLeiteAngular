@@ -35,7 +35,7 @@ export class EncerrarLactacaoComponent extends BaseFormComponent implements OnIn
 
   ngOnInit(): void {
     let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
+    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
     this.animalService.listarEmLactacaoDTO(params).subscribe(animais =>{
       this.vacas = animais;
       //Para selecionar a vaca via parametro na url

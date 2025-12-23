@@ -8,6 +8,7 @@ import { Raca } from '../model/raca';
 import { MotivoBaixa } from '../model/motivoBaixa';
 import { OrigemAnimal } from '../model/origemAnimal';
 import { VacaDTO } from '../model/vacaDTO';
+import { AnimalMatrizDto } from '../model/animalMatrizDTO';
 
 
 @Injectable({
@@ -36,11 +37,24 @@ export class AnimalService extends CrudService<Animal>{
     return this.http.get<Animal[]>(this.ANIMAL_PATH + "/genero", { params });
   }
 
-  public listarPais(idPropriedade: string){
-    idPropriedade = idPropriedade.trim();
-    const options = idPropriedade ?
-    {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
-    return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/pais`, options);
+  // public listarPais(idPropriedade: string){
+  //   idPropriedade = idPropriedade.trim();
+  //   const options = idPropriedade ?
+  //   {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
+  //   return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/pais`, options);
+  // }
+
+  public listarMatrizes(idPropriedade: string, genero: string){
+    if(idPropriedade && genero){
+      idPropriedade = idPropriedade.trim();
+      genero = genero.trim();
+      let params = new HttpParams();
+      params = params.set('idpropriedade', idPropriedade);
+      params = params.set('genero', genero);
+      return this.http.get<AnimalMatrizDto[]>(`${this.ANIMAL_PATH}/matriz`,{params});
+    }
+    return null;
+
   }
 
   public listarEmLactacao(params: HttpParams){
@@ -55,7 +69,7 @@ export class AnimalService extends CrudService<Animal>{
     const options = idLote ?
     {params: new HttpParams().set('idlote', idLote)} : {};
 
-    return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/lote`, options);
+    return this.http.get<VacaDTO[]>(`${this.ANIMAL_PATH}/lote`, options);
 
   }
 

@@ -15,8 +15,8 @@ export class Animal {
     mae: string;
     propriedade: Propriedade;
     raca: Raca;
-    id_pai: Animal;
-    id_mae: Animal;
+    pai_id: Animal;
+    mae_id: Animal;
     ativo: boolean;
     motivosBaixa: MotivoBaixa;
     origemAnimal: OrigemAnimal;

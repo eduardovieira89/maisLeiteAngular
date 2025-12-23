@@ -1,59 +1,59 @@
-<h2>Detalhes do Animal</h2> 
+<h2>Detalhes do Animal</h2>
 <div class="container" *ngIf="animal">
   <div>
     <div *ngIf="animal.sexo == 'f'">
-      <label><b>Sexo: </b>Fêmea</label> 
+      <label><b>Sexo: </b>Fêmea</label>
     </div>
     <div *ngIf="animal.sexo == 'm'">
-      <label><b>Sexo: </b>Macho</label> 
+      <label><b>Sexo: </b>Macho</label>
     </div>
-  </div> 
+  </div>
 
   <div class="form-group row" >
     <div class="col-sm-6">
-      <label><b>Nome: </b>{{animal.nome}}</label> 
+      <label><b>Nome: </b>{{animal.nome}}</label>
     </div>
     <div class="col-sm-6">
-      <label><b>Raça: </b>{{ animal.raca?.descricao }}</label> 
+      <label><b>Raça: </b>{{ animal.raca?.descricao }}</label>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-3">
-      <label><b>Número do brinco: </b>{{animal.brinco}}</label> 
+      <label><b>Número do brinco: </b>{{animal.brinco}}</label>
     </div>
     <div class="col-sm-3">
-      <label><b>Número do registro: </b>{{animal.registro}}</label> 
-    </div> 
+      <label><b>Número do registro: </b>{{animal.registro}}</label>
+    </div>
     <div class="col-sm-3">
-      <label><b>Data de nascimento: </b>{{animal.dataNasc | date: 'dd/MM/yyyy'}}</label> 
+      <label><b>Data de nascimento: </b>{{animal.dataNasc | date: 'dd/MM/yyyy'}}</label>
     </div>
   </div>
-  
-  
+
+
 
   <div class="form-group row">
     <div class="col-sm-6">
-      <label><b>Pai: </b>{{animal.pai!}}</label> 
-    </div> 
+      <label><b>Pai: </b>{{animal.pai!}}</label>
+    </div>
     <div class="col-sm-6">
-      <label><b>Mãe: </b>{{animal.mae!}}</label> 
-    </div> 
+      <label><b>Mãe: </b>{{animal.mae!}}</label>
+    </div>
   </div>
-  
+
   <div class="form-group row">
     <div class="col-sm-6">
-      <label><b>Pai ID: </b>{{ animal.id_pai?.nome }}</label> 
-    </div> 
+      <label><b>Pai ID: </b>{{ animal.pai_id?.nome }}</label>
+    </div>
     <div class="col-sm-6">
-      <label><b>Mãe ID: </b>{{ animal.id_mae?.nome }}</label> 
-    </div>    
+      <label><b>Mãe ID: </b>{{ animal.mae_id?.nome }}</label>
+    </div>
   </div>
   <div class="form-group row" >
     <div class="col-sm-6">
-      <label><b>ID: </b>{{animal.id}}</label> 
+      <label><b>ID: </b>{{animal.id}}</label>
     </div>
   </div>
-  <div>
+  <div *ngIf="animal.sexo == 'f'">
     <app-listar-lactacoes [idVaca]="animal.id"></app-listar-lactacoes>
   </div>
   <div>

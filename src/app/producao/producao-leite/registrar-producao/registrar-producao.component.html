@@ -1,69 +1,83 @@
 <h2>Registro de produção de leite</h2>
 <div  class="container">
     <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-
-        <div class="form-group row" >
-            <div class="col-sm-2">
-                <label for="dtcont">Data:*</label>
-                <div class="input-group">
-                    <input type="date" class="form-control" id="dtcont" name="dtcont" required [(ngModel)]="controleLeiteiro.dataControle">
-                    <div class="invalid-feedback">
-                        Data do controle é um campo obrigatório
-                    </div>  
+      <div class="row" *ngIf="f.submitted">
+            <div class="col-sm-12">
+                <div class="alert alert-success" *ngIf="isSuccessful">
+                    <h4>Produção registrada com sucesso!</h4>
+                </div>
+                <div *ngIf="errorMessage!=''">
+                    <div class="alert alert-warning">
+                        Falha ao registrar produção!<br />{{ errorMessage }}
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <label for="temperatura">Temperatura: °C</label>
-                <input type="number" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="controleLeiteiro.temperatura">
-            </div>
-            <div class="col-sm-2">
-                <label for="umidadear">Umidade do ar: %</label>
-                <input type="number" class="form-control" id="umidadear" name="umidadear" [(ngModel)]="controleLeiteiro.umidadeAr">
-            </div>
-        </div>
+      </div>
+      <div class="form-group row" >
+          <div class="col-sm-2">
+              <label for="dtcont">Data:*</label>
+              <div class="input-group">
+                  <input type="date" class="form-control" id="dtcont" name="dtcont" required [(ngModel)]="controleLeiteiro.dataControle">
+                  <div class="invalid-feedback">
+                      Data da produção é um campo obrigatório
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-2">
+              <label for="temperatura">Temperatura: °C</label>
+              <input type="number" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="controleLeiteiro.temperatura">
+          </div>
+          <div class="col-sm-2">
+              <label for="umidadear">Umidade do ar: %</label>
+              <input type="number" class="form-control" id="umidadear" name="umidadear" [(ngModel)]="controleLeiteiro.umidadeAr">
+          </div>
+      </div>
 
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <label for="ordenhadores">Ordenhador(es): *</label>
-                <select class="form-select" multiple id="ordenhadores" name="ordenhadores" required [(ngModel)]="controleLeiteiro.ordenhadores">
-                    <option *ngFor="let ordenhador of ordenhadores" [ngValue]="ordenhador">{{ordenhador.nome}}</option>
-                </select>
-                <div class="invalid-feedback">
-                    É necessário informar pelo menos um ordenhador
-                </div>
-            </div>
-        </div>
-        <div class="form-group row ">
-            <div class="col-sm-4">
-                <label>Vacas em lactação: </label>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-7">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td width="40%"></td>
-                            <td style="min-width:100px" width="20%">Lactação</td>
-                            <td style="min-width:100px">Ordenha 1:</td>
-                            <td style="min-width:100px">Ordenha 2:</td>
-                            <td style="min-width:100px">Ordenha 3:</td>
-                            <td></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let producao of listagemProducaoLeite">
-                            <td>{{producao.lactacao.parto.vaca.nome}}</td>
-                            <td>{{producao.lactacao.dataInicio}}</td>
-                            <td><input type="number" class="form-control" name="ordenha1"  [(ngModel)]="producao.ordenha1"></td>
-                            <td><input type="number" class="form-control" name="ordenha2"  [(ngModel)]="producao.ordenha2"></td>
-                            <td><input type="number" class="form-control" name="ordenha3"  [(ngModel)]="producao.ordenha3"></td>
-                            <td>Litros</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+      <div class="form-group row">
+          <div class="col-sm-6">
+              <label for="ordenhadores">Ordenhador(es): *</label>
+              <select class="form-select" multiple id="ordenhadores" name="ordenhadores" required [(ngModel)]="controleLeiteiro.ordenhadores">
+                  <option *ngFor="let ordenhador of ordenhadores" [ngValue]="ordenhador">{{ordenhador.nome}}</option>
+              </select>
+              <div class="invalid-feedback">
+                  É necessário informar pelo menos um ordenhador
+              </div>
+          </div>
+      </div>
+      <div class="form-group row ">
+          <div class="col-sm-4">
+              <label>Vacas em lactação: </label>
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-7">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <td width="40%"></td>
+                          <td style="min-width:100px" width="20%">Lactação</td>
+                          <td style="min-width:100px">Ordenha 1:</td>
+                          <td style="min-width:100px">Ordenha 2:</td>
+                          <td style="min-width:100px">Ordenha 3:</td>
+                          <td></td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let producao of listagemProducaoLeite">
+                          <td>{{producao.lactacao.parto.vaca.nome}}</td>
+                          <td>{{producao.lactacao.dataInicio}}</td>
+                          <td>
+                            <input type="number" class="form-control" name="ordenha1" required [(ngModel)]="producao.ordenha1">
+                            <div class="invalid-feedback">Informe o valor da primeira ordenha</div>
+                          </td>
+                          <td><input type="number" class="form-control" name="ordenha2"  [(ngModel)]="producao.ordenha2"></td>
+                          <td><input type="number" class="form-control" name="ordenha3"  [(ngModel)]="producao.ordenha3"></td>
+                          <td>Litros</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
 
         <div class="form-group row my-3">
             <div class="form-group col-sm-6 ">
@@ -71,15 +85,9 @@
               <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
             </div>
           </div>
-        
-        
-    </form>
-</div>
 
-<div *ngIf="errorMessage!=''">
-    <div class="alert alert-warning">
-        Falha ao registrar produção! <br />{{ errorMessage }}
-    </div>
+
+    </form>
 </div>
 
 <app-form-debug [form]="f"></app-form-debug>

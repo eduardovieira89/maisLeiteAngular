@@ -46,11 +46,11 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
   ngOnInit(): void {
     this.isSuccessful = false;
     let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
+    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
     params = params.set('genero', 'm');
     this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
 
-    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
+    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
       .subscribe(v =>{
         this.vacas = v;
         //Para selecionar a vaca via parametro na url

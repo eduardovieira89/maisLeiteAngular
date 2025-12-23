@@ -24,7 +24,7 @@ export class ListarDiagnosticosComponent implements OnInit {
   }
 
   listarDiagnosticos(){
-    this.propriedade = this.propriedadeService.getPropriedadeelecionada();
+    this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
     if(this.propriedade){
       let params = new HttpParams();
       params = params.set('idpropriedade', this.propriedade.id.toString() )

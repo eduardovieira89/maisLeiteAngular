@@ -39,12 +39,12 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
 
   ngOnInit(): void {
     let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
+    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
     params = params.set('genero', 'f');
 
     //this.animalService.listarPorGenero(params).subscribe( v => this.vacas = v );
     this.diagnosticosPrenhezService.listMetodoPrenhez().subscribe( metodos => this.metodosPrenhez = metodos);
-    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
+    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
       .subscribe(v => {
         this.vacas = v;
         //Para selecionar a vaca via parametro na url

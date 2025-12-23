@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
       this.roles = user.roles;
       //this.showPropriedadeBoard = this.roles.includes('ROLE_PRODUTOR');
       this.username = user.username;
-      this.nome_propriedade = this.propriedadeService.getPropriedadeelecionada()?.nome;
+      this.nome_propriedade = this.propriedadeService.getPropriedadeSelecionada()?.nome;
     }
   }
 

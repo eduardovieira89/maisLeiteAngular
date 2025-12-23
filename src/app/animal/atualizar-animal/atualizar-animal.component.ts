@@ -31,7 +31,7 @@ export class AtualizarAnimalComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
-    
+
     this.animal = new Animal();
     this.id = this.route.snapshot.params['id'];
 
@@ -43,20 +43,20 @@ export class AtualizarAnimalComponent implements OnInit {
   }
 
   carregarCampos() {
-    let idpropriedade = this.propriedadeService.getPropriedadeelecionada().id.toString()
+    let idpropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString()
     let params = new HttpParams();
     params = params.set('idpropriedade', idpropriedade);
     params = params.set('genero', 'm');
 
     this.animalService.getRaca().subscribe(data => this.racas = data);
-    this.loteService.listarLote(this.propriedadeService.getPropriedadeelecionada().id.toString()).subscribe(
+    this.loteService.listarLote(this.propriedadeService.getPropriedadeSelecionada().id.toString()).subscribe(
       data => this.lotes = data);
 
     this.animalService.listarPorGenero(params).subscribe(pais => this.pais = pais);
     params.delete('genero');
     params = params.set('genero', 'f');
     this.animalService.listarPorGenero(params).subscribe( maes => this.maes = maes);
-    
+
   }
 
   atualizarAnimal(){
@@ -71,19 +71,19 @@ export class AtualizarAnimalComponent implements OnInit {
     this.router.navigate(['animal']);
   }
 
-  compareRaca(c1: any, c2:any): boolean {     
-    return c1 && c2 ? c1.id_raca === c2.id_raca : c1 === c2; 
+  compareRaca(c1: any, c2:any): boolean {
+    return c1 && c2 ? c1.id_raca === c2.id_raca : c1 === c2;
 }
-  compareLote(c1: any, c2:any): boolean {     
-    return c1 && c2 ? c1.idLote === c2.idLote : c1 === c2; 
-}
-
-comparePai(c1: any, c2:any): boolean {     
-  return c1 && c2 ? c1.id_pai === c2.id_pai : c1 === c2; 
+  compareLote(c1: any, c2:any): boolean {
+    return c1 && c2 ? c1.idLote === c2.idLote : c1 === c2;
 }
 
-compareMae(c1: any, c2:any): boolean {     
-  return c1 && c2 ? c1.id_mae === c2.id_mae : c1 === c2; 
+comparePai(c1: any, c2:any): boolean {
+  return c1 && c2 ? c1.id_pai === c2.id_pai : c1 === c2;
+}
+
+compareMae(c1: any, c2:any): boolean {
+  return c1 && c2 ? c1.id_mae === c2.id_mae : c1 === c2;
 }
 
 

@@ -38,10 +38,10 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
     ){super(router, location)}
 
     ngOnInit(): void {
-      this.controleLeiteiro.propriedade = this.propriedadeService.getPropriedadeelecionada();
+      this.controleLeiteiro.propriedade = this.propriedadeService.getPropriedadeSelecionada();
       this.usuarioService.list().subscribe(users => this.ordenhadores = users);
       let params = new HttpParams();
-      params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
+      params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
       this.animalService.listarEmLactacao(params).subscribe( animais => {
         animais.forEach(element => {
           this.producaoService.findLactacao(element.id.toString()).subscribe(lact =>{
@@ -57,7 +57,7 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
       );
     }
 
-    /** 
+    /**
     adicionarVaca(){
       this.producaoService.findLactacao(this.vaca.id.toString()).subscribe(lact => {
         let producaoLeite: ProducaoLeite = new ProducaoLeite();
@@ -72,10 +72,14 @@ export class RegistrarProducaoComponent extends BaseFormComponent implements OnI
     */
     submit(formulario) {
       this.controleLeiteiro.producoesLeite = this.listagemProducaoLeite;
-      console.log(`Produção de leite: ${JSON.stringify(this.controleLeiteiro)}`);
       this.controleLeiteiroService.save(this.controleLeiteiro).subscribe(
         data => {
           this.resetar(formulario);
+          this.isSuccessful = true;
+        },
+        err => {
+          this.errorMessage = err.error;
+          this.isSuccessful = false;
         }
       );
     }

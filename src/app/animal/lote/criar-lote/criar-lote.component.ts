@@ -14,6 +14,7 @@ import { Location } from '@angular/common';
 export class CriarLoteComponent extends BaseFormComponent implements OnInit {
 
   lote: Lote = new Lote();
+  propriedade: String;
 
   constructor(
     protected router: Router,
@@ -23,18 +24,18 @@ export class CriarLoteComponent extends BaseFormComponent implements OnInit {
   ){super(router, location)  }
 
   ngOnInit(): void {
-    this.lote.propriedade = this.propriedadeService.getPropriedadeelecionada();
+    this.propriedade = this.propriedadeService.getPropriedadeSelecionada().nome;
   }
 
   submit(formulario) {
-    this.loteService.save(this.lote).subscribe(
+    this.loteService.salvar(this.lote).subscribe(
       data => {
         this.resetar(formulario);
         this.irParaListagem('animal/lotes');
       },
       err => this.errorMessage = err.error.message
     );
-    
+
   }
 
 }

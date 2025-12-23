@@ -25,7 +25,7 @@ export class ListarPartoComponent {
     }
 
     listarParto() {
-      this.propriedade = this.propriedadeService.getPropriedadeelecionada();
+      this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
       if(this.propriedade){
         this.errorMessage = '';
         let params = new HttpParams();

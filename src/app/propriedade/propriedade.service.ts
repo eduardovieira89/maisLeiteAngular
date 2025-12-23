@@ -25,7 +25,7 @@ export class PropriedadeService extends CrudService<Propriedade> {
     PropriedadeService.selecionouPropriedade.emit();
   }
 
-  public getPropriedadeelecionada(): Propriedade {
+  public getPropriedadeSelecionada(): Propriedade {
     return JSON.parse(sessionStorage.getItem(PROPRIEDADE_KEY) as string);
   }
 

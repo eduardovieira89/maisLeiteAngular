@@ -40,7 +40,7 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
   }
 
   onRefresh() {
-    this.propriedade = this.propriedadeService.getPropriedadeelecionada();
+    this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
     if(this.propriedade){
       this.animais$ = this.animalService.listByPropriedade(this.propriedade.id.toString());
       this.animalService.getMotivoBaixa().subscribe(

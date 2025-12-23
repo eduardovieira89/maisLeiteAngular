@@ -22,7 +22,7 @@ export class ListarProducaoComponent implements OnInit {
 
   ngOnInit(): void {
     let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
+    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
     this.controles$ = this.producaoService.listProducoes(params);
 
   }

@@ -9,11 +9,11 @@
         <div class="form-group">
             <label for="brinco">Número do brinco</label>
             <input type="number" class="form-control" id="brinco" required  [(ngModel)]="animal.brinco" name="brinco" #brinco="ngModel">
-            
+
             <div class="alert-danger" *ngIf="brinco.errors && (brinco.invalid && brinco.touched)">
                 <small class="text-danger" *ngIf="brinco.errors.required">Brinco é um campo obrigatório</small>
               </div>
-            
+
         </div>
 
         <div class="form-group">
@@ -78,11 +78,11 @@
             <label for="pai">Escreva o nome do pai do animal</label>
             <input type="text" class="form-control" id="pai" [(ngModel)]="animal.pai" name="pai">
         </div>
-        
+
 
         <div class="form-group" *ngIf="!paiList.checked">
             <label for="raca">Selecione o pai dentre os seus animais</label>
-            <select class="form-select" id="pais" [(ngModel)]="animal.id_pai" name="pai" [compareWith]="comparePai">
+            <select class="form-select" id="pais" [(ngModel)]="animal.pai_id" name="pai" [compareWith]="comparePai">
                 <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}}    ---    Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
             </select>
         </div>
@@ -104,23 +104,23 @@
 
         <div class="form-group" *ngIf="!maeList.checked">
             <label for="maes">Selecione a mãe dentre os seus animais</label>
-            <select class="form-select" id="maes" [(ngModel)]="animal.id_mae" name="mae" [compareWith]="compareMae">
+            <select class="form-select" id="maes" [(ngModel)]="animal.mae_id" name="mae" [compareWith]="compareMae">
                 <option *ngFor="let mae of maes" [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
             </select>
         </div>
 
         </div>
-        
+
         <button type="submit" class="btn btn-success float-right" >Alterar</button>
     </form>
-    
+
     <div *ngIf="errorMessage!=''">
         <div class="alert alert-warning">
             Falha ao atualizar animal!<br />{{ errorMessage }}
         </div>
     </div>
-    
+
     <button (click)="irParaListagem()" class="btn btn-info">Cancelar</button>
-    
-    
+
+
 </div>

@@ -1,7 +1,7 @@
 <h2>Cadastrar Lote</h2>
 <div class="container">
     <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-        <h5>Cadastrando lote em <strong>{{lote.propriedade.nome}}</strong> </h5>
+        <h5>Cadastrando lote em <strong>{{propriedade}}</strong> </h5>
         <div class=" form-group row">
             <div class="col-sm-6">
                 <label for="descricao">Descrição:</label>

@@ -14,7 +14,7 @@
             <h4>Selecione uma Vaca</h4>
         </div>
         <div *ngIf="vacaSelecionada">
-            <div class="form-group row" *ngIf="vacaSelecionada">
+            <div class="form-group row">
                 <div class="col-sm-11" >
                     <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
                 </div>
@@ -22,14 +22,14 @@
                     <button (click)="alterarVaca()" class="btn btn-success border">Alterar Vaca</button>
                 </div>
             </div>
-            <div class="form-group row"> 
+            <div class="form-group row">
                 <div class="col-sm-2" style="min-width: 170px;">
                     <label for="datac">Data da cobertura: *</label>
                     <div class="input-group">
                         <input type="date" class="form-control" id="datac" name="datac" required [(ngModel)]="cobertura.data">
                         <div class="invalid-feedback">
                             Data de cobertura é um campo obrigatório.
-                        </div>  
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-3" style="min-width: 170px;">
@@ -47,11 +47,11 @@
                     <label class="form-label" >  {{cobertura.escoreCorporal}}</label>
                     <label class="form-label" *ngIf="cobertura.escoreCorporal == null" > (Informe o EC)</label>
                 </div>
-                
+
             </div>
             <div class="card col my-2" style="min-height: 90px;" >
-                <div class="card-body" *ngIf="!cobertura.tipoCobertura"> 
-                    <h5 class="card-title">Informe um tipo de cobertura</h5> 
+                <div class="card-body" *ngIf="!cobertura.tipoCobertura">
+                    <h5 class="card-title">Informe um tipo de cobertura</h5>
                 </div>
                 <div class="card-body" *ngIf="cobertura.tipoCobertura?.descricao == 'Monta'">
                     <div class="form-group row" >
@@ -121,7 +121,7 @@
               <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
             </div>
         </div>
-        
+
         <div class="row my-3">
             <div class="col-sm-6">
                 <div class="alert alert-success" *ngIf="isSuccessful">

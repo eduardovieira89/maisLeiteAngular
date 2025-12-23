@@ -22,10 +22,10 @@ export class ListarCoberturaComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarCobertura();
-    
+
   }
   listarCobertura() {
-    this.propriedade = this.propriedadeService.getPropriedadeelecionada();
+    this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
     if(this.propriedade){
       this.errorMessage = '';
       let params = new HttpParams();

@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   animaisEmLactacao: number;
 
   ngOnInit(): void {
-    this.propriedade = this.propriedadeService.getPropriedadeelecionada();
+    this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
     if(this.propriedade){
       this.animalService.countAnimaisAtivos(this.propriedade.id.toString()).subscribe(count => this.animaisAtivos = count);
       this.animalService.countAnimaisEmLactacao(this.propriedade.id.toString()).subscribe(count => this.animaisEmLactacao = count);

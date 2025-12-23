@@ -43,8 +43,8 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     //let params = new HttpParams();
     //params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
     //params = params.set('genero', 'f');
-    
-    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeelecionada().id.toString())
+
+    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
       .subscribe(v => this.vacas = v);
     this.partoService.listTipoParto()
       .subscribe(tipos => this.tiposParto = tipos);
@@ -96,7 +96,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
             this.cobertura = diag.cobertura;
           }
         }
-        
+
       }
     );
 
@@ -105,7 +105,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
         cob => this.cobertura = cob
       );
     }
-    
+
   }
 
   alterar() {
@@ -117,7 +117,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
       this.parto.crias.pop();
       this.parto.qtdeCrias --;
     }
-    
+
   }
 
   aumentaCria(){
@@ -125,13 +125,13 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
       this.parto.crias.push(new Cria());
       this.parto.qtdeCrias ++;
     }
-    
+
   }
 
   navegateToFinalizaLactacao(){
     this.router.navigate(
       ['lactacao/encerrar'],
-      { queryParams: {idvaca: this.vacaSelecionada.id} } 
+      { queryParams: {idvaca: this.vacaSelecionada.id} }
     );
   }
 

@@ -13,12 +13,12 @@ export class PropriedadeGuard  {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(!!this.propriedadeService.getPropriedadeelecionada()){
+    if(!!this.propriedadeService.getPropriedadeSelecionada()){
       return true;
     }
 
     this.router.navigate(['/propriedade']);
     return false;
-      
+
   }
 }

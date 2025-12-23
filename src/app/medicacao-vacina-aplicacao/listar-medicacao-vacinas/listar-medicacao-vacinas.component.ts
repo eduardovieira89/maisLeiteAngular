@@ -18,7 +18,7 @@ export class ListarMedicacaoVacinasComponent implements AfterViewInit{
   animais$: Observable<Animal[]>;
   animal: Animal;
   vacinas!: VacinaAplicacao[];
-  @ViewChild(CardListaMedicacaoVacinasAnimaisComponent) cardListarVacina : CardListaMedicacaoVacinasAnimaisComponent; 
+  @ViewChild(CardListaMedicacaoVacinasAnimaisComponent) cardListarVacina : CardListaMedicacaoVacinasAnimaisComponent;
 
   constructor(
     private animalService: AnimalService,
@@ -27,7 +27,7 @@ export class ListarMedicacaoVacinasComponent implements AfterViewInit{
   ){}
 
   ngOnInit(): void {
-    this.animais$ = this.animalService.listByPropriedade(this.propriedadeService.getPropriedadeelecionada().id.toString())
+    this.animais$ = this.animalService.listByPropriedade(this.propriedadeService.getPropriedadeSelecionada().id.toString())
   }
 
   buscaVacinas(id: number){

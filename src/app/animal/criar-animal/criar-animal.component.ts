@@ -10,6 +10,7 @@ import { OrigemAnimal } from 'src/app/model/origemAnimal';
 import { Lote } from 'src/app/model/lote';
 import { LoteService } from '../lote/lote.service';
 import { Location } from '@angular/common';
+import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
 
 @Component({
   selector: 'app-criar-animal',
@@ -30,25 +31,29 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   animal: Animal = new Animal();
   racas: Raca[];
   origemAnimal: OrigemAnimal[];
-  pais: Animal[];
-  maes: Animal[];
+  //pais: Animal[];
+  //maes: Animal[];
   lotes: Lote[];
+  paisMatriz: AnimalMatrizDto[];
+  maesMatriz: AnimalMatrizDto[];
 
   ngOnInit(): void {
-    let idpropriedade = this.propriedadeService.getPropriedadeelecionada().id.toString()
-    let params = new HttpParams();
-    params = params.set('idpropriedade', idpropriedade);
-    params = params.set('genero', 'f');
-    
+    let idpropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString()
+    //let params = new HttpParams();
+    //params = params.set('idpropriedade', idpropriedade);
+    //params = params.set('genero', 'f');
+
     this.animalService.getRaca().subscribe(data => this.racas = data);
     this.animalService.getOrigemAnimal().subscribe(data => this.origemAnimal = data);
     this.loteService.listarLote(idpropriedade).subscribe(data => this.lotes = data);
-    this.animalService.listarPais(idpropriedade).subscribe(pais => this.pais = pais);
-    this.animalService.listarPorGenero(params).subscribe(maes => this.maes = maes);
+    //this.animalService.listarPais(idpropriedade).subscribe(pais => this.pais = pais);
+    //this.animalService.listarPorGenero(params).subscribe(maes => this.maes = maes);
+    this.animalService.listarMatrizes(idpropriedade, 'm').subscribe(animaisPais => this.paisMatriz = animaisPais);
+    this.animalService.listarMatrizes(idpropriedade, 'f').subscribe(animaisMaes => this.maesMatriz = animaisMaes);
   }
 
   submit(formulario) {
-      this.animal.propriedade = this.propriedadeService.getPropriedadeelecionada();
+      this.animal.propriedade = this.propriedadeService.getPropriedadeSelecionada();
       this.animal.ativo = true;
       this.animalService.save(this.animal).subscribe(
         data => {
