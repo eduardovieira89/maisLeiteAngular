@@ -38,29 +38,32 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   maesMatriz: AnimalMatrizDto[];
 
   ngOnInit(): void {
-    let idpropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString()
+    //let idpropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString()
     //let params = new HttpParams();
     //params = params.set('idpropriedade', idpropriedade);
     //params = params.set('genero', 'f');
 
     this.animalService.getRaca().subscribe(data => this.racas = data);
     this.animalService.getOrigemAnimal().subscribe(data => this.origemAnimal = data);
-    this.loteService.listarLote(idpropriedade).subscribe(data => this.lotes = data);
+    this.loteService.listarLote().subscribe(data => this.lotes = data);
     //this.animalService.listarPais(idpropriedade).subscribe(pais => this.pais = pais);
     //this.animalService.listarPorGenero(params).subscribe(maes => this.maes = maes);
-    this.animalService.listarMatrizes(idpropriedade, 'm').subscribe(animaisPais => this.paisMatriz = animaisPais);
-    this.animalService.listarMatrizes(idpropriedade, 'f').subscribe(animaisMaes => this.maesMatriz = animaisMaes);
+    this.animalService.listarMatrizes('m').subscribe(animaisPais => this.paisMatriz = animaisPais);
+    this.animalService.listarMatrizes('f').subscribe(animaisMaes => this.maesMatriz = animaisMaes);
   }
 
   submit(formulario) {
       this.animal.propriedade = this.propriedadeService.getPropriedadeSelecionada();
       this.animal.ativo = true;
+      console.log('Animal para salvar:', this.animal)
       this.animalService.save(this.animal).subscribe(
         data => {
           this.resetar(formulario);
           this.irParaListagem('animal');
         },
-        err => this.errorMessage = err.error.message
+        err => {
+          this.errorMessage = err.error;
+        }
       );
   }
 }

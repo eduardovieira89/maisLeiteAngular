@@ -108,8 +108,9 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
   }
 
-  alterar() {
+  alterar(formulario) {
     this.vacaSelecionada = null;
+    this.resetar(formulario);
   }
 
   diminuiCria(){

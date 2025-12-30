@@ -42,7 +42,7 @@ export class AplicacaoEmLotesComponent extends BaseFormComponent {
   ){super(router, location)  }
 
   ngOnInit(): void {
-    this.loteService.listarLote(this.propriedadeService.getPropriedadeSelecionada().id.toString())
+    this.loteService.listarLote()
       .subscribe(l => this.lotes = l);
     this.usuarioService.list()
       .subscribe(users => this.aplicadores = users);

@@ -9,6 +9,7 @@ import { MotivoBaixa } from '../model/motivoBaixa';
 import { OrigemAnimal } from '../model/origemAnimal';
 import { VacaDTO } from '../model/vacaDTO';
 import { AnimalMatrizDto } from '../model/animalMatrizDTO';
+import { PropriedadeService } from '../propriedade/propriedade.service';
 
 
 @Injectable({
@@ -22,14 +23,16 @@ export class AnimalService extends CrudService<Animal>{
   private readonly ORIGEM_ANIMAL_PATH = `${environment.API}origemanimal`;
   private readonly BAIXA_ANIMAL_PATH = `${this.ANIMAL_PATH}/baixa`;
 
-  constructor(protected http: HttpClient) {
+  constructor(
+    protected http: HttpClient,
+    private propriedadeService: PropriedadeService,) {
     super(http, `${environment.API}animal`);
   }
 
-  listByPropriedade(idPropriedade: string){
-    idPropriedade = idPropriedade.trim();
+  listByPropriedade(){
+    let idPropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString().trim();
     const options = idPropriedade ?
-    {params: new HttpParams().set('idpropriedade', idPropriedade)} : {};
+    { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};
     return this.http.get<Animal[]>(this.ANIMAL_PATH, options);
   }
 
@@ -44,12 +47,12 @@ export class AnimalService extends CrudService<Animal>{
   //   return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/pais`, options);
   // }
 
-  public listarMatrizes(idPropriedade: string, genero: string){
-    if(idPropriedade && genero){
-      idPropriedade = idPropriedade.trim();
+  public listarMatrizes(genero: string){
+    let idProp = this.propriedadeService.getPropriedadeSelecionada().id.toString().trim();
+    if(idProp && genero){
       genero = genero.trim();
       let params = new HttpParams();
-      params = params.set('idpropriedade', idPropriedade);
+      params = params.set('idpropriedade', idProp);
       params = params.set('genero', genero);
       return this.http.get<AnimalMatrizDto[]>(`${this.ANIMAL_PATH}/matriz`,{params});
     }

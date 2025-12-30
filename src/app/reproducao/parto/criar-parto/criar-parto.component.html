@@ -1,22 +1,21 @@
 <h2>Registrar Parto</h2>
 <div  class="container">
     <form name="form"  (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" class="needs-validation d-grid gap-1" [ngClass]="aplicaErroForm(f)" novalidate>
-        <div class="row" *ngIf="f.submitted">
-            <div class="col-sm-12">
-                <div class="alert alert-success" *ngIf="isSuccessful">
-                    <h4>Parto registrado com sucesso!</h4>
-                </div>
-                <div *ngIf="errorMessage!=''">
-                    <div class="alert alert-warning">
-                        Falha ao cadastrar parto!<br />{{ errorMessage }}
-                    </div>
+        <div class="row">
+            <div class="alert alert-success" *ngIf="isSuccessful">
+                <h4>Parto registrado com sucesso!</h4>
+            </div>
+            <div *ngIf="errorMessage!=''">
+                <div class="alert alert-warning">
+                    Falha ao cadastrar parto!<br/>
+                    <pre>{{ errorMessage | json }}</pre>
                 </div>
             </div>
         </div>
         <div class="form-group row" *ngIf="!vacaSelecionada">
             <div class="col-sm-7">
                 <label for="vaca">Vaca: *</label>
-                <select class="form-select" id="vaca"  name="vaca" (change)="buscaVaca()" required [(ngModel)]="vacaSelecionada">
+                <select class="form-select" id="vaca"  name="vaca" (change)="buscaVaca()"  [(ngModel)]="vacaSelecionada">
                     <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
                 </select>
                 <div class="invalid-feedback">
@@ -30,7 +29,7 @@
                 <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
             </div>
             <div class="col-sm-1">
-                <button (click)="alterar()" class="btn btn-success border">Alterar Vaca</button>
+                <button (click)="alterar(f)" class="btn btn-success border">Alterar Vaca</button>
             </div>
         </div>
         <div *ngIf="vacaSelecionada && vacaSelecionada.lactacaoEmAberto == true">
@@ -51,7 +50,7 @@
                 <div class="col-sm-2" style="min-width: 150px;">
                     <label for="datap">Data do parto: *</label>
                     <div class="input-group">
-                        <input type="date" class="form-control" id="datap" name="datap" required [(ngModel)]="parto.data">
+                        <input type="date" class="form-control" id="datap" name="datap"  [(ngModel)]="parto.data">
                         <div class="invalid-feedback">
                             Data do parto é um campo obrigatório.
                         </div>
@@ -59,7 +58,7 @@
                 </div>
                 <div class="col-sm-3" style="min-width: 140px;">
                     <label for="tipoParto">Tipo do parto: *</label>
-                    <select class="form-select" id="tipoParto" name="tipoParto" required [(ngModel)]="parto.tiposParto">
+                    <select class="form-select" id="tipoParto" name="tipoParto"  [(ngModel)]="parto.tiposParto">
                         <option *ngFor="let tipo of tiposParto" [ngValue]="tipo">{{tipo.descricao}}</option>
                     </select>
                     <div class="invalid-feedback">
@@ -111,11 +110,11 @@
                         <h5 class="card-title">Cria 1</h5>
                         <label for="genero3">Sexo *: </label>
                         <div class="form-check form-check-inline ms-2">
-                            <input type="radio" class="form-check-input" id="macho1" name="genero1" required [(ngModel)]="parto.crias[0].sexo" value="m">
+                            <input type="radio" class="form-check-input" id="macho1" name="genero1"  [(ngModel)]="parto.crias[0].sexo" value="m">
                             <label class="form-check-label" for="macho1">Macho</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="femea1" name="genero1" required [(ngModel)]="parto.crias[0].sexo" value="f">
+                            <input type="radio" class="form-check-input" id="femea1" name="genero1"  [(ngModel)]="parto.crias[0].sexo" value="f">
                             <label class="form-check-label" for="femea1">Fêmea</label>
                             <!--<div class="invalid-feedback">Sexo é um campo obrigatótio</div>-->
                         </div>
@@ -142,11 +141,11 @@
                         <h5 class="card-title">Cria 2</h5>
                         <label for="genero3">Sexo *: </label>
                         <div class="form-check form-check-inline ms-2">
-                            <input type="radio" class="form-check-input" id="macho2" name="genero2" required [(ngModel)]="parto.crias[1].sexo" value="m">
+                            <input type="radio" class="form-check-input" id="macho2" name="genero2"  [(ngModel)]="parto.crias[1].sexo" value="m">
                             <label class="form-check-label" for="macho2">Macho</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="femea2" name="genero2" required [(ngModel)]="parto.crias[1].sexo" value="f">
+                            <input type="radio" class="form-check-input" id="femea2" name="genero2"  [(ngModel)]="parto.crias[1].sexo" value="f">
                             <label class="form-check-label" for="femea2">Fêmea</label>
                             <!--<div class="invalid-feedback">Sexo é um campo obrigatótio</div>-->
                         </div>
@@ -173,11 +172,11 @@
                         <h5 class="card-title">Cria 3</h5>
                         <label for="genero3">Sexo *: </label>
                         <div class="form-check form-check-inline ms-2">
-                            <input type="radio" class="form-check-input" id="macho3" name="genero3" required [(ngModel)]="parto.crias[2].sexo" value="m">
+                            <input type="radio" class="form-check-input" id="macho3" name="genero3"  [(ngModel)]="parto.crias[2].sexo" value="m">
                             <label class="form-check-label" for="macho3">Macho</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="femea3" name="genero3" required [(ngModel)]="parto.crias[2].sexo" value="f">
+                            <input type="radio" class="form-check-input" id="femea3" name="genero3"  [(ngModel)]="parto.crias[2].sexo" value="f">
                             <label class="form-check-label" for="femea3">Fêmea</label>
                             <!--<div class="invalid-feedback">Sexo é um campo obrigatótio</div>-->
                         </div>

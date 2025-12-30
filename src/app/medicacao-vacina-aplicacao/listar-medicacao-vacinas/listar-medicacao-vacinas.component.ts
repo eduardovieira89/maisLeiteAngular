@@ -22,12 +22,10 @@ export class ListarMedicacaoVacinasComponent implements AfterViewInit{
 
   constructor(
     private animalService: AnimalService,
-    private vacinaService: MedicacaoVacinaAplicacaoService,
-    private propriedadeService: PropriedadeService
   ){}
 
   ngOnInit(): void {
-    this.animais$ = this.animalService.listByPropriedade(this.propriedadeService.getPropriedadeSelecionada().id.toString())
+    this.animais$ = this.animalService.listByPropriedade();
   }
 
   buscaVacinas(id: number){

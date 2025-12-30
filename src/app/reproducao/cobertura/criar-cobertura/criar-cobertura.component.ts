@@ -14,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
+import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
 
 @Component({
   selector: 'app-criar-cobertura',
@@ -36,7 +37,7 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
   cobertura: Cobertura = new Cobertura();
   vacas!: VacaDTO[];
   vacaSelecionada!: VacaDTO;
-  tourosMonta: Animal[];
+  tourosMonta: AnimalMatrizDto[];
   inseminadores: Usuario[];
   semens: Semen[];
   TipoCobertura: TipoCobertura[];
@@ -48,7 +49,8 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     let params = new HttpParams();
     params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
     params = params.set('genero', 'm');
-    this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
+    //this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
+    this.animalService.listarMatrizes('m').subscribe(t => this.tourosMonta = t);
 
     this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
       .subscribe(v =>{
@@ -83,12 +85,12 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
         //this.irParaListagem('cobertura');
       },
       err => {
-        this.errorMessage = err.error.message() ;
+        this.errorMessage = err.error;
         this.isSuccessful = false;
+        
       }
       );
     });
-    console.log(this.cobertura);
 
   }
 
@@ -101,7 +103,8 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     this.cobertura.semens = null;
   }
 
-  alterarVaca(){
+  alterarVaca(formulario){
     this.vacaSelecionada = null;
+    this.resetar(formulario);
   }
 }

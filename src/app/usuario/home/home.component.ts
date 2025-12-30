@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimalService } from 'src/app/animal/animal.service';
+import { LoteService } from 'src/app/animal/lote/lote.service';
+import { LoteContagem } from 'src/app/model/loteContagem';
 import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
@@ -14,18 +16,21 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private propriedadeService: PropriedadeService,
-    private animalService: AnimalService
+    private animalService: AnimalService,
+    private loteService: LoteService
   ) { }
 
   propriedade: Propriedade;
   animaisAtivos: number;
   animaisEmLactacao: number;
+  lotes: LoteContagem[];
 
   ngOnInit(): void {
     this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
     if(this.propriedade){
       this.animalService.countAnimaisAtivos(this.propriedade.id.toString()).subscribe(count => this.animaisAtivos = count);
       this.animalService.countAnimaisEmLactacao(this.propriedade.id.toString()).subscribe(count => this.animaisEmLactacao = count);
+      this.loteService.listarContagemDeAnimais().subscribe(count => this.lotes = count);
     }
 
   }

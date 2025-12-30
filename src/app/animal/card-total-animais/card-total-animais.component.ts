@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { LoteService } from '../lote/lote.service';
+import { LoteContagem } from 'src/app/model/loteContagem';
 
 @Component({
   selector: 'app-card-total-animais',
@@ -9,9 +10,14 @@ import { LoteService } from '../lote/lote.service';
 export class CardTotalAnimaisComponent {
 
   @Input() total:number;
+  lotesContagem: LoteContagem[];
 
   constructor(
     private loteService: LoteService
   ) { }
+
+  ngOnInit(): void {
+    this.loteService.listarContagemDeAnimais().subscribe(count => this.lotesContagem = count);
+  }
 
 }

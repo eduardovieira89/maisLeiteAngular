@@ -55,9 +55,9 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
             this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
           });
         }
-        if(this.vacaSelecionada){
-          this.buscaCobertura();
-        }
+         if(this.vacaSelecionada){
+           this.buscaCobertura();
+         }
       });
   }
 
@@ -70,11 +70,11 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
         this.diagnosticoPrenhez.vaca = va;
         this.diagnosticosPrenhezService.save(this.diagnosticoPrenhez).subscribe(
           data => {
-          this.resetar(formulario);
-          this.isSuccessful = true;
-        },
+            this.isSuccessful = true;
+            this.resetar(formulario);
+          },
         err => {
-          this.errorMessage = err.error.message();
+          this.errorMessage = err.error;
           this.isSuccessful = false;
         });
       });
@@ -82,8 +82,10 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
   }
   alterarVaca(){
     this.vacaSelecionada = null;
+    
   }
   buscaCobertura(){
+    //this.resetar(form);
     let params = new HttpParams();
     params = params.set('idvaca', this.vacaSelecionada.id.toString());
     this.diagnosticosPrenhezService.getUltimaCobertura(params).subscribe(

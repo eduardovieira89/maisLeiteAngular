@@ -33,7 +33,10 @@ export class CriarLoteComponent extends BaseFormComponent implements OnInit {
         this.resetar(formulario);
         this.irParaListagem('animal/lotes');
       },
-      err => this.errorMessage = err.error.message
+      err => {
+        this.errorMessage = err.error;
+        console.log('Erro ao salvar lote:', err);
+      }
     );
 
   }

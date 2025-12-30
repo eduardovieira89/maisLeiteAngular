@@ -14,8 +14,7 @@ export class PropriedadeService extends CrudService<Propriedade> {
 
   static selecionouPropriedade = new EventEmitter();
 
-  constructor(public http: HttpClient,
-              private tokenService: TokenstorageService) {
+  constructor(public http: HttpClient) {
     super(http, `${environment.API}propriedade`);
   }
 

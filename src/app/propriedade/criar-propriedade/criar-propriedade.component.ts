@@ -24,10 +24,14 @@ export class CriarPropriedadeComponent extends BaseFormComponent implements OnIn
     this.propriedadeService.save(this.propriedade)
       .subscribe(data=> {
         this.propriedade = new Propriedade();
+        this.isSuccessful = true;
         this.resetar(formulario);
         this.irParaListagem('propriedade');
       },
-      error => console.log(error)
+      err => {
+        this.errorMessage = err.message;
+        this.isSuccessful = false;
+      }
       );
   }
 

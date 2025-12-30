@@ -108,6 +108,7 @@
 
 <div *ngIf="errorMessage!=''">
     <div class="alert alert-warning">
-        Falha ao criar animal doador!<br />{{ errorMessage }}
+        Falha ao criar animal doador!<br />
+        <pre>{{ errorMessage | json }}</pre>
     </div>
 </div>

@@ -17,20 +17,14 @@ export class ListarPartoComponent {
   errorMessage = '';
   propriedade: Propriedade;
 
-  constructor(private partoService: PartoService,
-    private propriedadeService: PropriedadeService) { }
+  constructor(private partoService: PartoService) { }
 
     ngOnInit(): void {
       this.listarParto();
     }
 
     listarParto() {
-      this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
-      if(this.propriedade){
-        this.errorMessage = '';
-        let params = new HttpParams();
-        params = params.set('idpropriedade', this.propriedade.id.toString() )
-        this.partos$ = this.partoService.listByPropriedade(params);
-      }
+        this.partos$ = this.partoService.listByPropriedade();
     }
+    
 }

@@ -19,8 +19,8 @@ export class LoteService extends CrudService<Lote> {
     private propriedadeService: PropriedadeService,
   ) {super(http, `${environment.API}lote`) }
 
-  listarLote(idPropriedade: string){
-    idPropriedade = idPropriedade.trim();
+  listarLote(){
+    let idPropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString().trim();
     const options = idPropriedade ?
     { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};
 

@@ -53,11 +53,12 @@
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input" id="macho" name="genero" required [(ngModel)]="animal.sexo" value="m">
                     <label class="custom-control-label" for="macho">Macho</label>
-                    <!--<div class="invalid-feedback">Sexo é um campo obrigatótio</div>-->
+                    
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input" id="femea" name="genero" required [(ngModel)]="animal.sexo" value="f">
                     <label class="custom-control-label" for="femea">Fêmea</label>
+                    <div class="invalid-feedback">Sexo é um campo obrigatótio</div>
                 </div>
 
             </div>
@@ -131,7 +132,8 @@
 
 <div *ngIf="errorMessage!=''">
     <div class="alert alert-warning">
-        Falha ao criar animal!<br />{{ errorMessage }}
+        Falha ao criar animal!<br/>
+        <pre>{{ errorMessage | json }}</pre>
     </div>
 </div>
 <app-form-debug [form]="f"></app-form-debug>

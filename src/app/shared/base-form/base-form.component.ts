@@ -47,6 +47,8 @@ export abstract class BaseFormComponent implements OnInit {
   resetar(formulario) {
     formulario.form.reset();
     formulario.submitted = false;
+    this.isSuccessful = false;
+    this.errorMessage = '';
   }
 
   verificaValidTouched(campo) {

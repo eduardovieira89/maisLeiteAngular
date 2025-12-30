@@ -14,7 +14,6 @@ const Cobertura: Routes = [
   ]}
 ];
 @NgModule({
-  declarations: [],
   imports: [RouterModule.forChild(Cobertura)],
   exports: [RouterModule]
 })

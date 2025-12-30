@@ -16,20 +16,13 @@ export class ListarDiagnosticosComponent implements OnInit {
   diagnosticos$:Observable<DiagnosticoPrenhez[]>;
   propriedade: Propriedade;
 
-  constructor(private propriedadeService: PropriedadeService,
-              private diagnosticoService: DiagnosticoPrenhezService) { }
+  constructor(private diagnosticoService: DiagnosticoPrenhezService) { }
 
   ngOnInit(): void {
     this.listarDiagnosticos();
   }
 
   listarDiagnosticos(){
-    this.propriedade = this.propriedadeService.getPropriedadeSelecionada();
-    if(this.propriedade){
-      let params = new HttpParams();
-      params = params.set('idpropriedade', this.propriedade.id.toString() )
-      this.diagnosticos$ = this.diagnosticoService.listByPropriedade(params);
-    }
+      this.diagnosticos$ = this.diagnosticoService.listByPropriedade();
   }
-
 }

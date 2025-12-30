@@ -7,6 +7,7 @@ import { Parto } from 'src/app/model/Parto';
 import { CrudService } from 'src/app/shared/crud-service';
 import { TipoParto } from 'src/app/model/TipoParto';
 import { DiagnosticoPrenhez } from 'src/app/model/diagnosticoPrenhez';
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 
 @Injectable({
@@ -17,7 +18,10 @@ export class PartoService extends CrudService<Parto> {
 
   private readonly PARTO_PATH = `${environment.API}parto`;
 
-  constructor(protected http: HttpClient) {
+  constructor(
+    protected http: HttpClient,
+    private propriedadeService: PropriedadeService
+    ) {
     super(http, `${environment.API}parto`);
    }
 
@@ -25,8 +29,11 @@ export class PartoService extends CrudService<Parto> {
     return this.http.get<TipoParto[]>(`${this.PARTO_PATH}/tipos`);
    }
 
-   listByPropriedade(params:HttpParams): Observable<Parto[]>{
-    return this.http.get<Parto[]>(`${this.PARTO_PATH}`, {params});
+   listByPropriedade(): Observable<Parto[]>{
+    let idPropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString().trim();
+    const options = idPropriedade ?
+    { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};
+    return this.http.get<Parto[]>(`${this.PARTO_PATH}`, options);
    }
 
    getUltimoDiagnosticoPrenhez(params: HttpParams){

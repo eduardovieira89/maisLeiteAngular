@@ -2,7 +2,18 @@
 <h2>Cadastrar Propriedade</h2>
 <div class="container">
   <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-    
+    <div class="row" *ngIf="f.submitted">
+            <div class="col-sm-12">
+                <div class="alert alert-success" *ngIf="isSuccessful">
+                    <h4>Propriedade registrada com sucesso!</h4>
+                </div>
+                <div *ngIf="errorMessage!=''">
+                    <div class="alert alert-warning">
+                        Falha ao cadastrar Propriedade!<br /><pre>{{ errorMessage | json }}</pre>
+                    </div>
+                </div>
+            </div>
+    </div>
     <div class="form-group col-sm-6">
       <label for="nome">Nome da propriedade: *</label>
       <input type="text" class="form-control" id="nome" name="nome" required [(ngModel)]="propriedade.nome" >

@@ -6,6 +6,7 @@ import { DiagnosticoPrenhez } from '../../model/diagnosticoPrenhez';
 import { CrudService } from '../../shared/crud-service';
 import { Injectable } from '@angular/core';
 import { MetodoPrenhez } from 'src/app/model/metodoPrenhez';
+import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class DiagnosticoPrenhezService extends CrudService<DiagnosticoPrenhez> {
 
   private readonly DIAGNOSTICO_PATH = `${environment.API}diagnosticoprenhez`;
 
-  constructor(protected http: HttpClient) { 
+  constructor(
+    protected http: HttpClient,
+    private propriedadeService: PropriedadeService
+  ) { 
     super(http, `${environment.API}diagnosticoprenhez` );
   }
 
@@ -26,8 +30,11 @@ export class DiagnosticoPrenhezService extends CrudService<DiagnosticoPrenhez> {
     return this.http.get<MetodoPrenhez[]>(`${this.DIAGNOSTICO_PATH}/metodos`);
   }
 
-  listByPropriedade(params: HttpParams){
-    return this.http.get<DiagnosticoPrenhez[]>(this.DIAGNOSTICO_PATH, {params});
+  listByPropriedade(){
+    let idPropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString().trim();
+    const options = idPropriedade ?
+    { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};
+    return this.http.get<DiagnosticoPrenhez[]>(this.DIAGNOSTICO_PATH, options);
   }
 
   
