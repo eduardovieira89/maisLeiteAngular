@@ -25,10 +25,15 @@ export class AuthenticationService {
         email: credenciais.email,
         password: credenciais.password
       }, httpOptions);
+      console.log('Fez login pelo authentication Service');
   }
 
   public logout(){
     this.tokenService.signOut();
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this.tokenService.getToken();
   }
 
   public registrar(user: any): Observable<any> {

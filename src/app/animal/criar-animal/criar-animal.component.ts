@@ -11,6 +11,8 @@ import { Lote } from 'src/app/model/lote';
 import { LoteService } from '../lote/lote.service';
 import { Location } from '@angular/common';
 import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
+import { CanComponentDeactivate } from 'src/app/shared/guards/ican-component-deactivade.guard';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-criar-animal',
@@ -18,7 +20,7 @@ import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
   styleUrls: ['./criar-animal.component.css'],
   preserveWhitespaces: true
 })
-export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
+export class CriarAnimalComponent extends BaseFormComponent implements OnInit, CanComponentDeactivate {
 
   constructor(
     protected router: Router,
@@ -31,11 +33,10 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
   animal: Animal = new Animal();
   racas: Raca[];
   origemAnimal: OrigemAnimal[];
-  //pais: Animal[];
-  //maes: Animal[];
   lotes: Lote[];
   paisMatriz: AnimalMatrizDto[];
   maesMatriz: AnimalMatrizDto[];
+  hasUnsavedChanges: boolean = true;
 
   ngOnInit(): void {
     //let idpropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString()
@@ -50,6 +51,14 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit {
     //this.animalService.listarPorGenero(params).subscribe(maes => this.maes = maes);
     this.animalService.listarMatrizes('m').subscribe(animaisPais => this.paisMatriz = animaisPais);
     this.animalService.listarMatrizes('f').subscribe(animaisMaes => this.maesMatriz = animaisMaes);
+  }
+
+  canDeactivate(): boolean {
+    console.log('canDeactivate chamado');
+    if(this.hasUnsavedChanges){
+      return confirm('Você tem alterações não salvas. Tem certeza que deseja sair desta página?');
+    }
+    return false;
   }
 
   submit(formulario) {
