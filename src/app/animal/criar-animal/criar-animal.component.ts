@@ -4,7 +4,6 @@ import { Animal } from 'src/app/model/animal';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { Raca } from 'src/app/model/raca';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
-import { HttpParams } from '@angular/common/http';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { OrigemAnimal } from 'src/app/model/origemAnimal';
 import { Lote } from 'src/app/model/lote';
