@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -14,24 +14,18 @@ import { DetalhesPropriedadeComponent } from './detalhes-propriedade/detalhes-pr
 
 
 
-@NgModule({
-  declarations: [
-    ListarPropriedadeComponent,
-    AtualizarPropriedadeComponent,
-    CriarPropriedadeComponent,
-    DetalhesPropriedadeComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    PropriedadeRoutingModule
-  ],
-  providers: [
-    authInterceptorProviders
-  ],
-  exports: [
-    ListarPropriedadeComponent,
-  ]
-})
+@NgModule({ declarations: [
+        ListarPropriedadeComponent,
+        AtualizarPropriedadeComponent,
+        CriarPropriedadeComponent,
+        DetalhesPropriedadeComponent,
+    ],
+    exports: [
+        ListarPropriedadeComponent,
+    ], imports: [CommonModule,
+        FormsModule,
+        PropriedadeRoutingModule], providers: [
+        authInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class PropriedadeModule { }

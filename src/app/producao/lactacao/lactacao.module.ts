@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListarLactacaoComponent } from './listar-lactacoes/listar-lactacoes.component';
 import { DetalhesLactacaoComponent } from './detalhes-lactacao/detalhes-lactacao.component';
@@ -12,25 +12,19 @@ import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.intercept
 import { AnimalModule } from 'src/app/animal/animal.module';
 
 
-@NgModule({
-  declarations: [
-    DetalhesLactacaoComponent,
-    ListarLactacaoComponent,
-    EncerrarLactacaoComponent
-  ],
-  
-  imports: [
-    CommonModule,
-    LactacaoRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    SharedModule,
-  ],providers: [
-    authInterceptorProviders
-],
-  exports: [
-    ListarLactacaoComponent
-  ]
-})
+@NgModule({ declarations: [
+        DetalhesLactacaoComponent,
+        ListarLactacaoComponent,
+        EncerrarLactacaoComponent
+    ],
+    exports: [
+        ListarLactacaoComponent
+    ], imports: [CommonModule,
+        LactacaoRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule], providers: [
+        authInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class LactacaoModule { }

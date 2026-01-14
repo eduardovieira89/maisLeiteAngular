@@ -6,27 +6,21 @@ import { authInterceptorProviders } from '../../shared/_helpers/auth.interceptor
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalhesAnimalDoadorComponent } from './detalhes-animal-doador/detalhes-animal-doador.component';
 
 
-@NgModule({
-  declarations: [
-    AtualizarAnimalDoadorComponent,
-    CriarAnimalDoadorComponent,
-    ListarAnimalDoadorComponent,
-    DetalhesAnimalDoadorComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AnimalDoadorRoutingModule
-  ],
-  providers: [
-    authInterceptorProviders
-  ]
-})
+@NgModule({ declarations: [
+        AtualizarAnimalDoadorComponent,
+        CriarAnimalDoadorComponent,
+        ListarAnimalDoadorComponent,
+        DetalhesAnimalDoadorComponent,
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AnimalDoadorRoutingModule], providers: [
+        authInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AnimalDoadorModule { }

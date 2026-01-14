@@ -1,6 +1,6 @@
 import { SharedModule } from '../../shared/shared.module';
 import { PartoRoutingModule } from './parto-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CriarPartoComponent } from './criar-parto/criar-parto.component';
@@ -11,21 +11,16 @@ import { DetalhesPartoComponent } from './detalhes-parto/detalhes-parto.componen
 
 
 
-@NgModule({
-  declarations: [
-    CriarPartoComponent,
-    ListarPartoComponent,
-    DetalhesPartoComponent
-  ],providers: [
-    authInterceptorProviders
-],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    PartoRoutingModule,
-    SharedModule
-  ]
-})
+@NgModule({ declarations: [
+        CriarPartoComponent,
+        ListarPartoComponent,
+        DetalhesPartoComponent
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        PartoRoutingModule,
+        SharedModule], providers: [
+        authInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class PartoModule { }

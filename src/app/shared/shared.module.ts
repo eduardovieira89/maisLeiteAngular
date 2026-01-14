@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CampoControlErroComponent } from './campo-control-erro/campo-control-erro.component';
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { NgModule } from '@angular/core';
@@ -13,34 +13,27 @@ import { CardLactacaoComponent } from './card-lactacao/card-lactacao.component';
 import { CardDetalhesAnimalComponent } from './card-detalhes-animal/card-detalhes-animal.component';
 import { RouterLink } from '@angular/router';
 
-@NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLink
-  ],
-  declarations: [
-    FormDebugComponent,
-    CampoControlErroComponent,
-    ErrorMsgComponent,
-    InputFieldComponent,
-    CardCoberturaComponent,
-    CardDiagnosticoPrenhezComponent,
-    CardLactacaoComponent,
-    CardDetalhesAnimalComponent
-  ],
-  exports: [
-    FormDebugComponent,
-    CampoControlErroComponent,
-    ErrorMsgComponent,
-    InputFieldComponent,
-    CardCoberturaComponent,
-    CardDiagnosticoPrenhezComponent,
-    CardLactacaoComponent,
-    CardDetalhesAnimalComponent
-  ],
-  providers: []
-})
+@NgModule({ declarations: [
+        FormDebugComponent,
+        CampoControlErroComponent,
+        ErrorMsgComponent,
+        InputFieldComponent,
+        CardCoberturaComponent,
+        CardDiagnosticoPrenhezComponent,
+        CardLactacaoComponent,
+        CardDetalhesAnimalComponent
+    ],
+    exports: [
+        FormDebugComponent,
+        CampoControlErroComponent,
+        ErrorMsgComponent,
+        InputFieldComponent,
+        CardCoberturaComponent,
+        CardDiagnosticoPrenhezComponent,
+        CardLactacaoComponent,
+        CardDetalhesAnimalComponent
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class SharedModule { }

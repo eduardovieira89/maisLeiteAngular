@@ -1,6 +1,6 @@
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PropriedadeModule } from '../../propriedade/propriedade.module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,22 +11,16 @@ import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.intercept
 
 
 
-@NgModule({
-  declarations: [
-    CriarDiagnosticoComponent,
-    ListarDiagnosticosComponent
-  ],providers: [
-    authInterceptorProviders
-],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    DiagnosticoPrenhezRoutingModule,
-    PropriedadeModule,
-    SharedModule
-
-  ]
-})
+@NgModule({ declarations: [
+        CriarDiagnosticoComponent,
+        ListarDiagnosticosComponent
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DiagnosticoPrenhezRoutingModule,
+        PropriedadeModule,
+        SharedModule], providers: [
+        authInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class DiagnosticoPrenhezModule { }

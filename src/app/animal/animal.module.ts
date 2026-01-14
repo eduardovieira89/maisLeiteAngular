@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PropriedadeModule } from './../propriedade/propriedade.module';
@@ -24,8 +24,7 @@ import { CardTotalLactacaoComponent } from './card-total-lactacao/card-total-lac
 
 
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AtualizarAnimalComponent,
         CriarAnimalComponent,
         DetalhesAnimalComponent,
@@ -34,24 +33,19 @@ import { CardTotalLactacaoComponent } from './card-total-lactacao/card-total-lac
         CardTotalAnimaisComponent,
         CardTotalLactacaoComponent,
     ],
-    providers: [
-        authInterceptorProviders
-    ],
-    imports: [
-        CommonModule,
+    exports: [
+        CardTotalAnimaisComponent,
+        CardTotalLactacaoComponent,
+    ], imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         AnimalRoutingModule,
         PropriedadeModule,
         SharedModule,
         LactacaoModule,
         LoteModule,
-        MedicacaoVacinaAplicacaoModule
-    ],
-    exports:[
-        CardTotalAnimaisComponent,
-        CardTotalLactacaoComponent,
-    ]
-})
+        MedicacaoVacinaAplicacaoModule], providers: [
+        authInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AnimalModule { }

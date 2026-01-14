@@ -1,5 +1,5 @@
 import { SemenRoutingModule } from './semen-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CriarSemenComponent } from './criar-semen/criar-semen.component';
 import { NgModule } from '@angular/core';
@@ -9,20 +9,14 @@ import { ListarSemenComponent } from './listar-semens/listar-semens.component';
 
 
 
-@NgModule({
-  declarations: [
-    CriarSemenComponent, 
-    ListarSemenComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    SemenRoutingModule
-  ],
-  providers: [
-    authInterceptorProviders
-  ]
-})
+@NgModule({ declarations: [
+        CriarSemenComponent,
+        ListarSemenComponent
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SemenRoutingModule], providers: [
+        authInterceptorProviders,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class SemenModule { }

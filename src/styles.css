@@ -1,5 +1,5 @@
 /* Application-wide Styles */
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 h1 {
   color: #369;
