@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-encerrar-lactacoes',
   templateUrl: './encerrar-lactacao.component.html',
   styleUrls: ['./encerrar-lactacao.component.css']

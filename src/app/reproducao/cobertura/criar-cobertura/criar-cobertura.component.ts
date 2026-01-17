@@ -17,6 +17,7 @@ import { VacaDTO } from 'src/app/model/vacaDTO';
 import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-cobertura',
   templateUrl: './criar-cobertura.component.html',
   styleUrls: ['./criar-cobertura.component.css']

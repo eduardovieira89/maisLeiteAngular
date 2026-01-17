@@ -15,6 +15,7 @@ import { Location } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-parto',
   templateUrl: './criar-parto.component.html',
   styleUrls: ['./criar-parto.component.css']

@@ -15,6 +15,7 @@ import { Location } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-aplicar-medicacao-vacina',
   templateUrl: './aplicar-medicacao-vacina.component.html',
   styleUrls: ['./aplicar-medicacao-vacina.component.css']

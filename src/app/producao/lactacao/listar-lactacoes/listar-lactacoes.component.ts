@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Lactacao } from 'src/app/model/lactacao';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-lactacoes',
   templateUrl: './listar-lactacoes.component.html',
   styleUrls: ['./listar-lactacoes.component.css']

@@ -1,11 +1,14 @@
-import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/usuario/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { PropriedadeService } from './propriedade/propriedade.service';
 import { TokenstorageService } from './usuario/tokenstorage.service';
+import { RouterOutlet } from '@angular/router'; 
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
+  imports: [RouterModule, NgbModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

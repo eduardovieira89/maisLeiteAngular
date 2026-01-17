@@ -3,6 +3,7 @@ import { Raca } from 'src/app/model/raca';
 import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
+  standalone: false,
   selector: 'app-raca',
   templateUrl: './raca.component.html',
   styleUrls: ['./raca.component.css']

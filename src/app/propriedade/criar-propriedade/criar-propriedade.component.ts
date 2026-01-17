@@ -6,6 +6,7 @@ import {Location} from '@angular/common';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-propriedade',
   templateUrl: './criar-propriedade.component.html',
   styleUrls: ['./criar-propriedade.component.css']

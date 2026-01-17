@@ -7,6 +7,7 @@ import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-cobertura',
   templateUrl: './listar-cobertura.component.html',
   styleUrls: ['./listar-cobertura.component.css']

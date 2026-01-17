@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { CardListaMedicacaoVacinasAnimaisComponent } from '../card-lista-medicacao-vacinas-animais/card-lista-medicacao-vacinas-animais.component';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-medicacao-vacinas',
   templateUrl: './listar-medicacao-vacinas.component.html',
   styleUrls: ['./listar-medicacao-vacinas.component.css']

@@ -7,6 +7,7 @@ import { Raca } from 'src/app/model/raca';
 import { AnimalDoadorService } from '../animal-doador.service';
 
 @Component({
+  standalone: false,
   selector: 'app-detalhes-animal-doador',
   templateUrl: './detalhes-animal-doador.component.html',
   styleUrls: ['./detalhes-animal-doador.component.css']

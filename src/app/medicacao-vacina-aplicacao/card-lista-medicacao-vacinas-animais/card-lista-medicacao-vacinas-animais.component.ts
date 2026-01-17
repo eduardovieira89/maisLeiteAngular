@@ -4,6 +4,7 @@ import { VacinaAplicacao } from 'src/app/model/vacinaAplicacao';
 import { Observable } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'app-card-lista-medicacao-vacinas-animais',
   templateUrl: './card-lista-medicacao-vacinas-animais.component.html',
   styleUrls: ['./card-lista-medicacao-vacinas-animais.component.css']

@@ -5,6 +5,7 @@ import { Animal } from 'src/app/model/animal';
 import { AnimalDoadorService } from '../animal-doador.service';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-animal-doador',
   templateUrl: './listar-animal-doador.component.html',
   styleUrls: ['./listar-animal-doador.component.css']

@@ -16,6 +16,7 @@ import { ControleLeiteiroService } from '../controle-leiteiro.service';
 import { Location } from '@angular/common';
 
 @Component({
+  standalone: false,
   selector: 'app-registrar-producao',
   templateUrl: './registrar-producao.component.html',
   styleUrls: ['./registrar-producao.component.css']

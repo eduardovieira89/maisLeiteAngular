@@ -5,6 +5,7 @@ import { LoteService } from '../lote.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-lotes',
   templateUrl: './listar-lotes.component.html',
   styleUrls: ['./listar-lotes.component.css']

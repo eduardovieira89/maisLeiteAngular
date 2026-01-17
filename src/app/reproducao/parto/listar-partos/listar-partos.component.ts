@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 import { PartoService } from '../parto.service';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-partos',
   templateUrl: './listar-partos.component.html',
   styleUrls: ['./listar-partos.component.css']

@@ -9,10 +9,11 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { LoteService } from '../lote/lote.service';
 
 @Component({
+  standalone: false,
   selector: 'app-atualizar-animal',
   templateUrl: './atualizar-animal.component.html',
   styleUrls: ['./atualizar-animal.component.css'],
-  preserveWhitespaces: true
+  preserveWhitespaces: true,
 })
 export class AtualizarAnimalComponent implements OnInit {
 

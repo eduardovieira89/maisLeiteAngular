@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-semens',
   templateUrl: './listar-semens.component.html',
   styleUrls: ['./listar-semens.component.css']

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-semen',
   templateUrl: './criar-semen.component.html',
   styleUrls: ['./criar-semen.component.css']

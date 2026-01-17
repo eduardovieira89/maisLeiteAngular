@@ -12,6 +12,7 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { Location } from '@angular/common';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-animal',
   templateUrl: './listar-animal.component.html',
   styleUrls: ['./listar-animal.component.css'],

@@ -7,6 +7,7 @@ import { AnimalService } from 'src/app/animal/animal.service';
 import { CardListaMedicacaoVacinasAnimaisComponent } from 'src/app/medicacao-vacina-aplicacao/card-lista-medicacao-vacinas-animais/card-lista-medicacao-vacinas-animais.component';
 
 @Component({
+  standalone: false,
   selector: 'app-detalhes-animal',
   templateUrl: './detalhes-animal.component.html',
   styleUrls: ['./detalhes-animal.component.css']

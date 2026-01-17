@@ -6,6 +6,7 @@ import { MedicacaoVacina } from 'src/app/model/medicacaoVacina';
 import { Location } from '@angular/common';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-medicamento',
   templateUrl: './criar-medicamento.component.html',
   styleUrls: ['./criar-medicamento.component.css']

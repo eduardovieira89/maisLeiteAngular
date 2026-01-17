@@ -7,6 +7,7 @@ import { LoteService } from '../lote.service';
 import { Location } from '@angular/common';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-lote',
   templateUrl: './criar-lote.component.html',
   styleUrls: ['./criar-lote.component.css']

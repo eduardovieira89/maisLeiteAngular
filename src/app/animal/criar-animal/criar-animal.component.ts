@@ -14,6 +14,7 @@ import { CanComponentDeactivate } from 'src/app/shared/guards/ican-component-dea
 import { Observable } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-animal',
   templateUrl: './criar-animal.component.html',
   styleUrls: ['./criar-animal.component.css'],

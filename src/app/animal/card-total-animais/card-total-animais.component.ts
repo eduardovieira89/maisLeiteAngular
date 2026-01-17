@@ -3,6 +3,7 @@ import { LoteService } from '../lote/lote.service';
 import { LoteContagem } from 'src/app/model/loteContagem';
 
 @Component({
+  standalone: false,
   selector: 'app-card-total-animais',
   templateUrl: './card-total-animais.component.html',
   styleUrls: ['./card-total-animais.component.css']

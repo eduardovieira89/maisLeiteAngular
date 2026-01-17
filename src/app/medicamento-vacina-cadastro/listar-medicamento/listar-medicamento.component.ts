@@ -4,6 +4,7 @@ import { MedicacaoVacina } from 'src/app/model/medicacaoVacina';
 import { MedicamentoCadastroVacinaService } from '../medicamento-vacina-cadastro.service';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-medicamento',
   templateUrl: './listar-medicamento.component.html',
   styleUrls: ['./listar-medicamento.component.css']

@@ -8,23 +8,31 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './shared/_helpers/auth.interceptor';
 import ptBr from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 registerLocaleData(ptBr);
 import { UsuarioModule } from './usuario/usuario.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
-@NgModule({ declarations: [
-        AppComponent
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+@NgModule({ 
+    declarations: [],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        RouterModule,
+        AppComponent,
         FormsModule,
         ReactiveFormsModule,
+        NgbAccordionModule,
         BrowserAnimationsModule,
         UsuarioModule,
         AppRoutingModule,
         ModalModule.forRoot(),
-        NgbModule], providers: [authInterceptorProviders,
-        { provide: LOCALE_ID, useValue: 'pt' },
-        { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }, provideHttpClient(withInterceptorsFromDi())] })
+        NgbModule
+    ], 
+        providers: [
+            authInterceptorProviders,
+            { provide: LOCALE_ID, useValue: 'pt' },
+            { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

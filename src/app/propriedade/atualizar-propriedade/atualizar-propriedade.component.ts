@@ -4,6 +4,7 @@ import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
+  standalone: false,
   selector: 'app-atualizarPropriedade',
   templateUrl: './atualizar-propriedade.component.html',
   styleUrls: ['./atualizar-propriedade.component.css']

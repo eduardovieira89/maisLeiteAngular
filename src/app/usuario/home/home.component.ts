@@ -7,6 +7,7 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

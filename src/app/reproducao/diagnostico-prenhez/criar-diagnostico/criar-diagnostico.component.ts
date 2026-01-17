@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-diagnostico',
   templateUrl: './criar-diagnostico.component.html',
   styleUrls: ['./criar-diagnostico.component.css']

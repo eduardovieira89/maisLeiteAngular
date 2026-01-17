@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { AnimalService } from 'src/app/animal/animal.service';
 
 @Component({
+  standalone: false,
   selector: 'app-criar-animal-doador',
   templateUrl: './criar-animal-doador.component.html',
   styleUrls: ['./criar-animal-doador.component.css']

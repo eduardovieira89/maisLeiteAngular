@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 import { ControleLeiteiroDTO } from 'src/app/model/controleLeiteiroDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-listar-producao',
   templateUrl: './listar-producao.component.html',
   styleUrls: ['./listar-producao.component.css']

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-form-debug',
   templateUrl: './form-debug.component.html',
   styleUrls: ['./form-debug.component.css']

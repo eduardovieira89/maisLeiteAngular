@@ -8,6 +8,7 @@ const INPUT_FIELD_VALUE_ACCESSOR: any = {
 };
 
 @Component({
+  standalone: false,
   selector: 'app-input-field',
   templateUrl: './input-field.component.html',
   styleUrls: ['./input-field.component.css'],

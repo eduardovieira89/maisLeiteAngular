@@ -1,4 +1,3 @@
-import { Propriedade } from "./propriedade";
 
 export class Lote {
     id: number;

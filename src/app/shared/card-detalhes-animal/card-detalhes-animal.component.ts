@@ -3,6 +3,7 @@ import { Animal } from 'src/app/model/animal';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-card-detalhes-animal',
   templateUrl: './card-detalhes-animal.component.html',
   styleUrls: ['./card-detalhes-animal.component.css']

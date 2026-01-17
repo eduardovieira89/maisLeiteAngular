@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
+  standalone: false,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

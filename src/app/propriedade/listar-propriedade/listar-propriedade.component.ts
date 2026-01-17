@@ -5,6 +5,7 @@ import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from '../propriedade.service';
 
 @Component({
+  standalone: false,
   selector: 'app-propriedade',
   templateUrl: './listar-propriedade.component.html',
   styleUrls: ['./listar-propriedade.component.css'],

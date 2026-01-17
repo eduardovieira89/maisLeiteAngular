@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/usuario/authentication.service';
 
 
 @Component({
+  standalone: false,
   selector: 'app-registro-usuario',
   templateUrl: './registro-usuario.component.html',
   styleUrls: ['./registro-usuario.component.css']

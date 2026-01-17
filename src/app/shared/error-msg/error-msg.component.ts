@@ -3,6 +3,7 @@ import { UntypedFormControl } from '@angular/forms';
 import { FormValidations } from '../form-validations';
 
 @Component({
+  standalone: false,
   selector: 'app-error-msg',
   templateUrl: './error-msg.component.html',
   styleUrls: ['./error-msg.component.css']

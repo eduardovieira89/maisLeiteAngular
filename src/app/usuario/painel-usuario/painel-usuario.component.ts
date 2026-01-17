@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/usuario/authentication.service';
 
 @Component({
+  standalone: false,
   selector: 'app-painel-usuario',
   templateUrl: './painel-usuario.component.html',
   styleUrls: ['./painel-usuario.component.css']

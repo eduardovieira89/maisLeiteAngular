@@ -16,6 +16,7 @@ import { Location } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 
 @Component({
+  standalone: false,
   selector: 'app-aplicacao-em-lotes',
   templateUrl: './aplicacao-em-lotes.component.html',
   styleUrls: ['./aplicacao-em-lotes.component.css']
