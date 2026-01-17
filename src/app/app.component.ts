@@ -5,10 +5,10 @@ import { Router, RouterModule } from '@angular/router';
 import { PropriedadeService } from './propriedade/propriedade.service';
 import { TokenstorageService } from './usuario/tokenstorage.service';
 import { RouterOutlet } from '@angular/router'; 
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, NgbModule, CommonModule],
+  imports: [RouterModule, NgbModule, NgIf],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
