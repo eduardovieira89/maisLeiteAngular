@@ -5,14 +5,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './shared/_helpers/auth.interceptor';
 import ptBr from '@angular/common/locales/pt';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { ModalModule } from 'ngx-bootstrap/modal';
 registerLocaleData(ptBr);
 import { UsuarioModule } from './usuario/usuario.module';
-import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionBody, NgbAccordionButton, NgbAccordionCollapse, NgbAccordionDirective, NgbAccordionHeader, NgbAccordionItem, NgbAccordionModule, NgbAccordionToggle, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 
 @NgModule({ 
@@ -24,11 +22,15 @@ import { RouterModule } from '@angular/router';
         AppComponent,
         FormsModule,
         ReactiveFormsModule,
-        NgbAccordionModule,
-        BrowserAnimationsModule,
+        NgbAccordionButton,
+		NgbAccordionDirective,
+		NgbAccordionItem,
+		NgbAccordionHeader,
+		NgbAccordionToggle,
+		NgbAccordionBody,
+		NgbAccordionCollapse,
         UsuarioModule,
         AppRoutingModule,
-        ModalModule.forRoot(),
         NgbModule
     ], 
         providers: [

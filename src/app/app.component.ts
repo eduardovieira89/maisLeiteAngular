@@ -1,4 +1,4 @@
-import { NgbAccordionModule, NgbModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionBody, NgbAccordionButton, NgbAccordionCollapse, NgbAccordionDirective, NgbAccordionHeader, NgbAccordionModule, NgbAccordionToggle, NgbModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/usuario/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
@@ -8,7 +8,17 @@ import { RouterOutlet } from '@angular/router';
 import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, NgbModule, NgIf],
+  imports: [
+    RouterModule,
+    NgbModule,
+    NgIf,
+    NgbAccordionButton,
+    NgbAccordionDirective,
+    NgbAccordionHeader,
+    NgbAccordionToggle,
+    NgbAccordionBody,
+    NgbAccordionCollapse
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

@@ -6,7 +6,6 @@ import { Animal } from 'src/app/model/animal';
 import { Propriedade } from 'src/app/model/propriedade';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MotivoBaixa } from 'src/app/model/motivoBaixa';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { Location } from '@angular/common';
@@ -23,8 +22,8 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
   animais$:Observable<Animal[]>;
   motivosBaixa: MotivoBaixa[];
   propriedade: Propriedade;
-  baixaModalRef: BsModalRef;
-  @ViewChild('baixaModal') baixaModal;
+  //baixaModalRef: BsModalRef;
+  //@ViewChild('baixaModal') baixaModal;
   animalSelecionado: Animal;
   motivoSelected: MotivoBaixa;
 
@@ -33,7 +32,7 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
     protected location: Location,
     private animalService: AnimalService,
     private propriedadeService: PropriedadeService,
-    private modalService: BsModalService
+    //private modalService: BsModalService
     ) { super(router, location)}
 
   ngOnInit(): void {
@@ -60,25 +59,25 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
     this.router.navigate(['animal', id]);
   }
 
-  baixaAnimal(animal: Animal){
-    this.animalSelecionado = animal;
-    this.baixaModalRef = this.modalService.show(this.baixaModal, {class: 'modal-sm'});
-  }
+  // baixaAnimal(animal: Animal){
+  //   this.animalSelecionado = animal;
+  //   this.baixaModalRef = this.modalService.show(this.baixaModal, {class: 'modal-sm'});
+  // }
 
   submit(formulario){
     let params = new HttpParams();
       params = params.set('idmotivo', this.motivoSelected.id_motivos_baixa.toString() )
     this.animalService.baixaAnimal(this.animalSelecionado.id, this.motivoSelected).subscribe(
       success => {
-        this.baixaModalRef.hide();
+        //this.baixaModalRef.hide();
         this.resetar(formulario);
         this.onRefresh();
       }
     )
   }
-  onDeclineBaixa(){
-    this.baixaModalRef.hide();
-  }
+  // onDeclineBaixa(){
+  //   this.baixaModalRef.hide();
+  // }
 
   alterarAnimal(id: number){
       this.router.navigate(['atualizaranimal', id]);

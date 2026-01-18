@@ -42,8 +42,8 @@
       <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
     </div>
     <div class="offcanvas-body">
-      <ngb-accordion [closeOthers]="true">
-        <ngb-panel id="inicio" title="Início">
+      <div ngbAccordion [closeOthers]="true">
+        <div ngb-panel id="inicio" title="Início">
           <ng-template ngbPanelContent>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a routerLink="/propriedade" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Propriedade</a></li>
@@ -52,8 +52,8 @@
               
             </ul>
           </ng-template>
-        </ngb-panel>
-        <ngb-panel id="Sanitário" title="Sanitário">
+        </div>
+        <div ngb-panel id="Sanitário" title="Sanitário">
           <ng-template ngbPanelContent>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a routerLink="/aplicacaomedicamento" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Aplicar Medicações ou Vacinas</a></li>
@@ -63,8 +63,8 @@
               <li class="list-group-item"><a routerLink="/cadastromedicamento" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar Medicamentos</a></li>
             </ul>
           </ng-template>
-        </ngb-panel>
-        <ngb-panel id="reproducao" title="Reprodução">
+        </div>
+        <div ngb-panel id="reproducao" title="Reprodução">
           <ng-template ngbPanelContent>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a routerLink="/animaisdoadores" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Animal doadores</a></li>
@@ -74,8 +74,8 @@
               <li class="list-group-item"><a routerLink="/parto" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Parto</a></li>
             </ul>
           </ng-template>
-        </ngb-panel>
-        <ngb-panel id="prodLeite" title="Produção de Leite">
+        </div>
+        <div ngb-panel id="prodLeite" title="Produção de Leite">
           <ng-template ngbPanelContent>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a routerLink="/producao" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar Produção</a></li>
@@ -83,15 +83,15 @@
               <li class="list-group-item"><a routerLink="/lactacao/encerrar" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Encerar Lactação</a></li>
             </ul>
           </ng-template>
-        </ngb-panel>
-        <ngb-panel id="painel" title="Painel">
+        </div>
+        <div ngb-panel id="painel" title="Painel">
           <ng-template ngbPanelContent>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a routerLink="/painel" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Menu</a></li>
             </ul>
           </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
+        </div>
+      </div>
     </div>
   </ng-template>
 

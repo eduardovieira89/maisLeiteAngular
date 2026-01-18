@@ -1,4 +1,4 @@
 export class TipoParto{
-    idTipoParto: number;;
+    idTipoParto: number;
     descricao: string;
 }
