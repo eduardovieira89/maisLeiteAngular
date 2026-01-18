@@ -7,7 +7,7 @@ import { RegistroUsuarioComponent } from './usuario/registro-usuario/registro-us
 import { PainelUsuarioComponent } from './usuario/painel-usuario/painel-usuario.component';
 import { canActivateGuard } from './shared/guards/auth.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent, canActivate:[canActivateGuard]},
   { path: 'login', component: LoginComponent},
