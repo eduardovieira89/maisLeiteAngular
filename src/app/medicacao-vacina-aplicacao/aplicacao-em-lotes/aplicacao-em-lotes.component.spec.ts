@@ -8,8 +8,8 @@ describe('VacinarEmLotesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AplicacaoEmLotesComponent]
-    });
+    imports: [AplicacaoEmLotesComponent]
+});
     fixture = TestBed.createComponent(AplicacaoEmLotesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

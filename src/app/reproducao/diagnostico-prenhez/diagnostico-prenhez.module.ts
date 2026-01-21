@@ -11,15 +11,14 @@ import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.intercept
 
 
 
-@NgModule({ declarations: [
-        CriarDiagnosticoComponent,
-        ListarDiagnosticosComponent
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
         DiagnosticoPrenhezRoutingModule,
         PropriedadeModule,
-        SharedModule], providers: [
+        SharedModule, CriarDiagnosticoComponent,
+        ListarDiagnosticosComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

@@ -3,12 +3,14 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Animal } from 'src/app/model/animal';
 import { AnimalDoadorService } from '../animal-doador.service';
+import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  standalone: false,
-  selector: 'app-listar-animal-doador',
-  templateUrl: './listar-animal-doador.component.html',
-  styleUrls: ['./listar-animal-doador.component.css']
+    selector: 'app-listar-animal-doador',
+    templateUrl: './listar-animal-doador.component.html',
+    styleUrls: ['./listar-animal-doador.component.css'],
+    imports: [NgIf, RouterLink, NgFor, AsyncPipe, DatePipe]
 })
 export class ListarAnimalDoadorComponent implements OnInit {
 

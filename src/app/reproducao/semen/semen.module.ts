@@ -9,13 +9,12 @@ import { ListarSemenComponent } from './listar-semens/listar-semens.component';
 
 
 
-@NgModule({ declarations: [
-        CriarSemenComponent,
-        ListarSemenComponent
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        SemenRoutingModule], providers: [
+        SemenRoutingModule, CriarSemenComponent,
+        ListarSemenComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Raca } from 'src/app/model/raca';
 import { AnimalService } from 'src/app/animal/animal.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  standalone: false,
-  selector: 'app-raca',
-  templateUrl: './raca.component.html',
-  styleUrls: ['./raca.component.css']
+    selector: 'app-raca',
+    templateUrl: './raca.component.html',
+    styleUrls: ['./raca.component.css'],
+    imports: [NgFor]
 })
 export class RacaComponent implements OnInit {
 

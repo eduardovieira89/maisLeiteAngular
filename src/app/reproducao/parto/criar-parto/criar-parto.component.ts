@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Cria } from '../../../model/cria';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { HttpParams } from '@angular/common/http';
@@ -11,14 +11,18 @@ import { TipoParto } from 'src/app/model/TipoParto';
 import { DiagnosticoPrenhezService } from 'src/app/reproducao/diagnostico-prenhez/diagnostico-prenhez.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
-import { Location } from '@angular/common';
+import { Location, NgClass, NgIf, NgFor, JsonPipe } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
+import { FormsModule } from '@angular/forms';
+import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
+import { CardCoberturaComponent } from '../../../shared/card-cobertura/card-cobertura.component';
+import { CardDiagnosticoPrenhezComponent } from '../../../shared/card-diagnostico-prenhez/card-diagnostico-prenhez.component';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-parto',
-  templateUrl: './criar-parto.component.html',
-  styleUrls: ['./criar-parto.component.css']
+    selector: 'app-criar-parto',
+    templateUrl: './criar-parto.component.html',
+    styleUrls: ['./criar-parto.component.css'],
+    imports: [FormsModule, NgClass, NgIf, NgFor, CardDetalhesAnimalComponent, RouterLink, CardCoberturaComponent, CardDiagnosticoPrenhezComponent, JsonPipe]
 })
 export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 

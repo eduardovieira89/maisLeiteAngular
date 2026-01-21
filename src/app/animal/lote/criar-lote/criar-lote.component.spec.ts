@@ -8,8 +8,8 @@ describe('CriarLoteComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CriarLoteComponent]
-    });
+    imports: [CriarLoteComponent]
+});
     fixture = TestBed.createComponent(CriarLoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

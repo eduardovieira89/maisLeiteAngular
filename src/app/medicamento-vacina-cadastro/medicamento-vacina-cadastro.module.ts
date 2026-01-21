@@ -9,14 +9,12 @@ import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [
-    CriarMedicamentoComponent,
-    ListarMedicamentoComponent
-  ],
-  imports: [
-    CommonModule,
-    MedicamentoVacinaCadastroRoutingModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        MedicamentoVacinaCadastroRoutingModule,
+        FormsModule,
+        CriarMedicamentoComponent,
+        ListarMedicamentoComponent
+    ]
 })
 export class MedicamentoVacinaCadastroModule { }

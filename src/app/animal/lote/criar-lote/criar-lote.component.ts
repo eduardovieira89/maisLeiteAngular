@@ -4,13 +4,14 @@ import { Lote } from 'src/app/model/lote';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { LoteService } from '../lote.service';
-import { Location } from '@angular/common';
+import { Location, NgClass, NgIf, JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-lote',
-  templateUrl: './criar-lote.component.html',
-  styleUrls: ['./criar-lote.component.css']
+    selector: 'app-criar-lote',
+    templateUrl: './criar-lote.component.html',
+    styleUrls: ['./criar-lote.component.css'],
+    imports: [FormsModule, NgClass, NgIf, JsonPipe]
 })
 export class CriarLoteComponent extends BaseFormComponent implements OnInit {
 

@@ -10,13 +10,12 @@ import { ListarProducaoComponent } from './listar-producao/listar-producao.compo
 import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.interceptor';
 
 
-@NgModule({ declarations: [
-        RegistrarProducaoComponent,
-        ListarProducaoComponent
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         ProducaoLeiteRoutingModule,
-        SharedModule], providers: [
+        SharedModule, RegistrarProducaoComponent,
+        ListarProducaoComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

@@ -11,20 +11,18 @@ import { CardListaMedicacaoVacinasAnimaisComponent } from './card-lista-medicaca
 
 
 @NgModule({
-  declarations: [
-    ListarMedicacaoVacinasComponent,
-    AplicarMedicacaoVacinasComponent,
-    AplicacaoEmLotesComponent,
-    CardListaMedicacaoVacinasAnimaisComponent
-  ],
-  imports: [
-    MedicacaoVacinaAplicacaoRoutingModule,
-    CommonModule,
-    FormsModule,
-    SharedModule
-  ],
-  exports: [
-    CardListaMedicacaoVacinasAnimaisComponent
-  ]
+    imports: [
+        MedicacaoVacinaAplicacaoRoutingModule,
+        CommonModule,
+        FormsModule,
+        SharedModule,
+        ListarMedicacaoVacinasComponent,
+        AplicarMedicacaoVacinasComponent,
+        AplicacaoEmLotesComponent,
+        CardListaMedicacaoVacinasAnimaisComponent
+    ],
+    exports: [
+        CardListaMedicacaoVacinasAnimaisComponent
+    ]
 })
 export class MedicacaoVacinaAplicacaoModule { }

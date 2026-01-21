@@ -5,12 +5,14 @@ import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { DiagnosticoPrenhezService } from '../diagnostico-prenhez.service';
 import { DiagnosticoPrenhez } from 'src/app/model/diagnosticoPrenhez';
+import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  standalone: false,
-  selector: 'app-listar-diagnostico',
-  templateUrl: './listar-diagnostico.component.html',
-  styleUrls: ['./listar-diagnostico.component.css']
+    selector: 'app-listar-diagnostico',
+    templateUrl: './listar-diagnostico.component.html',
+    styleUrls: ['./listar-diagnostico.component.css'],
+    imports: [NgIf, RouterLink, NgFor, AsyncPipe, DatePipe]
 })
 export class ListarDiagnosticosComponent implements OnInit {
 

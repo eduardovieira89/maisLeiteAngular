@@ -1,15 +1,16 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from '../propriedade.service';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  standalone: false,
-  selector: 'app-propriedade',
-  templateUrl: './listar-propriedade.component.html',
-  styleUrls: ['./listar-propriedade.component.css'],
-  preserveWhitespaces: true
+    selector: 'app-propriedade',
+    templateUrl: './listar-propriedade.component.html',
+    styleUrls: ['./listar-propriedade.component.css'],
+    preserveWhitespaces: true,
+    imports: [NgIf, RouterLink, NgFor, AsyncPipe]
 })
 export class ListarPropriedadeComponent implements OnInit {
 

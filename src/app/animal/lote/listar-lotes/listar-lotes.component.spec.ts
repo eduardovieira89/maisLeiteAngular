@@ -8,8 +8,8 @@ describe('ListarLoteComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ListarLoteComponent]
-    });
+    imports: [ListarLoteComponent]
+});
     fixture = TestBed.createComponent(ListarLoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

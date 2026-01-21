@@ -8,8 +8,8 @@ describe('RegistroFuncionarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistroFuncionarioComponent ]
-    })
+    declarations: [RegistroFuncionarioComponent]
+})
     .compileComponents();
   });
 

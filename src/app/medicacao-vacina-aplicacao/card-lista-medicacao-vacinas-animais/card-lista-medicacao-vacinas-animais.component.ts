@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { MedicacaoVacinaAplicacaoService } from '../medicacao-vacina-aplicacao.service';
 import { VacinaAplicacao } from 'src/app/model/vacinaAplicacao';
 import { Observable } from 'rxjs';
+import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
 
 @Component({
-  standalone: false,
-  selector: 'app-card-lista-medicacao-vacinas-animais',
-  templateUrl: './card-lista-medicacao-vacinas-animais.component.html',
-  styleUrls: ['./card-lista-medicacao-vacinas-animais.component.css']
+    selector: 'app-card-lista-medicacao-vacinas-animais',
+    templateUrl: './card-lista-medicacao-vacinas-animais.component.html',
+    styleUrls: ['./card-lista-medicacao-vacinas-animais.component.css'],
+    imports: [NgIf, NgFor, AsyncPipe, DatePipe]
 })
 export class CardListaMedicacaoVacinasAnimaisComponent {
 

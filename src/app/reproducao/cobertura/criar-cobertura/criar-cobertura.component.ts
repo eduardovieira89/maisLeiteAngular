@@ -12,15 +12,17 @@ import { Animal } from 'src/app/model/animal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Location } from '@angular/common';
+import { Location, NgClass, NgIf, NgFor, JsonPipe } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
+import { FormsModule } from '@angular/forms';
+import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-cobertura',
-  templateUrl: './criar-cobertura.component.html',
-  styleUrls: ['./criar-cobertura.component.css']
+    selector: 'app-criar-cobertura',
+    templateUrl: './criar-cobertura.component.html',
+    styleUrls: ['./criar-cobertura.component.css'],
+    imports: [FormsModule, NgClass, NgIf, NgFor, CardDetalhesAnimalComponent, JsonPipe]
 })
 export class CriarCoberturaComponent extends BaseFormComponent implements OnInit {
 

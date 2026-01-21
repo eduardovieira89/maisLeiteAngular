@@ -24,15 +24,7 @@ import { CardTotalLactacaoComponent } from './card-total-lactacao/card-total-lac
 
 
 
-@NgModule({ declarations: [
-        AtualizarAnimalComponent,
-        CriarAnimalComponent,
-        DetalhesAnimalComponent,
-        ListarAnimalComponent,
-        RacaComponent,
-        CardTotalAnimaisComponent,
-        CardTotalLactacaoComponent,
-    ],
+@NgModule({
     exports: [
         CardTotalAnimaisComponent,
         CardTotalLactacaoComponent,
@@ -44,7 +36,13 @@ import { CardTotalLactacaoComponent } from './card-total-lactacao/card-total-lac
         SharedModule,
         LactacaoModule,
         LoteModule,
-        MedicacaoVacinaAplicacaoModule], providers: [
+        MedicacaoVacinaAplicacaoModule, AtualizarAnimalComponent,
+        CriarAnimalComponent,
+        DetalhesAnimalComponent,
+        ListarAnimalComponent,
+        RacaComponent,
+        CardTotalAnimaisComponent,
+        CardTotalLactacaoComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

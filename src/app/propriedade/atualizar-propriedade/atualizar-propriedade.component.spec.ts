@@ -8,8 +8,8 @@ describe('AlterarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AtualizarPropriedadeComponent ]
-    })
+    imports: [AtualizarPropriedadeComponent]
+})
     .compileComponents();
   });
 

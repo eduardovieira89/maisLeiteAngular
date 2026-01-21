@@ -4,10 +4,9 @@ import { PartoService } from '../parto.service';
 import { Location } from '@angular/common';
 
 @Component({
-  standalone: false,
-  selector: 'app-detalhes-parto',
-  templateUrl: './detalhes-parto.component.html',
-  styleUrls: ['./detalhes-parto.component.css']
+    selector: 'app-detalhes-parto',
+    templateUrl: './detalhes-parto.component.html',
+    styleUrls: ['./detalhes-parto.component.css']
 })
 export class DetalhesPartoComponent {
 

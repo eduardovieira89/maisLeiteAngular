@@ -1,5 +1,7 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
+import { ErrorMsgComponent } from '../error-msg/error-msg.component';
 
 const INPUT_FIELD_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -8,11 +10,11 @@ const INPUT_FIELD_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  standalone: false,
-  selector: 'app-input-field',
-  templateUrl: './input-field.component.html',
-  styleUrls: ['./input-field.component.css'],
-  providers: [INPUT_FIELD_VALUE_ACCESSOR]
+    selector: 'app-input-field',
+    templateUrl: './input-field.component.html',
+    styleUrls: ['./input-field.component.css'],
+    providers: [INPUT_FIELD_VALUE_ACCESSOR],
+    imports: [NgClass, FormsModule, ErrorMsgComponent]
 })
 export class InputFieldComponent implements ControlValueAccessor {
 

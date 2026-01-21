@@ -4,13 +4,14 @@ import { Semen } from '../../../model/semen';
 import { SemenService } from '../semen.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Location, NgClass, NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-semen',
-  templateUrl: './criar-semen.component.html',
-  styleUrls: ['./criar-semen.component.css']
+    selector: 'app-criar-semen',
+    templateUrl: './criar-semen.component.html',
+    styleUrls: ['./criar-semen.component.css'],
+    imports: [FormsModule, NgClass, NgFor, NgIf]
 })
 export class CriarSemenComponent extends BaseFormComponent implements OnInit {
 

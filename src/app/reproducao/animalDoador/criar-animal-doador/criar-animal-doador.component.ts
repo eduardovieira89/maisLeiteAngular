@@ -5,14 +5,15 @@ import { Router } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
 import { AnimalDoador } from 'src/app/model/animalDoador';
 import { Raca } from 'src/app/model/raca';
-import { Location } from '@angular/common';
+import { Location, NgClass, NgFor, NgIf, JsonPipe } from '@angular/common';
 import { AnimalService } from 'src/app/animal/animal.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-animal-doador',
-  templateUrl: './criar-animal-doador.component.html',
-  styleUrls: ['./criar-animal-doador.component.css']
+    selector: 'app-criar-animal-doador',
+    templateUrl: './criar-animal-doador.component.html',
+    styleUrls: ['./criar-animal-doador.component.css'],
+    imports: [FormsModule, NgClass, NgFor, NgIf, JsonPipe]
 })
 export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnInit {
 

@@ -9,14 +9,17 @@ import { MetodoPrenhez } from 'src/app/model/metodoPrenhez';
 import { DiagnosticoPrenhez } from 'src/app/model/diagnosticoPrenhez';
 import { DiagnosticoPrenhezService } from '../diagnostico-prenhez.service';
 import { Cobertura } from 'src/app/model/cobertura';
-import { Location } from '@angular/common';
+import { Location, NgClass, NgIf, NgFor, JsonPipe } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
+import { FormsModule } from '@angular/forms';
+import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
+import { CardCoberturaComponent } from '../../../shared/card-cobertura/card-cobertura.component';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-diagnostico',
-  templateUrl: './criar-diagnostico.component.html',
-  styleUrls: ['./criar-diagnostico.component.css']
+    selector: 'app-criar-diagnostico',
+    templateUrl: './criar-diagnostico.component.html',
+    styleUrls: ['./criar-diagnostico.component.css'],
+    imports: [FormsModule, NgClass, NgIf, NgFor, CardDetalhesAnimalComponent, CardCoberturaComponent, JsonPipe]
 })
 export class CriarDiagnosticoComponent extends BaseFormComponent implements OnInit {
 

@@ -8,8 +8,8 @@ describe('PainelUsuarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PainelUsuarioComponent ]
-    })
+    declarations: [PainelUsuarioComponent]
+})
     .compileComponents();
   });
 

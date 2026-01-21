@@ -11,15 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalhesAnimalDoadorComponent } from './detalhes-animal-doador/detalhes-animal-doador.component';
 
 
-@NgModule({ declarations: [
-        AtualizarAnimalDoadorComponent,
-        CriarAnimalDoadorComponent,
-        ListarAnimalDoadorComponent,
-        DetalhesAnimalDoadorComponent,
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        AnimalDoadorRoutingModule], providers: [
+        AnimalDoadorRoutingModule, AtualizarAnimalDoadorComponent,
+        CriarAnimalDoadorComponent,
+        ListarAnimalDoadorComponent,
+        DetalhesAnimalDoadorComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

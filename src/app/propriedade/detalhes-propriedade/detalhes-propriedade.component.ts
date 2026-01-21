@@ -1,14 +1,14 @@
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 
 @Component({
-  standalone: false,
-  selector: 'app-detalhes-propriedade',
-  templateUrl: './detalhes-propriedade.component.html',
-  styleUrls: ['./detalhes-propriedade.component.css']
+    selector: 'app-detalhes-propriedade',
+    templateUrl: './detalhes-propriedade.component.html',
+    styleUrls: ['./detalhes-propriedade.component.css'],
+    imports: [NgIf]
 })
 export class DetalhesPropriedadeComponent implements OnInit {
 

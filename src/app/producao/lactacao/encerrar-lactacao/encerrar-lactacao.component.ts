@@ -8,14 +8,17 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { LactacaoService } from '../lactacao.service';
 import { Lactacao } from 'src/app/model/lactacao';
 import { Parto } from 'src/app/model/Parto';
-import { Location } from '@angular/common';
+import { Location, NgIf, NgClass, NgFor } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
+import { FormsModule } from '@angular/forms';
+import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
+import { CardLactacaoComponent } from '../../../shared/card-lactacao/card-lactacao.component';
 
 @Component({
-  standalone: false,
-  selector: 'app-encerrar-lactacoes',
-  templateUrl: './encerrar-lactacao.component.html',
-  styleUrls: ['./encerrar-lactacao.component.css']
+    selector: 'app-encerrar-lactacoes',
+    templateUrl: './encerrar-lactacao.component.html',
+    styleUrls: ['./encerrar-lactacao.component.css'],
+    imports: [NgIf, FormsModule, NgClass, NgFor, CardDetalhesAnimalComponent, CardLactacaoComponent]
 })
 export class EncerrarLactacaoComponent extends BaseFormComponent implements OnInit {
 

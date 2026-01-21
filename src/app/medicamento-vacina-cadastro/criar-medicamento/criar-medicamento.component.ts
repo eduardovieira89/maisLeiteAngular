@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { MedicamentoCadastroVacinaService } from '../medicamento-vacina-cadastro.service';
 import { MedicacaoVacina } from 'src/app/model/medicacaoVacina';
-import { Location } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-medicamento',
-  templateUrl: './criar-medicamento.component.html',
-  styleUrls: ['./criar-medicamento.component.css']
+    selector: 'app-criar-medicamento',
+    templateUrl: './criar-medicamento.component.html',
+    styleUrls: ['./criar-medicamento.component.css'],
+    imports: [FormsModule, NgClass]
 })
 export class CriarMedicamentoComponent extends BaseFormComponent {
   

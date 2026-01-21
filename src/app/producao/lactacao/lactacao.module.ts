@@ -12,18 +12,16 @@ import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.intercept
 import { AnimalModule } from 'src/app/animal/animal.module';
 
 
-@NgModule({ declarations: [
-        DetalhesLactacaoComponent,
-        ListarLactacaoComponent,
-        EncerrarLactacaoComponent
-    ],
+@NgModule({
     exports: [
         ListarLactacaoComponent
     ], imports: [CommonModule,
         LactacaoRoutingModule,
         ReactiveFormsModule,
         FormsModule,
-        SharedModule], providers: [
+        SharedModule, DetalhesLactacaoComponent,
+        ListarLactacaoComponent,
+        EncerrarLactacaoComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

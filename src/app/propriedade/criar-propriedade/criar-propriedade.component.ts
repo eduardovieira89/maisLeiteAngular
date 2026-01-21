@@ -2,14 +2,15 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
-import {Location} from '@angular/common';
+import { Location, NgClass, NgIf, JsonPipe } from '@angular/common';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
-  selector: 'app-criar-propriedade',
-  templateUrl: './criar-propriedade.component.html',
-  styleUrls: ['./criar-propriedade.component.css']
+    selector: 'app-criar-propriedade',
+    templateUrl: './criar-propriedade.component.html',
+    styleUrls: ['./criar-propriedade.component.css'],
+    imports: [FormsModule, NgClass, NgIf, JsonPipe]
 })
 export class CriarPropriedadeComponent extends BaseFormComponent implements OnInit {
 

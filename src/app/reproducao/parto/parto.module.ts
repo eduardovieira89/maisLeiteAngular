@@ -11,15 +11,14 @@ import { DetalhesPartoComponent } from './detalhes-parto/detalhes-parto.componen
 
 
 
-@NgModule({ declarations: [
-        CriarPartoComponent,
-        ListarPartoComponent,
-        DetalhesPartoComponent
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
         PartoRoutingModule,
-        SharedModule], providers: [
+        SharedModule, CriarPartoComponent,
+        ListarPartoComponent,
+        DetalhesPartoComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

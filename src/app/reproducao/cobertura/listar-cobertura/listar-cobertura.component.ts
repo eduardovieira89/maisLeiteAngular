@@ -5,12 +5,14 @@ import { Component, OnInit } from '@angular/core';
 import { Cobertura } from 'src/app/model/cobertura';
 import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
+import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  standalone: false,
-  selector: 'app-listar-cobertura',
-  templateUrl: './listar-cobertura.component.html',
-  styleUrls: ['./listar-cobertura.component.css']
+    selector: 'app-listar-cobertura',
+    templateUrl: './listar-cobertura.component.html',
+    styleUrls: ['./listar-cobertura.component.css'],
+    imports: [NgIf, RouterLink, NgFor, AsyncPipe, DatePipe]
 })
 export class ListarCoberturaComponent implements OnInit {
 

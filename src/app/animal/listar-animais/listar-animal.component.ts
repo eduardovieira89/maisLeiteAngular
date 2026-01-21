@@ -1,21 +1,22 @@
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
 import { Propriedade } from 'src/app/model/propriedade';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { MotivoBaixa } from 'src/app/model/motivoBaixa';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
-import { Location } from '@angular/common';
+import { Location, NgIf, NgFor, NgClass, AsyncPipe, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
-  selector: 'app-listar-animal',
-  templateUrl: './listar-animal.component.html',
-  styleUrls: ['./listar-animal.component.css'],
-  preserveWhitespaces: true
+    selector: 'app-listar-animal',
+    templateUrl: './listar-animal.component.html',
+    styleUrls: ['./listar-animal.component.css'],
+    preserveWhitespaces: true,
+    imports: [NgIf, RouterLink, NgFor, FormsModule, NgClass, AsyncPipe, DatePipe]
 })
 export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
 

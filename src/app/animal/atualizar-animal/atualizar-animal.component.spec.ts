@@ -8,8 +8,8 @@ describe('AtualizarAnimalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AtualizarAnimalComponent ]
-    })
+    imports: [AtualizarAnimalComponent]
+})
     .compileComponents();
   });
 

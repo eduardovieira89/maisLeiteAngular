@@ -13,16 +13,7 @@ import { CardLactacaoComponent } from './card-lactacao/card-lactacao.component';
 import { CardDetalhesAnimalComponent } from './card-detalhes-animal/card-detalhes-animal.component';
 import { RouterLink } from '@angular/router';
 
-@NgModule({ declarations: [
-        FormDebugComponent,
-        CampoControlErroComponent,
-        ErrorMsgComponent,
-        InputFieldComponent,
-        CardCoberturaComponent,
-        CardDiagnosticoPrenhezComponent,
-        CardLactacaoComponent,
-        CardDetalhesAnimalComponent
-    ],
+@NgModule({
     exports: [
         FormDebugComponent,
         CampoControlErroComponent,
@@ -35,5 +26,12 @@ import { RouterLink } from '@angular/router';
     ], imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterLink], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        RouterLink, FormDebugComponent,
+        CampoControlErroComponent,
+        ErrorMsgComponent,
+        InputFieldComponent,
+        CardCoberturaComponent,
+        CardDiagnosticoPrenhezComponent,
+        CardLactacaoComponent,
+        CardDetalhesAnimalComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class SharedModule { }

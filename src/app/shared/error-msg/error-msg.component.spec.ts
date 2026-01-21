@@ -8,8 +8,8 @@ describe('ErrorMsgComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorMsgComponent ]
-    })
+    imports: [ErrorMsgComponent]
+})
     .compileComponents();
   }));
 

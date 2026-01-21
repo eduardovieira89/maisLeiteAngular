@@ -8,8 +8,8 @@ describe('RacaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RacaComponent ]
-    })
+    imports: [RacaComponent]
+})
     .compileComponents();
   });
 

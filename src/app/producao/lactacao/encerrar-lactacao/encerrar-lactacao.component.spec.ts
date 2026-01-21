@@ -8,8 +8,8 @@ describe('EncerrarLactacaoComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EncerrarLactacaoComponent]
-    });
+    imports: [EncerrarLactacaoComponent]
+});
     fixture = TestBed.createComponent(EncerrarLactacaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

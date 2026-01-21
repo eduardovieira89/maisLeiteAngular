@@ -9,13 +9,12 @@ import { authInterceptorProviders } from 'src/app/shared/_helpers/auth.intercept
 import { RouterModule } from '@angular/router';
 
 
-@NgModule({ declarations: [
-        ListarLoteComponent,
-        CriarLoteComponent
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule], providers: [
+        RouterModule, ListarLoteComponent,
+        CriarLoteComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

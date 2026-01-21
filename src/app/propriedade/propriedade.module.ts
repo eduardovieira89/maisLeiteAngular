@@ -14,17 +14,15 @@ import { DetalhesPropriedadeComponent } from './detalhes-propriedade/detalhes-pr
 
 
 
-@NgModule({ declarations: [
-        ListarPropriedadeComponent,
-        AtualizarPropriedadeComponent,
-        CriarPropriedadeComponent,
-        DetalhesPropriedadeComponent,
-    ],
+@NgModule({
     exports: [
         ListarPropriedadeComponent,
     ], imports: [CommonModule,
         FormsModule,
-        PropriedadeRoutingModule], providers: [
+        PropriedadeRoutingModule, ListarPropriedadeComponent,
+        AtualizarPropriedadeComponent,
+        CriarPropriedadeComponent,
+        DetalhesPropriedadeComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
-  selector: 'app-atualizarPropriedade',
-  templateUrl: './atualizar-propriedade.component.html',
-  styleUrls: ['./atualizar-propriedade.component.css']
+    selector: 'app-atualizarPropriedade',
+    templateUrl: './atualizar-propriedade.component.html',
+    styleUrls: ['./atualizar-propriedade.component.css'],
+    imports: [NgIf, FormsModule]
 })
 export class AtualizarPropriedadeComponent implements OnInit {
 

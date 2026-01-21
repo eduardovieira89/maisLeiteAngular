@@ -3,12 +3,13 @@ import { LactacaoService } from '../lactacao.service';
 import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { Lactacao } from 'src/app/model/lactacao';
+import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
 
 @Component({
-  standalone: false,
-  selector: 'app-listar-lactacoes',
-  templateUrl: './listar-lactacoes.component.html',
-  styleUrls: ['./listar-lactacoes.component.css']
+    selector: 'app-listar-lactacoes',
+    templateUrl: './listar-lactacoes.component.html',
+    styleUrls: ['./listar-lactacoes.component.css'],
+    imports: [NgIf, NgFor, AsyncPipe, DatePipe]
 })
 export class ListarLactacaoComponent implements OnInit {
 

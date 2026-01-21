@@ -8,8 +8,8 @@ describe('ListarAnimalDoadorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListarAnimalDoadorComponent ]
-    })
+    imports: [ListarAnimalDoadorComponent]
+})
     .compileComponents();
   });
 

@@ -12,16 +12,15 @@ import { PropriedadeModule } from 'src/app/propriedade/propriedade.module';
 
 
 
-@NgModule({ declarations: [
-        CriarCoberturaComponent,
-        DetalhesCoberturaComponent,
-        ListarCoberturaComponent
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
         CoberturaRoutingModule,
         SharedModule,
-        PropriedadeModule], providers: [
+        PropriedadeModule, CriarCoberturaComponent,
+        DetalhesCoberturaComponent,
+        ListarCoberturaComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

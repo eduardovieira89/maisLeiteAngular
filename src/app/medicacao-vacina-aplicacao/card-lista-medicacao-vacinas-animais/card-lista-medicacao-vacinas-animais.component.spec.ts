@@ -8,8 +8,8 @@ describe('CardListaVacinasAnimaisComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CardListaMedicacaoVacinasAnimaisComponent]
-    });
+    imports: [CardListaMedicacaoVacinasAnimaisComponent]
+});
     fixture = TestBed.createComponent(CardListaMedicacaoVacinasAnimaisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
