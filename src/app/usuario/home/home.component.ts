@@ -8,12 +8,13 @@ import { LoteContagem } from 'src/app/model/loteContagem';
 import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CardTotalAnimaisComponent, CardTotalLactacaoComponent, NgIf]
+  imports: [CardTotalAnimaisComponent, CardTotalLactacaoComponent, NgIf, RouterLink]
 })
 
 
