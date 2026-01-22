@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AtualizarAnimalComponent } from './atualizar-animal.component';
+import { beforeEach, describe, it } from 'node:test';
 
 describe('AtualizarAnimalComponent', () => {
   let component: AtualizarAnimalComponent;

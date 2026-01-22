@@ -18,17 +18,16 @@ import { PropriedadeModule } from '../propriedade/propriedade.module';
 
 
 
-@NgModule({ declarations: [
-        LoginComponent,
-        RegistroUsuarioComponent,
-        PainelUsuarioComponent,
-        RegistroFuncionarioComponent,
-        HomeComponent
-    ], imports: [CommonModule,
+@NgModule({
+    imports: [CommonModule,
         FormsModule,
         AppRoutingModule,
         AnimalModule,
-        PropriedadeModule], providers: [
+        PropriedadeModule, LoginComponent,
+        RegistroUsuarioComponent,
+        PainelUsuarioComponent,
+        RegistroFuncionarioComponent,
+        HomeComponent], providers: [
         authInterceptorProviders,
         provideHttpClient(withInterceptorsFromDi())
     ] })

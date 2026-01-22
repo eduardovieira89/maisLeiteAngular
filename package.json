@@ -46,9 +46,10 @@
     "@angular/localize": "^21.1.0",
     "@ng-bootstrap/ng-bootstrap": "^20.0.0",
     "@types/express": "^5.0.1",
-    "@types/node": "^20.17.19",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.19.30",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.17"
   }
 }

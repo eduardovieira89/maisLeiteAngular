@@ -1,15 +1,17 @@
-import { Location } from '@angular/common';
+import { DatePipe, JsonPipe, Location, NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
+import { FormDebugComponent } from 'src/app/shared/form-debug/form-debug.component';
 import { AuthenticationService } from 'src/app/usuario/authentication.service';
 
 
 @Component({
-  standalone: false,
-  selector: 'app-registro-usuario',
-  templateUrl: './registro-usuario.component.html',
-  styleUrls: ['./registro-usuario.component.css']
+    selector: 'app-registro-usuario',
+    templateUrl: './registro-usuario.component.html',
+    styleUrls: ['./registro-usuario.component.css'],
+    imports: [FormsModule, NgClass, NgIf, RouterLink]
 })
 export class RegistroUsuarioComponent extends BaseFormComponent implements OnInit {
 

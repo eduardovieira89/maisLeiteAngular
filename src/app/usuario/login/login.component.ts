@@ -1,14 +1,16 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { TokenstorageService} from '../tokenstorage.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe, NgClass, NgIf } from '@angular/common';
 
 @Component({
-  standalone: false,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  imports: [FormsModule, NgIf, RouterLink]
 })
 export class LoginComponent implements OnInit {
 

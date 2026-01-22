@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { AnimalService } from 'src/app/animal/animal.service';
+import { CardTotalAnimaisComponent } from 'src/app/animal/card-total-animais/card-total-animais.component';
+import { CardTotalLactacaoComponent } from 'src/app/animal/card-total-lactacao/card-total-lactacao.component';
 import { LoteService } from 'src/app/animal/lote/lote.service';
 import { LoteContagem } from 'src/app/model/loteContagem';
 import { Propriedade } from 'src/app/model/propriedade';
@@ -7,11 +10,13 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { TokenstorageService } from 'src/app/usuario/tokenstorage.service';
 
 @Component({
-  standalone: false,
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  imports: [CardTotalAnimaisComponent, CardTotalLactacaoComponent, NgIf]
 })
+
+
 export class HomeComponent implements OnInit {
 
 
