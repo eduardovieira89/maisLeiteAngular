@@ -32,7 +32,7 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
               ) { super(router, location) }
 
   diagnosticoPrenhez: DiagnosticoPrenhez = new DiagnosticoPrenhez();
-  vacas!: VacaDTO[];
+  vacasDiag!: VacaDTO[];
   vacaSelecionada!: VacaDTO;
   metodosPrenhez!: MetodoPrenhez[];
   cobertura!: Cobertura;
@@ -50,17 +50,17 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
     this.diagnosticosPrenhezService.listMetodoPrenhez().subscribe( metodos => this.metodosPrenhez = metodos);
     this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
       .subscribe(v => {
-        this.vacas = v;
+        this.vacasDiag = v;
         //Para selecionar a vaca via parametro na url
         const id = this.route.snapshot.params['id'];
-        this.vacaSelecionada = this.vacas.find(v => v.id.toString() === id);
+        this.vacaSelecionada = this.vacasDiag.find(v => v.id.toString() === id);
         if(!this.vacaSelecionada){
           this.route.queryParams.subscribe(params => {
-            this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
+            this.vacaSelecionada = this.vacasDiag.find(v => v.id.toString() === params['idvaca']);
           });
         }
          if(this.vacaSelecionada){
-           this.buscaCobertura();
+           this.buscaUltimaCobertura();
          }
       });
   }
@@ -86,9 +86,9 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
   }
   alterarVaca(){
     this.vacaSelecionada = null;
-    
+
   }
-  buscaCobertura(){
+  buscaUltimaCobertura(){
     //this.resetar(form);
     let params = new HttpParams();
     params = params.set('idvaca', this.vacaSelecionada.id.toString());

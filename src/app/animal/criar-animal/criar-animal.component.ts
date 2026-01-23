@@ -66,7 +66,7 @@ export class CriarAnimalComponent extends BaseFormComponent implements OnInit, C
   submit(formulario) {
       this.animal.propriedade = this.propriedadeService.getPropriedadeSelecionada();
       this.animal.ativo = true;
-      console.log('Animal para salvar:', this.animal)
+      //console.log('Animal para salvar:', this.animal)
       this.animalService.save(this.animal).subscribe(
         data => {
           this.resetar(formulario);

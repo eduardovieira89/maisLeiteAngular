@@ -38,7 +38,7 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     ) { super(router, location) }
 
   cobertura: Cobertura = new Cobertura();
-  vacas!: VacaDTO[];
+  vacasCob!: VacaDTO[];
   vacaSelecionada!: VacaDTO;
   tourosMonta: AnimalMatrizDto[];
   inseminadores: Usuario[];
@@ -57,17 +57,15 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
 
     this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
       .subscribe(v =>{
-        this.vacas = v;
+        this.vacasCob = v;
         //Para selecionar a vaca via parametro na url
         const id = this.route.snapshot.params['id'];
-        this.vacaSelecionada = this.vacas.find(v => v.id.toString() === id);
+        this.vacaSelecionada = this.vacasCob.find(v => v.id.toString() === id);
         if(!this.vacaSelecionada){
         this.route.queryParams.subscribe(params =>
-          this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']));
+          this.vacaSelecionada = this.vacasCob.find(v => v.id.toString() === params['idvaca']));
         }
-
       });
-
     this.coberturaService.listTipoCobertura().subscribe(tipos => this.TipoCobertura = tipos);
     this.usuariosService.list().subscribe(users => this.inseminadores = users );
     this.semensService.list().subscribe(sem => this.semens = sem );
@@ -90,11 +88,8 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
       err => {
         this.errorMessage = err.error;
         this.isSuccessful = false;
-        
-      }
-      );
-    });
-
+      })
+    })
   }
 
   alterarTipo(){

@@ -1,6 +1,7 @@
 <h2>Registrar Diagnóstico de prenhez</h2>
 <div  class="container">
     <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+       <pre>{{ vacasDiag | json }}</pre>
         <div class="row">
             <div class="col-sm-12">
                 <div class="alert alert-success" *ngIf="isSuccessful">
@@ -14,8 +15,8 @@
         </div>
         <div class="col-sm-7" *ngIf="!vacaSelecionada">
                 <label for="vaca">Vaca: *</label>
-                <select class="form-select" id="vaca" name="vaca"  [(ngModel)]="vacaSelecionada" required (change)="buscaCobertura()">
-                    <option *ngFor="let vaca of vacas" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
+                <select class="form-select" id="vaca" name="vaca"  [(ngModel)]="vacaSelecionada" required (change)="buscaUltimaCobertura()">
+                    <option *ngFor="let vaca of vacasDiag" [ngValue]="vaca">Brinco: {{vaca.brinco}} - {{vaca.nome}}</option>
                 </select>
                 <div class="invalid-feedback">
                     Você deve informar qual vaca será realizado o registro de diagnóstico.
@@ -76,7 +77,7 @@
               <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
             </div>
         </div>
-        
+
 
     </form>
 </div>

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from '../app-routing.module';
 
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -21,7 +20,6 @@ import { PropriedadeModule } from '../propriedade/propriedade.module';
 @NgModule({
     imports: [CommonModule,
         FormsModule,
-        AppRoutingModule,
         AnimalModule,
         PropriedadeModule, LoginComponent,
         RegistroUsuarioComponent,

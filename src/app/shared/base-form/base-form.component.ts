@@ -25,12 +25,12 @@ export abstract class BaseFormComponent implements OnInit {
    onSubmit(formulario) {
     if(formulario.form.valid){
       this.submit(formulario);
-    } 
+    }
     /*else {
       console.log('formulario invalido');
       this.verificaValidacoesForm(this.formulario);
     }*/
-  } 
+  }
 
   verificaValidacoesForm(formGroup: UntypedFormGroup | UntypedFormArray) {
     Object.keys(formGroup.controls).forEach(campo => {
@@ -45,8 +45,9 @@ export abstract class BaseFormComponent implements OnInit {
   }
 
   resetar(formulario) {
-    formulario.form.reset();
-    formulario.submitted = false;
+    //formulario.form.reset();
+    formulario.resetForm();
+    //formulario.submitted = false;
     this.isSuccessful = false;
     this.errorMessage = '';
   }

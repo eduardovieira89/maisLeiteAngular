@@ -37,14 +37,14 @@ errorMessage = '';
       data => {
         this.resetar(formulario);
         this.isSuccessful = true;
-        this.irParaListagem('semens');
+        this.irParaListagem('/reproducao/semem');
       },
       err => {
         console.log(err);
         this.errorMessage = err.error.message;
         this.isSuccessful = false;
         ;
-        
+
       }
     )
   }

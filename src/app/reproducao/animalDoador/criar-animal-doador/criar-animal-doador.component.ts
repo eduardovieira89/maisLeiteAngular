@@ -43,9 +43,9 @@ export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnI
         this.animal = new Animal();
         this.animalDoador = new AnimalDoador();
         this.resetar(formulario);
-        this.irParaListagem('animaisdoadores');
+        this.irParaListagem('/reproducao/animaisdoadores');
       },
-      err =>{ 
+      err =>{
         this.errorMessage = err.error;
 
       }

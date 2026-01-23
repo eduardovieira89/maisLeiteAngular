@@ -35,7 +35,7 @@
         <div *ngIf="vacaSelecionada && vacaSelecionada.lactacaoEmAberto == true">
             <h4>Essa vaca possui lactação em aberto. Não é possível realizar o registro do parto. <br>
                 Deseja finalizar a lactação desta vaca agora?</h4>
-                <a [routerLink]="['/lactacao/encerrar', vacaSelecionada.id]" class="btn btn-success border">Encerrar Lactação</a>
+                <a [routerLink]="['/producao/lactacao/encerrar', vacaSelecionada.id]" class="btn btn-success border">Encerrar Lactação</a>
         </div>
         <div *ngIf="vacaSelecionada && vacaSelecionada.lactacaoEmAberto == false">
             <div class="form-group row">

@@ -136,7 +136,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
   navegateToFinalizaLactacao(){
     this.router.navigate(
-      ['lactacao/encerrar'],
+      ['producao/lactacao/encerrar'],
       { queryParams: {idvaca: this.vacaSelecionada.id} }
     );
   }

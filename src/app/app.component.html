@@ -32,7 +32,7 @@
             </li>
           </ul>
         </div>
-      
+
     </div>
   </nav>
 
@@ -43,53 +43,89 @@
     </div>
     <div class="offcanvas-body">
       <div ngbAccordion [closeOthers]="true">
-        <div ngb-panel id="inicio" title="Início">
-          <ng-template ngbPanelContent>
+        <div ngbAccordionItem >
+          <h2 ngbAccordionHeader>
+						<button ngbAccordionButton>Inicio</button>
+					</h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template ngbPanelContent>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a routerLink="/propriedade" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Propriedade</a></li>
               <li class="list-group-item"><a routerLink="/animal" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Animal</a></li>
               <li class="list-group-item"><a routerLink="/animal/lotes" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Lote</a></li>
-              
             </ul>
           </ng-template>
+            </div>
+          </div>
         </div>
-        <div ngb-panel id="Sanitário" title="Sanitário">
-          <ng-template ngbPanelContent>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a routerLink="/aplicacaomedicamento" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Aplicar Medicações ou Vacinas</a></li>
-              <li class="list-group-item"><a routerLink="/aplicacaomedicamento/lotes" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Vacinas em lotes</a></li>
-              <li class="list-group-item"><a routerLink="/aplicacaomedicamento/listar" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar aplicados</a></li>
-              <li class="list-group-item"><a routerLink="/cadastromedicamento/novo" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Cadastrar Medicamentos</a></li>
-              <li class="list-group-item"><a routerLink="/cadastromedicamento" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar Medicamentos</a></li>
-            </ul>
-          </ng-template>
+        <div ngbAccordionItem >
+          <h2 ngbAccordionHeader>
+						<button ngbAccordionButton>Sanitário</button>
+					</h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template ngbPanelContent>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a routerLink="/aplicacaomedicamento" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Aplicar Medicações ou Vacinas</a></li>
+                  <li class="list-group-item"><a routerLink="/aplicacaomedicamento/lotes" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Vacinas em lotes</a></li>
+                  <li class="list-group-item"><a routerLink="/aplicacaomedicamento/listar" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar aplicados</a></li>
+                  <li class="list-group-item"><a routerLink="/cadastromedicamento/novo" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Cadastrar Medicamentos</a></li>
+                  <li class="list-group-item"><a routerLink="/cadastromedicamento" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar Medicamentos</a></li>
+                </ul>
+              </ng-template>
+            </div>
+          </div>
         </div>
-        <div ngb-panel id="reproducao" title="Reprodução">
-          <ng-template ngbPanelContent>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a routerLink="/animaisdoadores" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Animal doadores</a></li>
-              <li class="list-group-item"><a routerLink="/semens" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Semen</a></li>
-              <li class="list-group-item"><a routerLink="/cobertura" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Cobertura</a></li>
-              <li class="list-group-item"><a routerLink="/diagnosticoprenhez" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Diagnóstico de prenhez</a></li>
-              <li class="list-group-item"><a routerLink="/parto" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Parto</a></li>
-            </ul>
-          </ng-template>
+        <div ngbAccordionItem >
+          <h2 ngbAccordionHeader>
+						<button ngbAccordionButton>Reprodução</button>
+					</h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template ngbPanelContent>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a routerLink="/reproducao" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Inicio</a></li>
+                  <li class="list-group-item"><a routerLink="/reproducao/animaisdoadores" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Animal doadores</a></li>
+                  <li class="list-group-item"><a routerLink="/reproducao/semem" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Semen</a></li>
+                  <li class="list-group-item"><a routerLink="/reproducao/cobertura" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Cobertura</a></li>
+                  <li class="list-group-item"><a routerLink="/reproducao/diagnosticoprenhez" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Diagnóstico de prenhez</a></li>
+                  <li class="list-group-item"><a routerLink="/reproducao/parto" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Parto</a></li>
+                </ul>
+              </ng-template>
+            </div>
+          </div>
         </div>
-        <div ngb-panel id="prodLeite" title="Produção de Leite">
-          <ng-template ngbPanelContent>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a routerLink="/producao" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar Produção</a></li>
-              <li class="list-group-item"><a routerLink="/producao/novo" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Registrar Produção</a></li>
-              <li class="list-group-item"><a routerLink="/lactacao/encerrar" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Encerar Lactação</a></li>
-            </ul>
-          </ng-template>
+        <div ngbAccordionItem >
+          <h2 ngbAccordionHeader>
+						<button ngbAccordionButton>Produção de Leite</button>
+					</h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template ngbPanelContent>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a routerLink="/producao" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Inicio</a></li>
+                  <li class="list-group-item"><a routerLink="/producao/leite" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Listar Produção</a></li>
+                  <li class="list-group-item"><a routerLink="/producao/leite/novo" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Registrar Produção</a></li>
+                  <li class="list-group-item"><a routerLink="/producao/lactacao/encerrar" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Encerar Lactação</a></li>
+                </ul>
+              </ng-template>
+            </div>
+          </div>
         </div>
-        <div ngb-panel id="painel" title="Painel">
-          <ng-template ngbPanelContent>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a routerLink="/painel" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Menu</a></li>
-            </ul>
-          </ng-template>
+        <div ngbAccordionItem >
+          <h2 ngbAccordionHeader>
+						<button ngbAccordionButton>Painel</button>
+					</h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template ngbPanelContent>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a routerLink="/painel" class="nav-link" (click)="offcanvas.dismiss('Cross click')">Menu</a></li>
+                </ul>
+              </ng-template>
+            </div>
+          </div>
         </div>
       </div>
     </div>

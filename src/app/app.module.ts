@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppRoutingModule} from './app-routing.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { authInterceptorProviders } from './shared/_helpers/auth.interceptor';
@@ -13,7 +12,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { NgbAccordionBody, NgbAccordionButton, NgbAccordionCollapse, NgbAccordionDirective, NgbAccordionHeader, NgbAccordionItem, NgbAccordionModule, NgbAccordionToggle, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 
-@NgModule({ 
+@NgModule({
     declarations: [],
     imports: [
         BrowserModule,
@@ -30,9 +29,8 @@ import { RouterModule } from '@angular/router';
 		NgbAccordionBody,
 		NgbAccordionCollapse,
         UsuarioModule,
-        AppRoutingModule,
         NgbModule
-    ], 
+    ],
         providers: [
             authInterceptorProviders,
             { provide: LOCALE_ID, useValue: 'pt' },
