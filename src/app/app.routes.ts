@@ -16,6 +16,6 @@ export const APP_ROUTES: Routes = [
       { path: 'propriedade', loadChildren: () => import('./propriedade/propriedade.routes').then(p => p.PROPRIEDADE_ROUTES), canActivate:[canActivateGuard] },
       { path: 'reproducao', loadChildren: () => import('./reproducao/reproducao.routes').then(r => r.REPRODUCAO_ROUTES), canActivate:[canActivateGuard]},
       { path: 'producao', loadChildren: () => import('./producao/producao.routes').then(P => P.PRODUCAO_ROUTES), canActivate:[canActivateGuard], canLoad:[PropriedadeGuard]},
-      { path: 'aplicacaomedicamento', loadChildren: () => import('./medicacao-vacina-aplicacao/medicacao-vacina-aplicacao.module').then(m => m.MedicacaoVacinaAplicacaoModule), canActivate:[canActivateGuard], canLoad:[PropriedadeGuard]},
-      { path: 'cadastromedicamento', loadChildren: () => import('./medicamento-vacina-cadastro/medicamento-vacina-cadastro.module').then(m => m.MedicamentoVacinaCadastroModule), canActivate:[canActivateGuard], canLoad:[PropriedadeGuard]}
+      //{ path: 'aplicacaomedicamento', loadChildren: () => import('./medicacao-vacina-aplicacao/medicacao-vacina-aplicacao.module').then(m => m.MedicacaoVacinaAplicacaoModule), canActivate:[canActivateGuard], canLoad:[PropriedadeGuard]},
+      //{ path: 'cadastromedicamento', loadChildren: () => import('./medicamento-vacina-cadastro/medicamento-vacina-cadastro.module').then(m => m.MedicamentoVacinaCadastroModule), canActivate:[canActivateGuard], canLoad:[PropriedadeGuard]}
 ]
