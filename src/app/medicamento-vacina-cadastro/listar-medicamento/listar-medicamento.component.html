@@ -1,28 +1,32 @@
 <div class="container">
-    <h2>Lista de Medicamentos</h2>
-    <table class="table table-striped" *ngIf="(medicamentos$ | async) as medicamentos; else loading">
-        
-        <thead>
-            <tr>
-                <td>Descricao</td>
-                <td>Núm de Doses</td>
-                <td>Modo de uso</td>
-            </tr>
-            <tr *ngIf="medicamentos.length == 0">
-                <td colspan="3">
-                    <span>Não há medicamento cadastrado</span>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let medicamento of medicamentos">
-                <td>{{medicamento.descricao}}</td>
-                <td>{{medicamento.qtdeDoses}}</td>
-                <td>{{medicamento.modoDeUso}}</td>
-            </tr>
-        </tbody>
+  <h2>Lista de Medicamentos</h2>
+  @if ((medicamentos$ | async); as medicamentos) {
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Descricao</td>
+          <td>Núm de Doses</td>
+          <td>Modo de uso</td>
+        </tr>
+        @if (medicamentos.length == 0) {
+          <tr>
+            <td colspan="3">
+              <span>Não há medicamento cadastrado</span>
+            </td>
+          </tr>
+        }
+      </thead>
+      <tbody>
+        @for (medicamento of medicamentos; track medicamento) {
+          <tr>
+            <td>{{medicamento.descricao}}</td>
+            <td>{{medicamento.qtdeDoses}}</td>
+            <td>{{medicamento.modoDeUso}}</td>
+          </tr>
+        }
+      </tbody>
     </table>
-    <ng-template #loading>
-        <span>Carregando tabela de medicamentos...</span>
-    </ng-template>
+  } @else {
+    <span>Carregando tabela de medicamentos...</span>
+  }
 </div>

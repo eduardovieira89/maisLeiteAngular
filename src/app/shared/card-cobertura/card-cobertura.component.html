@@ -1,14 +1,22 @@
 <div class="card col my-2">
-    <div class="card-body">
-        <h5 class="card-title">Cobertura</h5>
-        <div *ngIf="!cobertura">
-            <h6 class="card-subtitle mb-2 text-muted">Não há registro de cobertura </h6>
-            <a *ngIf="idVaca" [routerLink]="['/reproducao/cobertura/nova', idVaca]" class="btn btn-success border">Cadastrar cobertura</a>
-            <a *ngIf="!idVaca" [routerLink]="['/reproducao/cobertura/nova']" class="btn btn-success border">Cadastrar cobertura</a>
-        </div>
-        <div *ngIf="cobertura">
-            <label for="cobertura">Cobertura: {{cobertura.data | date: 'dd/MM/yyyy'}} </label><br>
-            <label for="TipoCobertura">Tipo: {{cobertura.tipoCobertura.descricao}} </label>
-        </div>
-    </div>
+  <div class="card-body">
+    <h5 class="card-title">Cobertura</h5>
+    @if (!cobertura) {
+      <div>
+        <h6 class="card-subtitle mb-2 text-muted">Não há registro de cobertura </h6>
+        @if (idVaca) {
+          <a [routerLink]="['/reproducao/cobertura/nova', idVaca]" class="btn btn-success border">Cadastrar cobertura</a>
+        }
+        @if (!idVaca) {
+          <a [routerLink]="['/reproducao/cobertura/nova']" class="btn btn-success border">Cadastrar cobertura</a>
+        }
+      </div>
+    }
+    @if (cobertura) {
+      <div>
+        <label for="cobertura">Cobertura: {{cobertura.data | date: 'dd/MM/yyyy'}} </label><br>
+        <label for="TipoCobertura">Tipo: {{cobertura.tipoCobertura.descricao}} </label>
+      </div>
+    }
+  </div>
 </div>

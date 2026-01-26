@@ -1,70 +1,75 @@
 <h2>Detalhes do Animal</h2>
-<div class="container" *ngIf="animal">
-  <div>
-    <div *ngIf="animal.sexo == 'f'">
-      <label><b>Sexo: </b>Fêmea</label>
+@if (animal$ | async; as animal) {
+  <div class="container">
+    <div>
+      @if (animal.sexo == 'f') {
+        <div>
+          <label><b>Sexo: </b>Fêmea</label>
+        </div>
+      }
+      @if (animal.sexo == 'm') {
+        <div>
+          <label><b>Sexo: </b>Macho</label>
+        </div>
+      }
     </div>
-    <div *ngIf="animal.sexo == 'm'">
-      <label><b>Sexo: </b>Macho</label>
+    <div class="form-group row" >
+      <div class="col-sm-6">
+        <label><b>Nome: </b>{{animal.nome}}</label>
+      </div>
+      <div class="col-sm-6">
+        <label><b>Raça: </b>{{ animal.raca?.descricao }}</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-3">
+        <label><b>Número do brinco: </b>{{animal.brinco}}</label>
+      </div>
+      <div class="col-sm-3">
+        <label><b>Número do registro: </b>{{animal.registro}}</label>
+      </div>
+      <div class="col-sm-3">
+        <label><b>Data de nascimento: </b>{{animal.dataNasc | date: 'dd/MM/yyyy'}}</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label><b>Pai: </b>{{animal.pai!}}</label>
+      </div>
+      <div class="col-sm-6">
+        <label><b>Mãe: </b>{{animal.mae!}}</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label><b>Pai ID: </b>{{ animal.pai_id?.nome }}</label>
+      </div>
+      <div class="col-sm-6">
+        <label><b>Mãe ID: </b>{{ animal.mae_id?.nome }}</label>
+      </div>
+    </div>
+    <div class="form-group row" >
+      <div class="col-sm-6">
+        <label><b>ID: </b>{{animal.id}}</label>
+      </div>
+    </div>
+    @if (animal.sexo == 'f') {
+      <div>
+        <app-listar-lactacoes [idVaca]="animal.id"></app-listar-lactacoes>
+      </div>
+    }
+    <div>
+      <button (click)="buscaVacinas()" class="btn btn-success">Listar Vacinas</button><br>
+      <app-card-lista-medicacao-vacinas-animais></app-card-lista-medicacao-vacinas-animais>
     </div>
   </div>
+}
 
-  <div class="form-group row" >
-    <div class="col-sm-6">
-      <label><b>Nome: </b>{{animal.nome}}</label>
-    </div>
-    <div class="col-sm-6">
-      <label><b>Raça: </b>{{ animal.raca?.descricao }}</label>
-    </div>
+@if (mensagemErro) {
+  <div class="alert alert-danger">
+    {{mensagemErro}}
   </div>
-  <div class="form-group row">
-    <div class="col-sm-3">
-      <label><b>Número do brinco: </b>{{animal.brinco}}</label>
-    </div>
-    <div class="col-sm-3">
-      <label><b>Número do registro: </b>{{animal.registro}}</label>
-    </div>
-    <div class="col-sm-3">
-      <label><b>Data de nascimento: </b>{{animal.dataNasc | date: 'dd/MM/yyyy'}}</label>
-    </div>
-  </div>
-
-
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label><b>Pai: </b>{{animal.pai!}}</label>
-    </div>
-    <div class="col-sm-6">
-      <label><b>Mãe: </b>{{animal.mae!}}</label>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label><b>Pai ID: </b>{{ animal.pai_id?.nome }}</label>
-    </div>
-    <div class="col-sm-6">
-      <label><b>Mãe ID: </b>{{ animal.mae_id?.nome }}</label>
-    </div>
-  </div>
-  <div class="form-group row" >
-    <div class="col-sm-6">
-      <label><b>ID: </b>{{animal.id}}</label>
-    </div>
-  </div>
-  <div *ngIf="animal.sexo == 'f'">
-    <app-listar-lactacoes [idVaca]="animal.id"></app-listar-lactacoes>
-  </div>
-  <div>
-    <button (click)="buscaVacinas()" class="btn btn-success">Listar Vacinas</button><br>
-    <app-card-lista-medicacao-vacinas-animais></app-card-lista-medicacao-vacinas-animais>
-  </div>
-</div>
-
-<div *ngIf="mensagemErro" class="alert alert-danger">
-  {{mensagemErro}}
-</div>
+}
 <br>
-<br>
-<button (click)="voltar()" class="btn btn-primary">Voltar</button><br>
+  <br>
+    <button (click)="voltar()" class="btn btn-primary">Voltar</button><br>

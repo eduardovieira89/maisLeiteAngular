@@ -7,7 +7,7 @@ import { AnimalService } from 'src/app/animal/animal.service';
 import { Lote } from 'src/app/model/lote';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { LoteService } from '../lote/lote.service';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,11 +16,9 @@ import { FormsModule } from '@angular/forms';
     styleUrls: ['./atualizar-animal.component.css'],
     preserveWhitespaces: true,
     imports: [
-        NgIf,
-        FormsModule,
-        NgFor,
-        DatePipe,
-    ],
+    FormsModule,
+    DatePipe
+],
 })
 export class AtualizarAnimalComponent implements OnInit {
 

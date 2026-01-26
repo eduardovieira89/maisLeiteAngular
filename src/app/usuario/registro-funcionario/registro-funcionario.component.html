@@ -1,12 +1,12 @@
 <div class="container">
+  @if (!isSuccessful) {
     <form
-      *ngIf="!isSuccessful"
       name="form"
       (ngSubmit)="f.form.valid && cadastraFuncionario()"
       #f="ngForm"
       novalidate
-    >
-    <h2>Registro de funcionário</h2>
+      >
+      <h2>Registro de funcionário</h2>
       <div class="form-group">
         <label for="nome">Nome:</label>
         <input
@@ -19,53 +19,77 @@
           minlength="3"
           maxlength="50"
           #username="ngModel"
-        />
-        <div class="alert-danger" *ngIf="username.errors && (username.invalid && username.touched)">
-          <small class="text-danger" *ngIf="username.errors.required">Nome é um campo necesário</small>
-          <small *ngIf="username.errors.minlength">O nome deve ter pelo menos 3 caracteres</small>
-          <small *ngIf="username.errors.maxlength">O nome deve ter no máximo 50 caracteres</small>
+          />
+          @if (username.errors && (username.invalid && username.touched)) {
+            <div class="alert-danger">
+              @if (username.errors.required) {
+                <small class="text-danger">Nome é um campo necesário</small>
+              }
+              @if (username.errors.minlength) {
+                <small>O nome deve ter pelo menos 3 caracteres</small>
+              }
+              @if (username.errors.maxlength) {
+                <small>O nome deve ter no máximo 50 caracteres</small>
+              }
+            </div>
+          }
         </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          name="email"
-          [(ngModel)]="form.email"
-          required pattern ="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
-          placeholder="Insira o email"
-          #email="ngModel"
-        />
-        <div class="alert-danger" *ngIf="email.errors && (email.invalid && email.touched)">
-          <small class="text-danger" *ngIf="email.errors.required">Email é um campo obrigatório</small>
-          <small class="text-danger" *ngIf="email.errors.pattern">Entre com um email válido</small>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Senha:</label>
-        <input
-          type="password" class="form-control"
-          placeholder="Insira a senha" 
-          name="password"
-          [(ngModel)]="form.password"
-          required
-          minlength="6"
-          #password="ngModel"
-        />
-        <div class="alert-danger" *ngIf="password.errors && (password.invalid && password.touched)">
-          <small *ngIf="password.errors.required">Senha é um campo necessário</small>
-          <small *ngIf="password.errors.minlength">A senha deve ter pelo menos 6 caracteres</small>
-        </div>
-      </div>      
-      <button [disabled]="f.form.invalid" type="submit" class="btn btn-info">Registrar</button>
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Cadastro falhou!<br />{{ errorMessage }}
-      </div>
-    </form>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="form.email"
+            required pattern ="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+            placeholder="Insira o email"
+            #email="ngModel"
+            />
+            @if (email.errors && (email.invalid && email.touched)) {
+              <div class="alert-danger">
+                @if (email.errors.required) {
+                  <small class="text-danger">Email é um campo obrigatório</small>
+                }
+                @if (email.errors.pattern) {
+                  <small class="text-danger">Entre com um email válido</small>
+                }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="password">Senha:</label>
+            <input
+              type="password" class="form-control"
+              placeholder="Insira a senha"
+              name="password"
+              [(ngModel)]="form.password"
+              required
+              minlength="6"
+              #password="ngModel"
+              />
+              @if (password.errors && (password.invalid && password.touched)) {
+                <div class="alert-danger">
+                  @if (password.errors.required) {
+                    <small>Senha é um campo necessário</small>
+                  }
+                  @if (password.errors.minlength) {
+                    <small>A senha deve ter pelo menos 6 caracteres</small>
+                  }
+                </div>
+              }
+            </div>
+            <button [disabled]="f.form.invalid" type="submit" class="btn btn-info">Registrar</button>
+            @if (f.submitted && isSignUpFailed) {
+              <div class="alert alert-warning">
+                Cadastro falhou!<br />{{ errorMessage }}
+              </div>
+            }
+          </form>
+        }
 
-    <div *ngIf="isSuccessful">
-      <p class="alert alert-success">Cadastro realizado com sucesso!</p>
-
-    </div>
-</div>
+        @if (isSuccessful) {
+          <div>
+            <p class="alert alert-success">Cadastro realizado com sucesso!</p>
+          </div>
+        }
+      </div>

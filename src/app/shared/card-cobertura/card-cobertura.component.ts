@@ -1,6 +1,6 @@
 import { Cobertura } from 'src/app/model/cobertura';
 import { Component, Input } from '@angular/core';
-import { NgIf, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,10 +8,9 @@ import { RouterLink } from '@angular/router';
     templateUrl: './card-cobertura.component.html',
     styleUrls: ['./card-cobertura.component.css'],
     imports: [
-        NgIf,
-        RouterLink,
-        DatePipe,
-    ],
+    RouterLink,
+    DatePipe
+],
 })
 export class CardCoberturaComponent {
 

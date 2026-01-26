@@ -40,8 +40,12 @@ export class LoteService extends CrudService<Lote> {
     let idPropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString().trim();
     const options = idPropriedade ?
     { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};
-
-    return this.http.get<LoteContagem[]>(`${this.LOTE_PATH}/contagem`, options);
+    if(options){
+      return this.http.get<LoteContagem[]>(`${this.LOTE_PATH}/contagem`, options);
+    }else{
+      return null;
+    }
+    
   }
 
 }

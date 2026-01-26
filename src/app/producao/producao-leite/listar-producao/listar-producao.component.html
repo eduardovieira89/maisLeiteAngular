@@ -1,47 +1,54 @@
 <div class="container">
-        <h3>Produções</h3>
-        <table class="table table-hover table-striped" *ngIf="(controles$ | async) as controles; else loading">
-            <thead>
-                <tr *ngIf="controles.length == 0">
-                    <td colspan="6">
-                        <span>Não há Controle leiteiro registrado nesta propriedade </span>
-                    </td>
-                </tr>
-            </thead>
-            <tbody *ngFor="let controle of controles">
-                    <tr >
-                        <td><b>Data:</b> {{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
-                        <td><b>Temperatura:</b> {{controle.temperatura}} °C</td>
-                        <td><b>Umidade:</b> {{controle.umidadeAr}} %</td>
-                        <td><b>Total de Litros:</b> {{controle.totalLitros}}</td>
-                    </tr>
+  <h3>Produções</h3>
+  @if ((controles$ | async); as controles) {
+    <table class="table table-hover table-striped">
+      <thead>
+        @if (controles.length == 0) {
+          <tr>
+            <td colspan="6">
+              <span>Não há Controle leiteiro registrado nesta propriedade </span>
+            </td>
+          </tr>
+        }
+      </thead>
+      @for (controle of controles; track controle) {
+        <tbody>
+          <tr >
+            <td><b>Data:</b> {{controle.dataControle | date: 'dd/MM/yyyy' }}</td>
+            <td><b>Temperatura:</b> {{controle.temperatura}} °C</td>
+            <td><b>Umidade:</b> {{controle.umidadeAr}} %</td>
+            <td><b>Total de Litros:</b> {{controle.totalLitros}}</td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <div class="container">
+                <table class="table table-borderless table-light">
+                  <thead>
                     <tr>
-                        <td colspan="4">
-                            <div class="container">
-                            <table class="table table-borderless table-light">
-                                <thead>
-                                    <tr>
-                                        <th>Vaca</th>
-                                        <th>Ordenha 1</th>
-                                        <th>Ordenha 2</th>
-                                        <th>Ordenha 3</th>
-                                        <th>Total dia</th>
-                                    </tr>
-                                </thead>
-                                <tr *ngFor="let producao of controle.producoesLeiteDTO">
-                                    <td>{{producao.vaca}}</td>
-                                    <td>{{producao.ordenha1}} L</td>
-                                    <td>{{producao.ordenha2}} L</td>
-                                    <td>{{producao.ordenha3}} L</td>
-                                    <td>{{producao.somaOrdenhas}} L</td>
-                                </tr>
-                            </table>
-                            </div>
-                        </td> 
+                      <th>Vaca</th>
+                      <th>Ordenha 1</th>
+                      <th>Ordenha 2</th>
+                      <th>Ordenha 3</th>
+                      <th>Total dia</th>
                     </tr>
-            </tbody>
-        </table>
-        <ng-template #loading>
-            <span>Carregando Controle leiteiro...</span>
-        </ng-template>
+                  </thead>
+                  @for (producao of controle.producoesLeiteDTO; track producao) {
+                    <tr>
+                      <td>{{producao.vaca}}</td>
+                      <td>{{producao.ordenha1}} L</td>
+                      <td>{{producao.ordenha2}} L</td>
+                      <td>{{producao.ordenha3}} L</td>
+                      <td>{{producao.somaOrdenhas}} L</td>
+                    </tr>
+                  }
+                </table>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      }
+    </table>
+  } @else {
+    <span>Carregando Controle leiteiro...</span>
+  }
 </div>

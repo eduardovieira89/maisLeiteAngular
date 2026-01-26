@@ -63,8 +63,16 @@ export class AnimalService extends CrudService<Animal>{
   public listarEmLactacao(params: HttpParams){
     return this.http.get<Animal[]>(`${this.ANIMAL_PATH}/emlactacao`, {params});
   }
-  public listarEmLactacaoDTO(params: HttpParams){
-    return this.http.get<VacaDTO[]>(`${this.ANIMAL_PATH}/lactacaodto`, {params});
+  
+  public listarEmLactacaoDTO(){
+    let idPropriedade = this.propriedadeService.getPropriedadeSelecionada().id.toString().trim();
+    const options = idPropriedade ?
+    { params: new HttpParams().set('idpropriedade', idPropriedade) } : {};
+    if(options){
+    return this.http.get<VacaDTO[]>(`${this.ANIMAL_PATH}/lactacaodto`, options);
+    }else{
+      return null;
+    }
   }
 
   public listarPorLote(idLote: string){

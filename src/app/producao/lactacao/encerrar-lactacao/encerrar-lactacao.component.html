@@ -1,69 +1,84 @@
 <h2>Encerrar Lactação</h2>
 <div class="container">
-    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="vacas?.length > 0" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-        <div class="form-group row" *ngIf="!vacaSelecionada">
-            <div class="col-sm-6">
-                <label for="vaca">Vaca:</label>
-                <select class="form-select" name="vaca" id="vaca" required [(ngModel)]="vacaSelecionada" (change)="buscaLactacao()" >
-                    <option *ngFor="let vaca of vacas" [ngValue]="vaca">{{vaca.nome}}</option>
-                </select>
-                <div class="invalid-feedback">
-                    Selecione a vaca para fazer o encerramento da lactação.
-                </div>
-            </div>
-        </div>
-        <div *ngIf="vacaSelecionada">
-            <div class="form-group row" >
-                <div class="col-sm-11">
-                    <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
-                </div>
-                <div class="col-sm-1">
-                    <button (click)="alterar()" class="btn btn-success border">Alterar Vaca</button>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-2" style="min-width: 200px;">
-                    <label for="dtEncerramento">Data de encerramento:</label>
-                    <input type="date" class="form-control" name="dtEncerramento" id="dtEncerramento" required [(ngModel)]="lactacao.dataEncerramento">
-                    <div class="invalid-feedback">
-                        Data de encerramento é um campo obrigatório.
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <label for="causas">Causa do encerramento da lactação:</label>
-                    <select class="form-select" name="causas" id="causas" required [(ngModel)]="lactacao.causaEncerramento">
-                        <option *ngFor="let causa of causasEncerramentos" [ngValue]="causa">{{causa.descricao}}</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Causa do encerramento é um campo obrigatório
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="obs">Observações:</label>
-                <textarea class="form-control" name="obs" id="obs" cols="30" rows="5" [(ngModel)]="lactacao.observacao"></textarea>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <app-card-lactacao [lactacao]="lactacao"> </app-card-lactacao>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row my-3">
-            <div class="form-group col-sm-6 ">
-              <button type="submit" class="btn btn-success border">Salvar</button>
-              <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
+  @if (vacas$ | async; as vacas) {
+    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+      @if (!vacaSelecionada) {
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label for="vaca">Vaca:</label>
+            <select class="form-select" name="vaca" id="vaca" required [(ngModel)]="vacaSelecionada" (change)="buscaLactacao()" >
+              @for (vaca of vacas; track vaca) {
+                <option [ngValue]="vaca">{{vaca.nome}}</option>
+              }
+            </select>
+            <div class="invalid-feedback">
+              Selecione a vaca para fazer o encerramento da lactação.
             </div>
           </div>
-        <br>
-        <div class="alert alert-success" *ngIf="isSuccessful">
+        </div>
+      }
+      @if (vacaSelecionada) {
+        <div>
+          <div class="form-group row" >
+            <div class="col-sm-11">
+              <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
+            </div>
+            <div class="col-sm-1">
+              <button (click)="alterar()" class="btn btn-success border">Alterar Vaca</button>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-2" style="min-width: 200px;">
+              <label for="dtEncerramento">Data de encerramento:</label>
+              <input type="date" class="form-control" name="dtEncerramento" id="dtEncerramento" required [(ngModel)]="lactacao.dataEncerramento">
+              <div class="invalid-feedback">
+                Data de encerramento é um campo obrigatório.
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="causas">Causa do encerramento da lactação:</label>
+              <select class="form-select" name="causas" id="causas" required [(ngModel)]="lactacao.causaEncerramento">
+                @for (causa of causasEncerramentos; track causa) {
+                  <option [ngValue]="causa">{{causa.descricao}}</option>
+                }
+              </select>
+              <div class="invalid-feedback">
+                Causa do encerramento é um campo obrigatório
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="obs">Observações:</label>
+            <textarea class="form-control" name="obs" id="obs" cols="30" rows="5" [(ngModel)]="lactacao.observacao"></textarea>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <app-card-lactacao [lactacao]="lactacao"> </app-card-lactacao>
+            </div>
+          </div>
+        </div>
+      }
+      <div class="form-group row my-3">
+        <div class="form-group col-sm-6 ">
+          <button type="submit" class="btn btn-success border">Salvar</button>
+          <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
+        </div>
+      </div>
+      <br>
+        @if (isSuccessful) {
+          <div class="alert alert-success">
             <h4>Lactação encerrada com sucesso com sucesso!</h4>
-        </div>
-        <div class="alert alert-warning" *ngIf="errorMessage!=''">
-                Falha ao cadastrar diagnóstico!<br />{{ errorMessage }}
-        </div>
-    </form>
-    <div class="alert alert-primary" *ngIf="vacas?.length <= 0">
+          </div>
+        }
+        @if (errorMessage!='') {
+          <div class="alert alert-warning">
+            Falha ao cadastrar diagnóstico!<br />{{ errorMessage }}
+          </div>
+        }
+      </form>
+    }@else {
+      <div class="alert alert-primary">
         <h4>Não há vacas com lactação em aberto na propriedade!</h4>
-    </div>
-</div>
+      </div>
+    }
+  </div>

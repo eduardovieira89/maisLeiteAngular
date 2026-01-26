@@ -1,5 +1,5 @@
 import { AnimalDoador } from 'src/app/model/animalDoador';
-import { Location, NgIf, DatePipe } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
@@ -10,7 +10,7 @@ import { AnimalDoadorService } from '../animal-doador.service';
     selector: 'app-detalhes-animal-doador',
     templateUrl: './detalhes-animal-doador.component.html',
     styleUrls: ['./detalhes-animal-doador.component.css'],
-    imports: [NgIf, DatePipe]
+    imports: [DatePipe]
 })
 export class DetalhesAnimalDoadorComponent implements OnInit {
 

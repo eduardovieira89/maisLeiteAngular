@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Propriedade } from 'src/app/model/propriedade';
 import { PropriedadeService } from '../propriedade.service';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-propriedade',
     templateUrl: './listar-propriedade.component.html',
     styleUrls: ['./listar-propriedade.component.css'],
     preserveWhitespaces: true,
-    imports: [NgIf, RouterLink, NgFor, AsyncPipe]
+    imports: [RouterLink, AsyncPipe]
 })
 export class ListarPropriedadeComponent implements OnInit {
 

@@ -1,94 +1,109 @@
 <h2>Aplicação de Vacina</h2>
 <div class="container">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-      <div class="form-group row" *ngIf="!vacaSelecionada">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+    @if (!vacaSelecionada) {
+      <div class="form-group row">
         <div class="col-sm-7">
-                  <label for="animal">Animal: *</label>
-                  <select class="form-select" id="animal"  name="animal" required [(ngModel)]="vacaSelecionada">
-                      <option *ngFor="let animal of animais" [ngValue]="animal">Brinco: {{animal.brinco}} - {{animal.nome}}</option>
-                  </select>
-                  <div class="invalid-feedback">
-                      Você deve informar o animal a ser vacinado.
-                  </div>
+          <label for="animal">Animal: *</label>
+          <select class="form-select" id="animal"  name="animal" required [(ngModel)]="vacaSelecionada">
+            @for (animal of animais; track animal) {
+              <option [ngValue]="animal">Brinco: {{animal.brinco}} - {{animal.nome}}</option>
+            }
+          </select>
+          <div class="invalid-feedback">
+            Você deve informar o animal a ser vacinado.
+          </div>
         </div>
       </div>
-      <div *ngIf="vacaSelecionada">
+    }
+    @if (vacaSelecionada) {
+      <div>
         <div class="form-group row">
-                <div class="col-sm-11" >
-                    <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
-                </div>
-                <div class="col-sm-1">
-                    <button (click)="alterarVaca()" class="btn btn-success border">Alterar Vaca</button>
-                </div>
-            </div>
+          <div class="col-sm-11" >
+            <app-card-detalhes-animal [animal]="vacaSelecionada"> </app-card-detalhes-animal>
+          </div>
+          <div class="col-sm-1">
+            <button (click)="alterarVaca()" class="btn btn-success border">Alterar Vaca</button>
+          </div>
+        </div>
         <div class="form-group row">
           <div class="col-sm-1" style="min-width: 100px;">
-              <label for="dose">Dose: *</label>
-              <input type="number" class="form-control" id="dose" name="dose" required  [(ngModel)]="aplicVacina.dose">
-              <div class="invalid-feedback">
-                  Dose é um campo obrigatório.
-              </div>
+            <label for="dose">Dose: *</label>
+            <input type="number" class="form-control" id="dose" name="dose" required  [(ngModel)]="aplicVacina.dose">
+            <div class="invalid-feedback">
+              Dose é um campo obrigatório.
+            </div>
           </div>
           <div class="col-sm-2" style="min-width: 170px;">
-              <label for="dataap">Data da aplicação: *</label>
-              <div class="input-group">
-                  <input type="date" class="form-control" id="dataap" name="dataap" required [(ngModel)]="aplicVacina.data">
-                  <div class="invalid-feedback">
-                      Data da aplicação é um campo obrigatório.
-                  </div>
+            <label for="dataap">Data da aplicação: *</label>
+            <div class="input-group">
+              <input type="date" class="form-control" id="dataap" name="dataap" required [(ngModel)]="aplicVacina.data">
+              <div class="invalid-feedback">
+                Data da aplicação é um campo obrigatório.
               </div>
+            </div>
           </div>
           <div class="col-sm-9">
-              <label for="vacina">Medicamento: *</label>
-              <select class="form-select" id="medicamento"  name="medicamento" required [(ngModel)]="aplicVacina.medicacao">
-                  <option *ngFor="let medicamento of medicacoesVacinas" [ngValue]="medicamento">{{medicamento.descricao}}</option>
-              </select>
-              <div class="invalid-feedback">
-                  Você deve informar um medicamento.
-              </div>
+            <label for="vacina">Medicamento: *</label>
+            <select class="form-select" id="medicamento"  name="medicamento" required [(ngModel)]="aplicVacina.medicacao">
+              @for (medicamento of medicacoesVacinas; track medicamento) {
+                <option [ngValue]="medicamento">{{medicamento.descricao}}</option>
+              }
+            </select>
+            <div class="invalid-feedback">
+              Você deve informar um medicamento.
+            </div>
           </div>
         </div>
         <div class="form-group row">
-
-            <div class="col-sm-6">
-                <label for="aplicador">Aplicador:</label>
-                <select class="form-select" id="aplicador"  name="aplicador" required [(ngModel)]="aplicVacina.aplicador">
-                    <option *ngFor="let aplicador of aplicadores" [ngValue]="aplicador">{{aplicador.nome}}</option>
-                </select>
-                <div class="invalid-feedback">
-                    Você deve informar quem irá aplicar a vacina.
-                </div>
+          <div class="col-sm-6">
+            <label for="aplicador">Aplicador:</label>
+            <select class="form-select" id="aplicador"  name="aplicador" required [(ngModel)]="aplicVacina.aplicador">
+              @for (aplicador of aplicadores; track aplicador) {
+                <option [ngValue]="aplicador">{{aplicador.nome}}</option>
+              }
+            </select>
+            <div class="invalid-feedback">
+              Você deve informar quem irá aplicar a vacina.
             </div>
-            <div class="col-sm-6">
-                <label for="aplicador">Doença/Evento:</label>
-                <select class="form-select" id="evento"  name="evento" required [(ngModel)]="aplicVacina.doencaEvento">
-                    <option *ngFor="let evento of doencaEventos" [ngValue]="evento">{{evento.descricao}}</option>
-                </select>
-                <div class="invalid-feedback">
-                    Você deve informar o evento.
-                </div>
+          </div>
+          <div class="col-sm-6">
+            <label for="aplicador">Doença/Evento:</label>
+            <select class="form-select" id="evento"  name="evento" required [(ngModel)]="aplicVacina.doencaEvento">
+              @for (evento of doencaEventos; track evento) {
+                <option [ngValue]="evento">{{evento.descricao}}</option>
+              }
+            </select>
+            <div class="invalid-feedback">
+              Você deve informar o evento.
             </div>
+          </div>
         </div>
       </div>
-      <div class="form-group row my-3">
-          <div class="form-group col-sm-6 ">
-            <button type="submit" class="btn btn-success border">Salvar</button>
-            <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
-          </div>
+    }
+    <div class="form-group row my-3">
+      <div class="form-group col-sm-6 ">
+        <button type="submit" class="btn btn-success border">Salvar</button>
+        <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
       </div>
+    </div>
 
   </form>
 </div>
 
 <div class="row p-3">
   <div class="col-sm-12">
-      <div class="alert alert-success" *ngIf="isSuccessful">
-          <h4>Registro de aplicação de vacina cadastrado com sucesso!</h4>
+    @if (isSuccessful) {
+      <div class="alert alert-success">
+        <h4>Registro de aplicação de vacina cadastrado com sucesso!</h4>
       </div>
-      <div *ngIf="errorMessage!=''">
-          <div class="alert alert-warning">
-              Falha ao cadastrar Vacina!<br />{{ errorMessage }}
-          </div>
+    }
+    @if (errorMessage!='') {
+      <div>
+        <div class="alert alert-warning">
+          Falha ao cadastrar Vacina!<br />{{ errorMessage }}
+        </div>
       </div>
+    }
   </div>
 </div>

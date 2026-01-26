@@ -8,7 +8,7 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { OrigemAnimal } from 'src/app/model/origemAnimal';
 import { Lote } from 'src/app/model/lote';
 import { LoteService } from '../lote/lote.service';
-import { Location, NgClass, NgFor, NgIf, JsonPipe, DatePipe } from '@angular/common';
+import { Location, NgClass, JsonPipe, DatePipe } from '@angular/common';
 import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
 import { CanComponentDeactivate } from 'src/app/shared/guards/ican-component-deactivade.guard';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ import { FormDebugComponent } from '../../shared/form-debug/form-debug.component
     templateUrl: './criar-animal.component.html',
     styleUrls: ['./criar-animal.component.css'],
     preserveWhitespaces: true,
-    imports: [FormsModule, NgClass, NgFor, NgIf, FormDebugComponent, JsonPipe, DatePipe]
+    imports: [FormsModule, NgClass, FormDebugComponent, JsonPipe, DatePipe]
 })
 export class CriarAnimalComponent extends BaseFormComponent implements OnInit, CanComponentDeactivate {
 

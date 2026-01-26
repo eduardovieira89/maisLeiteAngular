@@ -1,14 +1,22 @@
 <div class="card col my-2">
-    <div class="card-body">
-        <h5 class="card-title">Diagnóstico de prenhez</h5>
-        <div *ngIf="!diagnosticoPrenhez">
-            <h6 class="card-subtitle mb-2 text-muted">Não há registro de diagnóstico de prenhez</h6>
-            <a *ngIf="idVaca" [routerLink]="['/reproducao/diagnosticoprenhez/novo', idVaca]" class="btn btn-success border">Cadastrar cobertura</a>
-            <a *ngIf="!idVaca" [routerLink]="['/reproducao/diagnosticoprenhez/novo']" class="btn btn-success border">Cadastrar cobertura</a>
-        </div>
-        <div *ngIf="diagnosticoPrenhez">
-            <label for="diagnosticoPrenhez">Diagnostico de Prenhez: {{diagnosticoPrenhez.data | date: 'dd/MM/yyyy'}} </label><br>
-            <label for="TipoCobertura">Método: {{diagnosticoPrenhez.metodoDiagnostico.descricao}} </label>
-        </div>
-    </div>
+  <div class="card-body">
+    <h5 class="card-title">Diagnóstico de prenhez</h5>
+    @if (!diagnosticoPrenhez) {
+      <div>
+        <h6 class="card-subtitle mb-2 text-muted">Não há registro de diagnóstico de prenhez</h6>
+        @if (idVaca) {
+          <a [routerLink]="['/reproducao/diagnosticoprenhez/novo', idVaca]" class="btn btn-success border">Cadastrar cobertura</a>
+        }
+        @if (!idVaca) {
+          <a [routerLink]="['/reproducao/diagnosticoprenhez/novo']" class="btn btn-success border">Cadastrar cobertura</a>
+        }
+      </div>
+    }
+    @if (diagnosticoPrenhez) {
+      <div>
+        <label for="diagnosticoPrenhez">Diagnostico de Prenhez: {{diagnosticoPrenhez.data | date: 'dd/MM/yyyy'}} </label><br>
+        <label for="TipoCobertura">Método: {{diagnosticoPrenhez.metodoDiagnostico.descricao}} </label>
+      </div>
+    }
+  </div>
 </div>

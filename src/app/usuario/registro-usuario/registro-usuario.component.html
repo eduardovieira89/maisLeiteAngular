@@ -1,68 +1,72 @@
 <div class="container">
-    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
+  <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
     <h2 class="text-center">Registro Leite Mais</h2>
-      <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" class="form-control" id="nome" name="nome"
-          [(ngModel)]="form.nome"
-          required
-          placeholder="Insira o Nome"
-          minlength="3"
-          maxlength="50" />
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" name="nome"
+        [(ngModel)]="form.nome"
+        required
+        placeholder="Insira o Nome"
+        minlength="3"
+        maxlength="50" />
         <div class="invalid-feedback">
           O nome deve ter no mínimo 3 letras.
         </div>
         <!-- <div class="alert-danger" *ngIf="username.errors && (username.invalid && username.touched)">
-          <small class="text-danger" *ngIf="username.errors.required">Nome é um campo necesário</small>
-          <small *ngIf="username.errors.minlength">O nome deve ter pelo menos 3 caracteres</small>
-          <small *ngIf="username.errors.maxlength">O nome deve ter no máximo 50 caracteres</small>
-        </div> -->
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" id="email"
-          [(ngModel)]="form.email"
-          required pattern ="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
-          placeholder="Insira o email"
-          #email="ngModel" />
+        <small class="text-danger" *ngIf="username.errors.required">Nome é um campo necesário</small>
+        <small *ngIf="username.errors.minlength">O nome deve ter pelo menos 3 caracteres</small>
+        <small *ngIf="username.errors.maxlength">O nome deve ter no máximo 50 caracteres</small>
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" id="email"
+        [(ngModel)]="form.email"
+        required pattern ="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+        placeholder="Insira o email"
+        #email="ngModel" />
         <div class="invalid-feedback">
           Você deve inserir um e-mail válido.
         </div>
         <!-- <div class="alert-danger" *ngIf="email.errors && (email.invalid && email.touched)">
-          <small class="text-danger" *ngIf="email.errors.required">Email é um campo obrigatório</small>
-          <small class="text-danger" *ngIf="email.errors.pattern">Entre com um email válido</small>
-        </div> -->
-      </div>
-      <div class="form-group">
-        <label for="password">Senha:</label>
-        <input type="password" class="form-control" name="password" id="password"
-          required
-          [(ngModel)]="form.password"
-          placeholder="Insira a senha" 
-          minlength="6"/>
+        <small class="text-danger" *ngIf="email.errors.required">Email é um campo obrigatório</small>
+        <small class="text-danger" *ngIf="email.errors.pattern">Entre com um email válido</small>
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label for="password">Senha:</label>
+      <input type="password" class="form-control" name="password" id="password"
+        required
+        [(ngModel)]="form.password"
+        placeholder="Insira a senha"
+        minlength="6"/>
         <div class="invalid-feedback">
           Senha deve ter no mínimo 6 dígitos.
         </div>
         <!-- <div class="alert-danger" *ngIf="password.errors && (password.invalid && password.touched)">
-          <small *ngIf="password.errors.required">Senha é um campo necessário</small>
-          <small *ngIf="password.errors.minlength">A senha deve ter pelo menos 6 caracteres</small>
-        </div> -->
+        <small *ngIf="password.errors.required">Senha é um campo necessário</small>
+        <small *ngIf="password.errors.minlength">A senha deve ter pelo menos 6 caracteres</small>
+      </div> -->
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-info my-2">Registrar</button>
       </div>
-      <div class="row">
-        <div class="col">
-          <button type="submit" class="btn btn-info my-2">Registrar</button>
-        </div>
-        <div class="col d-flex flex-row-reverse align-items-center">
-          <small><a [routerLink]="['/login']">Já tem registro? Faça login aqui</a></small>
-        </div>
+      <div class="col d-flex flex-row-reverse align-items-center">
+        <small><a [routerLink]="['/login']">Já tem registro? Faça login aqui</a></small>
       </div>
-      <br><br>
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+    </div>
+    <br><br>
+    @if (f.submitted && isSignUpFailed) {
+      <div class="alert alert-warning">
         {{ errorMessage }}
       </div>
-      <div *ngIf="isSuccessful" >
+    }
+    @if (isSuccessful) {
+      <div >
         <p class="alert alert-success">Cadastro realizado com sucesso!</p>
-         <a routerLink="/login" class="btn btn-success form-control">Fazer Login no sistema</a>
+        <a routerLink="/login" class="btn btn-success form-control">Fazer Login no sistema</a>
       </div>
-    </form>
+    }
+  </form>
 </div>

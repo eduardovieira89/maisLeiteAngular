@@ -1,7 +1,7 @@
 import { Usuario } from '../../model/usuario';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { Location, NgIf, NgFor } from '@angular/common';
+import { Location } from '@angular/common';
 import { TokenstorageService } from '../tokenstorage.service';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/usuario/authentication.service';
@@ -11,7 +11,7 @@ import { RegistroFuncionarioComponent } from '../registro-funcionario/registro-f
     selector: 'app-painel-usuario',
     templateUrl: './painel-usuario.component.html',
     styleUrls: ['./painel-usuario.component.css'],
-    imports: [FormsModule, NgIf, RegistroFuncionarioComponent, NgFor]
+    imports: [FormsModule, RegistroFuncionarioComponent]
 })
 export class PainelUsuarioComponent implements OnInit {
 

@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'app-campo-control-erro',
     templateUrl: './campo-control-erro.component.html',
     styleUrls: ['./campo-control-erro.component.css'],
-    imports: [NgIf]
+    imports: []
 })
 export class CampoControlErroComponent implements OnInit {
 

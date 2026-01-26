@@ -8,13 +8,13 @@ import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { Observable } from 'rxjs';
 import { CardListaMedicacaoVacinasAnimaisComponent } from '../card-lista-medicacao-vacinas-animais/card-lista-medicacao-vacinas-animais.component';
 import { FormsModule } from '@angular/forms';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-listar-medicacao-vacinas',
     templateUrl: './listar-medicacao-vacinas.component.html',
     styleUrls: ['./listar-medicacao-vacinas.component.css'],
-    imports: [FormsModule, NgFor, CardListaMedicacaoVacinasAnimaisComponent, AsyncPipe]
+    imports: [FormsModule, CardListaMedicacaoVacinasAnimaisComponent, AsyncPipe]
 })
 export class ListarMedicacaoVacinasComponent implements AfterViewInit{
 

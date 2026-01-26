@@ -1,4 +1,4 @@
-import { DatePipe, JsonPipe, Location, NgClass, NgFor, NgIf } from '@angular/common';
+import { DatePipe, JsonPipe, Location, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/usuario/authentication.service';
     selector: 'app-registro-usuario',
     templateUrl: './registro-usuario.component.html',
     styleUrls: ['./registro-usuario.component.css'],
-    imports: [FormsModule, NgClass, NgIf, RouterLink]
+    imports: [FormsModule, NgClass, RouterLink]
 })
 export class RegistroUsuarioComponent extends BaseFormComponent implements OnInit {
 

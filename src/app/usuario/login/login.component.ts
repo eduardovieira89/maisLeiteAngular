@@ -4,13 +4,13 @@ import { TokenstorageService} from '../tokenstorage.service';
 import { Router, RouterLink } from '@angular/router';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { FormsModule } from '@angular/forms';
-import { JsonPipe, NgClass, NgIf } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [FormsModule, NgIf, RouterLink]
+  imports: [FormsModule, RouterLink]
 })
 export class LoginComponent implements OnInit {
 

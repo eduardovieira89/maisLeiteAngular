@@ -1,58 +1,69 @@
 <div class="container">
-  <form name="form" *ngIf="!isLoggedIn" #loginform="ngForm" (ngSubmit)="logarUsuario()">
-    <h2 class="text-center">Login Leite Mais</h2>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" 
-             placeholder="Insira o email" 
-             name="email" 
-             [(ngModel)]="form.email" 
-             required pattern ="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" 
-             #email="ngModel" 
-             [class.is-invalid]="email.invalid && email.touched"
-      >
-     <div *ngIf="email.errors && (email.invalid && email.touched)">
-       <small class="text-danger" *ngIf="email.errors.required">Informe o Email</small>
-       <small class="text-danger" *ngIf="email.errors.pattern">Entre com um email válido</small>
-     </div>
-    </div>
-    <div class="form-group">
-      <label for="password">Senha:</label>
-      <input type="password" class="form-control" 
-             placeholder="Insira a senha" 
-             name="password" 
-             [(ngModel)]="form.password"
-             required #password="ngModel" [class.is-invalid]="password.invalid && password.touched"
-      >
-      <small class="text-danger" [class.d-none]="password.valid || password.untouched">Insira a senha!</small>
-    </div>
-    <div class=" row form-group my-2">
-      <div class="col">
-        <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
-      </div>
-      <div class="col d-flex flex-row-reverse align-items-center">
-        <small><a [routerLink]="['/registro']">Novo usuario? Registre-se aqui</a></small>
-      </div>
-    </div>
-    
-    <div class="alert alert-danger" role="alert" *ngIf="loginform.submitted && isLoginFailed" >
-      Login falhou: {{ msg }}
-    </div>
-    <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ roles }}.
-    </div>
-        
-    <br>
-    
-  </form>
+  @if (!isLoggedIn) {
+    <form name="form" #loginform="ngForm" (ngSubmit)="logarUsuario()">
+      <h2 class="text-center">Login Leite Mais</h2>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control"
+          placeholder="Insira o email"
+          name="email"
+          [(ngModel)]="form.email"
+          required pattern ="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+          #email="ngModel"
+          [class.is-invalid]="email.invalid && email.touched"
+          >
+          @if (email.errors && (email.invalid && email.touched)) {
+            <div>
+              @if (email.errors.required) {
+                <small class="text-danger">Informe o Email</small>
+              }
+              @if (email.errors.pattern) {
+                <small class="text-danger">Entre com um email válido</small>
+              }
+            </div>
+          }
+        </div>
+        <div class="form-group">
+          <label for="password">Senha:</label>
+          <input type="password" class="form-control"
+            placeholder="Insira a senha"
+            name="password"
+            [(ngModel)]="form.password"
+            required #password="ngModel" [class.is-invalid]="password.invalid && password.touched"
+            >
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Insira a senha!</small>
+          </div>
+          <div class=" row form-group my-2">
+            <div class="col">
+              <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
+            </div>
+            <div class="col d-flex flex-row-reverse align-items-center">
+              <small><a [routerLink]="['/registro']">Novo usuario? Registre-se aqui</a></small>
+            </div>
+          </div>
+          @if (loginform.submitted && isLoginFailed) {
+            <div class="alert alert-danger" role="alert" >
+              Login falhou: {{ msg }}
+            </div>
+          }
+          @if (isLoggedIn) {
+            <div class="alert alert-success">
+              Logged in as {{ roles }}.
+            </div>
+          }
+          <br>
+          </form>
+        }
 
-  <div *ngIf="isLoggedIn">
-    <p>Você está logado</p>
-    <button (click)="deslogar()" class="btn btn-info">Desconectar</button>
-  </div>
-  
-  
-</div>
+        @if (isLoggedIn) {
+          <div>
+            <p>Você está logado</p>
+            <button (click)="deslogar()" class="btn btn-info">Desconectar</button>
+          </div>
+        }
+
+
+      </div>
 
 
 

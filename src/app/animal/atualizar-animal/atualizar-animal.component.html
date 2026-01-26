@@ -1,126 +1,139 @@
 <div  class="container">
-    <h2>Alterar Animal</h2>
-    <form (ngSubmit)="atualizarAnimal()" *ngIf="animal.nome">
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" [(ngModel)]="animal.nome" name="nome">
-        </div>
-
-        <div class="form-group">
-            <label for="brinco">Número do brinco</label>
-            <input type="number" class="form-control" id="brinco" required  [(ngModel)]="animal.brinco" name="brinco" #brinco="ngModel">
-
-            <div class="alert-danger" *ngIf="brinco.errors && (brinco.invalid && brinco.touched)">
-                <small class="text-danger" *ngIf="brinco.errors.required">Brinco é um campo obrigatório</small>
-              </div>
-
-        </div>
-
-        <div class="form-group">
-            <label for="registro">Número do registro</label>
-            <input type="number" class="form-control" id="registro" required [(ngModel)]="animal.registro" #registro="ngModel"
-                name="registro">
-            <div class="alert-danger" *ngIf="registro.errors && (registro.invalid && registro.touched)">
-                <small class="text-danger" *ngIf="registro.errors.required">Número do registro é um campo obrigatório</small>
+  <h2>Alterar Animal</h2>
+  @if (animal.nome) {
+    <form (ngSubmit)="atualizarAnimal()">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" [(ngModel)]="animal.nome" name="nome">
+      </div>
+      <div class="form-group">
+        <label for="brinco">Número do brinco</label>
+        <input type="number" class="form-control" id="brinco" required  [(ngModel)]="animal.brinco" name="brinco" #brinco="ngModel">
+        @if (brinco.errors && (brinco.invalid && brinco.touched)) {
+          <div class="alert-danger">
+            @if (brinco.errors.required) {
+              <small class="text-danger">Brinco é um campo obrigatório</small>
+            }
+          </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="registro">Número do registro</label>
+        <input type="number" class="form-control" id="registro" required [(ngModel)]="animal.registro" #registro="ngModel"
+          name="registro">
+          @if (registro.errors && (registro.invalid && registro.touched)) {
+            <div class="alert-danger">
+              @if (registro.errors.required) {
+                <small class="text-danger">Número do registro é um campo obrigatório</small>
+              }
             </div>
+          }
         </div>
-
-
         <div class="form-group">
-            <label for="dtnasc">Data de nascimento</label>
-            <div class="input-group">
-                <input type="date" class="form-control" name="dtnasc" required [ngModel]="animal.dataNasc | date:'yyyy-MM-dd'" (ngModelChange)="animal.dataNasc=$event"#nasc="ngModel">
+          <label for="dtnasc">Data de nascimento</label>
+          <div class="input-group">
+            <input type="date" class="form-control" name="dtnasc" required [ngModel]="animal.dataNasc | date:'yyyy-MM-dd'" (ngModelChange)="animal.dataNasc=$event"#nasc="ngModel">
+          </div>
+          @if (nasc.errors && (nasc.invalid && nasc.touched)) {
+            <div class="alert-danger">
+              @if (nasc.errors.required) {
+                <small class="text-danger">Data de nascimento é um campo obrigatório</small>
+              }
             </div>
-            <div class="alert-danger" *ngIf="nasc.errors && (nasc.invalid && nasc.touched)">
-                <small class="text-danger" *ngIf="nasc.errors.required">Data de nascimento é um campo obrigatório</small>
-              </div>
+          }
         </div>
-
         <div class="form-group">
-            <label for="raca">Raça:</label>
-            <select class="form-select" id="raca" required [(ngModel)]="animal.raca" name="raca" [compareWith]="compareRaca">
-                <option *ngFor="let raca of racas" [ngValue]="raca"  selected="raca === {{animal.raca}}">{{raca.descricao}}</option>
-            </select>
+          <label for="raca">Raça:</label>
+          <select class="form-select" id="raca" required [(ngModel)]="animal.raca" name="raca" [compareWith]="compareRaca">
+            @for (raca of racas; track raca) {
+              <option [ngValue]="raca"  selected="raca === {{animal.raca}}">{{raca.descricao}}</option>
+            }
+          </select>
         </div>
-
         <div class="form-group">
-            <label for="raca">Lote:</label>
-            <select class="form-select" id="lote" required [(ngModel)]="animal.lote" name="lote" [compareWith]="compareLote">
-                <option *ngFor="let lote of lotes" [ngValue]="lote"  selected="lote === {{animal.lote}}">{{lote.descricao}}</option>
-            </select>
+          <label for="raca">Lote:</label>
+          <select class="form-select" id="lote" required [(ngModel)]="animal.lote" name="lote" [compareWith]="compareLote">
+            @for (lote of lotes; track lote) {
+              <option [ngValue]="lote"  selected="lote === {{animal.lote}}">{{lote.descricao}}</option>
+            }
+          </select>
         </div>
-
         <div class="form-group">
-            <label class="form-check-label">Sexo</label><br>
+          <label class="form-check-label">Sexo</label><br>
+          <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input" [(ngModel)]="animal.sexo" value="m" required name="genero"
+              id="macho">
+              <label class="form-check-label" for="macho"> Macho</label>
+            </div>
             <div class="form-check form-check-inline">
-
-                <input type="radio" class="form-check-input" [(ngModel)]="animal.sexo" value="m" required name="genero"
-                    id="macho">
-                <label class="form-check-label" for="macho"> Macho</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" [(ngModel)]="animal.sexo" value="f" required name="genero"
-                    id="femea">
+              <input type="radio" class="form-check-input" [(ngModel)]="animal.sexo" value="f" required name="genero"
+                id="femea">
                 <label class="form-check-label" for="femea">Fêmea</label>
+              </div>
             </div>
-        </div>
+            <div class="form-group">
+              <h3>Pai:</h3>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" (change)="paiList" #paiList id="checkbPaiList">
+                <label class="form-check-label" for="checkbPaiList">
+                  O pai desse animal não é do meu rebanho, escrever o nome.
+                </label>
+              </div>
+              @if (paiList.checked) {
+                <div class="form-group">
+                  <label for="pai">Escreva o nome do pai do animal</label>
+                  <input type="text" class="form-control" id="pai" [(ngModel)]="animal.pai" name="pai">
+                </div>
+              }
+              @if (!paiList.checked) {
+                <div class="form-group">
+                  <label for="raca">Selecione o pai dentre os seus animais</label>
+                  <select class="form-select" id="pais" [(ngModel)]="animal.pai_id" name="pai" [compareWith]="comparePai">
+                    @for (pai of pais; track pai) {
+                      <option [ngValue]="pai">{{pai.nome}}    ---    Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
+                    }
+                  </select>
+                </div>
+              }
+            </div>
+            <div class="form-group">
+              <h3>Mãe:</h3>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" (change)="maeList" #maeList id="checkbMaeString" >
+                <label class="form-check-label" for="checkbMaeString">
+                  A mãe desse animal não é do meu rebanho, escrever o nome.
+                </label>
+              </div>
+              @if (maeList.checked) {
+                <div class="form-group">
+                  <label for="mae">Escreva o nome da mãe</label>
+                  <input type="text" class="form-control" id="mae" [(ngModel)]="animal.mae" name="mae">
+                </div>
+              }
+              @if (!maeList.checked) {
+                <div class="form-group">
+                  <label for="maes">Selecione a mãe dentre os seus animais</label>
+                  <select class="form-select" id="maes" [(ngModel)]="animal.mae_id" name="mae" [compareWith]="compareMae">
+                    @for (mae of maes; track mae) {
+                      <option [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
+                    }
+                  </select>
+                </div>
+              }
+            </div>
+            <button type="submit" class="btn btn-success float-right" >Alterar</button>
+          </form>
+        }
 
-        <div class="form-group">
-            <h3>Pai:</h3>
-
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" (change)="paiList" #paiList id="checkbPaiList">
-            <label class="form-check-label" for="checkbPaiList">
-                O pai desse animal não é do meu rebanho, escrever o nome.
-            </label>
+        @if (errorMessage!='') {
+          <div>
+            <div class="alert alert-warning">
+              Falha ao atualizar animal!<br />{{ errorMessage }}
+            </div>
           </div>
-        <div class="form-group" *ngIf="paiList.checked">
-            <label for="pai">Escreva o nome do pai do animal</label>
-            <input type="text" class="form-control" id="pai" [(ngModel)]="animal.pai" name="pai">
-        </div>
+        }
+
+        <button (click)="irParaListagem()" class="btn btn-info">Cancelar</button>
 
 
-        <div class="form-group" *ngIf="!paiList.checked">
-            <label for="raca">Selecione o pai dentre os seus animais</label>
-            <select class="form-select" id="pais" [(ngModel)]="animal.pai_id" name="pai" [compareWith]="comparePai">
-                <option *ngFor="let pai of pais" [ngValue]="pai">{{pai.nome}}    ---    Nascimento: {{pai.dataNasc | date: 'dd/MM/yyyy'}}</option>
-            </select>
-        </div>
-
-        </div>
-
-        <div class="form-group">
-            <h3>Mãe:</h3>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" (change)="maeList" #maeList id="checkbMaeString" >
-            <label class="form-check-label" for="checkbMaeString">
-              A mãe desse animal não é do meu rebanho, escrever o nome.
-            </label>
-          </div>
-        <div class="form-group" *ngIf="maeList.checked">
-            <label for="mae">Escreva o nome da mãe</label>
-            <input type="text" class="form-control" id="mae" [(ngModel)]="animal.mae" name="mae">
-        </div>
-
-        <div class="form-group" *ngIf="!maeList.checked">
-            <label for="maes">Selecione a mãe dentre os seus animais</label>
-            <select class="form-select" id="maes" [(ngModel)]="animal.mae_id" name="mae" [compareWith]="compareMae">
-                <option *ngFor="let mae of maes" [ngValue]="mae">{{mae.nome}}    ---    Nascimento: {{mae.dataNasc | date: 'dd/MM/yyyy'}}</option>
-            </select>
-        </div>
-
-        </div>
-
-        <button type="submit" class="btn btn-success float-right" >Alterar</button>
-    </form>
-
-    <div *ngIf="errorMessage!=''">
-        <div class="alert alert-warning">
-            Falha ao atualizar animal!<br />{{ errorMessage }}
-        </div>
-    </div>
-
-    <button (click)="irParaListagem()" class="btn btn-info">Cancelar</button>
-
-
-</div>
+      </div>

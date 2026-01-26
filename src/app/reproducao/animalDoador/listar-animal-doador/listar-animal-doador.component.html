@@ -1,41 +1,46 @@
 <div class="container">
-        <h2>Lista de Touros Doadores</h2>
-            <table class="table table-striped" *ngIf="(animaisDoadores$ | async) as doadores; else loading">
-                <thead>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Nascimento</td>
-                        <td>Num Registro</td>
-                        <td>Raça</td>
-                        <td>Teste Progenie</td>
-                        <td>Núcleo Moet</td>
-                        <td>Dono</td>
-                        <td>País de Origem</td>
-                        <td><a routerLink="novo" class="btn btn-success">Criar Animal</a></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let doador of doadores">
-                        <td>{{doador.animal.nome}}</td>
-                        <td>{{doador.animal.dataNasc | date: 'dd/MM/yyyy' }}</td>
-                        <td>{{doador.animal.registro}}</td>
-                        <td><label>{{doador.animal.raca.descricao}}</label></td>
-                        <td><label>{{doador.testeProgenie}}</label></td>
-                        <td><label>{{doador.nucleoMoet}}</label></td>
-                        <td><label>{{doador.dono}}</label></td>
-                        <td><label>{{doador.paisOrigem}}</label></td>
-                        <td>
-                            <a [routerLink]="[doador.id]" class="btn btn-info" > Detalhes</a>
-                            <a [routerLink]="[doador.id, 'alterar']" class="btn btn-info" > Alterar</a>
-                            <button (click)="deletarAnimal(doador.id)"class="btn btn-danger bi-trash" ></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <ng-template #loading>
-                <span>Carregando tabela de animais...</span>
-            </ng-template>
-            <div *ngIf="isDeleteError" class="alert alert-warning">
-                    Falha ao deletar animal!<br />{{ errorMessage }}
-            </div>
+  <h2>Lista de Touros Doadores</h2>
+  @if ((animaisDoadores$ | async); as doadores) {
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Nome</td>
+          <td>Nascimento</td>
+          <td>Num Registro</td>
+          <td>Raça</td>
+          <td>Teste Progenie</td>
+          <td>Núcleo Moet</td>
+          <td>Dono</td>
+          <td>País de Origem</td>
+          <td><a routerLink="novo" class="btn btn-success">Criar Animal</a></td>
+        </tr>
+      </thead>
+      <tbody>
+        @for (doador of doadores; track doador) {
+          <tr>
+            <td>{{doador.animal.nome}}</td>
+            <td>{{doador.animal.dataNasc | date: 'dd/MM/yyyy' }}</td>
+            <td>{{doador.animal.registro}}</td>
+            <td><label>{{doador.animal.raca.descricao}}</label></td>
+            <td><label>{{doador.testeProgenie}}</label></td>
+            <td><label>{{doador.nucleoMoet}}</label></td>
+            <td><label>{{doador.dono}}</label></td>
+            <td><label>{{doador.paisOrigem}}</label></td>
+            <td>
+              <a [routerLink]="[doador.id]" class="btn btn-info" > Detalhes</a>
+              <a [routerLink]="[doador.id, 'alterar']" class="btn btn-info" > Alterar</a>
+              <button (click)="deletarAnimal(doador.id)"class="btn btn-danger bi-trash" ></button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <span>Carregando tabela de animais...</span>
+  }
+  @if (isDeleteError) {
+    <div class="alert alert-warning">
+      Falha ao deletar animal!<br />{{ errorMessage }}
+    </div>
+  }
 </div>

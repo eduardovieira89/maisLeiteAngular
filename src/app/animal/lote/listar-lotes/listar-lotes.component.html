@@ -1,23 +1,28 @@
 <h3>Lote</h3>
-<table class="table table-hover table-striped table-sm" *ngIf="(lotes$ | async) as lotes; else loading">
+@if ((lotes$ | async); as lotes) {
+  <table class="table table-hover table-striped table-sm">
     <thead>
+      <tr>
+        <th>Descrição</th>
+        <th><a routerLink="novo" class="btn btn-success">Cadastrar Lote</a></th>
+      </tr>
+      @if (lotes.length == 0) {
         <tr>
-            <th>Descrição</th>
-            <th><a routerLink="novo" class="btn btn-success">Cadastrar Lote</a></th>
+          <td colspan="2">
+            <span>Não há lotes registrado nesta propriedade </span>
+          </td>
         </tr>
-        <tr *ngIf="lotes.length == 0">
-            <td colspan="2">
-                <span>Não há lotes registrado nesta propriedade </span>
-            </td>
-        </tr>
+      }
     </thead>
     <tbody>
-        <tr *ngFor="let lote of lotes">
-            <td>{{lote.descricao}}</td>
-            <td width="150px"><a class="btn btn-info"> Alterar</a></td>
+      @for (lote of lotes; track lote) {
+        <tr>
+          <td>{{lote.descricao}}</td>
+          <td width="150px"><a class="btn btn-info"> Alterar</a></td>
         </tr>
+      }
     </tbody>
-</table>
-<ng-template #loading>
-    <span>Carregando Lote...</span>
-</ng-template>
+  </table>
+} @else {
+  <span>Carregando Lote...</span>
+}

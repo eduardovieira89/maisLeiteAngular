@@ -1,42 +1,49 @@
-<div class="container" *ngIf="currentProdutor; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      Painel de <strong>{{ currentProdutor.username }}</strong>
-    </h3>
-  </header>
-  <p>
-    <strong>Token:</strong>
-    {{ currentProdutor.token.substring(0, 20) }} ...
-    {{ currentProdutor.token.substr(currentProdutor.token.length - 20) }}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentProdutor.email }}
-  </p>
-  <strong>Permissões:</strong>
+@if (currentProdutor) {
+  <div class="container">
+    <header class="jumbotron">
+      <h3>
+        Painel de <strong>{{ currentProdutor.username }}</strong>
+      </h3>
+    </header>
+    <p>
+      <strong>Token:</strong>
+      {{ currentProdutor.token.substring(0, 20) }} ...
+      {{ currentProdutor.token.substr(currentProdutor.token.length - 20) }}
+    </p>
+    <p>
+      <strong>Email:</strong>
+      {{ currentProdutor.email }}
+    </p>
+    <strong>Permissões:</strong>
     <ul>
-      <li *ngFor="let role of currentProdutor.roles">
-        {{ role }}
-      </li>
+      @for (role of currentProdutor.roles; track role) {
+        <li>
+          {{ role }}
+        </li>
+      }
     </ul>
-  <br>
-  <strong>Funcionários:</strong>
-    <ul>
-      <li *ngFor="let funcionario of funcionarios">
-        {{ funcionario.nome }}
-      </li>
-    </ul>
-    <button (click)="goBack()" class="btn btn-info" style="margin-left: 10px"> Voltar</button>
-    <button (click)="registraFuncionario()" class="btn btn-info" style="margin-left: 10px">Registrar Funcionário</button>
     <br>
-    <div class="container">
-      <app-registro-funcionario *ngIf="isRegistraFuncionario"></app-registro-funcionario>
-    </div>
-</div>
+      <strong>Funcionários:</strong>
+      <ul>
+        @for (funcionario of funcionarios; track funcionario) {
+          <li>
+            {{ funcionario.nome }}
+          </li>
+        }
+      </ul>
+      <button (click)="goBack()" class="btn btn-info" style="margin-left: 10px"> Voltar</button>
+      <button (click)="registraFuncionario()" class="btn btn-info" style="margin-left: 10px">Registrar Funcionário</button>
+      <br>
+        <div class="container">
+          @if (isRegistraFuncionario) {
+            <app-registro-funcionario></app-registro-funcionario>
+          }
+        </div>
+      </div>
+    } @else {
+      Por favor, faça login.
+    }
 
-<ng-template #loggedOut>
-  Por favor, faça login.
-</ng-template>
 
 
 

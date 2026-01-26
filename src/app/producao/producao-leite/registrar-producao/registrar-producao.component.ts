@@ -13,7 +13,7 @@ import { Animal } from 'src/app/model/animal';
 import { HttpParams } from '@angular/common/http';
 import { Parto } from 'src/app/model/Parto';
 import { ControleLeiteiroService } from '../controle-leiteiro.service';
-import { Location, NgClass, NgIf, NgFor } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FormDebugComponent } from '../../../shared/form-debug/form-debug.component';
 
@@ -21,7 +21,7 @@ import { FormDebugComponent } from '../../../shared/form-debug/form-debug.compon
     selector: 'app-registrar-producao',
     templateUrl: './registrar-producao.component.html',
     styleUrls: ['./registrar-producao.component.css'],
-    imports: [FormsModule, NgClass, NgIf, NgFor, FormDebugComponent]
+    imports: [FormsModule, NgClass, FormDebugComponent]
 })
 export class RegistrarProducaoComponent extends BaseFormComponent implements OnInit  {
 

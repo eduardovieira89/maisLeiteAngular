@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -8,7 +8,7 @@ import { AuthenticationService } from 'src/app/usuario/authentication.service';
     selector: 'app-registro-funcionario',
     templateUrl: './registro-funcionario.component.html',
     styleUrls: ['./registro-funcionario.component.css'],
-    imports: [FormsModule, NgIf]
+    imports: [FormsModule]
 })
 export class RegistroFuncionarioComponent implements OnInit {
 

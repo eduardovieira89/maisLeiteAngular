@@ -1,14 +1,15 @@
 <h1 class='text-center'>Bem vindo ao Sistema Leite Mais</h1>
-<div class="form-group row" *ngIf="!propriedade; else elseBlock">
-        <h2><a routerLink="/propriedade" class="btn btn-secondary">Selecione uma propriedade</a></h2>
-</div>
-<ng-template #elseBlock>
-    <div class="form-group row">
-        <div class="col-sm-5" >
-            <app-card-total-animais [total]=animaisAtivos></app-card-total-animais>
-        </div>
-        <div class="col-sm-3">
-            <app-card-total-lactacao [lactacoes]="animaisEmLactacao"></app-card-total-lactacao>
-        </div>
+@if (!propriedade) {
+  <div class="form-group row">
+    <h2><a routerLink="/propriedade" class="btn btn-secondary">Selecione uma propriedade</a></h2>
+  </div>
+} @else {
+  <div class="form-group row">
+    <div class="col-sm-5" >
+      <app-card-total-animais [total]="animaisAtivos$ | async"></app-card-total-animais>
     </div>
-</ng-template>
+    <div class="col-sm-3">
+      <app-card-total-lactacao [lactacoes]="animaisEmLactacao$ | async"></app-card-total-lactacao>
+    </div>
+  </div>
+}

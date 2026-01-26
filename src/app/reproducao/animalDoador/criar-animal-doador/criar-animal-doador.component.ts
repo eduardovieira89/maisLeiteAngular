@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
 import { AnimalDoador } from 'src/app/model/animalDoador';
 import { Raca } from 'src/app/model/raca';
-import { Location, NgClass, NgFor, NgIf, JsonPipe } from '@angular/common';
+import { Location, NgClass, JsonPipe } from '@angular/common';
 import { AnimalService } from 'src/app/animal/animal.service';
 import { FormsModule } from '@angular/forms';
 
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-criar-animal-doador',
     templateUrl: './criar-animal-doador.component.html',
     styleUrls: ['./criar-animal-doador.component.css'],
-    imports: [FormsModule, NgClass, NgFor, NgIf, JsonPipe]
+    imports: [FormsModule, NgClass, JsonPipe]
 })
 export class CriarAnimalDoadorComponent extends BaseFormComponent implements OnInit {
 

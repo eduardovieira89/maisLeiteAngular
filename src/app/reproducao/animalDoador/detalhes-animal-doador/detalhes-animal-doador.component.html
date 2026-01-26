@@ -1,7 +1,7 @@
 <div class="container">
-    <h2>Detalhes do Animal</h2> 
-    <div *ngIf="doador.animal" >
-      
+  <h2>Detalhes do Animal</h2>
+  @if (doador.animal) {
+    <div >
       <div>
         <label><b>Nome: </b></label> {{doador.animal.nome}}
       </div>
@@ -13,44 +13,51 @@
       </div>
       <div>
         <label><b>Número do registro: </b></label> {{doador.animal.registro}}
-      </div> 
+      </div>
       <div>
-        <div *ngIf="doador.animal.sexo == 'f'">
-          <label><b>Sexo: </b></label> Fêmea
-        </div>
-        <div *ngIf="doador.animal.sexo == 'm'">
-          <label><b>Sexo: </b></label> Macho
-        </div>
-      </div> 
+        @if (doador.animal.sexo == 'f') {
+          <div>
+            <label><b>Sexo: </b></label> Fêmea
+          </div>
+        }
+        @if (doador.animal.sexo == 'm') {
+          <div>
+            <label><b>Sexo: </b></label> Macho
+          </div>
+        }
+      </div>
       <div>
         <label><b>Raça: </b></label> {{ doador.animal.raca?.descricao }}
       </div>
       <div>
         <label><b>Pai: </b></label> {{doador.animal.pai!}}
-      </div> 
+      </div>
       <div>
         <label><b>Mãe: </b></label> {{doador.animal.mae!}}
-      </div> 
+      </div>
       <div>
         <label><b>Teste Progenie </b></label> {{ doador.testeProgenie }}
-      </div> 
+      </div>
       <div>
         <label><b>Núcleo Moet </b></label> {{ doador.nucleoMoet }}
-      </div> 
+      </div>
       <div>
         <label><b>Dono: </b></label> {{ doador.dono }}
-      </div>    
+      </div>
       <div>
         <label><b>País de Origem: </b></label> {{ doador.paisOrigem }}
       </div>
       <div>
         <button class="btn btn-primary">Listar Filhos</button>
-      </div>    
+      </div>
     </div>
-    <div *ngIf="mensagemErro" class="alert alert-danger">
+  }
+  @if (mensagemErro) {
+    <div class="alert alert-danger">
       {{mensagemErro}}
     </div>
+  }
+  <br>
     <br>
-    <br>
-    <button (click)="voltar()" class="btn btn-info">Voltar</button><br>
-</div>
+      <button (click)="voltar()" class="btn btn-info">Voltar</button><br>
+    </div>

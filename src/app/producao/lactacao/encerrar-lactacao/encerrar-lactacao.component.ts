@@ -8,22 +8,23 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { LactacaoService } from '../lactacao.service';
 import { Lactacao } from 'src/app/model/lactacao';
 import { Parto } from 'src/app/model/Parto';
-import { Location, NgIf, NgClass, NgFor } from '@angular/common';
+import { AsyncPipe, Location, NgClass } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 import { FormsModule } from '@angular/forms';
 import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
 import { CardLactacaoComponent } from '../../../shared/card-lactacao/card-lactacao.component';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-encerrar-lactacoes',
     templateUrl: './encerrar-lactacao.component.html',
     styleUrls: ['./encerrar-lactacao.component.css'],
-    imports: [NgIf, FormsModule, NgClass, NgFor, CardDetalhesAnimalComponent, CardLactacaoComponent]
+    imports: [FormsModule, NgClass, CardDetalhesAnimalComponent, CardLactacaoComponent, AsyncPipe]
 })
 export class EncerrarLactacaoComponent extends BaseFormComponent implements OnInit {
 
   lactacao: Lactacao = new Lactacao();
-  vacas: VacaDTO[];
+  vacas$: Observable<VacaDTO[]>;
   vacaSelecionada: VacaDTO;
   causasEncerramentos: CausaEncerramentoLactacao[];
 
@@ -38,25 +39,24 @@ export class EncerrarLactacaoComponent extends BaseFormComponent implements OnIn
 
 
   ngOnInit(): void {
-    let params = new HttpParams();
-    params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
-    this.animalService.listarEmLactacaoDTO(params).subscribe(animais =>{
-      this.vacas = animais;
-      //Para selecionar a vaca via parametro na url
-      const id = this.route.snapshot.params['id'];
-      this.vacaSelecionada = this.vacas.find(v => v.id.toString() === id);
-      if(!this.vacaSelecionada){
-        this.route.queryParams.subscribe(params => {
-        this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
-        });
-      }
-      if(this.vacaSelecionada){
-        this.buscaLactacao();
-      }
-
-    });
     this.lactacoesService.listCausaEncerramento().subscribe(causas => this.causasEncerramentos = causas);
-
+    // let params = new HttpParams();
+    // params = params.set('idpropriedade', this.propriedadeService.getPropriedadeSelecionada().id.toString());
+    // this.animalService.listarEmLactacaoDTO(params).subscribe(animais =>{
+    //   this.vacas = animais;
+    //   //Para selecionar a vaca via parametro na url
+    //   const id = this.route.snapshot.params['id'];
+    //   this.vacaSelecionada = this.vacas.find(v => v.id.toString() === id);
+    //   if(!this.vacaSelecionada){
+    //     this.route.queryParams.subscribe(params => {
+    //     this.vacaSelecionada = this.vacas.find(v => v.id.toString() === params['idvaca']);
+    //     });
+    //   }
+    //   if(this.vacaSelecionada){
+    //     this.buscaLactacao();
+    //   }
+    // });
+    this.vacas$ = this.animalService.listarEmLactacaoDTO();
 
 
   }

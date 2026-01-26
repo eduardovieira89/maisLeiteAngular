@@ -12,7 +12,7 @@ import { UserService } from 'src/app/usuario/user.service';
 import { MedicacaoVacinaAplicacaoService } from '../medicacao-vacina-aplicacao.service';
 import { VacinaAplicacaoEmLotesDTO } from 'src/app/model/VacinaAplicacaoEmLotesDTO';
 import { DoencaEvento } from 'src/app/model/doencaEvento';
-import { Location, NgClass, NgFor, NgIf } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 import { FormsModule } from '@angular/forms';
 
@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-aplicacao-em-lotes',
     templateUrl: './aplicacao-em-lotes.component.html',
     styleUrls: ['./aplicacao-em-lotes.component.css'],
-    imports: [FormsModule, NgClass, NgFor, NgIf]
+    imports: [FormsModule, NgClass]
 })
 export class AplicacaoEmLotesComponent extends BaseFormComponent {
 

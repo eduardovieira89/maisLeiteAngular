@@ -1,114 +1,118 @@
 <h2>Cadastro de Touro Doador</h2>
 <div  class="container">
-    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
-       
-        <div class="form-group row" >
-            <div class="col-sm-6">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="animal.nome">
-            </div>
+  <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" class="needs-validation" [ngClass]="aplicaErroForm(f)" novalidate>
 
-            <div class="col-sm-6">
-                <label for="raca">Raça: *</label>
-                <select class="form-select" id="raca" name="raca" required [(ngModel)]="animal.raca" >
-                    <option *ngFor="let raca of racas" [ngValue]="raca">{{raca.descricao}}</option>
-                </select>
-                <div class="invalid-feedback">
-                    Raça é um campo obrigatório.
-                </div>
-            </div>
+    <div class="form-group row" >
+      <div class="col-sm-6">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="animal.nome">
+      </div>
+
+      <div class="col-sm-6">
+        <label for="raca">Raça: *</label>
+        <select class="form-select" id="raca" name="raca" required [(ngModel)]="animal.raca" >
+          @for (raca of racas; track raca) {
+            <option [ngValue]="raca">{{raca.descricao}}</option>
+          }
+        </select>
+        <div class="invalid-feedback">
+          Raça é um campo obrigatório.
         </div>
-
-        <div class="form-group row">
-            <div class="col-sm-2">
-                <label for="brinco">Número do brinco: *</label>
-                <input type="number" class="form-control" id="brinco" name="brinco" required  [(ngModel)]="animal.brinco" >
-                <div class="invalid-feedback">
-                    Número do brinco é um campo obrigatório
-                </div>
-            </div>
-
-            <div class="col-sm-2">
-                <label for="registro">Número do registro: *</label>
-                <input type="number" class="form-control" id="registro" name="registro" required [(ngModel)]="animal.registro">
-                <div class="invalid-feedback">
-                    Número do registro é um campo obrigatório
-                </div>
-            </div>
-
-            <div class="col-sm-2">
-                <label for="dtnasc">Data de nascimento:*</label>
-                <div class="input-group">
-                    <input type="date" class="form-control" name="dtnasc" required [(ngModel)]="animal.dataNasc">
-                    <div class="invalid-feedback">
-                        Data de nascimento é um campo obrigatório
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <label for="pai">Pai:</label>
-                <input type="text" class="form-control" id="pai" name="pai" [(ngModel)]="animal.pai" >
-            </div>
-            <div class="col-sm-6">
-                <label for="mae">Mãe:</label>
-                <input type="text" class="form-control" id="mae" name="mae" [(ngModel)]="animal.mae" >
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-3">
-                <label class="form-check-label">Teste Progenie: *</label><br>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" id="sim" name="progenie" required [(ngModel)]="animalDoador.testeProgenie" value="true">
-                    <label class="form-check-label" for="sim"> Sim</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" id="nao" name="progenie" required [(ngModel)]="animalDoador.testeProgenie" value="false" >
-                    <label class="form-check-label" for="nao"> Não</label>
-                </div>
-            </div>
-    
-            <div class="col-sm-3">
-                <label class="form-check-label">Núcleo Moet: *</label><br>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" id="sim" name="moet" required [(ngModel)]="animalDoador.nucleoMoet" value="true">
-                    <label class="form-check-label" for="sim"> Sim</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" id="nao" name="moet" required [(ngModel)]="animalDoador.nucleoMoet" value="false">
-                    <label class="form-check-label" for="nao"> Não</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <label for="dono">Dono</label>
-                <input type="text" class="form-control" id="dono" name="dono" [(ngModel)]="animalDoador.dono">
-            </div>
-            <div class="col-sm-6">
-                <label for="pais">País de origem</label>
-                <input type="text" class="form-control" id="pais" name="pais" [(ngModel)]="animalDoador.paisOrigem">
-            </div>
-        </div>
-
-        <div class="form-group row my-3">
-            <div class="form-group col-sm-6 ">
-              <button type="submit" class="btn btn-success border">Salvar</button>
-              <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
-            </div>
-          </div>
-        
-        
-    </form>
-</div>
-
-<div *ngIf="errorMessage!=''">
-    <div class="alert alert-warning">
-        Falha ao criar animal doador!<br />
-        <pre>{{ errorMessage | json }}</pre>
+      </div>
     </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="brinco">Número do brinco: *</label>
+        <input type="number" class="form-control" id="brinco" name="brinco" required  [(ngModel)]="animal.brinco" >
+        <div class="invalid-feedback">
+          Número do brinco é um campo obrigatório
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <label for="registro">Número do registro: *</label>
+        <input type="number" class="form-control" id="registro" name="registro" required [(ngModel)]="animal.registro">
+        <div class="invalid-feedback">
+          Número do registro é um campo obrigatório
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <label for="dtnasc">Data de nascimento:*</label>
+        <div class="input-group">
+          <input type="date" class="form-control" name="dtnasc" required [(ngModel)]="animal.dataNasc">
+          <div class="invalid-feedback">
+            Data de nascimento é um campo obrigatório
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label for="pai">Pai:</label>
+        <input type="text" class="form-control" id="pai" name="pai" [(ngModel)]="animal.pai" >
+      </div>
+      <div class="col-sm-6">
+        <label for="mae">Mãe:</label>
+        <input type="text" class="form-control" id="mae" name="mae" [(ngModel)]="animal.mae" >
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-3">
+        <label class="form-check-label">Teste Progenie: *</label><br>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="sim" name="progenie" required [(ngModel)]="animalDoador.testeProgenie" value="true">
+          <label class="form-check-label" for="sim"> Sim</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="nao" name="progenie" required [(ngModel)]="animalDoador.testeProgenie" value="false" >
+          <label class="form-check-label" for="nao"> Não</label>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <label class="form-check-label">Núcleo Moet: *</label><br>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="sim" name="moet" required [(ngModel)]="animalDoador.nucleoMoet" value="true">
+          <label class="form-check-label" for="sim"> Sim</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="nao" name="moet" required [(ngModel)]="animalDoador.nucleoMoet" value="false">
+          <label class="form-check-label" for="nao"> Não</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label for="dono">Dono</label>
+        <input type="text" class="form-control" id="dono" name="dono" [(ngModel)]="animalDoador.dono">
+      </div>
+      <div class="col-sm-6">
+        <label for="pais">País de origem</label>
+        <input type="text" class="form-control" id="pais" name="pais" [(ngModel)]="animalDoador.paisOrigem">
+      </div>
+    </div>
+
+    <div class="form-group row my-3">
+      <div class="form-group col-sm-6 ">
+        <button type="submit" class="btn btn-success border">Salvar</button>
+        <button (click)="voltar()" class="btn btn-info border">Cancelar</button>
+      </div>
+    </div>
+
+
+  </form>
 </div>
+
+@if (errorMessage!='') {
+  <div>
+    <div class="alert alert-warning">
+      Falha ao criar animal doador!<br />
+      <pre>{{ errorMessage | json }}</pre>
+    </div>
+  </div>
+}

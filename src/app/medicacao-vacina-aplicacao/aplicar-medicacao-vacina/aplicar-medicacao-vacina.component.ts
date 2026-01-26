@@ -11,7 +11,7 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 import { UserService } from 'src/app/usuario/user.service';
 import { MedicacaoVacinaAplicacaoService } from '../medicacao-vacina-aplicacao.service';
 import { DoencaEvento } from 'src/app/model/doencaEvento';
-import { Location, NgClass, NgIf, NgFor } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 import { FormsModule } from '@angular/forms';
 import { CardDetalhesAnimalComponent } from '../../shared/card-detalhes-animal/card-detalhes-animal.component';
@@ -20,7 +20,7 @@ import { CardDetalhesAnimalComponent } from '../../shared/card-detalhes-animal/c
     selector: 'app-aplicar-medicacao-vacina',
     templateUrl: './aplicar-medicacao-vacina.component.html',
     styleUrls: ['./aplicar-medicacao-vacina.component.css'],
-    imports: [FormsModule, NgClass, NgIf, NgFor, CardDetalhesAnimalComponent]
+    imports: [FormsModule, NgClass, CardDetalhesAnimalComponent]
 })
 export class AplicarMedicacaoVacinasComponent extends BaseFormComponent {
 

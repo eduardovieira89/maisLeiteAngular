@@ -9,17 +9,18 @@ import { MetodoPrenhez } from 'src/app/model/metodoPrenhez';
 import { DiagnosticoPrenhez } from 'src/app/model/diagnosticoPrenhez';
 import { DiagnosticoPrenhezService } from '../diagnostico-prenhez.service';
 import { Cobertura } from 'src/app/model/cobertura';
-import { Location, NgClass, NgIf, NgFor, JsonPipe } from '@angular/common';
+import { Location, NgClass, JsonPipe, AsyncPipe } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 import { FormsModule } from '@angular/forms';
 import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
 import { CardCoberturaComponent } from '../../../shared/card-cobertura/card-cobertura.component';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-criar-diagnostico',
     templateUrl: './criar-diagnostico.component.html',
     styleUrls: ['./criar-diagnostico.component.css'],
-    imports: [FormsModule, NgClass, NgIf, NgFor, CardDetalhesAnimalComponent, CardCoberturaComponent, JsonPipe]
+    imports: [FormsModule, NgClass, CardDetalhesAnimalComponent, CardCoberturaComponent, JsonPipe, AsyncPipe]
 })
 export class CriarDiagnosticoComponent extends BaseFormComponent implements OnInit {
 
@@ -32,7 +33,7 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
               ) { super(router, location) }
 
   diagnosticoPrenhez: DiagnosticoPrenhez = new DiagnosticoPrenhez();
-  vacasDiag!: VacaDTO[];
+  vacasDiag$: Observable<VacaDTO[]>;
   vacaSelecionada!: VacaDTO;
   metodosPrenhez!: MetodoPrenhez[];
   cobertura!: Cobertura;
@@ -48,21 +49,22 @@ export class CriarDiagnosticoComponent extends BaseFormComponent implements OnIn
 
     //this.animalService.listarPorGenero(params).subscribe( v => this.vacas = v );
     this.diagnosticosPrenhezService.listMetodoPrenhez().subscribe( metodos => this.metodosPrenhez = metodos);
-    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
-      .subscribe(v => {
-        this.vacasDiag = v;
-        //Para selecionar a vaca via parametro na url
-        const id = this.route.snapshot.params['id'];
-        this.vacaSelecionada = this.vacasDiag.find(v => v.id.toString() === id);
-        if(!this.vacaSelecionada){
-          this.route.queryParams.subscribe(params => {
-            this.vacaSelecionada = this.vacasDiag.find(v => v.id.toString() === params['idvaca']);
-          });
-        }
-         if(this.vacaSelecionada){
-           this.buscaUltimaCobertura();
-         }
-      });
+    // this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
+    //   .subscribe(v => {
+    //     this.vacasDiag = v;
+    //     //Para selecionar a vaca via parametro na url
+    //     const id = this.route.snapshot.params['id'];
+    //     this.vacaSelecionada = this.vacasDiag.find(v => v.id.toString() === id);
+    //     if(!this.vacaSelecionada){
+    //       this.route.queryParams.subscribe(params => {
+    //         this.vacaSelecionada = this.vacasDiag.find(v => v.id.toString() === params['idvaca']);
+    //       });
+    //     }
+    //      if(this.vacaSelecionada){
+    //        this.buscaUltimaCobertura();
+    //      }
+    //   });
+    this.vacasDiag$ = this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString());
   }
 
   submit(formulario){

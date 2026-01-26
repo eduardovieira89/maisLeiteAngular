@@ -11,18 +11,19 @@ import { TipoParto } from 'src/app/model/TipoParto';
 import { DiagnosticoPrenhezService } from 'src/app/reproducao/diagnostico-prenhez/diagnostico-prenhez.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { AnimalService } from 'src/app/animal/animal.service';
-import { Location, NgClass, NgIf, NgFor, JsonPipe } from '@angular/common';
+import { Location, NgClass, JsonPipe, AsyncPipe } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 import { FormsModule } from '@angular/forms';
 import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
 import { CardCoberturaComponent } from '../../../shared/card-cobertura/card-cobertura.component';
 import { CardDiagnosticoPrenhezComponent } from '../../../shared/card-diagnostico-prenhez/card-diagnostico-prenhez.component';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-criar-parto',
     templateUrl: './criar-parto.component.html',
     styleUrls: ['./criar-parto.component.css'],
-    imports: [FormsModule, NgClass, NgIf, NgFor, CardDetalhesAnimalComponent, RouterLink, CardCoberturaComponent, CardDiagnosticoPrenhezComponent, JsonPipe]
+    imports: [FormsModule, NgClass, CardDetalhesAnimalComponent, RouterLink, CardCoberturaComponent, CardDiagnosticoPrenhezComponent, JsonPipe, AsyncPipe]
 })
 export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
@@ -36,7 +37,7 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
 
   parto: Parto = new Parto();
   tiposParto!: TipoParto[];
-  vacas!: VacaDTO[];
+  vacas$: Observable<VacaDTO[]>;
   vacaSelecionada!: VacaDTO;
   cobertura!: Cobertura;
   diagnosticoPrenhez!: DiagnosticoPrenhez;
@@ -49,8 +50,9 @@ export class CriarPartoComponent extends BaseFormComponent implements OnInit {
     //params = params.set('idpropriedade', this.propriedadeService.getPropriedadeelecionada().id.toString());
     //params = params.set('genero', 'f');
 
-    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
-      .subscribe(v => this.vacas = v);
+    // this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
+    //   .subscribe(v => this.vacas = v);
+    this.vacas$ = this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString());
     this.partoService.listTipoParto()
       .subscribe(tipos => this.tiposParto = tipos);
 

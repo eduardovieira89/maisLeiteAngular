@@ -1,17 +1,21 @@
 <div class="card text-bg-light  mb-3">
-    <div class="card-body">
-        <h5 class="card-title">Detalhes do Animal</h5>
-        <div *ngIf="!animal">
-            <h6 class="card-subtitle mb-2 text-muted">Nenhum animal selecionado </h6>
-        </div>
-        <div *ngIf="animal" class="row">
-            <h6 class="card-subtitle mb-2 text-muted col-md-3">Número do brinco: {{animal.brinco}} </h6>
-            <h6 class="card-subtitle mb-2 text-muted col-md-3">Número do registro: {{animal.registro}} </h6>
-            <h6 class="card-subtitle mb-2 text-muted col-md-3">Nome: {{animal.nome}} </h6>
-            <h6 class="card-subtitle mb-2 text-muted col-md-3">Raça: {{animal.raca}} </h6>
-            <h6 class="card-subtitle mb-2 text-muted col-md-3">Data de Nascimento: {{animal.dataNasc}} </h6>
-            <h6 class="card-subtitle mb-2 text-muted col-md-3">Idade: {{animal.idade}} anos </h6>
-            <h6 class="card-subtitle mb-2 text-muted col-md-3">Lote: {{animal.lote}} </h6>
-        </div>
-    </div>
+  <div class="card-body">
+    <h5 class="card-title">Detalhes do Animal</h5>
+    @if (!animal) {
+      <div>
+        <h6 class="card-subtitle mb-2 text-muted">Nenhum animal selecionado </h6>
+      </div>
+    }
+    @if (animal) {
+      <div class="row">
+        <h6 class="card-subtitle mb-2 text-muted col-md-3">Número do brinco: {{animal.brinco}} </h6>
+        <h6 class="card-subtitle mb-2 text-muted col-md-3">Número do registro: {{animal.registro}} </h6>
+        <h6 class="card-subtitle mb-2 text-muted col-md-3">Nome: {{animal.nome}} </h6>
+        <h6 class="card-subtitle mb-2 text-muted col-md-3">Raça: {{animal.raca}} </h6>
+        <h6 class="card-subtitle mb-2 text-muted col-md-3">Data de Nascimento: {{animal.dataNasc}} </h6>
+        <h6 class="card-subtitle mb-2 text-muted col-md-3">Idade: {{animal.idade}} anos </h6>
+        <h6 class="card-subtitle mb-2 text-muted col-md-3">Lote: {{animal.lote}} </h6>
+      </div>
+    }
+  </div>
 </div>

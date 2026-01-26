@@ -2,14 +2,14 @@ import { SemenService } from '../semen.service';
 import { Semen } from '../../../model/semen';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { NgIf, NgFor, AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-listar-semens',
     templateUrl: './listar-semens.component.html',
     styleUrls: ['./listar-semens.component.css'],
-    imports: [NgIf, RouterLink, NgFor, AsyncPipe, CurrencyPipe, DatePipe]
+    imports: [RouterLink, AsyncPipe, CurrencyPipe, DatePipe]
 })
 export class ListarSemenComponent implements OnInit {
 

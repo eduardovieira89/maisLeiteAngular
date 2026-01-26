@@ -12,17 +12,18 @@ import { Animal } from 'src/app/model/animal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Location, NgClass, NgIf, NgFor, JsonPipe } from '@angular/common';
+import { Location, NgClass, JsonPipe, AsyncPipe } from '@angular/common';
 import { VacaDTO } from 'src/app/model/vacaDTO';
 import { AnimalMatrizDto } from 'src/app/model/animalMatrizDTO';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { CardDetalhesAnimalComponent } from '../../../shared/card-detalhes-animal/card-detalhes-animal.component';
 
 @Component({
     selector: 'app-criar-cobertura',
     templateUrl: './criar-cobertura.component.html',
     styleUrls: ['./criar-cobertura.component.css'],
-    imports: [FormsModule, NgClass, NgIf, NgFor, CardDetalhesAnimalComponent, JsonPipe]
+    imports: [FormsModule, NgClass, CardDetalhesAnimalComponent, JsonPipe, AsyncPipe]
 })
 export class CriarCoberturaComponent extends BaseFormComponent implements OnInit {
 
@@ -38,7 +39,7 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     ) { super(router, location) }
 
   cobertura: Cobertura = new Cobertura();
-  vacasCob!: VacaDTO[];
+  vacasCob$: Observable<VacaDTO[]>;
   vacaSelecionada!: VacaDTO;
   tourosMonta: AnimalMatrizDto[];
   inseminadores: Usuario[];
@@ -55,17 +56,18 @@ export class CriarCoberturaComponent extends BaseFormComponent implements OnInit
     //this.animalService.listarPorGenero(params).subscribe(t => this.tourosMonta = t);
     this.animalService.listarMatrizes('m').subscribe(t => this.tourosMonta = t);
 
-    this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
-      .subscribe(v =>{
-        this.vacasCob = v;
-        //Para selecionar a vaca via parametro na url
-        const id = this.route.snapshot.params['id'];
-        this.vacaSelecionada = this.vacasCob.find(v => v.id.toString() === id);
-        if(!this.vacaSelecionada){
-        this.route.queryParams.subscribe(params =>
-          this.vacaSelecionada = this.vacasCob.find(v => v.id.toString() === params['idvaca']));
-        }
-      });
+    // this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString())
+    //   .subscribe(v =>{
+    //     this.vacasCob = v;
+    //     //Para selecionar a vaca via parametro na url
+    //     const id = this.route.snapshot.params['id'];
+    //     this.vacaSelecionada = this.vacasCob.find(v => v.id.toString() === id);
+    //     if(!this.vacaSelecionada){
+    //     this.route.queryParams.subscribe(params =>
+    //       this.vacaSelecionada = this.vacasCob.find(v => v.id.toString() === params['idvaca']));
+    //     }
+    //   });
+    this.vacasCob$ = this.animalService.listarVacasDTO(this.propriedadeService.getPropriedadeSelecionada().id.toString());
     this.coberturaService.listTipoCobertura().subscribe(tipos => this.TipoCobertura = tipos);
     this.usuariosService.list().subscribe(users => this.inseminadores = users );
     this.semensService.list().subscribe(sem => this.semens = sem );

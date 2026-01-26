@@ -8,7 +8,7 @@ import { AnimalService } from 'src/app/animal/animal.service';
 import { PropriedadeService } from 'src/app/propriedade/propriedade.service';
 import { MotivoBaixa } from 'src/app/model/motivoBaixa';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
-import { Location, NgIf, NgFor, NgClass, AsyncPipe, DatePipe } from '@angular/common';
+import { Location, NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './listar-animal.component.html',
     styleUrls: ['./listar-animal.component.css'],
     preserveWhitespaces: true,
-    imports: [NgIf, RouterLink, NgFor, FormsModule, NgClass, AsyncPipe, DatePipe]
+    imports: [RouterLink, FormsModule, NgClass, AsyncPipe, DatePipe]
 })
 export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
 
