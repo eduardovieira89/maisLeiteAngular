@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Animal } from 'src/app/model/animal';
 import { Propriedade } from 'src/app/model/propriedade';
@@ -27,6 +27,8 @@ export class ListarAnimalComponent extends BaseFormComponent implements OnInit {
   //@ViewChild('baixaModal') baixaModal;
   animalSelecionado: Animal;
   motivoSelected: MotivoBaixa;
+  signalAnimalService = inject(AnimalService);
+  signalAnimais
 
   constructor(
     protected router: Router,
